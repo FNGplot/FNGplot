@@ -1,0 +1,469 @@
+/*
+Fonts in FNGplot:
+
+To provide ample options for users and a consistent GUI across all devices, FNGplot comes
+with a small font library. However, loading all these fonts takes a lot of time,
+therefore, to speed things up, I separated these fonts into two categories:
+'ASAP fonts' and 'lazy fonts'.
+
+
+ASAP Fonts: Fonts that are used by FNGplot itself. They need to be loaded before DOM is constructed, so
+they are declared in this CSS file. 
+
+List of ASAP fonts:
+
+- Lato bold: Buttons, banners, dropdowns, etc
+- Lato regular: Toolbar, general content
+- Nunito regular: Logo text
+- Material Symbols Round (A special "icon font" by Google): Icons & Symbols
+- Source Code Pro regular: System Log
+
+
+Lazy fonts: Fonts that only serve as options in label and LaTeX blocks. They can be slowly loaded in the background.
+These fonts are loaded via the FontFaceSet() asynchronous APIs, and their load progress can be viewed in system log.
+
+List of lazy fonts:
+
+- Anything in the font database that is not an ASAP font.
+
+
+*/
+
+@font-face {                    /*Lato -- Regular*/
+	font-family: "Lato";
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/WOFF2/Lato-Regular.woff2') format('woff2');
+}
+@font-face {                    /*Lato -- Bold*/
+	font-family: "Lato";
+	font-weight: bold;
+	font-style: normal;
+	src: url('../fonts/WOFF2/Lato-Bold.woff2') format('woff2');
+}
+@font-face {                    /*Nunito -- Regular*/
+	font-family: "Nunito";
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/WOFF2/Nunito-Regular.woff2') format('woff2');
+}
+@font-face {                    /*Source Code Pro -- normal*/
+	font-family: "Source Code Pro";
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/WOFF2/SourceCodePro-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: "Material Symbols Rounded";
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/WOFF2/MaterialSymbolsRounded.ttf') format('truetype');  
+}
+.material-symbol-rounded { /*Google recommended this whole thing*/
+    font-family: "Material Symbols Rounded";
+    font-weight: normal;
+    font-style: normal; 
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;  /* Support for all WebKit browsers. */
+    text-rendering: optimizeLegibility;   /* Support for Safari and Chrome. */
+    -moz-osx-font-smoothing: grayscale;   /* Support for Firefox. */
+	/*I added everything below this line*/
+	-moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.material-symbol-rounded.btnicon{
+	top: 4px;
+	left: 4px;
+	position: absolute;
+	font-size: 24px;
+}
+.material-symbol-rounded.sortblockicon{
+	position: absolute;
+	display: block;
+	top: 5px;
+	font-size: 40px;
+	cursor: default;
+}
+
+
+
+
+
+.generic-button {
+    position: absolute;
+	height:36px;
+    font: bold 17px Lato;
+	border: 2px solid black;
+    color:rgba(0, 0, 0, 1);
+    border-radius: 8px;
+    background-color:#ffffff;
+	padding: 1px 6px;
+}
+.generic-button:hover {
+    background-color: #d3d3d3;
+}        
+.generic-button:disabled {
+    background-color: #e7e7e7;
+    color: #6e6e6e;
+}        
+
+
+.toolbar-button {
+    top: 7px;
+	/*left: This is defined dynamically immediately after page load*/
+    position: absolute;
+    font-size: 15px;
+    font-family: Lato;
+    border-style: solid;
+    border-left-width:7px;
+    padding-left: 4px;
+    color:rgba(0, 0, 0, 1); /*word color*/
+    /*border-color: This is defined dynamically immediately after page load*/
+    font-weight:normal;
+    background-color: transparent;
+}
+.small-icon {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+}
+
+
+/* Style of toolbar grid*/
+
+.toolbar-grid {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font: 24px Lato;
+}
+.toolbar-grid td {
+	height: 54px;
+	width: 69px;
+	text-align: center;
+	vertical-align: middle;
+}
+.toolbar-grid td img{ /*Those small svg icons*/
+	width: 40px;
+	height: 40px;
+	border: 1px solid black;
+	margin-top: 5px; /*for some reason this is needed to achieve a true "centered" effect*/
+	border-radius: 4px;
+}
+
+
+/* Styles of sortable blocks*/
+
+.small-icon.block {
+	border: 1px solid black;
+	border-radius: 4px;
+	top: 4px;
+	left: 5px;
+}
+.nested-sortable > :first-child { /*cancel out the "margin-top: -1px" for the first child, as it doesn't need that*/
+	margin-top: 0px;
+}
+.obj-block {     /*basis of blocks*/
+	position: relative;
+	border-radius: 4px;
+	border: 1px solid black;
+	margin-top: -1px;
+	min-height: 50px; /*except the folder blocks / gets larger when you open the control panel*/
+}
+.obj-block .nametag {
+	position: absolute;
+	top: 12px;
+	left: 60px;
+	width: 100px;
+	height: 18px;
+	padding: 3px;
+	border: 1px solid black;
+	border-radius: 3px;
+	font: 16px Lato;
+}
+.obj-block.folder .nametag{ /*folders need a slightly shorter nametag*/
+	width: 90px;
+}
+.obj-block .visibility {  /*the eye*/
+	right: 100px;
+}
+.obj-block .edit {        /*the panel-thing*/
+	right: 55px;
+}
+.obj-block .expand {      /*the expand-arrows on folder*/
+	right: 55px;
+}
+.obj-block .delete {      /*the trashcan*/
+	right: 10px;
+}
+.obj-block.folder .up {   /*up double arrow*/
+	right: 145px;
+}
+.obj-block.folder .down { /*down double arrow*/
+	right: 100px;
+}
+.obj-block.folder > .visibility {    /*overriding .obj-block .visibility*/
+	right: 190px;
+}
+
+.ghost-class {            /*'ghostClass' parameter of sortable.js*/
+	opacity: 0.4;
+}
+.obj-block.geo {  /*geometry block*/
+	background-color: #5f95f7;  
+}
+.obj-block.folder { /*folder block*/
+	background-color: #f3af42;
+	overflow: hidden;
+}
+
+.folder-content {
+	position: relative;
+	min-height: 52px;
+	border: 2px dashed black;
+	width: auto;
+	margin: 55px 4px 4px 4px;
+	padding: 4px;
+	border-radius: 4px;
+}
+.folder-expand {    /*expand/collapse animation*/
+	height: unset;
+}
+.folder-collapse {
+	height: 50px;
+}
+
+div, select, canvas, pre, textarea{
+    position: absolute;
+}
+button{
+	border-width: 0;
+}
+body{
+	background-color: #fffff8;
+}
+input[type="text"][disabled] {
+   background-color: #e6e6e6;
+   color: #000000;
+}
+#banner {
+	top: 0px;
+	left: 0px;
+	width: 270px;
+	height: 45px;
+	background: #ddcfff;
+	border-right:2px solid black;
+	border-bottom:2px solid black;
+}
+#banner-logo{
+	position:absolute;
+	top: 5px;
+	left: 54px;
+	width: 35px;
+	height: 35px;
+}
+#banner-name{
+	font: bold 30px Nunito;
+	color: #8a408b;
+	top: 2px;
+	left: 97px;
+	cursor: default;
+}
+#root-frame{
+	top: 10px;
+	left: 10px;
+	width: 1350px;
+	height: 720px;
+	border: 3px solid black;
+}
+#root-frame{
+	top: 10px;
+	left: 10px;
+	width: 1350px;
+	height: 720px;
+	border: 3px solid black;
+}
+#main-frame { /*right side*/
+	top: 90px;
+	left: 270px;
+	width: 1080px;
+	height: 630px;
+}
+#console {
+	top: 110px;
+	left: 150px;
+	width: 850px;
+	height: 500px;
+	background-color: white;
+	border: 3px solid black;
+	border-radius: 6px;
+	z-index: 99; /*ideally always at the top when displayed*/
+	display: none;
+}
+#console-open {
+	top: 50px;
+	left: 50px;
+}
+#calc-open {
+	top: 615px;
+	left: 0px;
+	width: 270px;
+	height: 56px;
+	border-top: 2px solid black;
+	background: #ffffff;
+	cursor: default;
+}
+#calc-open-banner {
+	font: bold 34px Lato;
+	top: 7px;
+	left: 70px;
+}
+#calc-open-icon {
+	top: 8px;
+	left: 22px;
+	font-size: 40px;
+}
+#console-pre{
+	top: 40px;
+	left: 18px; /*have considered the borders*/
+	width: 810px;
+	height: 440px;
+	z-index: 0;
+	tab-size: 4;
+	white-space: nowrap;
+}
+#console-code{
+	font-family: "Source Code Pro";
+}
+#console-banner {
+	top: 7px;
+	left: 200px;
+	font: bold 28px Lato;
+}
+#console-close {
+	top: 3px;
+	left: 800px;
+	font-family: Lato;
+	font-weight: bold;
+	font-size: 40px;
+	cursor: default;
+}
+#public-dialog-box {
+	top: 130px;
+	left: 306px;
+	width: 550px;
+	height: 400px;
+	background: #ffffff;
+	z-index: 99;
+	border: 3px solid black;
+	border-radius: 6px;
+	box-shadow: 10px 10px 4px gray;
+	background: #ffffe6;
+	display: none;
+}
+#block-frame{
+	top: 60px;
+	left: 630px;
+	width: 415px;
+	height: 520px;
+	border: 2px dashed black;
+	background: #ffffff;
+	overflow: auto;
+	margin: 0;
+	padding: 10px; /*adds a little space between the frame and the blocks inside*/
+}
+div[id^="left-panel-item-"] {
+	top: 45px;
+	left: 0px;
+	width: 270px;
+	height: 570px;
+	display: none;
+}
+#left-panel-item-file{ /*Exception of the above rule*/
+	display: block;
+}
+div[id^="toolbar-item-"]{
+	top: 36px;
+	left: 0px;
+	width: 1080px;
+	height: 54px;
+	display: none;
+	overflow-y: scroll;
+}
+#left-panel {
+	top: 47px;
+	left: 0px;
+	width: 270px;
+	height: 675px;
+	border-right: 2px solid black;
+}
+#left-panel-title {
+	top: 0px;
+	left: 0px;
+	width: 270px;
+	height: 43px;
+	border-bottom: 2px solid black;
+}
+#left-panel-select {
+	font: bold 22px Lato;
+	top: 6.5px;
+	left: 5px;
+	width: 260px;
+	height: 30px;
+}
+#toolbar-frame {
+	top: 0px;
+	left: 270px;
+	width: 1080px;
+	height: 90px;
+	border-bottom: 2px solid black;
+}
+#toolbar-panel {
+	top: 0px;
+	left: 0px;
+	width: 1080px;
+	height: 35px;
+	border-bottom: 1px solid black;
+}
+#svg-frame {
+	top: 13px;
+	left: 13px;
+	width: 600px;
+	height: 600px;
+	border:2px solid black;
+}
+#svg-canvas, #tspt-bkgd {
+	top: 0px;
+	left: 0px;
+	width: 600px;
+	height: 600px;
+	position: absolute;
+}
+#svg-canvas {
+	z-index: 1;
+}
+#tspt-bkgd {
+	z-index: 0;
+}
+#run {
+	top: 585px;
+	left: 635px;
+}
+#editmode-swap {
+	top: 585px;
+	left: 910px;
+}
+#editmode {
+	top: 592px;
+	left: 770px;
+	font: 17px "Source Code Pro";
+	color: #808080; /*gray*/
+}

@@ -1,0 +1,12 @@
+Improvements:
+
+Ditched animation
+Syntax highlighting
+(Much faster loading)
+	Improved font loading efficiency
+Absolute positioned layout
+Template now has a separate canvas for efficiency
+
+Goals:
+
+MS Word-styled command selector

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 620 620" >
+  <defs>
+    <g id="unit">
+            <rect x="0" y="0" width="20" height="20" fill="#f5f5f5"/>
+    </g>
+  </defs>
+  <g id="row">
+        <use xlink:href="#unit" transform="translate(0)"/>
+        <use xlink:href="#unit" transform="translate(40)"/>
+        <use xlink:href="#unit" transform="translate(80)"/>
+        <use xlink:href="#unit" transform="translate(120)"/>
+        <use xlink:href="#unit" transform="translate(160)"/>
+        <use xlink:href="#unit" transform="translate(200)"/>
+        <use xlink:href="#unit" transform="translate(240)"/>
+        <use xlink:href="#unit" transform="translate(280)"/>
+        <use xlink:href="#unit" transform="translate(320)"/>
+        <use xlink:href="#unit" transform="translate(360)"/>
+        <use xlink:href="#unit" transform="translate(400)"/>
+        <use xlink:href="#unit" transform="translate(440)"/>
+        <use xlink:href="#unit" transform="translate(480)"/>
+        <use xlink:href="#unit" transform="translate(520)"/>
+        <use xlink:href="#unit" transform="translate(560)"/>
+        <use xlink:href="#unit" transform="translate(600)"/>
+    </g>
+    <use xlink:href="#row" transform="translate(-20,20)"/>
+    <use xlink:href="#row" transform="translate(0,40)"/>
+    <use xlink:href="#row" transform="translate(-20,60)"/>
+    <use xlink:href="#row" transform="translate(0,80)"/>
+    <use xlink:href="#row" transform="translate(-20,100)"/>
+    <use xlink:href="#row" transform="translate(0,120)"/>
+    <use xlink:href="#row" transform="translate(-20,140)"/>
+    <use xlink:href="#row" transform="translate(0,160)"/>
+    <use xlink:href="#row" transform="translate(-20,180)"/>
+    <use xlink:href="#row" transform="translate(0,200)"/>
+    <use xlink:href="#row" transform="translate(-20,220)"/>
+    <use xlink:href="#row" transform="translate(0,240)"/>
+    <use xlink:href="#row" transform="translate(-20,260)"/>
+    <use xlink:href="#row" transform="translate(0,280)"/>
+    <use xlink:href="#row" transform="translate(-20,300)"/>
+    <use xlink:href="#row" transform="translate(0,320)"/>
+    <use xlink:href="#row" transform="translate(-20,340)"/>
+    <use xlink:href="#row" transform="translate(0,360)"/>
+    <use xlink:href="#row" transform="translate(-20,380)"/>
+    <use xlink:href="#row" transform="translate(0,400)"/>
+    <use xlink:href="#row" transform="translate(-20,420)"/>
+    <use xlink:href="#row" transform="translate(0,440)"/>
+    <use xlink:href="#row" transform="translate(-20,460)"/>
+    <use xlink:href="#row" transform="translate(0,480)"/>
+    <use xlink:href="#row" transform="translate(-20,500)"/>
+    <use xlink:href="#row" transform="translate(0,520)"/>
+    <use xlink:href="#row" transform="translate(-20,540)"/>
+    <use xlink:href="#row" transform="translate(0,560)"/>
+    <use xlink:href="#row" transform="translate(-20,580)"/>
+    <use xlink:href="#row" transform="translate(0,600)"/>
+</svg>

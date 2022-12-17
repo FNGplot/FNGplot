@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="310" height="310" viewBox="-155 -155 310 310" >
+<!-- 
+FNGplot logo
+Pink and Purple Penrose tiling
+Wish Lin - December 2022
+-->
+  <defs>
+    <g id="unit">
+      <polygon points="0,0 54.4909,-75 0,-150 -54.4909,-75" stroke="#000" stroke-width="2.5" stroke-linejoin="round" fill="#ffc0cb"/>
+      <polygon points="0,-150 88.1678,-121.3525 142.6585,-46.3525 54.4909,-75" stroke="#000" stroke-width="2.5" stroke-linejoin="round" fill="#8a408b"/>
+    </g>
+  </defs>
+  <use xlink:href="#unit"/>
+  <use xlink:href="#unit" transform="rotate(72)"/>
+  <use xlink:href="#unit" transform="rotate(144)"/>
+  <use xlink:href="#unit" transform="rotate(216)"/>
+  <use xlink:href="#unit" transform="rotate(288)"/>
+</svg>
