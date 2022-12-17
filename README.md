@@ -1,3 +1,3 @@
-##FNGplot
+## FNGplot
 
-Currently in development
+First official version. Currently under development.
