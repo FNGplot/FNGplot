@@ -40,8 +40,7 @@ var NESTED_SORTABLES = [];
 window.onload = function(){
 	SYSTEM_EPOCH = Date.now();  //Start system timer. It is mainly used for debugging and optimizing purposes.
 	console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
-	console.log("-------------------------------------------------------------------------");
-	
+
 	
 	//Init left panel
 	document.querySelector("#left-panel-select").addEventListener("change", function(){
@@ -60,9 +59,6 @@ window.onload = function(){
 	initAll();
 	console.log("Primary initialization Complete");
 	systemTime();
-	
-	//Async function to load the lazy fonts
-	loadLazyFonts();
 	
 	//Init sortable container (the only one present on onload should be #block-frame, but I'll keep this code for possible future changes)
 	//NESTED_SORTABLES = [].slice.call(document.querySelectorAll('.nested-sortable')); //A weird but concise way to transfrom a NodeList into an Array
@@ -95,17 +91,16 @@ window.onload = function(){
 	
 }
 
-window.onerror = function(e){
+window.addEventListener("error", function(e){
 	alert("Execution Failed.");
-}
+});
 
-window.onkeydown = function(e){ //hotkey override
-	
-	if(e.keyCode == 120){ //F9: Run script
-		e.preventDefault();
+window.addEventListener("keydown", function(event){
+	if(event.key == "F9"){ //F9: Run script
+		event.preventDefault();
 		console.log(window.innerWidth);
 		console.log(window.innerHeight);
 		console.log(document.documentElement.clientWidth);
 		console.log(document.documentElement.clientHeight);
 	}
-}
+});
