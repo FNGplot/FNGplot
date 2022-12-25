@@ -28,10 +28,10 @@ var XMAX = 10;
 var XMIN = -10;
 var YMAX = 10;
 var YMIN = -10;
-var XHAT = 30;
-var YHAT = 30;
-var ORIGIN_X = 300; //"real" x and y coordinates of the origin point in the SVG.
-var ORIGIN_Y = 300;
+var XHAT = 50;
+var YHAT = 50;
+var ORIGIN_X = 500; //"real" x and y coordinates of the origin point in the SVG.
+var ORIGIN_Y = 500;
 
 //Fonts
 const LZ_FONT_DATA = [

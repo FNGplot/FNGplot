@@ -89,7 +89,16 @@
                 </div>
                 
                 <div id="left-panel-item-settings">
-                settings
+					<div id="settings-rootzoom">
+						<div id="rootzoom-label">Zoom: 100%</div>
+						<input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range" onchange="changeRootZoom(this.value)"></input>
+					</div>
+					<div>
+						settings 2
+					</div>
+					<div>
+						settings 3
+					</div>
                 </div>
                 
                 <div id="left-panel-item-tools">
@@ -220,7 +229,7 @@
 				
 				<div id="svg-frame">
 					<img id="tspt-bkgd" src="svg/system/transparent-bkgd.svg"></img>
-					<svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 600 600" data-sid="root">
+					<svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000" data-sid="root">
 						
 					</svg>
 				</div>

@@ -28,7 +28,7 @@ function toggleLeftPanel(value){
     n.forEach((subpage) => {                                                            //hide everyone first
         subpage.style.display = "none";
     });
-    document.querySelector(`#left-panel-item-${value}`).style.display = "block";        //then show only the selected subpage
+    document.querySelector(`#left-panel-item-${value}`).style.display = "flex";        //then show only the selected subpage
 }
 
 
@@ -89,4 +89,12 @@ function systemTime(){
 //basic use: highlight the console
 function highlightConsole(){
 	Prism.highlightElement(document.querySelector("#console-code")); //re-highlight
+}
+
+/*Left Panel*/
+
+//Change root zoom level
+function changeRootZoom(value){
+	document.getElementById("root-frame").style.transform=`scale(${value/100})`;
+	document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
 }

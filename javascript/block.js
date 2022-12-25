@@ -210,7 +210,7 @@ function LinePP(sid) {
     this.y2 = 2;
     this.pathLength = 100;
     //Style
-    this.lineWidth = 4;
+    this.lineWidth = 5;
     this.lineCap = "round";
     this.dashArray = '';
     this.dashOffset = 0;
@@ -253,7 +253,7 @@ function createBlankObject(objName) {
             s.setAttribute("x2",toRealX(5).toString());
             s.setAttribute("y2",toRealY(2).toString());
             s.setAttribute("pathLength","100");
-            s.setAttribute("stroke-width","4");
+            s.setAttribute("stroke-width","5");
             s.setAttribute("stroke-linecap","round");
             s.setAttribute("stroke-dasharray","");
             s.setAttribute("stroke-dashoffset","0");
