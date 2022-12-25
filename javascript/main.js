@@ -22,7 +22,6 @@ var SORTABLE_LIST = []; //Stores the Sortable objects
 
 //System variables
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; //(SCRATCH 2.0/3.0 && some of my own)
-const TOOLBAR_LPOS = ['10px','94px','183px','258px','378px','457px','627px','737px','938px']; //CSS "left" attribute of toolbar buttons(10 values)
 
 //Cartesian coordinate
 var XMAX = 10;

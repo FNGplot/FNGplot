@@ -110,19 +110,46 @@ List of lazy fonts:
 
 
 .toolbar-button {
-    top: 7px;
-	/*left: This is defined dynamically immediately after page load*/
-    position: absolute;
     font-size: 15px;
     font-family: Lato;
     border-style: solid;
     border-left-width:7px;
-    padding-left: 4px;
+    padding: 1px 6px 1px 4px;
     color:rgba(0, 0, 0, 1); /*word color*/
-    /*border-color: This is defined dynamically immediately after page load*/
-    font-weight:normal;
+    /*background-color: This is defined dynamically immediately after page load*/
+    font-weight: normal;
     background-color: transparent;
+	height: 20px;
 }
+#toolbar-select-variables {
+	width: 80px;
+}
+#toolbar-select-geometry {
+	width: 85px;
+}
+#toolbar-select-algebra {
+	width: 70px;
+}
+#toolbar-select-consec {
+	width: 115px;
+}
+#toolbar-select-calculus {
+	width: 74px;
+}
+#toolbar-select-difeq {
+	width: 166px;
+}
+#toolbar-select-vecf {
+	width: 105px;
+}
+#toolbar-select-tse {
+	width: 197px;
+}
+#toolbar-select-other {
+	width: 64px;
+}
+
+
 .small-icon {
 	position: absolute;
 	width: 40px;
@@ -287,7 +314,7 @@ input[type="text"][disabled] {
 	left: 50px;
 }
 #calc-open {
-	top: 655px;
+	top: 640px;
 	left: 0px;
 	width: 270px;
 	height: 56px;
@@ -356,7 +383,7 @@ input[type="text"][disabled] {
 	padding: 10px; /*adds a little space between the frame and the blocks inside*/
 }
 div[id^="toolbar-item-"]{
-	top: 42px;
+	top: 44px;
 	left: 15px;
 	width: 1080px;
 	height: 54px;
@@ -370,7 +397,7 @@ div[id^="toolbar-item-"]{
 	top: 60px;
 	left: 0px;
 	width: 270px;
-	height: 575px;
+	height: 560px;
 	background: #f5f0ff;
 	box-shadow: 5px 10px 8px #888888;
 	border: 2px solid black;
@@ -383,7 +410,7 @@ div[id^="toolbar-item-"]{
 	height: 30px;
 }
 div[id^="left-panel-item-"] {
-	top: 70px;
+	top: 55px;
 	left: 12px;
 	width: 246px;
 	height: 490px;
@@ -408,6 +435,9 @@ div[id^="left-panel-item-"] {
 	background: #f5f0ff;
 	border: 2px solid black;
 	box-shadow: 5px 10px 8px #888888;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }
 #svg-frame {
 	top: 20px;

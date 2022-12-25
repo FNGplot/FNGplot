@@ -52,7 +52,7 @@ function toggleToolbar(optn){
 		btn.style.color = "#000000";                                                            //set all buttons' text to black (unselected)
 		btn.style.fontWeight = "normal";                                                        //set font weight to normal (unselected)
     });
-	n[optn].style.background = TOOLBAR_CLR[optn];                                           //set background to its border color (selected)
+	n[optn].style.background = TOOLBAR_CLR[optn];                                               //set background to its border color (selected)
 	n[optn].style.color = "#ffffff";                                                            //set text color to white (selected)
 	n[optn].style.fontWeight = "bold";                                                          //set font weight to bold (selected)
 	
@@ -67,7 +67,6 @@ function toggleToolbar(optn){
 function initToolbar(){
 	let n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
 	for(let i = 0;i<9;i++){
-		n[i].style.left = TOOLBAR_LPOS[i]        //initialize them to their respective positions
 		n[i].style.borderColor = TOOLBAR_CLR[i]; //initialize them to their respective colors
 		n[i].addEventListener("click", function() {toggleToolbar(i)}); //attach click eventlisteners
 	}
