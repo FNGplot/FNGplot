@@ -1,27 +1,3 @@
-/* Async load of lazy fonts*/
-
-//Load the fonts listed in LZ_FONT_DATA
-async function loadLazyFonts(){        
-	for(var i = 0; i<LZ_FONT_DATA.length; i++){  
-		//Declare the fontface
-		LZ_FONTFACES.push(new FontFace(`${LZ_FONT_DATA[i][0]}`, `url(fonts/WOFF2/${LZ_FONT_DATA[i][3]})`,   { style: `${LZ_FONT_DATA[i][2]}`, weight: `${LZ_FONT_DATA[i][1]}`}));  //Initialize LZ_FONTFACES one by one
-		document.fonts.add(LZ_FONTFACES[LZ_FONTFACES.length-1]); //Add the new fontface to FontFaceSet
-		LZ_FONTPROMISES.push(LZ_FONTFACES[LZ_FONTFACES.length-1].load()); //Start async load of the new fontface and push its promise into LZ_FONTPROMISES
-	}
-	Promise.all(LZ_FONTPROMISES)    //The big promise of all fontface's load() promise
-	   .then((results) => {
-		   logConsole(`ASYNC FONT LOAD COMPLETE --  ${results.length} more fonts loaded`);
-		   systemTime();
-		   logConsole(`-------------------------------------------------------------------------`);
-		   highlightConsole();
-	   })
-	   .catch((e) => {
-		   logConsole("ERROR: Lazy font load failed. One or more font files missing or corrupted.");
-		   systemTime();
-		   alert("Async font load failed: One or more font files missing or corrupted.");
-	});
-}
-
 /* toggles left panel*/
 function toggleLeftPanel(value){
     let n = document.querySelectorAll("div[id^=\"left-panel-item-\"]");                 //selects all 7 subpages
@@ -72,29 +48,20 @@ function initToolbar(){
 	}
 }
 
-/* Console: My own syntax-highlighted console*/
-// These are the ones used by the program, not by the user.
-/* Others are Eventlisteners. They are short one-liners that can be found in window.onload()'s console section*/
-
-//basic use: log a line to console
-function logConsole(txt){
-	document.querySelector("#console-code").innerHTML += `> ${txt}\n`;
-}
-
-//basic use: log system time
+//Log system time
 function systemTime(){
-	document.querySelector("#console-code").innerHTML += `                                                           System Time: ${Date.now()-SYSTEM_EPOCH}ms\n`;
-}
-
-//basic use: highlight the console
-function highlightConsole(){
-	Prism.highlightElement(document.querySelector("#console-code")); //re-highlight
+	console.log(`System Time: ${Date.now()-SYSTEM_EPOCH}ms\n`);
 }
 
 /*Left Panel*/
 
 //Change root zoom level
-function changeRootZoom(value){
-	document.getElementById("root-frame").style.transform=`scale(${value/100})`;
-	document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
+function changeRootZoom(value,mode){ //mode 0 = still dragging. 1 = release thumb.
+	if(mode){
+		document.getElementById("root-frame").style.transform=`scale(${value/100})`;
+		document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
+	}
+	else{
+		document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
+	}
 }

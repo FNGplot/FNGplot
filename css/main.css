@@ -18,13 +18,11 @@ List of ASAP fonts:
 - Source Code Pro regular: System Log
 
 
-Lazy fonts: Fonts that only serve as options in label and LaTeX blocks. They can be slowly loaded in the background.
-These fonts are loaded via the FontFaceSet() asynchronous APIs, and their load progress can be viewed in system log.
+Lazy fonts: Fonts that only serve as options in label and LaTeX blocks. They are only loaded when one uses them.
 
 List of lazy fonts:
 
 - Anything in the font database that is not an ASAP font.
-
 
 */
 
@@ -242,9 +240,6 @@ List of lazy fonts:
 	border-radius: 3px;
 	font: 16px Lato;
 }
-.obj-block.folder .nametag{ /*folders need a slightly shorter nametag*/
-	width: 90px;
-}
 .obj-block .visibility {  /*the eye*/
 	right: 100px;
 }
@@ -333,21 +328,6 @@ input[type="text"][disabled] {
 #banner > img {
 	width: 100%;
 }
-#console {
-	top: 110px;
-	left: 150px;
-	width: 850px;
-	height: 500px;
-	background-color: white;
-	border: 3px solid black;
-	border-radius: 6px;
-	z-index: 99; /*ideally always at the top when displayed*/
-	display: none;
-}
-#console-open {
-	top: 50px;
-	left: 50px;
-}
 #calc-open {
 	top: 640px;
 	left: 0px;
@@ -368,35 +348,10 @@ input[type="text"][disabled] {
 	left: 22px;
 	font-size: 40px;
 }
-#console-pre{
-	top: 40px;
-	left: 18px; /*have considered the borders*/
-	width: 810px;
-	height: 440px;
-	z-index: 0;
-	tab-size: 4;
-	white-space: nowrap;
-}
-#console-code{
-	font-family: "Source Code Pro";
-}
-#console-banner {
-	top: 7px;
-	left: 200px;
-	font: bold 28px Lato;
-}
-#console-close {
-	top: 3px;
-	left: 800px;
-	font-family: Lato;
-	font-weight: bold;
-	font-size: 40px;
-	cursor: default;
-}
 #block-frame{
 	top: 60px;
 	left: 630px;
-	width: 415px;
+	width: 430px;
 	height: 520px;
 	border: 2px dashed black;
 	background: #ffffff;

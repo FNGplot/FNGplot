@@ -58,12 +58,6 @@
             <div id="banner">
 				<img src="svg/logo/banner.svg"></img>
             </div>
-            
-			<div id="console"><!--Syntax highlighted console powered by prism--><!--it is read only-->
-				<div id="console-banner">FNGplot System Log</div>
-				<div id="console-close">×</div>
-				<pre id="console-pre" aria-hidden="true"><code class="language-js" id="console-code"></code></pre>
-			</div>
 		
             <div id="left-panel">
 				<select id="left-panel-select">
@@ -91,7 +85,7 @@
                 <div id="left-panel-item-settings">
 					<div id="settings-rootzoom">
 						<div id="rootzoom-label">Zoom: 100%</div>
-						<input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range" onchange="changeRootZoom(this.value)"></input>
+						<input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range"></input>
 					</div>
 					<div>
 						settings 2
@@ -106,7 +100,6 @@
                 </div>
                 
                 <div id="left-panel-item-other">
-                <button id="console-open" class="generic-button"><div class="material-symbol-rounded btnicon">event_note</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System Log</button>
                 </div>
                 
                 <div id="left-panel-item-about">
