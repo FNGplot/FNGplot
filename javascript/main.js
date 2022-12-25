@@ -35,7 +35,7 @@ var ORIGIN_X = 300; //"real" x and y coordinates of the origin point in the SVG.
 var ORIGIN_Y = 300;
 
 //Fonts
-const LZ_FONT_DATA = [ /*18 typefaces, 43(47-4) fonts*/
+const LZ_FONT_DATA = [
   /*[ "Name" ,"Weight", "Style",   "URL-ending"       ]*/
 	["Caveat","normal","normal","Caveat-Regular.woff2"],
 	["Caveat","bold","normal","Caveat-Bold.woff2"],
@@ -61,6 +61,7 @@ const LZ_FONT_DATA = [ /*18 typefaces, 43(47-4) fonts*/
 	["Noto Serif","bold","italic","NotoSerif-BoldItalic.woff2"],
 	["Noto Sans Mono","normal","normal","NotoSansMono-Regular.woff2"],
 	["Noto Sans Mono","bold","normal","NotoSansMono-Bold.woff2"],
+	["Nunito","normal","normal","Nunito-Regular.woff2"],
 	["Nunito","bold","normal","Nunito-Bold.woff2"],
 	["Nunito","normal","italic","Nunito-Italic.woff2"],
 	["Nunito","bold","italic","Nunito-BoldItalic.woff2"],
@@ -152,8 +153,6 @@ window.onload = function(){
 	logConsole("UI LOADING COMPLETE");
 	systemTime();
 	highlightConsole(); //highlight the console;
-	
-	document.querySelector("#root-frame").style.transform = `scale(${window.innerWidth/1440})`;
 	
 }
 
