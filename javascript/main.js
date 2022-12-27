@@ -9,7 +9,7 @@
 //html-class-name
 
 //------↓↓↓↓↓↓↓↓Global variable declare zone of the ENTIRE program↓↓↓↓↓↓↓↓-------------------
-var SYSTEM_EPOCH = 0;              //Init on window.onload()
+var SYSTEM_EPOCH = Date.now();
 
 //Commonly used DOM objects
 var BLOCK_FRAME = document.querySelector('#block-frame');

@@ -4,69 +4,69 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>FNGplot</title>
-		
-		<link rel="icon" href="svg/logo/logo.ico" sizes="any"> <!--fallback for SVG-->
+        
+        <link rel="icon" href="svg/logo/logo.ico" sizes="any"> <!--fallback for SVG-->
         <link rel="icon" href="svg/logo/logo.svg" type="image/svg+xml">
-		<link rel="stylesheet" type="text/css" href="css/reset.css">        <!-- CSS resetter from meyerweb.com-->
-		<link rel="stylesheet" type="text/css" href="css/main.css">         <!-- Main CSS-->
+        <link rel="stylesheet" type="text/css" href="css/reset.css">        <!-- CSS resetter from meyerweb.com-->
+        <link rel="stylesheet" type="text/css" href="css/main.css">         <!-- Main CSS-->
     </head>
     
-	<script defer src="javascript/main.js"></script>                           <!-- initialize window onload -->
-	<script defer src="javascript/math.js"></script>                           <!-- math core -->
-	<script defer src="javascript/gui.js"></script>                            <!-- code for GUI control -->
-	<script defer src="javascript/SortableJS/Sortable.js"></script>            <!-- draggable blocks -->
-	<script defer src="javascript/block.js"></script>                          <!-- block related actions -->
-	
+    <script defer src="javascript/main.js"></script>                           <!-- initialize window onload -->
+    <script defer src="javascript/math.js"></script>                           <!-- math core -->
+    <script defer src="javascript/gui.js"></script>                            <!-- code for GUI control -->
+    <script defer src="javascript/SortableJS/Sortable.js"></script>            <!-- draggable blocks -->
+    <script defer src="javascript/block.js"></script>                          <!-- block related actions -->
+    
     <body>
-		<template id="basic-block-template">
-			<div class="obj-block">
-				<img class="small-icon block"></img>
-				<input type="text" class="nametag" disabled></input>
-				<div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibility(this.parentElement.dataset.sid, this.parentElement.parentElement.dataset.sid);">visibility</div>
-				<div class="material-symbol-rounded sortblockicon edit">tune</div>
-				<div class="material-symbol-rounded sortblockicon delete" onclick="deleteObject(this.parentElement.dataset.sid,  this.parentElement.parentElement.dataset.sid)">delete</div>
-			</div>
-		</template>
+        <template id="basic-block-template">
+            <div class="obj-block">
+                <img class="small-icon block"></img>
+                <input type="text" class="nametag" disabled></input>
+                <div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibility(this.parentElement.dataset.sid, this.parentElement.parentElement.dataset.sid);">visibility</div>
+                <div class="material-symbol-rounded sortblockicon edit">tune</div>
+                <div class="material-symbol-rounded sortblockicon delete" onclick="deleteObject(this.parentElement.dataset.sid,  this.parentElement.parentElement.dataset.sid)">delete</div>
+            </div>
+        </template>
 
-		<template id="folder-template">
-			<div class="obj-block folder folder-expand" data-expanded="true">
-				<img class="small-icon block" src="svg/system/folder.svg"></img>
-				<input type="text" class="nametag" disabled></input>
-				<div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibilityFolder(this.parentElement.dataset.sid)">visibility</div>
-				<div class="material-symbol-rounded sortblockicon up" onclick="upFolder(this.parentElement)">keyboard_double_arrow_up</div>
-				<div class="material-symbol-rounded sortblockicon down" onclick="downFolder(this.parentElement)">keyboard_double_arrow_down</div>
-				<div class="material-symbol-rounded sortblockicon expand" onclick="expandFolder(this.parentElement.dataset.sid)">view_list</div>
-				<div class="material-symbol-rounded sortblockicon delete" onclick="deleteFolder(this.parentElement.dataset.sid)">delete</div>
-				<div class="folder-content nested-sortable"></div>
-			</div>
-		</template>
+        <template id="folder-template">
+            <div class="obj-block folder folder-expand" data-expanded="true">
+                <img class="small-icon block" src="svg/system/folder.svg"></img>
+                <input type="text" class="nametag" disabled></input>
+                <div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibilityFolder(this.parentElement.dataset.sid)">visibility</div>
+                <div class="material-symbol-rounded sortblockicon up" onclick="upFolder(this.parentElement)">keyboard_double_arrow_up</div>
+                <div class="material-symbol-rounded sortblockicon down" onclick="downFolder(this.parentElement)">keyboard_double_arrow_down</div>
+                <div class="material-symbol-rounded sortblockicon expand" onclick="expandFolder(this.parentElement.dataset.sid)">view_list</div>
+                <div class="material-symbol-rounded sortblockicon delete" onclick="deleteFolder(this.parentElement.dataset.sid)">delete</div>
+                <div class="folder-content nested-sortable"></div>
+            </div>
+        </template>
 
-		<template id="linepp-editpanel">
-			<div class="obj-block">
-				<img class="small-icon block"></img>
-				<input type="text" class="nametag" disabled></input>
-				<div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibility(this.parentElement.dataset.sid)">visibility</div>
-				<div class="material-symbol-rounded sortblockicon edit">tune</div>
-				<div class="material-symbol-rounded sortblockicon delete" onclick="deleteObject(this.parentElement.dataset.sid)">delete</div>
-			</div>
-		</template>
-		
+        <template id="linepp-editpanel">
+            <div class="obj-block">
+                <img class="small-icon block"></img>
+                <input type="text" class="nametag" disabled></input>
+                <div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibility(this.parentElement.dataset.sid)">visibility</div>
+                <div class="material-symbol-rounded sortblockicon edit">tune</div>
+                <div class="material-symbol-rounded sortblockicon delete" onclick="deleteObject(this.parentElement.dataset.sid)">delete</div>
+            </div>
+        </template>
+        
         <div id="root-frame">
 
             <div id="banner">
-				<img src="svg/logo/banner.svg"></img>
+                <img src="svg/logo/banner.svg"></img>
             </div>
-		
+        
             <div id="left-panel">
-				<select id="left-panel-select">
-						<option value="file" selected>File</option>
-						<option value="symbols">Symbols</option>
-						<option value="functions">Functions</option>
-						<option value="settings">Settings</option>
-						<option value="tools">Tools</option>
-						<option value="other">Other</option>
-						<option value="about">About</option>
-				</select>
+                <select id="left-panel-select">
+                        <option value="file" selected>File</option>
+                        <option value="symbols">Symbols</option>
+                        <option value="functions">Functions</option>
+                        <option value="settings">Settings</option>
+                        <option value="tools">Tools</option>
+                        <option value="other">Other</option>
+                        <option value="about">About</option>
+                </select>
                 
                 <div id="left-panel-item-file">
                 file
@@ -81,16 +81,16 @@
                 </div>
                 
                 <div id="left-panel-item-settings">
-					<div id="settings-rootzoom">
-						<div id="rootzoom-label">Zoom: 100%</div>
-						<input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range"></input>
-					</div>
-					<div>
-						settings 2
-					</div>
-					<div>
-						settings 3
-					</div>
+                    <div id="settings-rootzoom">
+                        <div id="rootzoom-label">Zoom: 100%</div>
+                        <input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range"></input>
+                    </div>
+                    <div>
+                        settings 2
+                    </div>
+                    <div>
+                        settings 3
+                    </div>
                 </div>
                 
                 <div id="left-panel-item-tools">
@@ -105,130 +105,130 @@
                 </div>
             </div>
 
-			<div id="calc-open">
-				<div id="calc-open-icon" class="material-symbol-rounded blockicon">calculate</div>
-				<div id="calc-open-banner">Calculator</div>
-			</div>
-				
-			<div id="toolbar-frame">
-				<div id="toolbar-panel">
-					<button id="toolbar-select-variables" class="toolbar-button">Variables</button>
-					<button id="toolbar-select-geometry" class="toolbar-button">Geometry</button>
-					<button id="toolbar-select-algebra" class="toolbar-button">Algebra</button>
-					<button id="toolbar-select-consec" class="toolbar-button">Conic Sections</button>
-					<button id="toolbar-select-calculus" class="toolbar-button">Calculus</button>
-					<button id="toolbar-select-difeq" class="toolbar-button">Differential Equations</button>
-					<button id="toolbar-select-vecf" class="toolbar-button">Vector Fields</button>
-					<button id="toolbar-select-tse" class="toolbar-button">Text, Shapes & Expressions</button>
-					<button id="toolbar-select-other" class="toolbar-button">Others</button>
-				</div>
-				
-				<div id="toolbar-item-variables">
-				variables and matrices
-				</div>
-				
-				<div id="toolbar-item-geometry">
-				<table class="toolbar-grid">
-					<tr>
-						<td colspan="3">Basic shapes</td>
-						<td><img src="svg/system/line_pp.svg" onclick="createBlankObject('LinePP')"></img></td>
-						<td><img src="svg/system/rect.svg"></img></td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-					</tr>
-					<tr>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-						<td>b</td>
-						<td>a</td>
-					</tr>
-				</table>
-				</div>
-				
-				<div id="toolbar-item-algebra">
-				alg
-				</div>
-				
-				<div id="toolbar-item-consec">
-				consec
-				</div>
-				
-				<div id="toolbar-item-calculus">
-				calc
-				</div>
-				
-				<div id="toolbar-item-difeq">
-				dff
-				</div>
-				
-				<div id="toolbar-item-vecf">
-				vector field
-				</div>
-				
-				<div id="toolbar-item-tse">
-				text
-				</div>
+            <div id="calc-open">
+                <div id="calc-open-icon" class="material-symbol-rounded blockicon">calculate</div>
+                <div id="calc-open-banner">Calculator</div>
+            </div>
+                
+            <div id="toolbar-frame">
+                <div id="toolbar-panel">
+                    <button id="toolbar-select-variables" class="toolbar-button">Variables</button>
+                    <button id="toolbar-select-geometry" class="toolbar-button">Geometry</button>
+                    <button id="toolbar-select-algebra" class="toolbar-button">Algebra</button>
+                    <button id="toolbar-select-consec" class="toolbar-button">Conic Sections</button>
+                    <button id="toolbar-select-calculus" class="toolbar-button">Calculus</button>
+                    <button id="toolbar-select-difeq" class="toolbar-button">Differential Equations</button>
+                    <button id="toolbar-select-vecf" class="toolbar-button">Vector Fields</button>
+                    <button id="toolbar-select-tse" class="toolbar-button">Text, Shapes & Expressions</button>
+                    <button id="toolbar-select-other" class="toolbar-button">Others</button>
+                </div>
+                
+                <div id="toolbar-item-variables">
+                variables and matrices
+                </div>
+                
+                <div id="toolbar-item-geometry">
+                <table class="toolbar-grid">
+                    <tr>
+                        <td colspan="3">Basic shapes</td>
+                        <td><img src="svg/system/line_pp.svg" onclick="createBlankObject('LinePP')"></img></td>
+                        <td><img src="svg/system/rect.svg"></img></td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                    </tr>
+                    <tr>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>a</td>
+                    </tr>
+                </table>
+                </div>
+                
+                <div id="toolbar-item-algebra">
+                alg
+                </div>
+                
+                <div id="toolbar-item-consec">
+                consec
+                </div>
+                
+                <div id="toolbar-item-calculus">
+                calc
+                </div>
+                
+                <div id="toolbar-item-difeq">
+                dff
+                </div>
+                
+                <div id="toolbar-item-vecf">
+                vector field
+                </div>
+                
+                <div id="toolbar-item-tse">
+                text
+                </div>
 
-				<div id="toolbar-item-other">
-					<table class="toolbar-grid">
-						<tr>
-							<td colspan="3">Folder</td>
-							<td><img src="svg/system/folder.svg" onclick="createBlankObject('Folder')"></img></td>
-						</tr>
-						<tr>
-							<td>a</td>
-							<td>b</td>
-							<td>a</td>
-							<td>b</td>
-							<td>a</td>
-							<td>b</td>
-							<td>a</td>
-							<td>b</td>
-							<td>a</td>
-							<td>b</td>
-							<td>a</td>
-							<td>b</td>
-							<td>a</td>
-							<td>b</td>
-							<td>a</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			
-			<div id="main-frame">
-			
-				
-				<div id="svg-frame">
-					<img id="tspt-bkgd" src="svg/system/transparent-bkgd.svg"></img>
-					<svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000" data-sid="root">
-						
-					</svg>
-				</div>
-				
-				<div id="block-frame" class="nested-sortable" data-sid="root">
-					
-				</div>
-			</div>
+                <div id="toolbar-item-other">
+                    <table class="toolbar-grid">
+                        <tr>
+                            <td colspan="3">Folder</td>
+                            <td><img src="svg/system/folder.svg" onclick="createBlankObject('Folder')"></img></td>
+                        </tr>
+                        <tr>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>a</td>
+                            <td>b</td>
+                            <td>a</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="main-frame">
+            
+                
+                <div id="svg-frame">
+                    <img id="tspt-bkgd" src="svg/system/transparent-bkgd.svg"></img>
+                    <svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000" data-sid="root">
+                        
+                    </svg>
+                </div>
+                
+                <div id="block-frame" class="nested-sortable" data-sid="root">
+
+                </div>
+            </div>
         </div>
     </body>
 </html>
