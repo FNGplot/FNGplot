@@ -455,17 +455,3 @@ div[id^="left-panel-item-"] > div {
 #tspt-bkgd {
 	z-index: 0;
 }
-#run {
-	top: 585px;
-	left: 635px;
-}
-#editmode-swap {
-	top: 585px;
-	left: 910px;
-}
-#editmode {
-	top: 592px;
-	left: 770px;
-	font: 17px "Source Code Pro";
-	color: #808080; /*gray*/
-}
