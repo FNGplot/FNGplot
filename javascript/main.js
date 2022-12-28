@@ -33,8 +33,6 @@ var YHAT = 50;
 var ORIGIN_X = 500; //"real" x and y coordinates of the origin point in the SVG.
 var ORIGIN_Y = 500;
 
-//SortableJS
-var NESTED_SORTABLES = [];
 //------↑↑↑↑↑↑↑↑Global variable declare zone of the ENTIRE project↑↑↑↑↑↑↑↑-------------------
 
 window.onload = function(){
@@ -62,9 +60,8 @@ window.onload = function(){
 	
 	//Init sortable container (the only one present on onload should be #block-frame, but I'll keep this code for possible future changes)
 	//NESTED_SORTABLES = [].slice.call(document.querySelectorAll('.nested-sortable')); //A weird but concise way to transfrom a NodeList into an Array
-	NESTED_SORTABLES = document.querySelector("#block-frame");
 	SORTABLE_LIST.push(
-		new Sortable(NESTED_SORTABLES, {
+		new Sortable(document.querySelector("#block-frame"), {
 			group: 'block-frame',
 			animation: 150,
 			fallbackOnBody: true,
@@ -88,8 +85,7 @@ window.onload = function(){
 	
 	console.log("UI LOADING COMPLETE");
 	systemTime();
-	
-}
+
 
 window.addEventListener("error", function(){
 	alert("Execution Failed.");
