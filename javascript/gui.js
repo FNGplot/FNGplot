@@ -8,16 +8,6 @@ function toggleLeftPanel(value){
 }
 
 
-
-
-/* Miscellaneous initializations on window.onload()*/
-function initAll(){
-	initToolbar(); //initialize toolbar's positions, colors and click handlers
-	toggleToolbar(1); //set it to "geometry" (default select)
-}
-
-
-
 /* Toolbar*/
 
 //toggling
