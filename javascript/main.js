@@ -91,7 +91,7 @@ window.onload = function(){
 	
 }
 
-window.addEventListener("error", function(e){
+window.addEventListener("error", function(){
 	alert("Execution Failed.");
 });
 
