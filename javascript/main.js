@@ -9,7 +9,7 @@
 //html-class-name
 
 //------↓↓↓↓↓↓↓↓Global variable declare zone of the ENTIRE program↓↓↓↓↓↓↓↓-------------------
-var SYSTEM_EPOCH = Date.now();
+var SYSTEM_EPOCH = Date.now();  //Start system timer. It is mainly used for debugging and optimizing purposes.
 
 //Commonly used DOM objects
 var BLOCK_FRAME = document.querySelector('#block-frame');
@@ -17,8 +17,8 @@ var SVG_FRAME = document.querySelector('#svg-frame');
 var SVG_CANVAS = document.querySelector('#svg-canvas');
 
 //Object database
-var OBJECT_LIST = []; //Object database. The real(hidden) version of the blocks.
-var SORTABLE_LIST = []; //Stores the Sortable objects
+var OBJECT_LIST = []; //Unordered object list
+var SORTABLE_LIST = []; //SortableJS objects
 
 //System variables
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; //(SCRATCH 2.0/3.0 && some of my own)
@@ -35,57 +35,45 @@ var ORIGIN_Y = 500;
 
 //------↑↑↑↑↑↑↑↑Global variable declare zone of the ENTIRE project↑↑↑↑↑↑↑↑-------------------
 
-window.onload = function(){
-	SYSTEM_EPOCH = Date.now();  //Start system timer. It is mainly used for debugging and optimizing purposes.
-	console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
+//-------Primary initializing sequence(main.js is the first loadaed script file)----------------------
+console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 
+document.querySelector("#left-panel-select").addEventListener("change", function(){
+	toggleLeftPanel(this.value);
+});
+document.querySelector("#rootzoom-slider").addEventListener("input", function(){
+	changeRootZoom(this.value,0);
+});
+document.querySelector("#rootzoom-slider").addEventListener("change", function(){
+	changeRootZoom(this.value,1);
+});
 	
-	//Init left panel
-	document.querySelector("#left-panel-select").addEventListener("change", function(){
-		toggleLeftPanel(this.value);
-	});
-	document.querySelector("#rootzoom-slider").addEventListener("input", function(){
-		changeRootZoom(this.value,0);
-	});
-	document.querySelector("#rootzoom-slider").addEventListener("change", function(){
-		changeRootZoom(this.value,1);
-	});
-	console.log("Initialize Left Panel: Complete");
-	systemTime();
+initToolbar(); //initialize toolbar's positions, colors and click handlers
+toggleToolbar(1); //set it to "geometry" (default select)
 	
-	//Init everything else that needs to be initialized
-	initAll();
-	console.log("Primary initialization Complete");
-	systemTime();
-	
-	//Init sortable container (the only one present on onload should be #block-frame, but I'll keep this code for possible future changes)
-	//NESTED_SORTABLES = [].slice.call(document.querySelectorAll('.nested-sortable')); //A weird but concise way to transfrom a NodeList into an Array
-	SORTABLE_LIST.push(
-		new Sortable(document.querySelector("#block-frame"), {
-			group: 'block-frame',
-			animation: 150,
-			fallbackOnBody: true,
-			forceFallback: true,
-			onEnd: function (evt) {
-				if(!(evt.to.dataset.sid == evt.from.dataset.sid && evt.oldIndex == evt.newIndex)){  //If the position actually changed
-					moveObject(evt.item, evt.from.dataset.sid, evt.oldIndex+1, evt.to.dataset.sid, evt.newIndex+1);
-				}
-			},
-			ghostClass: 'ghost-class',
-			draggable: ".obj-block",
-			filter: ".folder",  //folders are not draggable
-			swapThreshold: 0.65,
-			scroll: true,
-			scrollSensitivity: 80,
-			scrollSpeed: 10
-		})
-	);
-	console.log("Initialize Sortable: Complete");
-	systemTime();
-	
-	console.log("UI LOADING COMPLETE");
-	systemTime();
-
+//Init sortable container (the only one present on onload should be #block-frame, but I'll keep this code for possible future changes)
+//NESTED_SORTABLES = [].slice.call(document.querySelectorAll('.nested-sortable')); //A weird but concise way to transfrom a NodeList into an Array
+SORTABLE_LIST.push(
+	new Sortable(document.querySelector("#block-frame"), {
+		group: 'block-frame',
+		animation: 150,
+		fallbackOnBody: true,
+		forceFallback: true,
+		onEnd: function (evt) {
+			if(!(evt.to.dataset.sid == evt.from.dataset.sid && evt.oldIndex == evt.newIndex)){  //If the position actually changed
+				moveObject(evt.item, evt.from.dataset.sid, evt.oldIndex+1, evt.to.dataset.sid, evt.newIndex+1);
+			}
+		},
+		ghostClass: 'ghost-class',
+		draggable: ".obj-block",
+		filter: ".folder",  //folders are not draggable
+		swapThreshold: 0.65,
+		scroll: true,
+		scrollSensitivity: 80,
+		scrollSpeed: 10
+	})
+);
+//-------Primary initializing sequence(main.js is the first loadaed script file)----------------------
 
 window.addEventListener("error", function(){
 	alert("Execution Failed.");
