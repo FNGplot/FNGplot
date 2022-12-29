@@ -84,13 +84,6 @@ function LinePP(sid) {
     this.color = "#8a408b"; //Wisteria purple
     this.opacity = 1;
 }
-function Folder(sid){
-    //System
-    this.sid = sid;
-    this.name = "Folder";
-    this.display = true;
-    this.content = [];  //this is where the sid of its direct childs are stored
-}
 
 //Create a new FNGobject
 function createBlankObject(objName) { 
