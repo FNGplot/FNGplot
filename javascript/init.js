@@ -24,13 +24,12 @@ SORTABLE_LIST.push(
         fallbackOnBody: true,
         forceFallback: true,
         onEnd: function (evt) {
-            if(!(evt.to.dataset.sid == evt.from.dataset.sid && evt.oldIndex == evt.newIndex)){  //If the position actually changed
-                moveObject(evt.item, evt.from.dataset.sid, evt.oldIndex+1, evt.to.dataset.sid, evt.newIndex+1);
+            if(evt.oldIndex != evt.newIndex){  //If the position actually changed
+                moveObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null); //passes null as reference if there is no next neighbor. insertBefore() will take care of it.
             }
         },
         ghostClass: 'ghost-class',
         draggable: ".obj-block",
-        filter: ".folder",  //folders are not draggable
         swapThreshold: 0.65,
         scroll: true,
         scrollSensitivity: 80,

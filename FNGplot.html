@@ -23,33 +23,14 @@
             <div class="obj-block">
                 <img class="small-icon block"></img>
                 <input type="text" class="nametag" disabled></input>
-                <div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibility(this.parentElement.dataset.sid, this.parentElement.parentElement.dataset.sid);">visibility</div>
-                <div class="material-symbol-rounded sortblockicon edit">settings</div>
-                <div class="material-symbol-rounded sortblockicon delete" onclick="deleteObject(this.parentElement.dataset.sid,  this.parentElement.parentElement.dataset.sid)">delete</div>
-            </div>
-        </template>
-
-        <template id="folder-template">
-            <div class="obj-block folder folder-expand" data-expanded="true">
-                <img class="small-icon block" src="svg/system/folder.svg"></img>
-                <input type="text" class="nametag" disabled></input>
-                <div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibilityFolder(this.parentElement.dataset.sid)">visibility</div>
-                <div class="material-symbol-rounded sortblockicon up" onclick="upFolder(this.parentElement)">keyboard_double_arrow_up</div>
-                <div class="material-symbol-rounded sortblockicon down" onclick="downFolder(this.parentElement)">keyboard_double_arrow_down</div>
-                <div class="material-symbol-rounded sortblockicon expand" onclick="expandFolder(this.parentElement.dataset.sid)">view_list</div>
-                <div class="material-symbol-rounded sortblockicon delete" onclick="deleteFolder(this.parentElement.dataset.sid)">delete</div>
-                <div class="folder-content nested-sortable"></div>
+                <div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibility(this.parentElement.dataset.sid);">visibility</div>
+                <div class="material-symbol-rounded sortblockicon edit">tune</div>
+                <div class="material-symbol-rounded sortblockicon delete" onclick="deleteObject(this.parentElement.dataset.sid)">delete</div>
             </div>
         </template>
 
         <template id="linepp-editpanel">
-            <div class="obj-block">
-                <img class="small-icon block"></img>
-                <input type="text" class="nametag" disabled></input>
-                <div class="material-symbol-rounded sortblockicon visibility" onclick="changeVisibility(this.parentElement.dataset.sid)">visibility</div>
-                <div class="material-symbol-rounded sortblockicon edit">tune</div>
-                <div class="material-symbol-rounded sortblockicon delete" onclick="deleteObject(this.parentElement.dataset.sid)">delete</div>
-            </div>
+            
         </template>
         
         <div id="root-frame">
@@ -191,10 +172,10 @@
 
                 <div id="toolbar-item-other">
                     <table class="toolbar-grid">
-                        <tr>
+                        <!-- <tr>
                             <td colspan="3">Folder</td>
-                            <td><img src="svg/system/folder.svg" onclick="createBlankObject('Folder')"></img></td>
-                        </tr>
+                            <td><img src="svg/system/folder.svg"></img></td>
+                        </tr>-->
                         <tr>
                             <td>a</td>
                             <td>b</td>

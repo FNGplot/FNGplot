@@ -17,8 +17,8 @@ var SVG_FRAME = document.querySelector('#svg-frame');
 var SVG_CANVAS = document.querySelector('#svg-canvas');
 
 //Object database
-var OBJECT_LIST = []; //Unordered object list
-var SORTABLE_LIST = []; //SortableJS objects
+var OBJECT_LIST = [];   //Unordered object array
+var SORTABLE_LIST = []; //SortableJS object array
 
 //System variables
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; //(SCRATCH 2.0/3.0 && some of my own)
