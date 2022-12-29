@@ -27,22 +27,22 @@ List of lazy fonts:
 */
 
 @font-face {                    /*Lato -- Regular*/
-	font-family: "Lato";
-	font-weight: normal;
-	font-style: normal;
-	src: url('../fonts/WOFF2/Lato-Regular.woff2') format('woff2');
+    font-family: "Lato";
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/WOFF2/Lato-Regular.woff2') format('woff2');
 }
 @font-face {                    /*Lato -- Bold*/
-	font-family: "Lato";
-	font-weight: bold;
-	font-style: normal;
-	src: url('../fonts/WOFF2/Lato-Bold.woff2') format('woff2');
+    font-family: "Lato";
+    font-weight: bold;
+    font-style: normal;
+    src: url('../fonts/WOFF2/Lato-Bold.woff2') format('woff2');
 }
 @font-face {                    /*Source Code Pro -- normal*/
-	font-family: "Source Code Pro";
-	font-weight: normal;
-	font-style: normal;
-	src: url('../fonts/WOFF2/SourceCodePro-Regular.woff2') format('woff2');
+    font-family: "Source Code Pro";
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/WOFF2/SourceCodePro-Regular.woff2') format('woff2');
 }
 @font-face {
     font-family: "Material Symbols Rounded";
@@ -63,25 +63,25 @@ List of lazy fonts:
     -webkit-font-smoothing: antialiased;  /* Support for all WebKit browsers. */
     text-rendering: optimizeLegibility;   /* Support for Safari and Chrome. */
     -moz-osx-font-smoothing: grayscale;   /* Support for Firefox. */
-	/*I added everything below this line*/
-	-moz-user-select: -moz-none;
+    /*I added everything below this line*/
+    -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
 }
 .material-symbol-rounded.btnicon{
-	top: 4px;
-	left: 4px;
-	position: absolute;
-	font-size: 24px;
+    top: 4px;
+    left: 4px;
+    position: absolute;
+    font-size: 24px;
 }
 .material-symbol-rounded.sortblockicon{
-	position: absolute;
-	display: block;
-	top: 5px;
-	font-size: 40px;
-	cursor: default;
+    position: absolute;
+    display: block;
+    top: 5px;
+    font-size: 40px;
+    cursor: default;
 }
 
 
@@ -90,13 +90,13 @@ List of lazy fonts:
 
 .generic-button {
     position: absolute;
-	height:36px;
+    height:36px;
     font: bold 17px Lato;
-	border: 2px solid black;
+    border: 2px solid black;
     color:rgba(0, 0, 0, 1);
     border-radius: 8px;
     background-color:#ffffff;
-	padding: 1px 6px;
+    padding: 1px 6px;
 }
 .generic-button:hover {
     background-color: #d3d3d3;
@@ -108,36 +108,36 @@ List of lazy fonts:
 
 /*Based on https://www.cssportal.com/style-input-range/ */
 .lp-range {
-	height: 32px;
-	-webkit-appearance: none;
-	width: 100%;
+    height: 32px;
+    -webkit-appearance: none;
+    width: 100%;
 }
 .lp-range:focus {
-	outline: none;
+    outline: none;
 }
 .lp-range::-webkit-slider-runnable-track {
-	width: 100%;
-	height: 8px;
-	cursor: pointer;
-	animate: 0.2s;
-	box-shadow: 0px 0px 0px #000000;
-	background: #FFC0CB;
-	border-radius: 4px;
-	border: 0px solid #000000;
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #FFC0CB;
+    border-radius: 4px;
+    border: 0px solid #000000;
 }
 .lp-range::-webkit-slider-thumb {
-	box-shadow: 1px 1px 1px #000000;
-	border: 0px solid #8A408B;
-	height: 25px;
-	width: 15px;
-	border-radius: 6px;
-	background: #CCB3FF;
-	cursor: pointer;
-	-webkit-appearance: none;
-	margin-top: -8.5px;
+    box-shadow: 1px 1px 1px #000000;
+    border: 0px solid #8A408B;
+    height: 25px;
+    width: 15px;
+    border-radius: 6px;
+    background: #CCB3FF;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8.5px;
 }
 .lp-range:focus::-webkit-slider-runnable-track {
-	background: #FFC0CB;
+    background: #FFC0CB;
 }
 
 .toolbar-button {
@@ -150,308 +150,308 @@ List of lazy fonts:
     /*background-color: This is defined dynamically immediately after page load*/
     font-weight: normal;
     background-color: transparent;
-	height: 20px;
+    height: 20px;
 }
 #toolbar-select-variables {
-	width: 80px;
+    width: 80px;
 }
 #toolbar-select-geometry {
-	width: 85px;
+    width: 85px;
 }
 #toolbar-select-algebra {
-	width: 70px;
+    width: 70px;
 }
 #toolbar-select-consec {
-	width: 115px;
+    width: 115px;
 }
 #toolbar-select-calculus {
-	width: 74px;
+    width: 74px;
 }
 #toolbar-select-difeq {
-	width: 166px;
+    width: 166px;
 }
 #toolbar-select-vecf {
-	width: 105px;
+    width: 105px;
 }
 #toolbar-select-tse {
-	width: 197px;
+    width: 197px;
 }
 #toolbar-select-other {
-	width: 64px;
+    width: 64px;
 }
 
 
 .small-icon {
-	position: absolute;
-	width: 40px;
-	height: 40px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
 }
 
 
 /* Style of toolbar grid*/
 
 .toolbar-grid {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	font: 24px Lato;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font: 24px Lato;
 }
 .toolbar-grid td {
-	height: 54px;
-	width: 69px;
-	text-align: center;
-	vertical-align: middle;
+    height: 54px;
+    width: 69px;
+    text-align: center;
+    vertical-align: middle;
 }
 .toolbar-grid td img{ /*Those small svg icons*/
-	width: 40px;
-	height: 40px;
-	border: 1px solid black;
-	margin-top: 5px; /*for some reason this is needed to achieve a true "centered" effect*/
-	border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    margin-top: 5px; /*for some reason this is needed to achieve a true "centered" effect*/
+    border-radius: 4px;
 }
 
 
 /* Styles of sortable blocks*/
 
 .small-icon.block {
-	border: 1px solid black;
-	border-radius: 4px;
-	top: 4px;
-	left: 5px;
+    border: 1px solid black;
+    border-radius: 4px;
+    top: 4px;
+    left: 5px;
 }
 .nested-sortable > :first-child { /*cancel out the "margin-top: -1px" for the first child, as it doesn't need that*/
-	margin-top: 0px;
+    margin-top: 0px;
 }
 .obj-block {     /*basis of blocks*/
-	position: relative;
-	border-radius: 4px;
-	border: 1px solid black;
-	margin-top: -1px;
-	min-height: 50px; /*except the folder blocks / gets larger when you open the control panel*/
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid black;
+    margin-top: -1px;
+    min-height: 50px; /*except the folder blocks / gets larger when you open the control panel*/
 }
 .obj-block .nametag {
-	position: absolute;
-	top: 12px;
-	left: 60px;
-	width: 100px;
-	height: 18px;
-	padding: 3px;
-	border: 1px solid black;
-	border-radius: 3px;
-	font: 16px Lato;
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    width: 100px;
+    height: 18px;
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 3px;
+    font: 16px Lato;
 }
 .obj-block .visibility {  /*the eye*/
-	right: 100px;
+    right: 100px;
 }
 .obj-block .edit {        /*the panel-thing*/
-	right: 55px;
+    right: 55px;
 }
 .obj-block .expand {      /*the expand-arrows on folder*/
-	right: 55px;
+    right: 55px;
 }
 .obj-block .delete {      /*the trashcan*/
-	right: 10px;
+    right: 10px;
 }
 .obj-block.folder .up {   /*up double arrow*/
-	right: 145px;
+    right: 145px;
 }
 .obj-block.folder .down { /*down double arrow*/
-	right: 100px;
+    right: 100px;
 }
 .obj-block.folder > .visibility {    /*overriding .obj-block .visibility*/
-	right: 190px;
+    right: 190px;
 }
 
 .ghost-class {            /*'ghostClass' parameter of sortable.js*/
-	opacity: 0.4;
+    opacity: 0.4;
 }
 .obj-block.geo {  /*geometry block*/
-	background-color: #5f95f7;  
+    background-color: #5f95f7;  
 }
 .obj-block.folder { /*folder block*/
-	background-color: #f3af42;
-	overflow: hidden;
+    background-color: #f3af42;
+    overflow: hidden;
 }
 
 .folder-content {
-	position: relative;
-	min-height: 52px;
-	border: 2px dashed black;
-	width: auto;
-	margin: 55px 4px 4px 4px;
-	padding: 4px;
-	border-radius: 4px;
+    position: relative;
+    min-height: 52px;
+    border: 2px dashed black;
+    width: auto;
+    margin: 55px 4px 4px 4px;
+    padding: 4px;
+    border-radius: 4px;
 }
 .folder-expand {    /*expand/collapse animation*/
-	height: unset;
+    height: unset;
 }
 .folder-collapse {
-	height: 50px;
+    height: 50px;
 }
 
 div, select, canvas, pre, textarea{
     position: absolute;
 }
 button{
-	border-width: 0;
+    border-width: 0;
 }
 body{
-	background-color: #fffff8;
+    background-color: #fffff8;
 }
 input[type="text"][disabled] {
    background-color: #e6e6e6;
    color: #000000;
 }
 #root-frame{
-	top: 10px;
-	left: 10px;
-	width: 1350px;
-	height: 720px;
-	transform-origin: top left;
-	transform: scale(1);
+    top: 10px;
+    left: 10px;
+    width: 1350px;
+    height: 720px;
+    transform-origin: top left;
+    transform: scale(1);
 }
 #main-frame { /*right side*/
-	top: 90px;
-	left: 270px;
-	width: 1080px;
-	height: 630px;
+    top: 90px;
+    left: 270px;
+    width: 1080px;
+    height: 630px;
 }
 #banner {
-	top: 0px;
-	left: 0px;
-	width: 270px;
-	height: 45px;
-	background: #ddcfff;
-	box-shadow: 5px 10px 8px #888888;
-	border: 2px solid black;
+    top: 0px;
+    left: 0px;
+    width: 270px;
+    height: 45px;
+    background: #ddcfff;
+    box-shadow: 5px 10px 8px #888888;
+    border: 2px solid black;
 }
 #banner > img {
-	width: 100%;
+    width: 100%;
 }
 #calc-open {
-	top: 640px;
-	left: 0px;
-	width: 270px;
-	height: 56px;
-	cursor: default;
-	background: #ddcfff;
-	border: 2px solid black;
-	box-shadow: 5px 10px 8px #888888;
+    top: 640px;
+    left: 0px;
+    width: 270px;
+    height: 56px;
+    cursor: default;
+    background: #ddcfff;
+    border: 2px solid black;
+    box-shadow: 5px 10px 8px #888888;
 }
 #calc-open-banner {
-	font: bold 34px Lato;
-	top: 7px;
-	left: 70px;
+    font: bold 34px Lato;
+    top: 7px;
+    left: 70px;
 }
 #calc-open-icon {
-	top: 8px;
-	left: 22px;
-	font-size: 40px;
+    top: 8px;
+    left: 22px;
+    font-size: 40px;
 }
 #block-frame{
-	top: 60px;
-	left: 630px;
-	width: 430px;
-	height: 520px;
-	border: 2px dashed black;
-	background: #ffffff;
-	overflow: auto;
-	margin: 0;
-	padding: 10px; /*adds a little space between the frame and the blocks inside*/
+    top: 60px;
+    left: 630px;
+    width: 430px;
+    height: 520px;
+    border: 2px dashed black;
+    background: #ffffff;
+    overflow: auto;
+    margin: 0;
+    padding: 10px; /*adds a little space between the frame and the blocks inside*/
 }
 div[id^="toolbar-item-"]{
-	top: 44px;
-	left: 15px;
-	width: 1080px;
-	height: 54px;
-	display: none;
-	overflow-y: scroll;
-	background: #f5f0ff;
-	border: 2px solid black;
-	box-shadow: 5px 10px 8px #888888;
+    top: 44px;
+    left: 15px;
+    width: 1080px;
+    height: 54px;
+    display: none;
+    overflow-y: scroll;
+    background: #f5f0ff;
+    border: 2px solid black;
+    box-shadow: 5px 10px 8px #888888;
 }
 #left-panel {
-	top: 60px;
-	left: 0px;
-	width: 270px;
-	height: 560px;
-	background: #f5f0ff;
-	box-shadow: 5px 10px 8px #888888;
-	border: 2px solid black;
+    top: 60px;
+    left: 0px;
+    width: 270px;
+    height: 560px;
+    background: #f5f0ff;
+    box-shadow: 5px 10px 8px #888888;
+    border: 2px solid black;
 }
 #left-panel-select {
-	font: bold 22px Lato;
-	top: 12px;
-	left: 12px;
-	width: 245px;
-	height: 30px;
+    font: bold 22px Lato;
+    top: 12px;
+    left: 12px;
+    width: 245px;
+    height: 30px;
 }
 div[id^="left-panel-item-"] {
-	top: 55px;
-	left: 12px;
-	width: 245px;
-	height: 490px;
-	border: 1px solid black;
-	background: #ffffff;
-	display: none;
-	flex-direction: column;
+    top: 55px;
+    left: 12px;
+    width: 245px;
+    height: 490px;
+    border: 1px solid black;
+    background: #ffffff;
+    display: none;
+    flex-direction: column;
 }
 #left-panel-item-file{ /*Exception of the above rule*/
-	display: flex;
+    display: flex;
 }
 div[id^="left-panel-item-"] > div {
-	position: relative;
+    position: relative;
 }
 #settings-rootzoom {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-around;
-	height: 70px;
-	border-bottom: 1px dashed black;
+    height: 70px;
+    border-bottom: 1px dashed black;
 }
 #rootzoom-label {
-	position: relative;
-	font: 20px Lato;
+    position: relative;
+    font: 20px Lato;
 }
 #rootzoom-slider{
-	width: 200px;
+    width: 200px;
 }
 #toolbar-frame {
-	top: 0px;
-	left: 270px;
-	width: 1080px;
-	height: 90px;
+    top: 0px;
+    left: 270px;
+    width: 1080px;
+    height: 90px;
 }
 #toolbar-panel {
-	top: 0px;
-	left: 15px;
-	width: 1080px;
-	height: 35px;
-	background: #f5f0ff;
-	border: 2px solid black;
-	box-shadow: 5px 10px 8px #888888;
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
+    top: 0px;
+    left: 15px;
+    width: 1080px;
+    height: 35px;
+    background: #f5f0ff;
+    border: 2px solid black;
+    box-shadow: 5px 10px 8px #888888;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 #svg-frame {
-	top: 70px;
-	left: 70px;
-	width: 500px;
-	height: 500px;
-	border: 2px solid black;
+    top: 70px;
+    left: 70px;
+    width: 500px;
+    height: 500px;
+    border: 2px solid black;
 }
 #svg-canvas, #tspt-bkgd {
-	top: 0px;
-	left: 0px;
-	width: 500px;
-	height: 500px;
-	position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 500px;
+    height: 500px;
+    position: absolute;
 }
 #svg-canvas {
-	z-index: 1;
+    z-index: 1;
 }
 #tspt-bkgd {
-	z-index: 0;
+    z-index: 0;
 }
