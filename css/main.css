@@ -257,7 +257,7 @@ List of lazy fonts:
     background-color: #5f95f7;  
 }
 
-div, select, canvas, pre, textarea{
+div, select, canvas, textarea{
     position: absolute;
 }
 button{
@@ -370,17 +370,30 @@ div[id^="left-panel-item-"] {
 div[id^="left-panel-item-"] > div {
     position: relative;
 }
-#settings-rootzoom {
+#system-rootzoom, #envir-datalist {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     height: 70px;
     border-bottom: 1px dashed black;
+    font-family: Lato;
 }
-#rootzoom-label {
+#envir-datalist {
+    height: auto;
+}
+#envir-datalist > pre { /*ignore flex property and align to left*/
+    margin-right: auto;
+}
+#envir-datalist-refresh {
+    font-size: 30px;
+    background-color: #ffc0cb;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#rootzoom-label, #envir-datalist-label {
     position: relative;
-    font: 20px Lato;
+    font-size: 20px;
 }
 #rootzoom-slider{
     width: 200px;

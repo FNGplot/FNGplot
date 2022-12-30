@@ -5,6 +5,9 @@ console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 document.querySelector("#left-panel-select").addEventListener("change", function(){
     toggleLeftPanel(this.value);
 });
+document.querySelector("#envir-datalist-refresh").addEventListener("click", function(){
+    updateEnvirList();
+});
 document.querySelector("#rootzoom-slider").addEventListener("input", function(){
     changeRootZoom(this.value,0);
 });
@@ -41,13 +44,14 @@ window.addEventListener("error", function(){
     alert("Execution Failed.");
 });
 
+/*
 window.addEventListener("keydown", function(event){
     if(event.key == "F9"){ //F9: Run script
         event.preventDefault();
-        console.log(window.innerWidth);
-        console.log(window.innerHeight);
-        console.log(document.documentElement.clientWidth);
-        console.log(document.documentElement.clientHeight);
+        
+
+
+        
     }
-});
+}); */
 //-------Primary initializing sequence----------------------

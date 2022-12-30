@@ -38,6 +38,23 @@ function initToolbar(){
     }
 }
 
+//update environment data list 
+function updateEnvirList(){
+    document.querySelector("#envir-datalist > pre").innerHTML = `
+  Program:
+
+  Root width: ${document.querySelector("#root-frame").getBoundingClientRect().width}px
+  Root height: ${document.querySelector("#root-frame").getBoundingClientRect().height}px
+
+  Window:
+
+  innerWidth: ${window.innerWidth}px
+  clientWidth: ${document.documentElement.clientWidth}px
+  innerHeight: ${window.innerHeight}px
+  clientHeight:${document.documentElement.clientHeight}px
+`
+}
+
 //Log system time
 function systemTime(){
     console.log(`System Time: ${Date.now()-SYSTEM_EPOCH}ms\n`);
