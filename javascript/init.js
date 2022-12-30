@@ -17,13 +17,13 @@ document.querySelector("#envir-datalist-refresh").addEventListener("click", func
 });
 
 BLOCK_FRAME.addEventListener("click", function(event){                      //event delegation
+    let target = event.target;
     if(event.target.classList.contains("visibility")){  //change visibility
-        changeVisibility(event.target.parentElement.dataset.sid);
+        changeVisibility(target.parentElement.dataset.sid);
     }
     else if(event.target.classList.contains("delete")){  //delete block
-        deleteObject(event.target.parentElement.dataset.sid);
+        deleteObject(target.parentElement.dataset.sid);
     }
-    console.log(event.target);
 });
 
 initToolbar(); //initialize toolbar's positions, colors and click handlers

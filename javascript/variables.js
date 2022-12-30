@@ -9,12 +9,12 @@
 //html-class-name
 
 //------↓↓↓↓↓↓↓↓Global variable declare zone of the ENTIRE program↓↓↓↓↓↓↓↓-------------------
-var SYSTEM_EPOCH = Date.now();  //Start system timer. It is mainly used for debugging and optimizing purposes.
+const SYSTEM_EPOCH = Date.now();  //Start system timer. It is mainly used for debugging and optimizing purposes.
 
 //Commonly used DOM objects
-var BLOCK_FRAME = document.querySelector('#block-frame');
-var SVG_FRAME = document.querySelector('#svg-frame');
-var SVG_CANVAS = document.querySelector('#svg-canvas');
+const BLOCK_FRAME = document.querySelector('#block-frame');
+const SVG_FRAME = document.querySelector('#svg-frame');
+const SVG_CANVAS = document.querySelector('#svg-canvas');
 
 //Object database
 var OBJECT_LIST = [];   //Unordered object array
