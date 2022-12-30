@@ -52,6 +52,7 @@ function updateEnvirList(){
   clientWidth: ${document.documentElement.clientWidth}px
   innerHeight: ${window.innerHeight}px
   clientHeight:${document.documentElement.clientHeight}px
+
 `
 }
 
@@ -63,12 +64,12 @@ function systemTime(){
 /*Left Panel*/
 
 //Change root zoom level
-function changeRootZoom(value,mode){ //mode 0 = still dragging. 1 = release thumb.
-    if(mode){
+function changeRootZoom(value,mode){
+    if(mode == "change"){
         document.getElementById("root-frame").style.transform=`scale(${value/100})`;
         document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
     }
-    else{
+    else if(mode == "input"){
         document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
     }
 }

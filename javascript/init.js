@@ -2,17 +2,28 @@
 //This file contains ALL the code that is immediately executed on page load.
 console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 
+//eventlisteners
 document.querySelector("#left-panel-select").addEventListener("change", function(){
     toggleLeftPanel(this.value);
 });
 document.querySelector("#envir-datalist-refresh").addEventListener("click", function(){
     updateEnvirList();
 });
-document.querySelector("#rootzoom-slider").addEventListener("input", function(){
-    changeRootZoom(this.value,0);
+
+["input", "change"].forEach(function(optn){
+    document.querySelector("#rootzoom-slider").addEventListener(optn, function(){
+        changeRootZoom(this.value,optn);
+    });
 });
-document.querySelector("#rootzoom-slider").addEventListener("change", function(){
-    changeRootZoom(this.value,1);
+
+BLOCK_FRAME.addEventListener("click", function(event){                      //event delegation
+    if(event.target.classList.contains("visibility")){  //change visibility
+        changeVisibility(event.target.parentElement.dataset.sid);
+    }
+    else if(event.target.classList.contains("delete")){  //delete block
+        deleteObject(event.target.parentElement.dataset.sid);
+    }
+    console.log(event.target);
 });
 
 initToolbar(); //initialize toolbar's positions, colors and click handlers
@@ -41,6 +52,7 @@ SORTABLE_LIST.push(
 );
 
 window.addEventListener("error", function(){
+    console.error("Execution Failed");
     alert("Execution Failed.");
 });
 
@@ -51,7 +63,7 @@ window.addEventListener("keydown", function(event){
         
 
 
-        
+
     }
 }); */
 //-------Primary initializing sequence----------------------
