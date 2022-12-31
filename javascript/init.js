@@ -29,13 +29,50 @@ BLOCK_FRAME.addEventListener("click", function(event){  //event delegation
     }
 });
 
+/*
+Wish Lin Dec 2022
+This over-complicated event listener is my naive attempt to strike a balance between real-time updating and generating errors due to transition values during editing.
+Basic assumption: Inputs and changes inside BLOCK_FRAME must come from the editpanels.
+
+Problem: Some properties in the editpanel can be updated real-time during editing, while others simply cannot. For (extrerme) example:
+dashOffset can take in any value without error, so it can be updated real-time(aka oninput).
+Plotted math functions can only be updated onchange(I "hope" it's finished by then, further error handling is needed of course). Anything during editing is not a valid math expression.
+
+My solution is to register these cases, divide them into different categories and act accordingly. See below for example.
+
+*/
+["input", "change"].forEach(function(optn){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
+    BLOCK_FRAME.addEventListener(optn, function(event){  
+        let target = event.target;
+        let obj = OBJECT_LIST.find(item => item.sid == event.target.parentNode.parentNode.parentNode.dataset.sid); //the object
+        let type = event.target.parentNode.parentNode.dataset.objtype; //"linepp"
+        let prop = target.dataset.property; //x1
+        if(event.type == "input"){ 
+            if(prop == "name"){ //names need to sync with label in the parent block, so they are handled separately
+                event.target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value; //sync
+                //Only update object on "change" event (i.e, blur) to imporve performance
+            }
+            else if(["lineWidth", "pathLength", "dashOffset", "color", "opacity"].includes(prop) || ["linepp x1", "linepp y1", "linepp x2", "linepp y2"].includes(`${type} ${prop}`)){  //"linepp x1"
+                obj[prop] = target.value;
+                obj.updateSVG();
+            }
+        }
+        else if(event.type == "change"){
+            if(["name", "lineCap", "dashArray"].includes(prop)){
+                obj[prop] = target.value;
+                obj.updateSVG();
+            }
+        }
+        console.log(event.type);
+    });
+});
+
 document.querySelector("#toolbar-item-geometry").addEventListener("click", function(event){   //event delegation
     let target = event.target;
     if(target.tagName.toLowerCase() == "img"){         //an icon is clicked
         createGeometryObject[target.dataset.method](); //create that FNGobject
     }
 });
-
 
 
 

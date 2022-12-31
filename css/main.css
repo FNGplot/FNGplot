@@ -265,6 +265,12 @@ List of lazy fonts:
 .objblock-editpanel .label-monospace{
     font-family: "Source Code Pro";
 }
+.objblock-editpanel .idtag{
+    font-family: "Source Code Pro";
+    border: 1px solid #000000;
+    border-radius: 3px;
+    width: 81px; /*Exactly enough since it houses monospaced font*/
+}
 .size-short{
     width: 60px;
 }
@@ -310,7 +316,7 @@ body{
     background-color: #fffff8;
 }
 input[type="text"][disabled] {
-   background-color: #e6e6e6;
+   background-color: #f0f0f0;
    color: #000000;
 }
 #root-frame{

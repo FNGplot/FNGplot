@@ -50,15 +50,15 @@ const EDITPANEL_TEMPLATES = {
         <select data-property="lineCap" class="size-medium">
             <option value="round" selected>Round</option>
             <option value="butt">Butt</option>
-            <option value="sqaure">Square</option>
+            <option value="square">Square</option>
         </select></div>
     <div>Color: <input type="color" data-property="color" class="size-short"></div>
     <div>Opacity: <input type="number" min="0" max="1" step="0.01" data-property="opacity" class="size-short" onKeyDown="return false"></div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>Dasharray: [ <input type="text" data-property="dashArray" class="size-medium"> ]</div>
+    <div>Dasharray: <input type="text" data-property="dashArray" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
-    <div>SystemID: <span data-property="sid"></span></div>
+    <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>`
 }
 

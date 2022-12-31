@@ -57,12 +57,20 @@ function toggleEditPanel(sid) {
     if(panel == null){ //It doesn't have an editpanel, give it one
         let objType = OBJECT_LIST.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
         block.insertAdjacentHTML("beforeend", EDITPANEL_TEMPLATES[objType]); //use objType to find the panel HTML, then inject into block
+        initEditPanel(block.querySelector(".objblock-editpanel"),sid);
     }
     else{ //It has an editpanel, remove it
         panel.parentNode.removeChild(panel);
     }
 }
-
+function initEditPanel(panelElem,sid){
+    let obj = OBJECT_LIST.find(item => item.sid == sid);
+    let inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
+    inputList.forEach(function(inputElem){
+        inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
+    });
+    panelElem.dataset.objtype = obj.constructor.name.toLowerCase();
+}
 
 
 // Constructors
@@ -90,7 +98,7 @@ class LinePP {
         this.updateSVG = function() { //currently, all properties are updated together. There is room for optimization in the future.
             let s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); //Find this object's SVG output
             s.dataset.name = this.name; //equal to s.setAttribute("data-name",this.name)
-            s.setAttribute("display"," "); // " " = true
+            s.setAttribute("display"," "); // " " = true in this property
             s.setAttribute("x1",toRealX(this.x1));
             s.setAttribute("y1",toRealY(this.y1));
             s.setAttribute("x2",toRealX(this.x2));
