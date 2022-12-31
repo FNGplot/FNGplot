@@ -51,6 +51,17 @@ function changeVisibility(sid) {
         svgElem.setAttribute("display","");                 //show the SVG element
     }
 }
+function toggleEditPanel(sid) {
+    let block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
+    let panel = block.querySelector(".objblock-editpanel")
+    if(panel == null){ //It doesn't have an editpanel, give it one
+        let newPanel = document.querySelector('#linepp-editpanel').content.firstElementChild.cloneNode(true);
+        block.appendChild(newPanel);
+    }
+    else{ //It has an editpanel, remove it
+        panel.parentNode.removeChild(panel);
+    }
+}
 
 
 
@@ -80,10 +91,10 @@ class LinePP {
             let s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); //Find this object's SVG output
             s.dataset.name = this.name; //equal to s.setAttribute("data-name",this.name)
             s.setAttribute("display"," "); // " " = true
-            s.setAttribute("x1",toRealX(this.x1).toString());
-            s.setAttribute("y1",toRealY(this.y1).toString());
-            s.setAttribute("x2",toRealX(this.x2).toString());
-            s.setAttribute("y2",toRealY(this.y2).toString());
+            s.setAttribute("x1",toRealX(this.x1));
+            s.setAttribute("y1",toRealY(this.y1));
+            s.setAttribute("x2",toRealX(this.x2));
+            s.setAttribute("y2",toRealY(this.y2));
             s.setAttribute("pathLength",this.pathLength);
             s.setAttribute("stroke-width",this.lineWidth);
             s.setAttribute("stroke-linecap",this.lineCap);

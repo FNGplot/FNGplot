@@ -21,6 +21,9 @@ BLOCK_FRAME.addEventListener("click", function(event){  //event delegation
     if(target.classList.contains("visibility")){  //change visibility
         changeVisibility(target.parentElement.dataset.sid);
     }
+    else if(target.classList.contains("edit")){  //toggle editpanel
+        toggleEditPanel(target.parentElement.dataset.sid);
+    }
     else if(target.classList.contains("delete")){  //delete block
         deleteObject(target.parentElement.dataset.sid);
     }
@@ -61,6 +64,7 @@ SORTABLE_LIST.push(
         },
         ghostClass: 'ghost-class',
         draggable: ".obj-block",
+        handle: ".small-icon",
         swapThreshold: 0.65,
         scroll: true,
         scrollSensitivity: 80,

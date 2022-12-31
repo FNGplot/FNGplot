@@ -15,7 +15,7 @@ List of ASAP fonts:
 - Lato bold: Buttons, banners, dropdowns, etc
 - Lato regular: Toolbar, general content
 - Material Symbols Round (A special "icon font" by Google): Icons & Symbols
-- Source Code Pro regular: System Log
+- Source Code Pro regular: code display
 
 
 Lazy fonts: Fonts that only serve as options in label and LaTeX blocks. They are only loaded when one uses them.
@@ -92,7 +92,7 @@ List of lazy fonts:
     position: absolute;
     height:36px;
     font: bold 17px Lato;
-    border: 2px solid black;
+    border: 2px solid #000000;
     color:rgba(0, 0, 0, 1);
     border-radius: 8px;
     background-color:#ffffff;
@@ -120,14 +120,14 @@ List of lazy fonts:
     height: 8px;
     cursor: pointer;
     animate: 0.2s;
-    box-shadow: 0px 0px 0px #000000;
+    box-shadow:000 #000000;
     background: #FFC0CB;
     border-radius: 4px;
-    border: 0px solid #000000;
+    border:0 solid #000000;
 }
 .lp-range::-webkit-slider-thumb {
     box-shadow: 1px 1px 1px #000000;
-    border: 0px solid #8A408B;
+    border:0 solid #8A408B;
     height: 25px;
     width: 15px;
     border-radius: 6px;
@@ -192,8 +192,8 @@ List of lazy fonts:
 
 .toolbar-grid {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     font: 24px Lato;
 }
 .toolbar-grid td {
@@ -205,7 +205,7 @@ List of lazy fonts:
 .toolbar-grid td img{ /*Those small svg icons*/
     width: 40px;
     height: 40px;
-    border: 1px solid black;
+    border: 1px solid #000000;
     margin-top: 5px; /*for some reason this is needed to achieve a true "centered" effect*/
     border-radius: 4px;
 }
@@ -214,18 +214,18 @@ List of lazy fonts:
 /* Styles of sortable blocks*/
 
 .small-icon.block {
-    border: 1px solid black;
+    border: 1px solid #000000;
     border-radius: 4px;
     top: 4px;
     left: 5px;
 }
 .nested-sortable > :first-child { /*cancel out the "margin-top: -1px" for the first child, as it doesn't need that*/
-    margin-top: 0px;
+    margin-top:0;
 }
 .obj-block {     /*basis of blocks*/
     position: relative;
     border-radius: 4px;
-    border: 1px solid black;
+    border: 1px solid #000000;
     margin-top: -1px;
     min-height: 50px; /*gets larger when you open the control panel*/
 }
@@ -236,7 +236,7 @@ List of lazy fonts:
     width: 100px;
     height: 18px;
     padding: 3px;
-    border: 1px solid black;
+    border: 1px solid #000000;
     border-radius: 3px;
     font: 16px Lato;
 }
@@ -257,7 +257,22 @@ List of lazy fonts:
     background-color: #5f95f7;  
 }
 
-div, select, canvas, textarea{
+
+/*all object block edit panel related*/
+.objblock-editpanel, .objblock-editpanel div{
+    position: relative;
+    font-family: Lato;
+}
+.objblock-editpanel{
+    margin: 55px auto 8px;
+    width: 380px; /*a moderate size even with scrollbars considered*/
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+div, select, canvas, textarea {
     position: absolute;
 }
 button{
@@ -285,25 +300,25 @@ input[type="text"][disabled] {
     height: 630px;
 }
 #banner {
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 270px;
     height: 45px;
     background: #ddcfff;
     box-shadow: 5px 10px 8px #888888;
-    border: 2px solid black;
+    border: 2px solid #000000;
 }
 #banner > img {
     width: 100%;
 }
 #calc-open {
     top: 640px;
-    left: 0px;
+    left:0;
     width: 270px;
     height: 56px;
     cursor: default;
     background: #ddcfff;
-    border: 2px solid black;
+    border: 2px solid #000000;
     box-shadow: 5px 10px 8px #888888;
 }
 #calc-open-banner {
@@ -321,7 +336,7 @@ input[type="text"][disabled] {
     left: 630px;
     width: 430px;
     height: 520px;
-    border: 2px dashed black;
+    border: 2px dashed #000000;
     background: #ffffff;
     overflow: auto;
     margin: 0;
@@ -335,17 +350,17 @@ div[id^="toolbar-item-"]{
     display: none;
     overflow-y: scroll;
     background: #f5f0ff;
-    border: 2px solid black;
+    border: 2px solid #000000;
     box-shadow: 5px 10px 8px #888888;
 }
 #left-panel {
     top: 60px;
-    left: 0px;
+    left: 0;
     width: 270px;
     height: 560px;
     background: #f5f0ff;
     box-shadow: 5px 10px 8px #888888;
-    border: 2px solid black;
+    border: 2px solid #000000;
 }
 #left-panel-select {
     font: bold 22px Lato;
@@ -359,7 +374,7 @@ div[id^="left-panel-item-"] {
     left: 12px;
     width: 245px;
     height: 490px;
-    border: 1px solid black;
+    border: 1px solid #000000;
     background: #ffffff;
     display: none;
     flex-direction: column;
@@ -376,7 +391,7 @@ div[id^="left-panel-item-"] > div {
     align-items: center;
     justify-content: space-around;
     height: 70px;
-    border-bottom: 1px dashed black;
+    border-bottom: 1px dashed #000000;
     font-family: Lato;
 }
 #envir-datalist {
@@ -399,18 +414,18 @@ div[id^="left-panel-item-"] > div {
     width: 200px;
 }
 #toolbar-frame {
-    top: 0px;
+    top:0;
     left: 270px;
     width: 1080px;
     height: 90px;
 }
 #toolbar-panel {
-    top: 0px;
+    top:0;
     left: 15px;
     width: 1080px;
     height: 35px;
     background: #f5f0ff;
-    border: 2px solid black;
+    border: 2px solid #000000;
     box-shadow: 5px 10px 8px #888888;
     display: flex;
     align-items: center;
@@ -421,11 +436,11 @@ div[id^="left-panel-item-"] > div {
     left: 70px;
     width: 500px;
     height: 500px;
-    border: 2px solid black;
+    border: 2px solid #000000;
 }
 #svg-canvas, #tspt-bkgd {
-    top: 0px;
-    left: 0px;
+    top:0;
+    left:0;
     width: 500px;
     height: 500px;
     position: absolute;
