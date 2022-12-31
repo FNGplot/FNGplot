@@ -55,8 +55,8 @@ function toggleEditPanel(sid) {
     let block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
     let panel = block.querySelector(".objblock-editpanel")
     if(panel == null){ //It doesn't have an editpanel, give it one
-        let newPanel = document.querySelector('#linepp-editpanel').content.firstElementChild.cloneNode(true);
-        block.appendChild(newPanel);
+        let objType = OBJECT_LIST.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
+        block.insertAdjacentHTML("beforeend", EDITPANEL_TEMPLATES[objType]); //use objType to find the panel HTML, then inject into block
     }
     else{ //It has an editpanel, remove it
         panel.parentNode.removeChild(panel);
@@ -73,15 +73,15 @@ class LinePP {
         this.sid = sid;
         this.name = "2-point line";
         this.display = true;
-        //Element
+        //Math
         this.x1 = -5;
         this.y1 = -4;
         this.x2 = 5;
         this.y2 = 2;
-        this.pathLength = 100;
         //Style
         this.lineWidth = 5;
         this.lineCap = "round";
+        this.pathLength = 100;
         this.dashArray = '';
         this.dashOffset = 0;
         this.color = "#8a408b"; //Wisteria purple
@@ -95,13 +95,13 @@ class LinePP {
             s.setAttribute("y1",toRealY(this.y1));
             s.setAttribute("x2",toRealX(this.x2));
             s.setAttribute("y2",toRealY(this.y2));
-            s.setAttribute("pathLength",this.pathLength);
+            s.setAttribute("stroke",this.color);
             s.setAttribute("stroke-width",this.lineWidth);
+            s.setAttribute("stroke-opacity",this.opacity);
             s.setAttribute("stroke-linecap",this.lineCap);
+            s.setAttribute("pathLength",this.pathLength);
             s.setAttribute("stroke-dasharray",this.dashArray);
             s.setAttribute("stroke-dashoffset",this.dashOffset);
-            s.setAttribute("stroke",this.color);
-            s.setAttribute("stroke-opacity",this.opacity);
         };
     }
 }

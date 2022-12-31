@@ -34,3 +34,32 @@ var ORIGIN_X = 500; //"real" x and y coordinates of the origin point in the SVG.
 var ORIGIN_Y = 500;
 
 //------↑↑↑↑↑↑↑↑Global variable declare zone of the ENTIRE project↑↑↑↑↑↑↑↑-------------------
+
+//------↓↓↓↓↓↓↓↓Edit panel templates↓↓↓↓↓↓↓↓-------------------
+
+const EDITPANEL_TEMPLATES = {
+    linepp:`
+<div class="objblock-editpanel">
+    <div>Name: <input type="text" data-property="name" class="size-long"></div>
+    <div class="label-monospace">-----------Math-----------------</div>
+    <div>Start point: ( <input type="number" step="0.5" data-property="x1" class="size-short"> , <input type="number" step="0.5" data-property="y1" class="size-short"> )</div>
+    <div>End point: ( <input type="number" step="0.5" data-property="x2" class="size-short"> , <input type="number" step="0.5" data-property="y2" class="size-short"> )</div>
+    <div class="label-monospace">-----------Style----------------</div>
+    <div>Width: <input type="number" min="0" data-property="lineWidth" class="size-short"></div>
+    <div>LineCap: 
+        <select data-property="lineCap" class="size-medium">
+            <option value="round" selected>Round</option>
+            <option value="butt">Butt</option>
+            <option value="sqaure">Square</option>
+        </select></div>
+    <div>Color: <input type="color" data-property="color" class="size-short"></div>
+    <div>Opacity: <input type="number" min="0" max="1" step="0.01" data-property="opacity" class="size-short" onKeyDown="return false"></div>
+    <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
+    <div>Dasharray: [ <input type="text" data-property="dashArray" class="size-medium"> ]</div>
+    <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
+    <div class="label-monospace">-----------System---------------</div>
+    <div>SystemID: <span data-property="sid"></span></div>
+</div>`
+}
+
+//------↑↑↑↑↑↑↑↑Edit panel templates↑↑↑↑↑↑↑↑-------------------

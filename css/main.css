@@ -152,6 +152,7 @@ List of lazy fonts:
     background-color: transparent;
     height: 20px;
 }
+/*these sizes are fixed so that the buttons don't change size when the text inside them change font weight*/
 #toolbar-select-variables {
     width: 80px;
 }
@@ -259,6 +260,24 @@ List of lazy fonts:
 
 
 /*all object block edit panel related*/
+
+/*some universal classes for easier formatting*/
+.objblock-editpanel .label-monospace{
+    font-family: "Source Code Pro";
+}
+.size-short{
+    width: 60px;
+}
+.size-medium{
+    width: 90px;
+}
+.size-long{
+    width: 170px;
+}
+.size-extralong{
+    width: 250px;
+}
+
 .objblock-editpanel, .objblock-editpanel div{
     position: relative;
     font-family: Lato;
@@ -270,6 +289,15 @@ List of lazy fonts:
     border: 1px solid #000000;
     border-radius: 3px;
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+.objblock-editpanel div{
+    margin: 2px 0;
+    font-size: 16px;
+}
+.objblock-editpanel select{
+    position: relative;
 }
 
 div, select, canvas, textarea {
