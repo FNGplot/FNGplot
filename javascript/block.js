@@ -89,9 +89,9 @@ class LinePP {
     }
 }
 
-//Create a new FNGobject
-var createBlankObject = { 
-    linepp: function(){                                         //LinePP will be the example here
+//Create a new Geometry FNGobject
+let createGeometryObject = { 
+    linepp: function(){  //LinePP will be the example here
         // Step 1 of 3: FNGobject
         let sid = makeSID();
         OBJECT_LIST.push(new LinePP(sid));                      //creates a blank LinePP object and push it into array
@@ -99,7 +99,7 @@ var createBlankObject = {
         // Step 2 of 3: draggable block
         let n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true); //copy a blank block template
         n.classList.add('geo');                                 //adds geometry object class
-        n.querySelector('img').src = "svg/system/line_pp.svg";  //init the small icon
+        n.querySelector('img').src = "svg/system/linepp.svg";   //init the small icon
         n.querySelector('input').value = "2-point line";        //display default name
         n.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
         BLOCK_FRAME.appendChild(n); //add the block to block frame

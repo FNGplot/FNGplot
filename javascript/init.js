@@ -16,15 +16,32 @@ document.querySelector("#envir-datalist-refresh").addEventListener("click", func
     });
 });
 
-BLOCK_FRAME.addEventListener("click", function(event){                      //event delegation
+BLOCK_FRAME.addEventListener("click", function(event){  //event delegation
     let target = event.target;
-    if(event.target.classList.contains("visibility")){  //change visibility
+    if(target.classList.contains("visibility")){  //change visibility
         changeVisibility(target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("delete")){  //delete block
+    else if(target.classList.contains("delete")){  //delete block
         deleteObject(target.parentElement.dataset.sid);
     }
 });
+
+document.querySelector("#toolbar-item-geometry").addEventListener("click", function(event){   //event delegation
+    let target = event.target;
+    if(target.tagName.toLowerCase() == "img"){  //an icon is clicked
+        createGeometryObject[target.dataset.method]();
+    }
+});
+
+
+
+
+
+
+
+
+
+
 
 initToolbar(); //initialize toolbar's positions, colors and click handlers
 toggleToolbar(1); //set it to "geometry" (default select)
