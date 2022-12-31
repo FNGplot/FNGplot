@@ -232,14 +232,15 @@ List of lazy fonts:
 }
 .obj-block .nametag {
     position: absolute;
-    top: 12px;
+    top: 9px;
     left: 60px;
-    width: 100px;
-    height: 18px;
+    width: 195px; 
+    height: 24px;
     padding: 3px;
-    border: 1px solid #000000;
-    border-radius: 3px;
-    font: 16px Lato;
+    font: 22px Lato;
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: #ffffff;
 }
 .obj-block .visibility {  /*the eye*/
     right: 100px;
@@ -266,6 +267,8 @@ List of lazy fonts:
     font-family: "Source Code Pro";
 }
 .objblock-editpanel .idtag{
+    background-color: #e0e0e0;
+    color: #000000;
     font-family: "Source Code Pro";
     border: 1px solid #000000;
     border-radius: 3px;
@@ -315,10 +318,6 @@ button{
 body{
     background-color: #fffff8;
 }
-input[type="text"][disabled] {
-   background-color: #f0f0f0;
-   color: #000000;
-}
 #root-frame{
     top: 10px;
     left: 10px;
@@ -339,21 +338,19 @@ input[type="text"][disabled] {
     width: 270px;
     height: 45px;
     background: #ddcfff;
-    box-shadow: 5px 10px 8px #888888;
     border: 2px solid #000000;
 }
 #banner > img {
     width: 100%;
 }
 #calc-open {
-    top: 640px;
-    left:0;
+    top: 635px;
+    left: 0;
     width: 270px;
     height: 56px;
     cursor: default;
     background: #ddcfff;
     border: 2px solid #000000;
-    box-shadow: 5px 10px 8px #888888;
 }
 #calc-open-banner {
     font: bold 34px Lato;
@@ -377,7 +374,7 @@ input[type="text"][disabled] {
     padding: 10px; /*adds a little space between the frame and the blocks inside*/
 }
 div[id^="toolbar-item-"]{
-    top: 44px;
+    top: 48px;
     left: 15px;
     width: 1080px;
     height: 54px;
@@ -385,7 +382,6 @@ div[id^="toolbar-item-"]{
     overflow-y: scroll;
     background: #f5f0ff;
     border: 2px solid #000000;
-    box-shadow: 5px 10px 8px #888888;
 }
 #left-panel {
     top: 60px;
@@ -393,7 +389,6 @@ div[id^="toolbar-item-"]{
     width: 270px;
     height: 560px;
     background: #f5f0ff;
-    box-shadow: 5px 10px 8px #888888;
     border: 2px solid #000000;
 }
 #left-panel-select {
@@ -460,7 +455,7 @@ div[id^="left-panel-item-"] > div {
     height: 35px;
     background: #f5f0ff;
     border: 2px solid #000000;
-    box-shadow: 5px 10px 8px #888888;
+    /*box-shadow: 5px 10px 8px #888888;*/
     display: flex;
     align-items: center;
     justify-content: space-evenly;
