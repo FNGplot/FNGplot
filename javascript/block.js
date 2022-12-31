@@ -62,17 +62,6 @@ class LinePP {
         this.sid = sid;
         this.name = "2-point line";
         this.display = true;
-        this.update = function() {
-            let block = BLOCK_FRAME.querySelector(`div[data-sid='${this.sid}']`); //Find this object's draggable block
-
-
-
-
-
-            //s.setAttribute("y1",toRealY(this.xy).toString());
-            //s.setAttribute("x2",toRealX(this.x2).toString());
-            //s.setAttribute("y2",toRealY(this.y2).toString());
-        };
         //Element
         this.x1 = -5;
         this.y1 = -4;
@@ -86,6 +75,23 @@ class LinePP {
         this.dashOffset = 0;
         this.color = "#8a408b"; //Wisteria purple
         this.opacity = 1;
+        //Method
+        this.updateSVG = function() { //currently, all properties are updated together. There is room for optimization in the future.
+            let s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); //Find this object's SVG output
+            s.dataset.name = this.name; //equal to s.setAttribute("data-name",this.name)
+            s.setAttribute("display"," "); // " " = true
+            s.setAttribute("x1",toRealX(this.x1).toString());
+            s.setAttribute("y1",toRealY(this.y1).toString());
+            s.setAttribute("x2",toRealX(this.x2).toString());
+            s.setAttribute("y2",toRealY(this.y2).toString());
+            s.setAttribute("pathLength",this.pathLength);
+            s.setAttribute("stroke-width",this.lineWidth);
+            s.setAttribute("stroke-linecap",this.lineCap);
+            s.setAttribute("stroke-dasharray",this.dashArray);
+            s.setAttribute("stroke-dashoffset",this.dashOffset);
+            s.setAttribute("stroke",this.color);
+            s.setAttribute("stroke-opacity",this.opacity);
+        };
     }
 }
 
@@ -94,7 +100,8 @@ let createGeometryObject = {
     linepp: function(){  //LinePP will be the example here
         // Step 1 of 3: FNGobject
         let sid = makeSID();
-        OBJECT_LIST.push(new LinePP(sid));                      //creates a blank LinePP object and push it into array
+        let obj = new LinePP(sid);
+        OBJECT_LIST.push(obj);                      //creates a blank LinePP object and push it into array
             
         // Step 2 of 3: draggable block
         let n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true); //copy a blank block template
@@ -109,19 +116,7 @@ let createGeometryObject = {
         // As this varies greatly across different FNGobjects, I decided to set them up one by one and not use some property array trick.
         let s = document.createElementNS("http://www.w3.org/2000/svg", 'line');
         s.dataset.sid = sid;
-        s.dataset.name = "2-point line";
-        s.setAttribute("display"," "); // " " = true
-        s.setAttribute("x1",toRealX(-5).toString());
-        s.setAttribute("y1",toRealY(-4).toString());
-        s.setAttribute("x2",toRealX(5).toString());
-        s.setAttribute("y2",toRealY(2).toString());
-        s.setAttribute("pathLength","100");
-        s.setAttribute("stroke-width","5");
-        s.setAttribute("stroke-linecap","round");
-        s.setAttribute("stroke-dasharray","");
-        s.setAttribute("stroke-dashoffset","0");
-        s.setAttribute("stroke","#8a408b");
-        s.setAttribute("stroke-opacity","1");
         SVG_CANVAS.appendChild(s);  //add the new SVG element to canvas
+        obj.updateSVG();            //render it for the first time
     }
 }

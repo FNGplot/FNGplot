@@ -28,8 +28,8 @@ BLOCK_FRAME.addEventListener("click", function(event){  //event delegation
 
 document.querySelector("#toolbar-item-geometry").addEventListener("click", function(event){   //event delegation
     let target = event.target;
-    if(target.tagName.toLowerCase() == "img"){  //an icon is clicked
-        createGeometryObject[target.dataset.method]();
+    if(target.tagName.toLowerCase() == "img"){         //an icon is clicked
+        createGeometryObject[target.dataset.method](); //create that FNGobject
     }
 });
 
