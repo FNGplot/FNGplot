@@ -31,6 +31,7 @@ BLOCK_FRAME.addEventListener("click", function(event){  //event delegation
 
 /*
 Wish Lin Dec 2022
+
 This bulky event listener is my naive attempt to strike a balance between real-time updating and generating errors due to transition values during editing.
 Basic assumption: Inputs and changes inside BLOCK_FRAME must come from the editpanels.
 
@@ -40,8 +41,10 @@ Plotted math functions can only be updated onchange(I "hope" it's finished by th
 
 Due to performance considerations, there are also a few exceptions that I handle separately. See comments below for detailed information.
 
-My solution is to register these cases, divide them into different categories and act accordingly. See below for example.
+My solution is to register all of the cases, divide them into different categories and act accordingly. See below for example.
 
+List of FNGobjects registered:
+LinePP: 100% complete
 */
 ["input", "change"].forEach(function(optn){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
     BLOCK_FRAME.addEventListener(optn, function(event){  
@@ -53,12 +56,12 @@ My solution is to register these cases, divide them into different categories an
         if(event.type == "input"){ 
             if(prop == "name"){ //names need to sync with label in the parent block, so they are handled separately
                 event.target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value;
-                //Only update object on "change" event (i.e, blur) to imporve performance
+                //Only update object on "change" event (or onBlur) to imporve performance
             }
             else if(prop == "color"){ //color input could possibly change dozens of times per second, thus bypassing updateSVG() greatly improves performance
                 //Naming logic: "color" alone must mean stroke-color because you can have stroke and no fill but not vice versa.
                 svgElem.setAttribute("stroke",target.value);
-                //Only update object on "change" event (i.e, blur) to imporve performance
+                //Only update object on "change" event (or onBlur) to imporve performance
             }
             else if(["lineWidth", "pathLength", "dashOffset", "color", "opacity"].includes(prop) || ["linepp x1", "linepp y1", "linepp x2", "linepp y2"].includes(`${type} ${prop}`)){  //"linepp x1"
                 obj[prop] = target.value;
