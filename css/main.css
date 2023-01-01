@@ -294,8 +294,8 @@ List of lazy fonts:
     font-family: Lato;
 }
 .objblock-editpanel{
-    margin: 55px auto 8px;
-    width: 380px; /*a moderate size even with scrollbars considered*/
+    margin: 55px 10px 10px;
+    width: auto;
     padding: 5px;
     border: 1px solid #000000;
     border-radius: 3px;
