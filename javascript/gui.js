@@ -22,11 +22,11 @@ function toggleToolbar(optn){
     n[optn].style.color = "#ffffff";                                                            //set text color to white (selected)
     n[optn].style.fontWeight = "bold";                                                          //set font weight to bold (selected)
     
-    n = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                  //perform an "and" selection and select all 9 divs
-    n.forEach((d) => {                                                                          //hide all divs first
+    const m = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                  //perform an "and" selection and select all 9 divs
+    m.forEach((d) => {                                                                          //hide all divs first
         d.style.display = "none";
     });
-    n[optn].style.display = "block";                                                            //then show the selected div
+    m[optn].style.display = "block";                                                            //then show the selected div
 }
 
 //initializing
