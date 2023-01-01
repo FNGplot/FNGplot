@@ -66,13 +66,13 @@ Rect:
             else if(prop == "fillColor"){
                 svgElem.setAttribute("fill",target.value);
             }
-            else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) || ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height"].includes(`${type} ${prop}`)){  //"linepp x1"
+            else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) || SPECIAL_PROPERTY_INPUT.includes(`${type} ${prop}`)){  //"linepp x1"
                 isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
                 obj.renderToSVG();
             }
         }
         else if(event.type == "change"){
-            if(["name", "lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || ["rect originHoriz", "rect originVert"].includes(`${type} ${prop}`)){
+            if(["name", "lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || SPECIAL_PROPERTY_CHANGE.includes(`${type} ${prop}`)){
                 isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
                 obj.renderToSVG();
             }
