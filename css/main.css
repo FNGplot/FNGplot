@@ -228,7 +228,9 @@ List of lazy fonts:
     border-radius: 4px;
     border: 1px solid #000000;
     margin-top: -1px;
-    min-height: 50px; /*gets larger when you open the control panel*/
+    height: 50px; /*gets larger (with transition) when you open the control panel using a variation of this trick: https://css-tricks.com/using-css-transitions-auto-dimensions/*/
+    transition: height 0.2s ease-in-out;
+    overflow: hidden;
 }
 .obj-block .nametag {
     position: absolute;

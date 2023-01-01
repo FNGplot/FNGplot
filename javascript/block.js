@@ -60,7 +60,11 @@ function toggleEditPanel(sid) {
         initEditPanel(block.querySelector(".objblock-editpanel"),sid);
     }
     else{ //It has an editpanel, remove it
-        panel.parentNode.removeChild(panel);
+        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing transition
+        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).addEventListener("webkitTransitionEnd", function tmp(){ //wait until transition end to remove the editpanel
+            panel.parentNode.removeChild(panel);
+            BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).removeEventListener("webkitTransitionEnd", tmp); //remove itself
+        });
     }
 }
 function initEditPanel(panelElem,sid){
@@ -70,6 +74,8 @@ function initEditPanel(panelElem,sid){
         inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
     });
     panelElem.dataset.objtype = obj.constructor.name.toLowerCase();
+    BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.clientHeight + 63}px`; //A part of workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for more details.
+    //The magic number "63" is the size of margin-top(55) + margin-bottom(8)
 }
 
 

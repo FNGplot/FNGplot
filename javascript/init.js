@@ -44,7 +44,7 @@ Due to performance considerations, there are also a few exceptions that I handle
 My solution is to register all of the cases, divide them into different categories and act accordingly. See below for example.
 
 List of FNGobjects registered:
-LinePP: 100% complete
+LinePP: Complete
 */
 ["input", "change"].forEach(function(optn){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
     BLOCK_FRAME.addEventListener(optn, function(event){  
