@@ -8,6 +8,9 @@ Terminology in my code:
     SVG element: The output. The Object's rendering result on canvas.
 
 - SID: Each FNGobject gets its own SID (system ID) upon creation/load.
+
+- LinePP: A line between two points. This is the first object I complete, and most of my comments are on its related code.
+  All the other ones are very similar to it.
 */
 
 function makeSID(){ //Generate a 10-character-long "random" alphanumeric system id.
@@ -71,7 +74,12 @@ function initEditPanel(panelElem,sid){
     const obj = OBJECT_LIST.find(item => item.sid == sid);
     const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
     inputList.forEach(function(inputElem){
-        inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
+        if(inputElem.type == "checkbox"){
+            inputElem.checked = obj[inputElem.dataset.property]; //get their respective properties and display them
+        }
+        else{
+            inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
+        }
     });
     panelElem.dataset.objtype = obj.constructor.name.toLowerCase();
     BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + 65}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
@@ -85,37 +93,96 @@ class LinePP {
         //------All attributes except sid have a default value before the user changes them.
         //System
         this.sid = sid;
-        this.name = "2-point line";
         this.display = true;
+        //User
+        this.name = "2-point line";
         //Math
         this.x1 = -5;
         this.y1 = -4;
         this.x2 = 5;
         this.y2 = 2;
         //Style
-        this.lineWidth = 5;
+        this.strokeWidth = 10;
         this.lineCap = "round";
         this.pathLength = 100;
         this.dashArray = '';
         this.dashOffset = 0;
-        this.color = "#8a408b"; //Wisteria purple
-        this.opacity = 1;
+        this.strokeColor = "#8a408b"; //Wisteria purple
+        this.strokeOpacity = 1;
         //Method
-        this.updateSVG = function() { //currently, all properties are updated together. There is room for optimization in the future.
+        this.renderToSVG = function() { //currently, all properties are updated together. There is room for optimization in the future.
             const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); //Find this object's SVG output
+            s.setAttribute("display",this.display ? "" : "none"); // everything other than "none" is true in this property
+            //--user--
             s.dataset.name = this.name; //equal to s.setAttribute("data-name",this.name)
-            s.setAttribute("display"," "); // " " = true in this property
-            s.setAttribute("x1",toRealX(this.x1));
-            s.setAttribute("y1",toRealY(this.y1));
-            s.setAttribute("x2",toRealX(this.x2));
-            s.setAttribute("y2",toRealY(this.y2));
-            s.setAttribute("stroke",this.color);
-            s.setAttribute("stroke-width",this.lineWidth);
-            s.setAttribute("stroke-opacity",this.opacity);
+            //--math--
+            s.setAttribute("x1",toPixelPosX(this.x1));
+            s.setAttribute("y1",toPixelPosY(this.y1));
+            s.setAttribute("x2",toPixelPosX(this.x2));
+            s.setAttribute("y2",toPixelPosY(this.y2));
+            //--style--
+            s.setAttribute("stroke",this.strokeColor);
+            s.setAttribute("stroke-width",this.strokeWidth);
+            s.setAttribute("stroke-opacity",this.strokeOpacity);
             s.setAttribute("stroke-linecap",this.lineCap);
             s.setAttribute("pathLength",this.pathLength);
             s.setAttribute("stroke-dasharray",this.dashArray);
             s.setAttribute("stroke-dashoffset",this.dashOffset);
+        };
+    }
+}
+class Rect {
+    constructor(sid) {
+        //System
+        this.sid = sid;
+        this.display = true;
+        //User
+        this.name = "Rectangle";
+        //Math
+        this.originHoriz = "left";  //these two properties means that the origin specified is the rectangle's "bottom left" corner
+        this.originVert = "bottom";
+        this.originX = -1;
+        this.originY = -2;
+        this.width = 7;
+        this.height = 5;
+        //Style
+        this.roundCornerX = 0;
+        //this.roundCornerY = 0;
+        //--stroke--
+        this.hasBorder = true;
+        this.strokeColor = "#8a408b";
+        this.strokeOpacity = 1;
+        this.strokeWidth = 10;
+        this.strokeLineJoin = "miter";  //miterlimit is not a problem here since all angles are 90 degrees
+        this.pathLength = 100;
+        this.dashArray = '';
+        this.dashOffset = 0;
+        //--fill--
+        this.hasFill = true;
+        this.fillColor = "#f5f0ff";
+        this.fillOpacity = 1;
+        //Method
+        this.renderToSVG = function() {
+            const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);
+            s.setAttribute("display",this.display ? "" : "none");
+            //--user--
+            s.dataset.name = this.name; 
+            //--math--
+            s.setAttribute("x",toPixelPosX(this.originX - RECT_ORIGMAP[this.originHoriz] * this.width));
+            s.setAttribute("y",toPixelPosY(this.originY + RECT_ORIGMAP[this.originVert] * this.height));
+            s.setAttribute("width",toPixelLenX(this.width));
+            s.setAttribute("height",toPixelLenY(this.height));
+            //--style--
+            s.setAttribute("rx",this.roundCornerX);
+            s.setAttribute("stroke",this.hasBorder ? this.strokeColor : "none");
+            s.setAttribute("stroke-width",this.strokeWidth);
+            s.setAttribute("stroke-opacity",this.strokeOpacity);
+            s.setAttribute("stroke-linejoin",this.strokeLineJoin);
+            s.setAttribute("pathLength",this.pathLength);
+            s.setAttribute("stroke-dasharray",this.dashArray);
+            s.setAttribute("stroke-dashoffset",this.dashOffset);
+            s.setAttribute("fill",this.hasFill ? this.fillColor : "none");
+            s.setAttribute("fill-opacity",this.fillOpacity);
         };
     }
 }
@@ -142,6 +209,23 @@ let createGeometryObject = {
         const s = document.createElementNS("http://www.w3.org/2000/svg", 'line');
         s.dataset.sid = sid;
         SVG_CANVAS.appendChild(s);  //add the new SVG element to canvas
-        obj.updateSVG();            //render it for the first time
+        obj.renderToSVG();            //render it for the first time
+    },
+    rect: function(){
+        const sid = makeSID();
+        const obj = new Rect(sid);
+        OBJECT_LIST.push(obj);
+
+        const n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true);
+        n.classList.add('geo');
+        n.querySelector('img').src = "svg/system/rect.svg";
+        n.querySelector('input').value = "Rectangle";
+        n.dataset.sid = sid;
+        BLOCK_FRAME.appendChild(n);
+
+        const s = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+        s.dataset.sid = sid;
+        SVG_CANVAS.appendChild(s);
+        obj.renderToSVG();
     }
 }

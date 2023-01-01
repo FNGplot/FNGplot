@@ -45,6 +45,7 @@ My solution is to register all of the cases, divide them into different categori
 
 List of FNGobjects registered:
 LinePP: Complete
+Rect: 
 */
 ["input", "change"].forEach(function(optn){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
     BLOCK_FRAME.addEventListener(optn, function(event){  
@@ -58,20 +59,26 @@ LinePP: Complete
                 event.target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value;
                 //Only update object on "change" event (or onBlur) to imporve performance
             }
-            else if(prop == "color"){ //color input could possibly change dozens of times per second, thus bypassing updateSVG() greatly improves performance
-                //Naming logic: "color" alone must mean stroke-color because you can have stroke and no fill but not vice versa.
+            else if(prop == "strokeColor"){ //color input could possibly change dozens of times per second, thus bypassing renderToSVG() greatly improves performance
                 svgElem.setAttribute("stroke",target.value);
                 //Only update object on "change" event (or onBlur) to imporve performance
             }
-            else if(["lineWidth", "pathLength", "dashOffset", "color", "opacity"].includes(prop) || ["linepp x1", "linepp y1", "linepp x2", "linepp y2"].includes(`${type} ${prop}`)){  //"linepp x1"
+            else if(prop == "fillColor"){
+                svgElem.setAttribute("fill",target.value);
+            }
+            else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) || ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height"].includes(`${type} ${prop}`)){  //"linepp x1"
                 obj[prop] = target.value;
-                obj.updateSVG();
+                obj.renderToSVG();
             }
         }
         else if(event.type == "change"){
-            if(["name", "lineCap", "dashArray", "color"].includes(prop)){
+            if(["name", "lineCap", "dashArray", "strokeColor", "strokeLineJoin", "fillColor"].includes(prop) || ["rect originHoriz", "rect originVert"].includes(`${type} ${prop}`)){
                 obj[prop] = target.value;
-                obj.updateSVG();
+                obj.renderToSVG();
+            }
+            else if(["hasBorder", "hasFill"].includes(prop)){ //checkboxes are naughty
+                obj[prop] = target.checked;
+                obj.renderToSVG();
             }
         }
     });
@@ -83,11 +90,6 @@ document.querySelector("#toolbar-item-geometry").addEventListener("click", funct
         createGeometryObject[target.dataset.method](); //create that FNGobject
     }
 });
-
-
-
-
-
 
 
 
