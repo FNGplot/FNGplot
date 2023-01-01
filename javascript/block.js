@@ -147,19 +147,19 @@ class Rect {
         this.height = 5;
         //Style
         this.roundCornerX = 0;
-        //this.roundCornerY = 0;
         //--stroke--
         this.hasBorder = true;
         this.strokeColor = "#8a408b";
         this.strokeOpacity = 1;
         this.strokeWidth = 10;
-        this.strokeLineJoin = "miter";  //miterlimit is not a problem here since all angles are 90 degrees
+        this.lineJoin = "miter";  //miterlimit is not a problem here since all angles are 90 degrees
+        this.lineCap = "butt";          //only relevant on dashline mode
         this.pathLength = 100;
         this.dashArray = '';
         this.dashOffset = 0;
         //--fill--
         this.hasFill = true;
-        this.fillColor = "#f5f0ff";
+        this.fillColor = "#ddcfff";
         this.fillOpacity = 1;
         //Method
         this.renderToSVG = function() {
@@ -177,7 +177,8 @@ class Rect {
             s.setAttribute("stroke",this.hasBorder ? this.strokeColor : "none");
             s.setAttribute("stroke-width",this.strokeWidth);
             s.setAttribute("stroke-opacity",this.strokeOpacity);
-            s.setAttribute("stroke-linejoin",this.strokeLineJoin);
+            s.setAttribute("stroke-linejoin",this.lineJoin);
+            s.setAttribute("stroke-linecap",this.lineCap);
             s.setAttribute("pathLength",this.pathLength);
             s.setAttribute("stroke-dasharray",this.dashArray);
             s.setAttribute("stroke-dashoffset",this.dashOffset);

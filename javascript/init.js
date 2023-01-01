@@ -67,13 +67,13 @@ Rect:
                 svgElem.setAttribute("fill",target.value);
             }
             else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) || ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height"].includes(`${type} ${prop}`)){  //"linepp x1"
-                obj[prop] = target.value;
+                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
                 obj.renderToSVG();
             }
         }
         else if(event.type == "change"){
-            if(["name", "lineCap", "dashArray", "strokeColor", "strokeLineJoin", "fillColor"].includes(prop) || ["rect originHoriz", "rect originVert"].includes(`${type} ${prop}`)){
-                obj[prop] = target.value;
+            if(["name", "lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || ["rect originHoriz", "rect originVert"].includes(`${type} ${prop}`)){
+                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
                 obj.renderToSVG();
             }
             else if(["hasBorder", "hasFill"].includes(prop)){ //checkboxes are naughty
