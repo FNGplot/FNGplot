@@ -11,7 +11,7 @@ Terminology in my code:
 */
 
 function makeSID(){ //Generate a 10-character-long "random" alphanumeric system id.
-    let charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let sid = '';
     for(let i = 0; i<10; i++) {
         sid += charList.charAt(Math.floor(Math.random()*62));
@@ -21,25 +21,25 @@ function makeSID(){ //Generate a 10-character-long "random" alphanumeric system 
 
 //User operations
 function moveObject(sid,nextSid) {
-    let svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
-    let refElem = SVG_CANVAS.querySelector(`[data-sid='${nextSid}']`);
+    const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+    const refElem = SVG_CANVAS.querySelector(`[data-sid='${nextSid}']`);
     SVG_CANVAS.insertBefore(svgElem,refElem);
 }
 function deleteObject(sid) {
-    let obj = OBJECT_LIST.find(item => item.sid == sid);
-    let n = confirm(`Do you want to PERMANENTLY delete "${obj.name}" ?`);
+    const obj = OBJECT_LIST.find(item => item.sid == sid);
+    const n = confirm(`Do you want to PERMANENTLY delete "${obj.name}" ?`);
     if(n){
-        let block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
-        let svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+        const block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
+        const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
         OBJECT_LIST.splice(OBJECT_LIST.indexOf(obj), 1);
         block.parentNode.removeChild(block);
         svgElem.parentNode.removeChild(svgElem);
     }
 }
 function changeVisibility(sid) {
-    let obj = OBJECT_LIST.find(item => item.sid == sid);  //find the object with this sid
-    let eyeBtn = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.visibility');
-    let svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+    const obj = OBJECT_LIST.find(item => item.sid == sid);  //find the object with this sid
+    const eyeBtn = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.visibility');
+    const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
     if(obj.display == true){
         obj.display = false;
         eyeBtn.innerHTML = "visibility_off";                //change the icon to visibility off;
@@ -52,10 +52,10 @@ function changeVisibility(sid) {
     }
 }
 function toggleEditPanel(sid) {
-    let block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
-    let panel = block.querySelector(".objblock-editpanel")
+    const block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
+    const panel = block.querySelector(".objblock-editpanel")
     if(panel == null){ //It doesn't have an editpanel, give it one
-        let objType = OBJECT_LIST.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
+        const objType = OBJECT_LIST.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
         block.insertAdjacentHTML("beforeend", EDITPANEL_TEMPLATES[objType]); //use objType to find the panel HTML, then inject into block
         initEditPanel(block.querySelector(".objblock-editpanel"),sid);
     }
@@ -68,13 +68,13 @@ function toggleEditPanel(sid) {
     }
 }
 function initEditPanel(panelElem,sid){
-    let obj = OBJECT_LIST.find(item => item.sid == sid);
-    let inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
+    const obj = OBJECT_LIST.find(item => item.sid == sid);
+    const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
     inputList.forEach(function(inputElem){
         inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
     });
     panelElem.dataset.objtype = obj.constructor.name.toLowerCase();
-    BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.clientHeight + 63}px`; //A part of workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for more details.
+    BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.clientHeight + 63}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
     //The magic number "63" is the size of margin-top(55) + margin-bottom(8)
 }
 
@@ -102,7 +102,7 @@ class LinePP {
         this.opacity = 1;
         //Method
         this.updateSVG = function() { //currently, all properties are updated together. There is room for optimization in the future.
-            let s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); //Find this object's SVG output
+            const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); //Find this object's SVG output
             s.dataset.name = this.name; //equal to s.setAttribute("data-name",this.name)
             s.setAttribute("display"," "); // " " = true in this property
             s.setAttribute("x1",toRealX(this.x1));
@@ -124,12 +124,12 @@ class LinePP {
 let createGeometryObject = { 
     linepp: function(){  //LinePP will be the example here
         // Step 1 of 3: FNGobject
-        let sid = makeSID();
-        let obj = new LinePP(sid);
+        const sid = makeSID();
+        const obj = new LinePP(sid);
         OBJECT_LIST.push(obj);                      //creates a blank LinePP object and push it into array
             
         // Step 2 of 3: draggable block
-        let n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true); //copy a blank block template
+        const n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true); //copy a blank block template
         n.classList.add('geo');                                 //adds geometry object class
         n.querySelector('img').src = "svg/system/linepp.svg";   //init the small icon
         n.querySelector('input').value = "2-point line";        //display default name
@@ -139,7 +139,7 @@ let createGeometryObject = {
         // Step 3 of 3: SVG element(s)
         // I set the atttributes the SVG way and not the CSS way for easier export later on.
         // As this varies greatly across different FNGobjects, I decided to set them up one by one and not use some property array trick.
-        let s = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+        const s = document.createElementNS("http://www.w3.org/2000/svg", 'line');
         s.dataset.sid = sid;
         SVG_CANVAS.appendChild(s);  //add the new SVG element to canvas
         obj.updateSVG();            //render it for the first time

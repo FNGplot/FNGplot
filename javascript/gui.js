@@ -1,6 +1,6 @@
 /* toggles left panel*/
 function toggleLeftPanel(value){
-    let n = document.querySelectorAll("div[id^=\"left-panel-item-\"]");                 //selects all 7 subpages
+    const n = document.querySelectorAll("div[id^=\"left-panel-item-\"]");                 //selects all 7 subpages
     n.forEach((subpage) => {                                                            //hide everyone first
         subpage.style.display = "none";
     });
@@ -12,7 +12,7 @@ function toggleLeftPanel(value){
 
 //toggling
 function toggleToolbar(optn){
-    let n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");                       //perform an "and" selection and select all 9 buttons
+    const n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");                       //perform an "and" selection and select all 9 buttons
     n.forEach((btn) => {
         btn.style.background = "transparent";                                                   //set all buttons to transparent background (unselected)
         btn.style.color = "#000000";                                                            //set all buttons' text to black (unselected)
@@ -31,7 +31,7 @@ function toggleToolbar(optn){
 
 //initializing
 function initToolbar(){
-    let n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
+    const n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
     for(let i = 0;i<9;i++){
         n[i].style.borderColor = TOOLBAR_CLR[i]; //initialize them to their respective colors
         n[i].addEventListener("click", function() {toggleToolbar(i)}); //attach click eventlisteners

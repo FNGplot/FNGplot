@@ -223,12 +223,12 @@ List of lazy fonts:
 .nested-sortable > :first-child { /*cancel out the "margin-top: -1px" for the first child, as it doesn't need that*/
     margin-top:0;
 }
-.obj-block {     /*basis of blocks*/
+.obj-block {     /*basis of object blocks*/
     position: relative;
     border-radius: 4px;
     border: 1px solid #000000;
     margin-top: -1px;
-    height: 50px; /*gets larger (with transition) when you open the control panel using a variation of this trick: https://css-tricks.com/using-css-transitions-auto-dimensions/*/
+    height: 50px;
     transition: height 0.2s ease-in-out;
     overflow: hidden;
 }
