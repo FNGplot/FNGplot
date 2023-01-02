@@ -41,18 +41,19 @@ function initToolbar(){
 //update environment data list 
 function updateEnvirList(){
     document.querySelector("#envir-datalist > pre").innerHTML = `
-  Program:
+  Root Frame:
+  Width / Height: 
+  ${document.querySelector("#root-frame").getBoundingClientRect().width}px / ${document.querySelector("#root-frame").getBoundingClientRect().height}px
 
-  Root width: ${document.querySelector("#root-frame").getBoundingClientRect().width}px
-  Root height: ${document.querySelector("#root-frame").getBoundingClientRect().height}px
+  Viewport:
+  innerWidth / clientWidth: 
+  ${window.innerWidth}px / ${document.documentElement.clientWidth}px
+  innerHeight / clientHeight: 
+  ${window.innerHeight}px / ${document.documentElement.clientHeight}px
 
-  Window:
-
-  innerWidth: ${window.innerWidth}px
-  clientWidth: ${document.documentElement.clientWidth}px
-  innerHeight: ${window.innerHeight}px
-  clientHeight:${document.documentElement.clientHeight}px
-
+  Device:
+  ScreenWidth / ScreenHeight:
+  ${window.screen.width}px / ${window.screen.height}px
 `
 }
 
