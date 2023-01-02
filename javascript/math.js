@@ -3,6 +3,25 @@
 function isNumeric(num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
 }
+function gcd(a,b) { //Euclidean algorithm
+    a = Math.abs(a);
+    b = Math.abs(b);
+    if(b > a){
+        let tmp = a;
+        a = b;
+        b = tmp;
+    }
+    while(true){
+        if(b == 0){
+            return a;
+        }
+        a %= b;
+        if(a == 0) {
+            return b;
+        }
+        b %= a;
+    }
+}
 function toPixelPosX(xCord){  // Translate calculation result to drawable pixel positions. X coordinate only.
     return ORIGIN_X + XHAT*xCord;
 }

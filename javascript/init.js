@@ -1,6 +1,10 @@
+//Init.js: This file contains ALL the code that is immediately executed on page load.
+
 //-------Primary initializing sequence----------------------
-//This file contains ALL the code that is immediately executed on page load.
 console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
+
+//choose a good zoom level upon load
+
 
 //eventlisteners
 document.querySelector("#left-panel-select").addEventListener("change", function(){

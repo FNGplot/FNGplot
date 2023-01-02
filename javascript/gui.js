@@ -42,13 +42,13 @@ function initToolbar(){
 function updateEnvirList(){
     document.querySelector("#envir-datalist > pre").innerHTML = `
   Root Frame:
-
+  --------------------------
   Width / Height: 
   ${document.querySelector("#root-frame").getBoundingClientRect().width}px / ${document.querySelector("#root-frame").getBoundingClientRect().height}px
   
 
   Viewport:
-
+  --------------------------
   innerWidth / clientWidth: 
   ${window.innerWidth}px / ${document.documentElement.clientWidth}px
   innerHeight / clientHeight: 
@@ -56,9 +56,11 @@ function updateEnvirList(){
 
   
   Device:
-
+  --------------------------
   ScreenWidth / ScreenHeight:
-  ${window.screen.width}px / ${window.screen.height}px
+  ${window.screen.width}px / ${window.screen.height}px (${window.screen.width/gcd(window.screen.width, window.screen.height)}:${window.screen.height/gcd(window.screen.width, window.screen.height)})
+
+
 `
 }
 

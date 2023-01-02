@@ -446,6 +446,7 @@ div[id^="left-panel-item-"] > div {
 }
 #envir-datalist > pre { /*ignore flex property and align to left*/
     margin-right: auto;
+    font: 12px "Source Code Pro";
 }
 #envir-datalist-refresh {
     font-size: 30px;
