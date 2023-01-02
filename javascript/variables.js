@@ -94,7 +94,7 @@ const EDITPANEL_TEMPLATES = {
     <div>Width: <input type="number" min="0" data-property="width" class="size-short"></div>
     <div>Height: <input type="number" min="0" data-property="height" class="size-short"></div>
     <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>Show: Border <input type="checkbox" data-property="hasBorder"> Fill: <input type="checkbox" data-property="hasFill"></div>
+    <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
     <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short" onKeyDown="return false"></div>
