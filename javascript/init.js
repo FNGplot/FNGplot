@@ -89,7 +89,9 @@ document.querySelector("#toolbar-root").addEventListener("click", function(event
     const target = event.target;
     const parent = event.target.parentNode;
     if(target.tagName.toLowerCase() == "img"){         //SVG icon clicked
-        createGeometryObject[target.dataset.method]();
+        switch(target.closest("div[id^='toolbar-item-']").dataset.category){ //figure out which function to call based on category
+            case "geometry": createGeometryObject[target.dataset.method]();
+        }
     }
     else if(parent.classList.contains("toolbar-grid-toggler")){ //Expand or collapse the toolbar
         if(target.style.transform == "rotate(0deg)"){  //expand

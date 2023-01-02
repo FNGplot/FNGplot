@@ -209,7 +209,7 @@ div[id^="toolbar-item-"]{
     background-color: #f5f0ff;
     border: 2px solid black;
 }
-div[id^="toolbar-item-"]::-webkit-scrollbar { 
+div[id^="toolbar-item-"]::-webkit-scrollbar {
     /*disable scrollbar. They appear for a short time during page load for some reason even though my design is pixel perfect*/
     display: none;
 }

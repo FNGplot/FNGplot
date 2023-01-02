@@ -4,4 +4,4 @@
 
 First official version. Currently under development.
 
-English version planned release date: 2023 Spring/Summer
+English version planned release date: 2023 Summer
