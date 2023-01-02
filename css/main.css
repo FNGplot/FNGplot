@@ -65,7 +65,7 @@ List of lazy fonts:
     Github Repository: https://github.com/FNGplot/FNGplot
 */
 
-.material-symbol-rounded { /*Google recommended this whole thing*/
+.material-symbol-rounded { /*Modified from Google's recommendation*/
     font-family: "Material Symbols Rounded";
     font-weight: normal;
     font-style: normal; 
@@ -76,23 +76,15 @@ List of lazy fonts:
     white-space: nowrap;
     direction: ltr;
     -webkit-font-smoothing: antialiased;  /* Support for all WebKit browsers. */
-    text-rendering: optimizeLegibility;   /* Support for Safari and Chrome. */
-    -moz-osx-font-smoothing: grayscale;   /* Support for Firefox. */
-    /*I added everything below this line*/
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
     -webkit-user-select: none;
-    -o-user-select: none;
     user-select: none;
 }
 .material-symbol-rounded.btnicon{
     top: 4px;
     left: 4px;
-    position: absolute;
     font-size: 24px;
 }
 .material-symbol-rounded.sortblockicon{
-    position: absolute;
     display: block;
     top: 5px;
     font-size: 40px;
@@ -121,10 +113,11 @@ List of lazy fonts:
     color: #6e6e6e;
 }        
 
-/*Based on https://www.cssportal.com/style-input-range/ */
+/*Minified from on https://www.cssportal.com/style-input-range/ */
 .lp-range {
     height: 32px;
-    -webkit-appearance: none;
+    appearance: none;
+    /*-webkit-appearance: none;*/
     width: 100%;
 }
 .lp-range:focus {
@@ -134,7 +127,7 @@ List of lazy fonts:
     width: 100%;
     height: 8px;
     cursor: pointer;
-    animate: 0.2s;
+    /*animate: 0.2s;*/
     box-shadow:000 #000000;
     background: #FFC0CB;
     border-radius: 4px;
@@ -208,9 +201,25 @@ List of lazy fonts:
 
 .toolbar-grid {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     font: 24px Lato;
+    width: 1008px; /* 14/15 */
+    box-sizing: border-box;
+}
+.toolbar-grid-toggler {
+    top: 0px;
+    right: 0px;
+    width: 72px; /* 1/15 */
+    height: 60px;
+    border-left: 2px solid #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toolbar-grid-toggler > div{
+    font-size: 48px;
+    cursor: default;
 }
 .toolbar-grid td {
     height: 60px;
@@ -226,7 +235,6 @@ List of lazy fonts:
     border-radius: 4px;
 }
 
-
 /* Styles of sortable blocks*/
 
 .small-icon.block {
@@ -236,7 +244,7 @@ List of lazy fonts:
     left: 5px;
 }
 .nested-sortable > :first-child { /*cancel out the "margin-top: -1px" for the first child, as it doesn't need that*/
-    margin-top:0;
+    margin-top:0px;
 }
 .obj-block {     /*basis of object blocks*/
     position: relative;
@@ -320,7 +328,7 @@ List of lazy fonts:
     flex-direction: column;
 }
 .objblock-editpanel div{
-    margin: 2px 0;
+    margin: 2px 0px;
     font-size: 16px;
 }
 .objblock-editpanel select{
@@ -331,7 +339,7 @@ div, select, canvas, textarea {
     position: absolute;
 }
 button{
-    border-width: 0;
+    border-width: 0px;
 }
 body{
     background-color: #fffff8;
@@ -351,8 +359,8 @@ body{
     height: 10px;
 }
 #banner {
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     width: 270px;
     height: 45px;
     background: #ddcfff;
@@ -363,7 +371,7 @@ body{
 }
 #calc-open {
     top: 635px;
-    left: 0;
+    left: 0px;
     width: 270px;
     height: 56px;
     cursor: default;
@@ -388,7 +396,7 @@ body{
     border: 2px dashed #000000;
     background: #ffffff;
     overflow: auto;
-    margin: 0;
+    margin: 0px;
     padding: 10px; /*adds a little space between the frame and the blocks inside*/
 }
 div[id^="toolbar-item-"]{
@@ -397,13 +405,14 @@ div[id^="toolbar-item-"]{
     width: 1080px;
     height: 60px;
     display: none;
-    overflow-y: scroll;
+    overflow-y: hidden; /*manipulated by toggler*/
+    overflow-x: hidden;
     background: #f5f0ff;
     border: 2px solid #000000;
 }
 #left-panel {
     top: 60px;
-    left: 0;
+    left: 0px;
     width: 270px;
     height: 560px;
     background: #f5f0ff;
@@ -465,7 +474,7 @@ div[id^="left-panel-item-"] > div {
     width: 200px;
 }
 #toolbar-anchor {
-    top: 0;
+    top: 0px;
     left: 290px;
     width: 10px;
     height: 10px;
@@ -490,8 +499,8 @@ div[id^="left-panel-item-"] > div {
     border: 2px solid #000000;
 }
 #svg-canvas, #tspt-bkgd {
-    top:0;
-    left:0;
+    top: 0px;
+    left: 0px;
     width: 500px;
     height: 500px;
     position: absolute;
