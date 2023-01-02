@@ -85,10 +85,21 @@ Rect:
     });
 });
 
-document.querySelector("#toolbar-item-geometry").addEventListener("click", function(event){   //event delegation
-    let target = event.target;
-    if(target.tagName.toLowerCase() == "img"){         //an icon is clicked
-        createGeometryObject[target.dataset.method](); //create that FNGobject
+document.querySelector("#toolbar-root").addEventListener("click", function(event){   //event delegation
+    const target = event.target;
+    const parent = event.target.parentNode;
+    if(target.tagName.toLowerCase() == "img"){         //SVG icon clicked
+        createGeometryObject[target.dataset.method]();
+    }
+    else if(parent.classList.contains("toolbar-grid-toggler")){ //Expand or collapse the toolbar
+        if(target.style.transform == "rotate(0deg)"){  //expand
+            target.style.transform = "rotate(180deg)";
+            parent.parentNode.style.overflow = "visible"; //using "previousElementSibling" here because plian HTML written by me (not JS inserted) contains whitespaces, which fails "previousSibling".
+        }
+        else if(target.style.transform == "rotate(180deg)"){  //collapse
+            target.style.transform = "rotate(0deg)";
+            parent.parentNode.style.overflow = "hidden";
+        }
     }
 });
 

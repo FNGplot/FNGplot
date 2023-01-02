@@ -36,29 +36,33 @@ function initToolbar(){
         n[i].style.borderColor = TOOLBAR_CLR[i]; //initialize them to their respective colors
         n[i].addEventListener("click", function() {toggleToolbar(i)}); //attach click eventlisteners
     }
+    const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
+    togglers.forEach(function(arrowBtn){
+        arrowBtn.style.transform = "rotate(0deg)"; //have to set them inline so they can be manipulated later
+    });
 }
 
 //update environment data list 
 function updateEnvirList(){
     document.querySelector("#envir-datalist > pre").innerHTML = `
-  Root Frame:
-  --------------------------
-  Width / Height: 
-  ${document.querySelector("#root-frame").getBoundingClientRect().width}px / ${document.querySelector("#root-frame").getBoundingClientRect().height}px
-  
+Root Frame:
+--------------------------
+Width / Height: 
+${document.querySelector("#root-frame").getBoundingClientRect().width}px / ${document.querySelector("#root-frame").getBoundingClientRect().height}px
 
-  Viewport:
-  --------------------------
-  innerWidth / clientWidth: 
-  ${window.innerWidth}px / ${document.documentElement.clientWidth}px
-  innerHeight / clientHeight: 
-  ${window.innerHeight}px / ${document.documentElement.clientHeight}px
 
-  
-  Device:
-  --------------------------
-  ScreenWidth / ScreenHeight:
-  ${window.screen.width}px / ${window.screen.height}px (${window.screen.width/gcd(window.screen.width, window.screen.height)}:${window.screen.height/gcd(window.screen.width, window.screen.height)})
+Viewport:
+--------------------------
+innerWidth / clientWidth: 
+${window.innerWidth}px / ${document.documentElement.clientWidth}px
+innerHeight / clientHeight: 
+${window.innerHeight}px / ${document.documentElement.clientHeight}px
+
+
+Device:
+--------------------------
+ScreenWidth / ScreenHeight:
+${window.screen.width}px / ${window.screen.height}px (${window.screen.width/gcd(window.screen.width, window.screen.height)}:${window.screen.height/gcd(window.screen.width, window.screen.height)})
 
 
 `

@@ -99,7 +99,7 @@ List of lazy fonts:
     position: absolute;
     height:36px;
     font: bold 17px Lato;
-    border: 2px solid #000000;
+    border: 2px solid black;
     color:rgba(0, 0, 0, 1);
     border-radius: 8px;
     background-color:#ffffff;
@@ -128,13 +128,13 @@ List of lazy fonts:
     height: 8px;
     cursor: pointer;
     /*animate: 0.2s;*/
-    box-shadow:000 #000000;
+    box-shadow:000 black;
     background: #FFC0CB;
     border-radius: 4px;
-    border:0 solid #000000;
+    border:0 solid black;
 }
 .lp-range::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000000;
+    box-shadow: 1px 1px 1px black;
     border:0 solid #8A408B;
     height: 25px;
     width: 15px;
@@ -197,22 +197,54 @@ List of lazy fonts:
 }
 
 
-/* Style of toolbar grid*/
+/* Style of toolbar*/
 
+div[id^="toolbar-item-"]{
+    top: 48px;
+    left: 0px;
+    width: 1080px;
+    height: 60px;
+    display: none;
+    overflow: hidden;
+    background-color: #f5f0ff;
+    border: 2px solid black;
+}
+div[id^="toolbar-item-"]::-webkit-scrollbar { 
+    /*disable scrollbar. They appear for a short time during page load for some reason even though my design is pixel perfect*/
+    display: none;
+}
 .toolbar-grid {
-    position: absolute;
     top: 0px;
     left: 0px;
-    font: 24px Lato;
     width: 1008px; /* 14/15 */
-    box-sizing: border-box;
+    height: auto;
+    background-color: #f5f0ff;
+    z-index: 99;
+    outline: 2px solid black;
+    /*-------------------------------------*/
+    display: grid;
+    grid-template-columns: 3fr repeat(10, 1fr);   /*Description is 3 blocks wide, followed by 10 icons(1 blocks wide)*/
+    grid-auto-rows: 60px;   /*Same as container height*/
+    row-gap: 5px;
+    align-items: center;
+    justify-items: center;
+}
+.toolbar-grid > div{
+    position: relative;
+    font: 24px Lato;
+}
+.toolbar-grid > img{ /*The small svg icons*/
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 4px;
 }
 .toolbar-grid-toggler {
     top: 0px;
     right: 0px;
     width: 72px; /* 1/15 */
     height: 60px;
-    border-left: 2px solid #000000;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,25 +252,14 @@ List of lazy fonts:
 .toolbar-grid-toggler > div{
     font-size: 48px;
     cursor: default;
-}
-.toolbar-grid td {
-    height: 60px;
-    width: 69px;
-    text-align: center;
-    vertical-align: middle;
-}
-.toolbar-grid td img{ /*Those small svg icons*/
-    width: 40px;
-    height: 40px;
-    border: 1px solid #000000;
-    margin: auto;
-    border-radius: 4px;
+    /*transform: rotate(0deg) -- declared, detected & manipulated by JS for small animation effect*/
+    transition: transform 0.1s ease-in-out;
 }
 
 /* Styles of sortable blocks*/
 
 .small-icon.block {
-    border: 1px solid #000000;
+    border: 1px solid black;
     border-radius: 4px;
     top: 4px;
     left: 5px;
@@ -249,7 +270,7 @@ List of lazy fonts:
 .obj-block {     /*basis of object blocks*/
     position: relative;
     border-radius: 4px;
-    border: 1px solid #000000;
+    border: 1px solid black;
     margin-top: -1px;
     height: 50px;
     transition: height 0.15s ease-in-out;
@@ -294,9 +315,9 @@ List of lazy fonts:
 }
 .objblock-editpanel .idtag{
     background-color: #e0e0e0;
-    color: #000000;
+    color: black;
     font-family: "Source Code Pro";
-    border: 1px solid #000000;
+    border: 1px solid black;
     border-radius: 3px;
     width: 81px; /*Exactly enough since it houses monospaced font*/
 }
@@ -321,7 +342,7 @@ List of lazy fonts:
     margin: 55px 10px 10px;
     width: auto;
     padding: 5px;
-    border: 1px solid #000000;
+    border: 1px solid black;
     border-radius: 3px;
     background-color: #ffffff;
     display: flex;
@@ -352,7 +373,7 @@ body{
     transform-origin: top left;
     transform: scale(1);
 }
-#main-anchor { 
+#main-root { 
     top: 120px;
     left: 290px;
     width: 10px;
@@ -364,7 +385,7 @@ body{
     width: 270px;
     height: 45px;
     background: #ddcfff;
-    border: 2px solid #000000;
+    border: 2px solid black;
 }
 #banner > img {
     width: 100%;
@@ -376,7 +397,7 @@ body{
     height: 56px;
     cursor: default;
     background: #ddcfff;
-    border: 2px solid #000000;
+    border: 2px solid black;
 }
 #calc-open-banner {
     font: bold 34px Lato;
@@ -393,22 +414,11 @@ body{
     left: 600px;
     width: 430px;
     height: 480px;
-    border: 2px dashed #000000;
+    border: 2px dashed black;
     background: #ffffff;
     overflow: auto;
     margin: 0px;
     padding: 10px; /*adds a little space between the frame and the blocks inside*/
-}
-div[id^="toolbar-item-"]{
-    top: 48px;
-    left: 0px;
-    width: 1080px;
-    height: 60px;
-    display: none;
-    overflow-y: hidden; /*manipulated by toggler*/
-    overflow-x: hidden;
-    background: #f5f0ff;
-    border: 2px solid #000000;
 }
 #left-panel {
     top: 60px;
@@ -416,7 +426,7 @@ div[id^="toolbar-item-"]{
     width: 270px;
     height: 560px;
     background: #f5f0ff;
-    border: 2px solid #000000;
+    border: 2px solid black;
 }
 #left-panel-select {
     font: bold 22px Lato;
@@ -430,7 +440,7 @@ div[id^="left-panel-item-"] {
     left: 12px;
     width: 245px;
     height: 490px;
-    border: 1px solid #000000;
+    border: 1px solid black;
     background: #ffffff;
     display: none;
     flex-direction: column;
@@ -450,7 +460,7 @@ div[id^="left-panel-item-"] > div {
     align-items: center;
     justify-content: space-around;
     height: 70px;
-    border-bottom: 1px dashed #000000;
+    border-bottom: 1px dashed black;
     font-family: Lato;
 }
 #envir-datalist {
@@ -458,6 +468,7 @@ div[id^="left-panel-item-"] > div {
 }
 #envir-datalist > pre { /*ignore flex property and align to left*/
     margin-right: auto;
+    padding-left: 10px; /*Small indentation effect*/
     font: 12px "Source Code Pro";
 }
 #envir-datalist-refresh {
@@ -473,7 +484,7 @@ div[id^="left-panel-item-"] > div {
 #rootzoom-slider{
     width: 200px;
 }
-#toolbar-anchor {
+#toolbar-root {
     top: 0px;
     left: 290px;
     width: 10px;
@@ -485,7 +496,7 @@ div[id^="left-panel-item-"] > div {
     width: 1080px;
     height: 35px;
     background: #f5f0ff;
-    border: 2px solid #000000;
+    border: 2px solid black;
     /*box-shadow: 5px 10px 8px #888888;*/
     display: flex;
     align-items: center;
@@ -496,7 +507,7 @@ div[id^="left-panel-item-"] > div {
     left: 35px;
     width: 500px;
     height: 500px;
-    border: 2px solid #000000;
+    border: 2px solid black;
 }
 #svg-canvas, #tspt-bkgd {
     top: 0px;

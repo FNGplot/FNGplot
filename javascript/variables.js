@@ -79,7 +79,7 @@ const EDITPANEL_TEMPLATES = {
     <div>Name: <input type="text" data-property="name" class="size-long"></div>
     <div class="label-monospace">-----------Math-----------------</div>
     <div>Origin: ( <input type="number" step="0.5" data-property="originX" class="size-short"> , <input type="number" step="0.5" data-property="originY" class="size-short"> )</div>
-    <div>Origin mode: 
+    <div>OriginMode: 
         <select data-property="originVert" class="size-medium">
             <option value="top">Top</option>
             <option value="middle">Middle</option>
