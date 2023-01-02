@@ -165,7 +165,7 @@ List of lazy fonts:
     /*background-color: This is defined dynamically immediately after page load*/
     font-weight: normal;
     background-color: transparent;
-    height: 20px;
+    height: 21px;
 }
 /*these sizes are fixed so that the buttons don't change size when the text inside them change font weight*/
 #toolbar-select-variables {
@@ -213,7 +213,7 @@ List of lazy fonts:
     font: 24px Lato;
 }
 .toolbar-grid td {
-    height: 54px;
+    height: 60px;
     width: 69px;
     text-align: center;
     vertical-align: middle;
@@ -222,7 +222,7 @@ List of lazy fonts:
     width: 40px;
     height: 40px;
     border: 1px solid #000000;
-    margin-top: 5px; /*for some reason this is needed to achieve a true "centered" effect*/
+    margin: auto;
     border-radius: 4px;
 }
 
@@ -381,10 +381,10 @@ body{
     font-size: 40px;
 }
 #block-frame{
-    top: 60px;
+    top: 95px;
     left: 630px;
     width: 430px;
-    height: 520px;
+    height: 480px;
     border: 2px dashed #000000;
     background: #ffffff;
     overflow: auto;
@@ -395,7 +395,7 @@ div[id^="toolbar-item-"]{
     top: 48px;
     left: 15px;
     width: 1080px;
-    height: 54px;
+    height: 60px;
     display: none;
     overflow-y: scroll;
     background: #f5f0ff;
@@ -425,6 +425,9 @@ div[id^="left-panel-item-"] {
     background: #ffffff;
     display: none;
     flex-direction: column;
+    font-family: Lato;
+    padding: 3px;
+    box-sizing: border-box;
 }
 #left-panel-item-file{ /*Exception of the above rule*/
     display: flex;
