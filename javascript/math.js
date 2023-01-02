@@ -1,9 +1,9 @@
-// Credit: https://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric  Thank you for this awesome solution
-//(This is way too short to be copyrighted, even by StackOverflow standards)
-function isNumeric(num) {
+function isNumeric(num){
+    // Credit: https://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric  Thank you for this awesome solution
+    //(This is way too short to be copyrighted, even by StackOverflow standards)
     return !isNaN(parseFloat(num)) && isFinite(num);
 }
-function gcd(a,b) { //Euclidean algorithm
+function gcd(a,b){
     a = Math.abs(a);
     b = Math.abs(b);
     if(b > a){

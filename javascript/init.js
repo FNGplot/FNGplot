@@ -3,9 +3,6 @@
 //-------Primary initializing sequence----------------------
 console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 
-//choose a good zoom level upon load
-
-
 //eventlisteners
 document.querySelector("#left-panel-select").addEventListener("change", function(){
     toggleLeftPanel(this.value);
