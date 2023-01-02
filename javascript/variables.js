@@ -22,6 +22,8 @@ var SORTABLE_LIST = []; //SortableJS object array
 
 //System variables
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; //(SCRATCH 2.0/3.0 && some of my own)
+const SPECIAL_PROPERTY_INPUT = ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height"]; //Used by real-time-update eventlistener
+const SPECIAL_PROPERTY_CHANGE = ["rect originHoriz", "rect originVert"]; //Used by real-time-update eventlistener
 const RECT_ORIGMAP = { //A small key-value map used by "Rect" object
     top: 0,
     left: 0,
