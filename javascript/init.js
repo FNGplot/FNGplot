@@ -4,20 +4,20 @@
 console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 
 //eventlisteners
-document.querySelector("#left-panel-select").addEventListener("change", function(){
+document.querySelector("#left-panel-select").addEventListener("change", () => {
     toggleLeftPanel(this.value);
 });
-document.querySelector("#envir-datalist-refresh").addEventListener("click", function(){
+document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {
     updateEnvirList();
 });
 
-["input", "change"].forEach(function(optn){
-    document.querySelector("#rootzoom-slider").addEventListener(optn, function(){
-        changeRootZoom(this.value,optn);
+["input", "change"].forEach((item) => {
+    document.querySelector("#rootzoom-slider").addEventListener(item, () => {
+        changeRootZoom(this.value,item);
     });
 });
 
-BLOCK_FRAME.addEventListener("click", function(event){  //event delegation
+BLOCK_FRAME.addEventListener("click",(event) => {  //event delegation
     const target = event.target;
     if(target.classList.contains("visibility")){  //change visibility
         changeVisibility(target.parentElement.dataset.sid);
@@ -48,8 +48,8 @@ List of FNGobjects registered:
 LinePP: Complete
 Rect: 
 */
-["input", "change"].forEach(function(optn){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
-    BLOCK_FRAME.addEventListener(optn, function(event){  
+["input", "change"].forEach((item) => { //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
+    BLOCK_FRAME.addEventListener(item, (event) => {  
         const target = event.target;
         const svgElem = SVG_CANVAS.querySelector(`[data-sid='${event.target.parentNode.parentNode.parentNode.dataset.sid}']`);
         const obj = OBJECT_LIST.find(item => item.sid == event.target.parentNode.parentNode.parentNode.dataset.sid); //the object
@@ -85,7 +85,7 @@ Rect:
     });
 });
 
-document.querySelector("#toolbar-root").addEventListener("click", function(event){   //event delegation
+document.querySelector("#toolbar-root").addEventListener("click", (event) => {   //event delegation
     const target = event.target;
     const parent = event.target.parentNode;
     if(target.tagName.toLowerCase() == "img"){         //SVG icon clicked
@@ -145,8 +145,6 @@ window.addEventListener("keydown", function(event){
     if(event.key == "F9"){ //F9: Run script
         event.preventDefault();
         
-
-
 
     }
 }); */

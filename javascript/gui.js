@@ -1,8 +1,8 @@
 /* toggles left panel*/
 function toggleLeftPanel(value){
     const n = document.querySelectorAll("div[id^=\"left-panel-item-\"]");                 //selects all 7 subpages
-    n.forEach((subpage) => {                                                            //hide everyone first
-        subpage.style.display = "none";
+    n.forEach((subPage) => {                                                            //hide everyone first
+        subPage.style.display = "none";
     });
     document.querySelector(`#left-panel-item-${value}`).style.display = "flex";        //then show only the selected subpage
 }
@@ -31,11 +31,11 @@ function toggleToolbar(optn){
 
 //initializing
 function initToolbar(){
-    const n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
-    for(let i = 0;i<9;i++){
-        n[i].style.borderColor = TOOLBAR_CLR[i]; //initialize them to their respective colors
-        n[i].addEventListener("click", function() {toggleToolbar(i)}); //attach click eventlisteners
-    }
+    const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
+    btnList.forEach((btn, i) => {
+	btn.style.borderColor = TOOLBAR_CLR[i]; //initialize them to their respective colors
+        btn.addEventListener("click", () => {toggleToolbar(i)}); //attach click eventlisteners
+    });
     const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
     togglers.forEach(function(arrowBtn){
         arrowBtn.style.transform = "rotate(0deg)"; //have to set them inline so they can be manipulated later
