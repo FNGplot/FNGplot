@@ -4,15 +4,14 @@
 console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 
 //eventlisteners
-document.querySelector("#left-panel-select").addEventListener("change", () => {
+document.querySelector("#left-panel-select").addEventListener("change", function(){
     toggleLeftPanel(this.value);
 });
-document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {
-    updateEnvirList();
-});
+
+document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {updateEnvirList()});
 
 ["input", "change"].forEach((item) => {
-    document.querySelector("#rootzoom-slider").addEventListener(item, () => {
+    document.querySelector("#rootzoom-slider").addEventListener(item, function(){
         changeRootZoom(this.value,item);
     });
 });

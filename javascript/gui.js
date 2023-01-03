@@ -79,9 +79,6 @@ function systemTime(){
 function changeRootZoom(value,mode){
     if(mode == "change"){
         document.getElementById("root-frame").style.transform=`scale(${value/100})`;
-        document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
     }
-    else if(mode == "input"){
-        document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
-    }
+    document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
 }
