@@ -5,3 +5,6 @@
 First official version. Currently under development.
 
 English version planned release date: 2023 Summer
+
+Developer team:
+- Main developer: Wei-Hsu Lin (林韋旭)
