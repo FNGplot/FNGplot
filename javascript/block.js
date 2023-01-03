@@ -80,7 +80,7 @@ function initEditPanel(panelElem,sid){
         else{
             inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
         }
-    });
+    };
     panelElem.dataset.objtype = obj.constructor.name.toLowerCase();
     BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + 65}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
     //The magic number "65" is the size of margin-top(55) + margin-bottom(10)
