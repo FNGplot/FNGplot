@@ -221,7 +221,6 @@ div[id^="toolbar-item-"]::-webkit-scrollbar {
     background-color: #f5f0ff;
     z-index: 99;
     outline: 2px solid black;
-    /*-------------------------------------*/
     display: grid;
     grid-template-columns: 3fr repeat(10, 1fr);   /*Description is 3 blocks wide, followed by 10 icons(1 blocks wide)*/
     grid-auto-rows: 60px;   /*Same as container height*/
@@ -245,6 +244,7 @@ div[id^="toolbar-item-"]::-webkit-scrollbar {
     width: 72px; /* 1/15 */
     height: 60px;
     box-sizing: border-box;
+    background-color: #ddcfff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -410,10 +410,10 @@ body{
     font-size: 40px;
 }
 #block-frame{
-    top: 65px;
+    top: 75px;
     left: 600px;
     width: 430px;
-    height: 480px;
+    height: 470px;
     border: 2px dashed black;
     background: #ffffff;
     overflow: auto;

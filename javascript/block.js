@@ -73,7 +73,7 @@ function toggleEditPanel(sid) {
 function initEditPanel(panelElem,sid){
     const obj = OBJECT_LIST.find(item => item.sid == sid);
     const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
-    inputList.forEach(function(inputElem){
+    for(let inputElem of inputList){
         if(inputElem.type == "checkbox"){
             inputElem.checked = obj[inputElem.dataset.property]; //get their respective properties and display them
         }

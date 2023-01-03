@@ -10,11 +10,11 @@ document.querySelector("#left-panel-select").addEventListener("change", () => {
 
 document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {updateEnvirList();});
 
-["input", "change"].forEach((item) => {
+for(const item of ["input", "change"]){
     document.querySelector("#rootzoom-slider").addEventListener(item, () => {
         changeRootZoom(document.querySelector("#rootzoom-slider").value,item);
     });
-});
+};
 
 BLOCK_FRAME.addEventListener("click",(event) => {  //event delegation
     const target = event.target;
@@ -47,7 +47,7 @@ List of FNGobjects registered:
 LinePP: Complete
 Rect: 
 */
-["input", "change"].forEach((item) => { //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
+for(const item of ["input", "change"]){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
     BLOCK_FRAME.addEventListener(item, (event) => {  
         const target = event.target;
         const svgElem = SVG_CANVAS.querySelector(`[data-sid='${event.target.parentNode.parentNode.parentNode.dataset.sid}']`);
@@ -82,7 +82,7 @@ Rect:
             }
         }
     });
-});
+};
 
 document.querySelector("#toolbar-root").addEventListener("click", (event) => {   //event delegation
     const target = event.target;
@@ -105,11 +105,22 @@ document.querySelector("#toolbar-root").addEventListener("click", (event) => {  
 });
 
 
+//Initialize toolbar's positions, colors and click handlers
+{
+    const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
+    const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
+    for(let [btn, i] of btnList.entries()){
+        btn.style.borderColor = TOOLBAR_CLR[i];                                    //initialize them to their respective colors
+        btn.addEventListener("click", () => {                                      //attach eventlisteners
+            switchToolbar(i)
+        });
+    };
+    for(let arrowBtn of togglers){
+        arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
+    };
+    switchToolbar(1); //switch to "Geometry" (default)
+}
 
-
-
-initToolbar(); //initialize toolbar's positions, colors and click handlers
-switchToolbar(1); //switch to "geometry" (default select)
     
 //Init sortable container (the only one present on onload should be #block-frame, but I'll keep this code for possible future changes)
 //NESTED_SORTABLES = [].slice.call(document.querySelectorAll('.nested-sortable')); //A weird but concise way to transfrom a NodeList into an Array

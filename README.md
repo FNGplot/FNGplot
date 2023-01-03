@@ -1,10 +1,10 @@
 ## FNGplot
 
-![Logo wit text](svg/logo/logo_with_text.svg)
+![Logo with text](svg/logo/logo_with_text.svg)
 
-First official version. Currently under development.
+FNGplot is currently under development.
 
-English version planned release date: 2023 Summer
+Planned release date: 2023 Summer
 
 Developer team:
 - Main developer: Wei-Hsu Lin (林韋旭)
