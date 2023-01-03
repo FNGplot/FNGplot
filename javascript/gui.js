@@ -1,4 +1,4 @@
-/* Left panel */
+// || Left panel
 
 //Left panel display switch
 
@@ -11,38 +11,40 @@ function switchLeftPanel(optn){
 }
 
 
-/* Toolbar */
+// || Toolbar
 
 //Toolbar display switch
 
 function switchToolbar(optn){
-    const n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");                     //perform an "and" selection and select all buttons
-    n.forEach((btn) => {
+    const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");               //select all buttons
+    btnList.forEach((btn) => {
         btn.style.background = "transparent";                                                   //set all buttons to transparent background (unselected)
         btn.style.color = "#000000";                                                            //set all buttons' text to black (unselected)
         btn.style.fontWeight = "normal";                                                        //set font weight to normal (unselected)
     });
-    n[optn].style.background = TOOLBAR_CLR[optn];                                               //set background to its border color (selected)
-    n[optn].style.color = "#ffffff";                                                            //set text color to white (selected)
-    n[optn].style.fontWeight = "bold";                                                          //set font weight to bold (selected)
+    btnList[optn].style.background = TOOLBAR_CLR[optn];                                         //set background to its border color (selected)
+    btnList[optn].style.color = "#ffffff";                                                      //set text color to white (selected)
+    btnList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
     
-    const m = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                          //perform an "and" selection and select all  divs
-    m.forEach((d) => {                                                                          //hide all divs first
-        d.style.display = "none";
+    const panelList = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                  //select all  divs
+    panelList.forEach((panel) => {                                                              //hide all divs first
+        panel.style.display = "none";
     });
-    m[optn].style.display = "block";                                                            //then show the selected div
+    panelList[optn].style.display = "block";                                                    //then show the selected div
 }
 
-//initializing
+
+// Toolbar initialization
+
 function initToolbar(){
     const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
     btnList.forEach((btn, i) => {
-	btn.style.borderColor = TOOLBAR_CLR[i]; //initialize them to their respective colors
-        btn.addEventListener("click", () => {switchToolbar(i)}); //attach click eventlisteners
+	btn.style.borderColor = TOOLBAR_CLR[i];                                    //initialize them to their respective colors
+        btn.addEventListener("click", () => {switchToolbar(i)});                   //attach click eventlisteners
     });
     const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
     togglers.forEach(function(arrowBtn){
-        arrowBtn.style.transform = "rotate(0deg)"; //have to set them inline so they can be manipulated later
+        arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
     });
 }
 
@@ -72,7 +74,11 @@ ${window.screen.width}px / ${window.screen.height}px (${window.screen.width/gcd(
 `
 }
 
+
+// || Others
+
 //Log system time
+
 function systemTime(){
     console.log(`System Time: ${Date.now()-SYSTEM_EPOCH}ms\n`);
 }
