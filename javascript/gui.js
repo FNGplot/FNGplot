@@ -1,18 +1,22 @@
-/* toggles left panel*/
-function toggleLeftPanel(value){
-    const n = document.querySelectorAll("div[id^=\"left-panel-item-\"]");                 //selects all 7 subpages
-    n.forEach((subPage) => {                                                            //hide everyone first
-        subPage.style.display = "none";
+/* Left panel */
+
+//Left panel display switch
+
+function switchLeftPanel(optn){
+    const panelList = document.querySelectorAll("div[id^=\"left-panel-item-\"]");  //select all panels
+    panelList.forEach((panel) => {                                                 //hide everyone first
+	panel.style.display = "none";
     });
-    document.querySelector(`#left-panel-item-${value}`).style.display = "flex";        //then show only the selected subpage
+    document.querySelector(`#left-panel-item-${optn}`).style.display = "flex";     //then show only the selected panel
 }
 
 
-/* Toolbar*/
+/* Toolbar */
 
-//toggling
-function toggleToolbar(optn){
-    const n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");                       //perform an "and" selection and select all 9 buttons
+//Toolbar display switch
+
+function switchToolbar(optn){
+    const n = document.querySelectorAll("button[id^=\"toolbar-select-\"]");                     //perform an "and" selection and select all buttons
     n.forEach((btn) => {
         btn.style.background = "transparent";                                                   //set all buttons to transparent background (unselected)
         btn.style.color = "#000000";                                                            //set all buttons' text to black (unselected)
@@ -22,7 +26,7 @@ function toggleToolbar(optn){
     n[optn].style.color = "#ffffff";                                                            //set text color to white (selected)
     n[optn].style.fontWeight = "bold";                                                          //set font weight to bold (selected)
     
-    const m = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                  //perform an "and" selection and select all 9 divs
+    const m = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                          //perform an "and" selection and select all  divs
     m.forEach((d) => {                                                                          //hide all divs first
         d.style.display = "none";
     });
@@ -34,7 +38,7 @@ function initToolbar(){
     const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
     btnList.forEach((btn, i) => {
 	btn.style.borderColor = TOOLBAR_CLR[i]; //initialize them to their respective colors
-        btn.addEventListener("click", () => {toggleToolbar(i)}); //attach click eventlisteners
+        btn.addEventListener("click", () => {switchToolbar(i)}); //attach click eventlisteners
     });
     const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
     togglers.forEach(function(arrowBtn){

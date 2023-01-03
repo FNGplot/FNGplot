@@ -5,12 +5,10 @@ console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 
 //eventlisteners
 document.querySelector("#left-panel-select").addEventListener("change", () => {
-    toggleLeftPanel(document.querySelector("#left-panel-select").value);
+    switchLeftPanel(document.querySelector("#left-panel-select").value);
 });
 
-document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {
-    updateEnvirList();
-});
+document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {updateEnvirList();});
 
 ["input", "change"].forEach((item) => {
     document.querySelector("#rootzoom-slider").addEventListener(item, () => {
@@ -111,7 +109,7 @@ document.querySelector("#toolbar-root").addEventListener("click", (event) => {  
 
 
 initToolbar(); //initialize toolbar's positions, colors and click handlers
-toggleToolbar(1); //set it to "geometry" (default select)
+switchToolbar(1); //switch to "geometry" (default select)
     
 //Init sortable container (the only one present on onload should be #block-frame, but I'll keep this code for possible future changes)
 //NESTED_SORTABLES = [].slice.call(document.querySelectorAll('.nested-sortable')); //A weird but concise way to transfrom a NodeList into an Array
