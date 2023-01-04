@@ -109,7 +109,7 @@ document.querySelector("#toolbar-root").addEventListener("click", (event) => {  
 {
     const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
     const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
-    for(let [btn, i] of btnList.entries()){
+    for(let [i, btn] of btnList.entries()){
         btn.style.borderColor = TOOLBAR_CLR[i];                                    //initialize them to their respective colors
         btn.addEventListener("click", () => {                                      //attach eventlisteners
             switchToolbar(i)
