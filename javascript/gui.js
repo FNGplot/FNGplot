@@ -1,3 +1,5 @@
+/* gui.js: This file contains code used for GUI */
+
 // || Left panel
 
 //Left panel display switch
@@ -63,11 +65,23 @@ function switchToolbar(optn){
     btnList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
     
     const panelList = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                  //select all  divs
-    for(let panel of panelList){                                                              //hide all divs first
+    for(let panel of panelList){                                                                //hide all divs first
         panel.style.display = "none";
     };
     panelList[optn].style.display = "block";                                                    //then show the selected div
 }
 
+// Toggle toolbar dropdown when down arrow is clicked
+
+function toggleToolbarDropdown(item){
+    if(item.style.transform == "rotate(0deg)"){                 //expand
+        item.style.transform = "rotate(180deg)";
+        item.parentNode.parentNode.style.overflow = "visible";
+    }
+    else if(item.style.transform == "rotate(180deg)"){          //collapse
+        item.style.transform = "rotate(0deg)";
+        item.parentNode.parentNode.style.overflow = "hidden";
+    }
+}
 
 // || Others

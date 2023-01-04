@@ -1,14 +1,15 @@
-//Init.js: This file contains ALL the code that is immediately executed on page load.
+/* init.js: This file contains ALL the code that is immediately executed on page load */
 
-//-------Primary initializing sequence----------------------
+// || Primary initializing sequence
 console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
 
-//eventlisteners
 document.querySelector("#left-panel-select").addEventListener("change", () => {
     switchLeftPanel(document.querySelector("#left-panel-select").value);
 });
 
-document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {updateEnvirList();});
+document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {
+	updateEnvirList();
+});
 
 for(const item of ["input", "change"]){
     document.querySelector("#rootzoom-slider").addEventListener(item, () => {
@@ -93,14 +94,7 @@ document.querySelector("#toolbar-root").addEventListener("click", (event) => {  
         }
     }
     else if(parent.classList.contains("toolbar-grid-toggler")){ //Expand or collapse the toolbar
-        if(target.style.transform == "rotate(0deg)"){  //expand
-            target.style.transform = "rotate(180deg)";
-            parent.parentNode.style.overflow = "visible"; //using "previousElementSibling" here because plian HTML written by me (not JS inserted) contains whitespaces, which fails "previousSibling".
-        }
-        else if(target.style.transform == "rotate(180deg)"){  //collapse
-            target.style.transform = "rotate(0deg)";
-            parent.parentNode.style.overflow = "hidden";
-        }
+        toggleToolbarDropdown(target);
     }
 });
 
@@ -112,13 +106,13 @@ document.querySelector("#toolbar-root").addEventListener("click", (event) => {  
     for(let [i, btn] of btnList.entries()){
         btn.style.borderColor = TOOLBAR_CLR[i];                                    //initialize them to their respective colors
         btn.addEventListener("click", () => {                                      //attach eventlisteners
-            switchToolbar(i)
+            switchToolbar(i);
         });
     };
     for(let arrowBtn of togglers){
         arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
     };
-    switchToolbar(1); //switch to "Geometry" (default)
+    switchToolbar(1);                                                              //switch to "Geometry" (default)
 }
 
     

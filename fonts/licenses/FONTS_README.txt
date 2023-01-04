@@ -28,7 +28,7 @@ https://cloudconvert.com/ttf-to-woff2.
     Link: https://github.com/google/material-design-icons
 
 
-Full list of fonts in alphabetical order(18 typefaces / 50 fonts):
+Full list of fonts in alphabetical order:
 
 Caveat                      Regular/Bold
 Caveat Brush                Regular
