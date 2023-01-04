@@ -1,28 +1,29 @@
 /*
+    Wish Lin January 2023
+
+    FNGplot(This software) is tested on Chromium 111.0.0.0 (build number 1087900)
+    
+    I do not guarantee that this software will display/work properly on browsers other than Google Chrome and Chromium.
+
+    When there is no other option, I only use the vendor prefix "-webkit" as this software will be packed by Electron.js, which uses Chromium as its core.
+
+    If you want to modify this software and use it as a web application directly, please fork this software on GitHub.
+
+    Github Repository: https://github.com/FNGplot/FNGplot
+*/
+
+/*
 Fonts in FNGplot:
 
-To provide ample options for users and a consistent GUI across all devices, FNGplot comes
-with a small font library. However, loading all these fonts takes a lot of time,
-therefore, to speed things up, I separated these fonts into two categories:
-'ASAP fonts' and 'lazy fonts'.
+FNGplot comes with a small collection of open-sourced fonts attached to it.
 
+Most of the aforementioned fonts are options for the user to choose from, but a few of them are also used in the UI directly for cross-platform consistency:
 
-ASAP Fonts: Fonts that are used by FNGplot itself. They need to be loaded before DOM is constructed, so
-they are declared in this CSS file. 
-
-List of ASAP fonts:
-
-- Lato bold: Buttons, banners, dropdowns, etc
+List of system fonts:
 - Lato regular: Toolbar, general content
+- Lato bold: Buttons, banners, dropdowns, etc.
 - Material Symbols Round (A special "icon font" by Google): Icons & Symbols
-- Source Code Pro regular: code display
-
-
-Lazy fonts: Fonts that only serve as options in label and LaTeX blocks. They are only loaded when one uses them.
-
-List of lazy fonts:
-
-- Anything in the font database that is not an ASAP font.
+- Source Code Pro regular: Used when I find monospace fonts desirable.
 
 */
 
@@ -48,22 +49,8 @@ List of lazy fonts:
     font-family: "Material Symbols Rounded";
     font-style: normal;
     font-weight: normal;
-    src: url('../fonts/WOFF2/MaterialSymbolsRounded.ttf') format('truetype');  
+    src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');  
 }
-
-/*
-    Wish Lin January 2023
-
-    FNGplot(This software) is tested on Chromium 111.0.0.0 (build number 1087900)
-    
-    I do not guarantee that this software will display/work properly on browsers other than Google Chrome and Chromium.
-
-    When there is no other option, I only use the vendor prefix "-webkit" as this software will be packed by Electron.js, which uses Chromium as its core.
-
-    If you want to modify this software and use it on other browsers(ex: FireFox), or to use it as a web application directly, go ahead and fork this software on GitHub.
-
-    Github Repository: https://github.com/FNGplot/FNGplot
-*/
 
 .material-symbol-rounded { /*Modified from Google's recommendation*/
     font-family: "Material Symbols Rounded";
@@ -265,7 +252,7 @@ div[id^="toolbar-item-"]::-webkit-scrollbar {
     left: 5px;
 }
 .nested-sortable > :first-child { /*cancel out the "margin-top: -1px" for the first child, as it doesn't need that*/
-    margin-top:0px;
+    margin-top: 0px;
 }
 .obj-block {     /*basis of object blocks*/
     position: relative;
