@@ -205,7 +205,7 @@ class Circle {                 //Actually uses an ellipse, in case XHAT != YHAT
         //Math
         this.centerX = 1;
         this.centerY = 1;
-        this.radius = 4;
+        this.radius = 3;
         //Style
         //--stroke--
         this.hasBorder = true;
@@ -258,7 +258,7 @@ let createGeometryObject = {
         const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);         //copy template     
         n.classList.add('geo');                                 //adds geometry object class
         n.querySelector('img').src = "svg/system/geometry-icons/linepp.svg";   //init the small icon
-        n.querySelector('input').value = "2-point line";        //display default name
+        n.querySelector('.nametag').value = "2-point line";     //display default name
         n.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
         BLOCK_FRAME.appendChild(n); //add the block to block frame
 
@@ -278,7 +278,7 @@ let createGeometryObject = {
         const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);
         n.classList.add('geo');
         n.querySelector('img').src = "svg/system/geometry-icons/rect.svg";
-        n.querySelector('input').value = "Rectangle";
+        n.querySelector('.nametag').value = "Rectangle";
         n.dataset.sid = sid;
         BLOCK_FRAME.appendChild(n);
 
@@ -295,7 +295,7 @@ let createGeometryObject = {
         const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);
         n.classList.add('geo');
         n.querySelector('img').src = "svg/system/geometry-icons/circle.svg";
-        n.querySelector('input').value = "Circle";
+        n.querySelector('.nametag').value = "Circle";
         n.dataset.sid = sid;
         BLOCK_FRAME.appendChild(n);
 

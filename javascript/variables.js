@@ -25,7 +25,7 @@ const SVGNS = "http://www.w3.org/2000/svg";
 
 /* || System data -- static*/
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; //(SCRATCH 2.0/3.0 && some of my own)
-const OBJ_SPECIFIC_INPUTLIST = ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height"]; //Used by real-time-update eventlistener
+const OBJ_SPECIFIC_INPUTLIST = ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height", "circle centerX", "circle centerY", "circle radius"]; //Used by real-time-update eventlistener
 const OBJ_SPECIFIC_CHANGELIST = ["rect originHoriz", "rect originVert"]; //Used by real-time-update eventlistener
 const RECT_ORIGMAP = { //A small key-value map used by "Rect" object
     top: 0, left: 0, middle: 0.5, bottom: 1, right: 1
