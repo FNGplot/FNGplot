@@ -18,6 +18,7 @@ Naming convention used in FNGplot:
 const BLOCK_FRAME = document.querySelector('#block-frame');
 const SVG_FRAME = document.querySelector('#svg-frame');
 const SVG_CANVAS = document.querySelector('#svg-canvas');
+const BASIC_BLOCK_TEMPLATE = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true);
 
 // Strings
 const SVGNS = "http://www.w3.org/2000/svg";
