@@ -9,38 +9,40 @@
 //html-class-name
 
 //------↓↓↓↓↓↓↓↓Global variable declare zone of the ENTIRE program↓↓↓↓↓↓↓↓-------------------
-const SYSTEM_EPOCH = Date.now();  //Start system timer. It is mainly used for debugging and optimizing purposes.
 
-//Commonly used DOM objects
+/* || Frequently referenced DOM objects & strings: */
+
+// DOM objects
 const BLOCK_FRAME = document.querySelector('#block-frame');
 const SVG_FRAME = document.querySelector('#svg-frame');
 const SVG_CANVAS = document.querySelector('#svg-canvas');
 
-//Object database
-var OBJECT_LIST = [];   //Unordered object array
-var SORTABLE_LIST = []; //SortableJS object array
+// Strings
+const SVGNS = "http://www.w3.org/2000/svg";
 
-//System variables
+/* || System data -- static*/
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; //(SCRATCH 2.0/3.0 && some of my own)
-const SPECIAL_PROPERTY_INPUT = ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height"]; //Used by real-time-update eventlistener
-const SPECIAL_PROPERTY_CHANGE = ["rect originHoriz", "rect originVert"]; //Used by real-time-update eventlistener
+const OBJ_SPECIFIC_INPUTLIST = ["linepp x1", "linepp y1", "linepp x2", "linepp y2", "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height"]; //Used by real-time-update eventlistener
+const OBJ_SPECIFIC_CHANGELIST = ["rect originHoriz", "rect originVert"]; //Used by real-time-update eventlistener
 const RECT_ORIGMAP = { //A small key-value map used by "Rect" object
-    top: 0,
-    left: 0,
-    middle: 0.5,
-    bottom: 1,
-    right: 1
-}
+    top: 0, left: 0, middle: 0.5, bottom: 1, right: 1
+};
 
-//Cartesian coordinate
-var XMAX = 10;
-var XMIN = -10;
-var YMAX = 10;
-var YMIN = -10;
-var XHAT = 50;
-var YHAT = 50;
-var ORIGIN_X = 500; //"real" x and y coordinates of the origin point in the SVG.
-var ORIGIN_Y = 500;
+/* || System data -- dynamic*/
+
+// Object database
+let OBJECT_LIST = [];   //Unordered object reference array
+let SORTABLE_LIST = []; //SortableJS object reference array
+
+// Cartesian coordinate
+let XMAX = 10;
+let XMIN = -10;
+let YMAX = 10;
+let YMIN = -10;
+let XHAT = 50;
+let YHAT = 50;
+let ORIGIN_X = 500; //"real" x and y coordinates of the origin point in the SVG.
+let ORIGIN_Y = 500;
 
 //------↑↑↑↑↑↑↑↑Global variable declare zone of the ENTIRE project↑↑↑↑↑↑↑↑-------------------
 

@@ -196,16 +196,15 @@ class Rect {
 
 // Create a new geometry FNGobject
 let createGeometryObject = { 
-    linepp: function(){  //LinePP will be the example here
+    linepp: function(sid){  //LinePP will be the example here
         // Step 1 of 3: FNGobject
-        const sid = makeSID();
         const obj = new LinePP(sid);
         OBJECT_LIST.push(obj);                      //creates a blank LinePP object and push it into list
             
         // Step 2 of 3: draggable block
         const n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true); //copy a blank block template
-        n.classList.add('geo');                                 //adds geometry object class
-        n.querySelector('img').src = "svg/system/linepp.svg";   //init the small icon
+        n.classList.add('geo');                                     //adds geometry object class
+        n.querySelector('img').src = "svg/system/geometry-icons/linepp.svg";   //init the small icon
         n.querySelector('input').value = "2-point line";        //display default name
         n.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
         BLOCK_FRAME.appendChild(n); //add the block to block frame
@@ -213,43 +212,41 @@ let createGeometryObject = {
         // Step 3 of 3: SVG element(s)
         // I set the atttributes the SVG way and not the CSS way for easier export later on.
         // As this varies greatly across different FNGobjects, I decided to set them up one by one and not use some property array trick.
-        const s = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+        const s = document.createElementNS(SVGNS, 'line');
         s.dataset.sid = sid;
         SVG_CANVAS.appendChild(s);  //add the new SVG element to canvas
         obj.renderToSVG();            //render it for the first time
     },
 
-    rect: function(){
-        const sid = makeSID();
+    rect: function(sid){
         const obj = new Rect(sid);
         OBJECT_LIST.push(obj);
 
         const n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true);
         n.classList.add('geo');
-        n.querySelector('img').src = "svg/system/rect.svg";
+        n.querySelector('img').src = "svg/system/geometry-icons/rect.svg";
         n.querySelector('input').value = "Rectangle";
         n.dataset.sid = sid;
         BLOCK_FRAME.appendChild(n);
 
-        const s = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+        const s = document.createElementNS(SVGNS, 'rect');
         s.dataset.sid = sid;
         SVG_CANVAS.appendChild(s);
         obj.renderToSVG();
     },
 
-    circle: function(){
-        const sid = makeSID();
+    circle: function(sid){
         const obj = new Circle(sid);
         OBJECT_LIST.push(obj);
 
         const n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true);
         n.classList.add('geo');
-        n.querySelector('img').src = "svg/system/circle.svg";
+        n.querySelector('img').src = "svg/system/geometry-icons/circle.svg";
         n.querySelector('input').value = "Circle";
         n.dataset.sid = sid;
         BLOCK_FRAME.appendChild(n);
 
-        const s = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+        const s = document.createElementNS(SVGNS, 'circle');
         s.dataset.sid = sid;
         SVG_CANVAS.appendChild(s);
         obj.renderToSVG();

@@ -66,13 +66,13 @@ for(const item of ["input", "change"]){ //comment example: I changed a LinePP ob
             else if(prop == "fillColor"){
                 svgElem.setAttribute("fill",target.value);
             }
-            else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) || SPECIAL_PROPERTY_INPUT.includes(`${type} ${prop}`)){  //"linepp x1"
+            else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) || OBJ_SPECIFIC_INPUTLIST.includes(`${type} ${prop}`)){  //"linepp x1"
                 isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
                 obj.renderToSVG();
             }
         }
         else if(event.type == "change"){
-            if(["name", "lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || SPECIAL_PROPERTY_CHANGE.includes(`${type} ${prop}`)){
+            if(["name", "lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || OBJ_SPECIFIC_CHANGELIST.includes(`${type} ${prop}`)){
                 isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
                 obj.renderToSVG();
             }
@@ -105,7 +105,7 @@ window.addEventListener("error", function(){
 
 // || Primary initializing sequence
 
-console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
+console.log("Welcome to FNGplot beta version");
 updateEnvirList();
 
 //Initialize toolbar's positions, colors and click handlers
