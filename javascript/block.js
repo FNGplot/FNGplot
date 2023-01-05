@@ -255,8 +255,8 @@ let createGeometryObject = {
         OBJECT_LIST.push(obj);                      //creates a blank LinePP object and push it into list
             
         // Step 2 of 3: draggable block
-        const n = BASIC_BLOCK_TEMPLATE;
-        n.classList.add('geo');                                     //adds geometry object class
+        const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);         //copy template     
+        n.classList.add('geo');                                 //adds geometry object class
         n.querySelector('img').src = "svg/system/geometry-icons/linepp.svg";   //init the small icon
         n.querySelector('input').value = "2-point line";        //display default name
         n.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
@@ -275,7 +275,7 @@ let createGeometryObject = {
         const obj = new Rect(sid);
         OBJECT_LIST.push(obj);
 
-        const n = BASIC_BLOCK_TEMPLATE;
+        const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);
         n.classList.add('geo');
         n.querySelector('img').src = "svg/system/geometry-icons/rect.svg";
         n.querySelector('input').value = "Rectangle";
@@ -292,7 +292,7 @@ let createGeometryObject = {
         const obj = new Circle(sid);
         OBJECT_LIST.push(obj);
 
-        const n = BASIC_BLOCK_TEMPLATE;
+        const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);
         n.classList.add('geo');
         n.querySelector('img').src = "svg/system/geometry-icons/circle.svg";
         n.querySelector('input').value = "Circle";

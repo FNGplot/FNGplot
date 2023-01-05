@@ -18,7 +18,7 @@ Naming convention used in FNGplot:
 const BLOCK_FRAME = document.querySelector('#block-frame');
 const SVG_FRAME = document.querySelector('#svg-frame');
 const SVG_CANVAS = document.querySelector('#svg-canvas');
-const BASIC_BLOCK_TEMPLATE = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true);
+const BASIC_BLOCK_TEMPLATE = document.querySelector('#basic-block-template').content.firstElementChild;
 
 // Strings
 const SVGNS = "http://www.w3.org/2000/svg";
@@ -127,6 +127,36 @@ const EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>`,
+
+    circle:`
+<div class="objblock-editpanel">
+    <div class="label-monospace">-----------User-----------------</div>
+    <div>Name: <input type="text" data-property="name" class="size-long"></div>
+    <div class="label-monospace">-----------Math-----------------</div>
+    <div>Center: ( <input type="number" step="0.5" data-property="centerX" class="size-short"> , <input type="number" step="0.5" data-property="centerY" class="size-short"> )</div>
+    <div>Radius: <input type="number" min="0" data-property="radius" class="size-short"></div>
+    <div class="label-monospace">-----------Style: Basic---------</div>
+    <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
+    <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
+    <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
+    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short" onKeyDown="return false"></div>
+    <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
+    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short" onKeyDown="return false"></div>
+    <div class="label-monospace">-----------Style: Advanced------</div>
+    <div>BorderLineCap(dash):
+        <select data-property="lineCap" class="size-medium">
+            <option value="round" selected>Round</option>
+            <option value="butt">Butt</option>
+            <option value="square">Square</option>
+        </select>
+    </div>
+    <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
+    <div>DashArray: <input type="text" data-property="dashArray" class="size-medium"> </div>
+    <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
+    <div class="label-monospace">-----------System---------------</div>
+    <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
+</div>`,
+
 }
 
 //------↑↑↑↑↑↑↑↑Edit panel templates↑↑↑↑↑↑↑↑-------------------
