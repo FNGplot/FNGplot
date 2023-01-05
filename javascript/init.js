@@ -1,5 +1,7 @@
 /* init.js: This file contains ALL the code that is immediately executed on page load */
 
+"use strict";
+
 // || Event Listeners
 
 document.querySelector("#left-panel-select").addEventListener("change", () => {

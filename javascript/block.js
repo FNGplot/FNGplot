@@ -13,6 +13,8 @@ Terminology in my code:
   All the other ones are very similar to it.
 */
 
+"use strict";
+
 function makeSID(){ //Generate a 10-character-long "random" alphanumeric system id.
     const charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let sid = '';
@@ -251,6 +253,4 @@ let createGeometryObject = {
         SVG_CANVAS.appendChild(s);
         obj.renderToSVG();
     }
-
-
 }

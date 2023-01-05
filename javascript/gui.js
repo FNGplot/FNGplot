@@ -1,5 +1,7 @@
 /* gui.js: This file contains code used for GUI */
 
+"use strict";
+
 // || Left panel
 
 //Left panel display switch

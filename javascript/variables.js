@@ -1,12 +1,14 @@
-//
-//Naming convention:
-//
-//functionName
-//GLOBAL_VARIABLE
-//localVariable
-//ObjectName
-//html-object-id
-//html-class-name
+"use strict";
+/*
+Naming convention used in FNGplot:
+
+- functionName
+- GLOBAL_VARIABLE
+- localVariable
+- ObjectName
+- html-element-id
+- html-class-name
+*/
 
 //------↓↓↓↓↓↓↓↓Global variable declare zone of the ENTIRE program↓↓↓↓↓↓↓↓-------------------
 
