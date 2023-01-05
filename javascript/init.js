@@ -1,7 +1,6 @@
 /* init.js: This file contains ALL the code that is immediately executed on page load */
 
-// || Primary initializing sequence
-console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
+// || Event Listeners
 
 document.querySelector("#left-panel-select").addEventListener("change", () => {
     switchLeftPanel(document.querySelector("#left-panel-select").value);
@@ -85,19 +84,29 @@ for(const item of ["input", "change"]){ //comment example: I changed a LinePP ob
     });
 };
 
-document.querySelector("#toolbar-root").addEventListener("click", (event) => {   //event delegation
+document.querySelector("#toolbar-root").addEventListener("click", (event) => {  //event delegation
     const target = event.target;
     const parent = event.target.parentNode;
     if(target.tagName.toLowerCase() == "img"){         //SVG icon clicked
-        switch(target.closest("div[id^='toolbar-item-']").dataset.category){ //figure out which function to call based on category
-            case "geometry": createGeometryObject[target.dataset.method]();
-        }
+        const category = target.closest(".toolbar-grid").dataset.category;
+        const objName = target.dataset.objname;
+        createNewObject(category, objName);
     }
-    else if(parent.classList.contains("toolbar-grid-toggler")){ //Expand or collapse the toolbar
+    else if(parent.classList.contains("toolbar-grid-toggler")){                 //Expand or collapse the toolbar
         toggleToolbarDropdown(target);
     }
 });
 
+window.addEventListener("error", function(){
+    console.error("Execution Failed");
+    alert("Execution Failed.");
+});
+
+
+// || Primary initializing sequence
+
+console.log(`SYSTEM_EPOCH: ${SYSTEM_EPOCH}`);
+updateEnvirList();
 
 //Initialize toolbar's positions, colors and click handlers
 {
@@ -116,8 +125,7 @@ document.querySelector("#toolbar-root").addEventListener("click", (event) => {  
 }
 
     
-//Init sortable container (the only one present on onload should be #block-frame, but I'll keep this code for possible future changes)
-//NESTED_SORTABLES = [].slice.call(document.querySelectorAll('.nested-sortable')); //A weird but concise way to transfrom a NodeList into an Array
+//Init sortable container
 SORTABLE_LIST.push(
     new Sortable(document.querySelector("#block-frame"), {
         group: 'block-frame',
@@ -126,7 +134,8 @@ SORTABLE_LIST.push(
         forceFallback: true,
         onEnd: function (evt) {
             if(evt.oldIndex != evt.newIndex){  //If the position actually changed
-                moveObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null); //passes null as reference if there is no next neighbor. insertBefore() will take care of it.
+                moveObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null);
+                //passes null as reference if there is no next neighbor. insertBefore() will take care of it.
             }
         },
         ghostClass: 'ghost-class',
@@ -139,11 +148,6 @@ SORTABLE_LIST.push(
     })
 );
 
-window.addEventListener("error", function(){
-    console.error("Execution Failed");
-    alert("Execution Failed.");
-});
-
 /*
 window.addEventListener("keydown", function(event){
     if(event.key == "F9"){ //F9: Run script
@@ -151,5 +155,5 @@ window.addEventListener("keydown", function(event){
         
 
     }
-}); */
-//-------Primary initializing sequence----------------------
+});
+*/

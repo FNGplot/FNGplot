@@ -23,6 +23,12 @@ function makeSID(){ //Generate a 10-character-long "random" alphanumeric system 
 }
 
 //User operations
+function createNewObject(category, objName){ // A relay for more specified downstream functions
+    const sid = makeSID();
+    switch(category){
+         case "geometry": createGeometryObject[objName](sid);
+    }
+}
 function moveObject(sid,nextSid) {
     const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
     const refElem = SVG_CANVAS.querySelector(`[data-sid='${nextSid}']`);
@@ -188,13 +194,13 @@ class Rect {
     }
 }
 
-//Create a new Geometry FNGobject
+// Create a new geometry FNGobject
 let createGeometryObject = { 
     linepp: function(){  //LinePP will be the example here
         // Step 1 of 3: FNGobject
         const sid = makeSID();
         const obj = new LinePP(sid);
-        OBJECT_LIST.push(obj);                      //creates a blank LinePP object and push it into array
+        OBJECT_LIST.push(obj);                      //creates a blank LinePP object and push it into list
             
         // Step 2 of 3: draggable block
         const n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true); //copy a blank block template
@@ -212,6 +218,7 @@ let createGeometryObject = {
         SVG_CANVAS.appendChild(s);  //add the new SVG element to canvas
         obj.renderToSVG();            //render it for the first time
     },
+
     rect: function(){
         const sid = makeSID();
         const obj = new Rect(sid);
@@ -228,5 +235,25 @@ let createGeometryObject = {
         s.dataset.sid = sid;
         SVG_CANVAS.appendChild(s);
         obj.renderToSVG();
+    },
+
+    circle: function(){
+        const sid = makeSID();
+        const obj = new Circle(sid);
+        OBJECT_LIST.push(obj);
+
+        const n = document.querySelector('#basic-block-template').content.firstElementChild.cloneNode(true);
+        n.classList.add('geo');
+        n.querySelector('img').src = "svg/system/circle.svg";
+        n.querySelector('input').value = "Circle";
+        n.dataset.sid = sid;
+        BLOCK_FRAME.appendChild(n);
+
+        const s = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+        s.dataset.sid = sid;
+        SVG_CANVAS.appendChild(s);
+        obj.renderToSVG();
     }
+
+
 }
