@@ -1,5 +1,8 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
+
 /*
-    Wish Lin January 2023
+    Wei-Hsu Lin January 2023
 
     FNGplot(This software) is tested on Chromium 111.0.0.0 (build number 1087900)
     
@@ -7,7 +10,7 @@
 
     When there is no other option, I only use the vendor prefix "-webkit" as this software will be packed by Electron.js, which uses Chromium as its core.
 
-    If you want to modify this software and use it as a web application directly, please fork this software on GitHub.
+    If you want to modify this software and/or use it as a web application directly, please fork this software on GitHub.
 
     Github Repository: https://github.com/FNGplot/FNGplot
 */
@@ -17,7 +20,7 @@ Fonts in FNGplot:
 
 FNGplot comes with a small collection of open-sourced fonts attached to it.
 
-Most of the aforementioned fonts are options for the user to choose from, but a few of them are also used in the UI directly for cross-platform consistency:
+Most of the aforementioned fonts are options for the user to choose from, but a few of them are also used in the UI directly for cross-platform appearance consistency:
 
 List of system fonts:
 - Lato regular: Toolbar, general content
@@ -209,7 +212,7 @@ div[id^="toolbar-item-"]::-webkit-scrollbar {
     z-index: 99;
     outline: 2px solid black;
     display: grid;
-    grid-template-columns: 3fr repeat(10, 1fr);   /*Description is 3 blocks wide, followed by 10 icons(1 blocks wide)*/
+    grid-template-columns: 2fr repeat(10, 1fr);   /*Description is 2 blocks wide, followed by 10 icons(1 blocks wide)*/
     grid-auto-rows: 60px;   /*Same as container height*/
     row-gap: 5px;
     align-items: center;

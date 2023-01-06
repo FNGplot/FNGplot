@@ -16,3 +16,7 @@ Wish Lin - December 2022
   <use xlink:href="#unit" transform="rotate(216)"/>
   <use xlink:href="#unit" transform="rotate(288)"/>
 </svg>
+<!--
+    SPDX-License-Identifier: Apache-2.0
+    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
+-->

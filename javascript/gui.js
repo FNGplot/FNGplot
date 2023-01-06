@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
+
 /* gui.js: This file contains code used for GUI */
 
 "use strict";

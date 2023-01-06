@@ -24,3 +24,7 @@ Wish Lin 2022/12/3
   <use xlink:href="#unit" transform="rotate(288)"/>
   <use xlink:href="#text" transform="scale(2) translate(95 -38)"/>
 </svg>
+<!--
+    SPDX-License-Identifier: Apache-2.0
+    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
+-->

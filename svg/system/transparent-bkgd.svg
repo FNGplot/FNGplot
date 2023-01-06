@@ -53,3 +53,7 @@
     <use xlink:href="#row" transform="translate(-20,580)"/>
     <use xlink:href="#row" transform="translate(0,600)"/>
 </svg>
+<!--
+    SPDX-License-Identifier: Apache-2.0
+    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
+-->

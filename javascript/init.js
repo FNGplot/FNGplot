@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
+
 /* init.js: This file contains ALL the code that is immediately executed on page load */
 
 "use strict";

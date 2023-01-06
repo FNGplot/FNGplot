@@ -3,3 +3,7 @@
 	<rect x="0" y="0" width="40" height="40" fill="#ffffff"/>
 	<polygon points="8,11 8,29 32,29 32,14 20,14 16,11" fill="#f3af42" stroke="#f3af42" stroke-width="1.5px" stroke-linejoin="round"/>
 </svg>
+<!--
+    SPDX-License-Identifier: Apache-2.0
+    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
+-->

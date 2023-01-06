@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
+
 /* 
 The block system is the UI of FNGplot. It allows users to manipulate math objects intuitively.
 

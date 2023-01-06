@@ -7,3 +7,7 @@
 	<line x1="20" y1="20" x2="31.691" y2="13.25" stroke="#5f95f7" stroke-width="2px" />
 	<circle cx="31.691" cy="13.25" r="2.5" fill="#5f95f7" />
 </svg>
+<!--
+    SPDX-License-Identifier: Apache-2.0
+    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
+-->

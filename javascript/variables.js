@@ -1,4 +1,8 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
+
 "use strict";
+
 /*
 Naming convention used in FNGplot:
 

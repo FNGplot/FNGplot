@@ -5,3 +5,7 @@
 	<circle cx="32" cy="11" r="2.5" fill="#5f95f7" />
 	<circle cx="8" cy="29" r="2.5" fill="#5f95f7" />
 </svg>
+<!--
+    SPDX-License-Identifier: Apache-2.0
+    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
+-->
