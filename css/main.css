@@ -292,7 +292,7 @@ div[id^="toolbar-item-"]::-webkit-scrollbar {
 .ghost-class {            /*'ghostClass' parameter of sortable.js*/
     opacity: 0.4;
 }
-.obj-block.geo {  /*geometry block*/
+.obj-block.geometry {  /*geometry block*/
     background-color: #5f95f7;  
 }
 

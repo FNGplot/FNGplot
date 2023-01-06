@@ -5,6 +5,15 @@
 
 "use strict";
 
+// Note: Calling constructor from window no longer works on ES6 classes. Checkout the following link for more detail on the topic:
+// https://stackoverflow.com/questions/1366127/how-do-i-make-javascript-object-using-a-variable-string-to-define-the-class-name/68016983#68016983
+const CLASS_INITDATA_MAP = new Map([
+    //["key", [Object Class, Category, SVG Element] ],
+    ["linepp", [LinePP, "geometry", "line"]],
+    ["rect", [Rect, "geometry", "rect"]],
+    ["circle", [Circle, "geometry", "ellipse"]]
+]);
+
 // || Event Listeners
 
 document.querySelector("#left-panel-select").addEventListener("change", () => {
@@ -50,7 +59,8 @@ My solution is to register all of the cases, divide them into different categori
 
 List of FNGobjects registered:
 LinePP: Complete
-Rect: 
+Rect: Complete
+Circle: Complete
 */
 for(const item of ["input", "change"]){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
     BLOCK_FRAME.addEventListener(item, (event) => {  
@@ -92,12 +102,10 @@ for(const item of ["input", "change"]){ //comment example: I changed a LinePP ob
 document.querySelector("#toolbar-root").addEventListener("click", (event) => {  //event delegation
     const target = event.target;
     const parent = event.target.parentNode;
-    if(target.tagName.toLowerCase() == "img"){         //SVG icon clicked
-        const category = target.closest(".toolbar-grid").dataset.category;
-        const objName = target.dataset.objname;
-        createNewObject(category, objName);
+    if(target.tagName.toLowerCase() == "img"){                                  //SVG icon clicked
+        createFNGObject(target.dataset.objname, null);                          //create a brand new object of the specified kind
     }
-    else if(parent.classList.contains("toolbar-grid-toggler")){                 //Expand or collapse the toolbar
+    else if(parent.classList.contains("toolbar-grid-toggler")){                 //expand or collapse the toolbar
         toggleToolbarDropdown(target);
     }
 });

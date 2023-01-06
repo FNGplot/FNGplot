@@ -28,10 +28,28 @@ function makeSID(){ //Generate a 10-character-long "random" alphanumeric system 
 }
 
 //User operations
-function createNewObject(category, objName){ // A relay for more specified downstream functions
-    const sid = makeSID();
-    switch(category){
-         case "geometry": createGeometryObject[objName](sid);
+function createFNGObject(objName, loadData){
+    if(loadData == null){                             //create a new FNGobject
+        const sid = makeSID();
+        const data = CLASS_INITDATA_MAP.get(objName);
+
+        // Step 1 of 3: FNGobject
+        const obj = new data[0](sid);                 //data[0] is the class
+        OBJECT_LIST.push(obj);                        //push new object into list
+            
+        // Step 2 of 3: draggable block
+        let newBlock = BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
+        newBlock.classList.add(data[1]);                                                  //add object class
+        newBlock.querySelector('img').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
+        newBlock.querySelector('.nametag').value = obj.name;           //display default name
+        newBlock.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
+        BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
+
+        // Step 3 of 3: SVG element(s)
+        let newSVGElem = document.createElementNS(SVGNS, data[2]);
+        newSVGElem.dataset.sid = sid;
+        SVG_CANVAS.appendChild(newSVGElem);    //add the new SVG element to canvas
+        obj.renderToSVG();                     //render it for the first time
     }
 }
 function moveObject(sid,nextSid) {
@@ -179,8 +197,8 @@ class Rect {
             //--user--
             s.dataset.name = this.name; 
             //--math--
-            s.setAttribute("x",toPixelPosX(this.originX - RECT_ORIGMAP[this.originHoriz] * this.width));
-            s.setAttribute("y",toPixelPosY(this.originY + RECT_ORIGMAP[this.originVert] * this.height));
+            s.setAttribute("x",toPixelPosX(this.originX - RECT_ORIGMAP.get(this.originHoriz) * this.width));
+            s.setAttribute("y",toPixelPosY(this.originY + RECT_ORIGMAP.get(this.originVert) * this.height));
             s.setAttribute("width",toPixelLenX(this.width));
             s.setAttribute("height",toPixelLenY(this.height));
             //--style--
@@ -206,9 +224,9 @@ class Circle {                 //Actually uses an ellipse, in case XHAT != YHAT
         //User
         this.name = "Circle";
         //Math
-        this.centerX = 1;
-        this.centerY = 1;
-        this.radius = 3;
+        this.centerX = 2;
+        this.centerY = 4;
+        this.radius = 2.5;
         //Style
         //--stroke--
         this.hasBorder = true;
@@ -246,65 +264,5 @@ class Circle {                 //Actually uses an ellipse, in case XHAT != YHAT
             s.setAttribute("fill",this.hasFill ? this.fillColor : "none");
             s.setAttribute("fill-opacity",this.fillOpacity);
         };
-    }
-}
-
-
-// Create a new geometry FNGobject
-let createGeometryObject = { 
-    linepp: function(sid){  //LinePP will be the example here
-        // Step 1 of 3: FNGobject
-        const obj = new LinePP(sid);
-        OBJECT_LIST.push(obj);                      //creates a blank LinePP object and push it into list
-            
-        // Step 2 of 3: draggable block
-        const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);         //copy template     
-        n.classList.add('geo');                                 //adds geometry object class
-        n.querySelector('img').src = "svg/system/geometry-icons/linepp.svg";   //init the small icon
-        n.querySelector('.nametag').value = "2-point line";     //display default name
-        n.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
-        BLOCK_FRAME.appendChild(n); //add the block to block frame
-
-        // Step 3 of 3: SVG element(s)
-        // I set the atttributes the SVG way and not the CSS way for easier export later on.
-        // As this varies greatly across different FNGobjects, I decided to set them up one by one and not use some property array trick.
-        const s = document.createElementNS(SVGNS, 'line');
-        s.dataset.sid = sid;
-        SVG_CANVAS.appendChild(s);    //add the new SVG element to canvas
-        obj.renderToSVG();            //render it for the first time
-    },
-
-    rect: function(sid){
-        const obj = new Rect(sid);
-        OBJECT_LIST.push(obj);
-
-        const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);
-        n.classList.add('geo');
-        n.querySelector('img').src = "svg/system/geometry-icons/rect.svg";
-        n.querySelector('.nametag').value = "Rectangle";
-        n.dataset.sid = sid;
-        BLOCK_FRAME.appendChild(n);
-
-        const s = document.createElementNS(SVGNS, 'rect');
-        s.dataset.sid = sid;
-        SVG_CANVAS.appendChild(s);
-        obj.renderToSVG();
-    },
-
-    circle: function(sid){
-        const obj = new Circle(sid);
-        OBJECT_LIST.push(obj);
-
-        const n = BASIC_BLOCK_TEMPLATE.cloneNode(true);
-        n.classList.add('geo');
-        n.querySelector('img').src = "svg/system/geometry-icons/circle.svg";
-        n.querySelector('.nametag').value = "Circle";
-        n.dataset.sid = sid;
-        BLOCK_FRAME.appendChild(n);
-
-        const s = document.createElementNS(SVGNS, 'ellipse');
-        s.dataset.sid = sid;
-        SVG_CANVAS.appendChild(s);
-        obj.renderToSVG();
     }
 }
