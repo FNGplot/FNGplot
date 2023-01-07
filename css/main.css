@@ -55,7 +55,7 @@ List of system fonts:
     src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');  
 }
 
-.material-symbol-rounded { /*Modified from Google's recommendation*/
+.material-symbol-rounded { /* Modified from Google's recommendation */
     font-family: "Material Symbols Rounded";
     font-weight: normal;
     font-style: normal; 
@@ -65,7 +65,7 @@ List of system fonts:
     word-wrap: normal;
     white-space: nowrap;
     direction: ltr;
-    -webkit-font-smoothing: antialiased;  /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
     -webkit-user-select: none;
     user-select: none;
 }

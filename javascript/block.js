@@ -1,8 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-/* 
-The block system is the UI of FNGplot. It allows users to manipulate math objects intuitively.
+/*The block system is the UI of FNGplot. It allows users to manipulate math objects intuitively.
 
 Terminology in my code:
 - FNGobject: FNGobject refers to the smallest functioning unit of the block system. It consists of three parts:
@@ -14,12 +13,11 @@ Terminology in my code:
 - SID: Each FNGobject gets its own SID (system ID) upon creation/load.
 
 - LinePP: A line between two points. This is the first object I complete, and most of my comments are on its related code.
-  All the other ones are very similar to it.
-*/
+  All the other ones are very similar to it.*/
 
 "use strict";
 
-function makeSID(){ //Generate a 10-character-long "random" alphanumeric system id.
+function makeSID(){ // Generate a 10-character-long "random" alphanumeric system id.
     const charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let sid = '';
     for(let i = 0; i<10; i++) {
@@ -50,7 +48,7 @@ function createFNGObject(objName, loadData){
         let newSVGElem = document.createElementNS(SVGNS, data[2]);
         newSVGElem.dataset.sid = sid;
         SVG_CANVAS.appendChild(newSVGElem);    //add the new SVG element to canvas
-        obj.renderToSVG();                     //render it for the first time
+        obj.updateSVG();                     //render it for the first time
     }
 }
 function moveObject(sid,nextSid) {
