@@ -5,6 +5,14 @@
 
 /* [!] Frequently referenced DOM objects & strings: */
 
+// Meta
+const FNGplot = {
+    author: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
+    license: "Apache-2.0",
+    version: "beta",
+    releaseDate: "???",
+}
+
 // DOM objects
 const BLOCK_FRAME = document.querySelector('#block-frame');
 const SVG_FRAME = document.querySelector('#svg-frame');
