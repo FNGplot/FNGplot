@@ -15,15 +15,15 @@ HTML elements should ONLY use dashes as word seperators:
 - data-shortname        // HTML5 dataset
 
 Sections: Sections in this file can be navigated by searching for the following bookmarks:
-- Big section: ¶ 
-- Section: §
+- Big section: [!!]
+- Section: [!]
 */
 
 "use strict";
 
-/* ¶ Global variable declaration */
+/* [!!] Global variable declaration */
 
-/* § Classes--Parent */
+/* [!] Classes: Parent */
 
 class StrokeParent {  //parent of objects with stroke only
     constructor(sid){
@@ -67,7 +67,7 @@ class StrokeFillParent extends StrokeParent { //parent of objects with both fill
     }
 }
 
-/* § Classes--General */
+/* [!] Classes: General */
 
 class LinePP extends StrokeParent {
     constructor(sid) {
@@ -141,9 +141,8 @@ const BASIC_BLOCK_TEMPLATE = document.querySelector('#basic-block-template').con
 // Strings
 const SVGNS = "http://www.w3.org/2000/svg";
 
-/* § System data -- static*/
+/* [!] System data -- static*/
 
-// Note: Calling constructor from window no longer works on ES6 classes. Checkout the following link for more detail on the topic:
 // https://stackoverflow.com/questions/1366127/how-do-i-make-javascript-object-using-a-variable-string-to-define-the-class-name/68016983#68016983
 const CLASS_INITDATA_MAP = new Map([
     //["key", [Object Class, Category, SVG Element] ],
@@ -168,7 +167,7 @@ const RECT_ORIGMAP = new Map([       //A small map used by "Rect" object
     ["right", 1],
 ]);
 
-/* § System data -- dynamic*/
+/* [!] System data -- dynamic*/
 
 // Object database
 let OBJECT_LIST = [];   //Unordered object reference array
@@ -294,9 +293,9 @@ const EDITPANEL_TEMPLATES = {
 
 }
 
-/* ¶ Primary initialization sequence */
+/* [!!] Primary initialization sequence */
 
-// § Event Listeners
+// [!] Event Listeners
 
 document.querySelector("#left-panel-select").addEventListener("change", () => {
     switchLeftPanel(document.querySelector("#left-panel-select").value);
@@ -398,7 +397,7 @@ window.addEventListener("error", function(){
 });
 
 
-// § Primary initializing sequence
+// [!] Primary initializing sequence
 
 console.log("Welcome to FNGplot beta version");
 updateEnvirList();
@@ -442,4 +441,3 @@ SORTABLE_LIST.push(
         scrollSpeed: 10
     })
 );
-
