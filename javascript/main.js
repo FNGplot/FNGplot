@@ -3,26 +3,20 @@
 
 /*
 FNGplot follows Douglas Crockford's naming convention for JS: https://www.crockford.com/code.html
-
 - functionName
 - GLOBAL_VARIABLE
 - localVariable
 - ObjectName
-
 *Any variable name with ending "_MAP" is an ES6 Map.
 
-
 HTML elements should ONLY use dashes as word seperators:
-
 - html-element-id
 - html-class-name
 - data-shortname        // HTML5 dataset
 
 Sections: Sections in this file can be navigated by searching for the following bookmarks:
-
 - Big section: ¶ 
 - Section: §
-
 */
 
 "use strict";
@@ -38,23 +32,23 @@ class StrokeParent {  //parent of objects with stroke only
         this.name = "Default Name";
         //Style
         this.strokeWidth = 10;
-        this.lineCap = "round";
+        this.lineCap = "butt";
         this.pathLength = 100;
         this.dashArray = '';
         this.dashOffset = 0;
         this.strokeColor = "#8a408b"; // Wisteria purple
         this.strokeOpacity = 1;
     }
-    static renderToSVG(s) {
-        s.setAttribute("data-name", name); 
-        s.setAttribute("display", display ? "" : "none");
-        s.setAttribute("stroke", strokeColor);
-        s.setAttribute("stroke-width", strokeWidth);
-        s.setAttribute("stroke-opacity", strokeOpacity);
-        s.setAttribute("stroke-linecap", lineCap);
-        s.setAttribute("pathLength", pathLength);
-        s.setAttribute("stroke-dasharray", dashArray);
-        s.setAttribute("stroke-dashoffset", dashOffset); 
+    renderToSVG(s) {
+        s.setAttribute("data-name", this.name); 
+        s.setAttribute("display", this.display ? "" : "none");
+        s.setAttribute("stroke", this.strokeColor);
+        s.setAttribute("stroke-width", this.strokeWidth);
+        s.setAttribute("stroke-opacity", this.strokeOpacity);
+        s.setAttribute("stroke-linecap", this.lineCap);
+        s.setAttribute("pathLength", this.pathLength);
+        s.setAttribute("stroke-dasharray", this.dashArray);
+        s.setAttribute("stroke-dashoffset", this.dashOffset); 
     }
 }
 class StrokeFillParent extends StrokeParent { //parent of objects with both fill and stroke(border)
@@ -65,11 +59,11 @@ class StrokeFillParent extends StrokeParent { //parent of objects with both fill
         this.fillColor = "#ddcfff";
         this.fillOpacity = 1;
     }
-    static renderToSVG(s) {
+    renderToSVG(s) {
         super.renderToSVG(s);
-        s.setAttribute("stroke", hasBorder ? this.strokeColor : "none");
-        s.setAttribute("fill", hasFill ? this.fillColor : "none");
-        s.setAttribute("fill-opacity", fillOpacity); 
+        s.setAttribute("stroke", this.hasBorder ? this.strokeColor : "none");
+        s.setAttribute("fill", this.hasFill ? this.fillColor : "none");
+        s.setAttribute("fill-opacity", this.fillOpacity); 
     }
 }
 
@@ -84,13 +78,13 @@ class LinePP extends StrokeParent {
         this.x2 = 5;
         this.y2 = 2;
     }
-    static renderToSVG() { 
+    renderToSVG() { 
         const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); // Get element
         super.renderToSVG(s);
-        s.setAttribute("x1",toPixelPosX(x1));
-        s.setAttribute("y1",toPixelPosY(y1));
-        s.setAttribute("x2",toPixelPosX(x2));
-        s.setAttribute("y2",toPixelPosY(y2));
+        s.setAttribute("x1",toPixelPosX(this.x1));
+        s.setAttribute("y1",toPixelPosY(this.y1));
+        s.setAttribute("x2",toPixelPosX(this.x2));
+        s.setAttribute("y2",toPixelPosY(this.y2));
     }   
 }
 class Rect extends StrokeFillParent {
@@ -107,9 +101,9 @@ class Rect extends StrokeFillParent {
         this.roundCorner = 0;
         this.lineJoin = "miter";
     }
-    static renderToSVG(){
+    renderToSVG(){
         const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);
-        super.renderToSVG();
+        super.renderToSVG(s);
         s.setAttribute("x",toPixelPosX(this.originX - RECT_ORIGMAP.get(this.originHoriz) * this.width));
         s.setAttribute("y",toPixelPosY(this.originY + RECT_ORIGMAP.get(this.originVert) * this.height));
         s.setAttribute("width",toPixelLenX(this.width));
@@ -118,54 +112,21 @@ class Rect extends StrokeFillParent {
         s.setAttribute("stroke-linejoin",this.lineJoin);
     }
 }
-class Circle {                 //Actually uses an ellipse, in case XHAT != YHAT
+class Circle extends StrokeFillParent {    //Actually uses an ellipse, in case XHAT != YHAT
     constructor(sid) {
-        //System
-        this.sid = sid;
-        this.display = true;
-        //User
+        super(sid);
         this.name = "Circle";
-        //Math
         this.centerX = 2;
         this.centerY = 4;
         this.radius = 2.5;
-        //Style
-        //--stroke--
-        this.hasBorder = true;
-        this.strokeColor = "#8a408b";
-        this.strokeOpacity = 1;
-        this.strokeWidth = 10;
-        this.lineCap = "butt";          //only relevant on dashline mode
-        this.pathLength = 100;
-        this.dashArray = '';
-        this.dashOffset = 0;
-        //--fill--
-        this.hasFill = true;
-        this.fillColor = "#ddcfff";
-        this.fillOpacity = 1;
-        //Method
-        this.renderToSVG = function() {
-            const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);
-            s.setAttribute("display",this.display ? "" : "none");
-            //--user--
-            s.dataset.name = this.name; 
-            //--math--
-            s.setAttribute("cx",toPixelPosX(this.centerX));
-            s.setAttribute("cy",toPixelPosY(this.centerY));
-            s.setAttribute("rx",toPixelLenX(this.radius));
-            s.setAttribute("ry",toPixelLenY(this.radius));
-            //--style--
-            s.setAttribute("stroke",this.hasBorder ? this.strokeColor : "none");
-            s.setAttribute("stroke-width",this.strokeWidth);
-            s.setAttribute("stroke-opacity",this.strokeOpacity);
-            s.setAttribute("stroke-linejoin",this.lineJoin);
-            s.setAttribute("stroke-linecap",this.lineCap);
-            s.setAttribute("pathLength",this.pathLength);
-            s.setAttribute("stroke-dasharray",this.dashArray);
-            s.setAttribute("stroke-dashoffset",this.dashOffset);
-            s.setAttribute("fill",this.hasFill ? this.fillColor : "none");
-            s.setAttribute("fill-opacity",this.fillOpacity);
-        };
+    }
+    renderToSVG() {
+        const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);
+        super.renderToSVG(s);
+        s.setAttribute("cx",toPixelPosX(this.centerX));
+        s.setAttribute("cy",toPixelPosY(this.centerY));
+        s.setAttribute("rx",toPixelLenX(this.radius));
+        s.setAttribute("ry",toPixelLenY(this.radius));
     }
 }
 
@@ -190,7 +151,7 @@ const CLASS_INITDATA_MAP = new Map([
     ["rect", [Rect, "geometry", "rect"]],
     ["circle", [Circle, "geometry", "ellipse"]]
 ]);
-const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; //(Based on MIT Scratch 2.0/3.0)
+const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; // Based on MIT Scratch 2.0/3.0
 const OBJ_SPECIFIC_INPUTLIST = [    //Used by real-time-update eventlistener
     "linepp x1", "linepp y1", "linepp x2", "linepp y2",
     "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height",
@@ -236,7 +197,7 @@ const EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Basic---------</div>
     <div>Width: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
     <div>Color: <input type="color" data-property="strokeColor" class="size-short"></div>
-    <div>Opacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short" onKeyDown="return false"></div>
+    <div>Opacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>LineCap: 
         <select data-property="lineCap" class="size-medium">
@@ -276,9 +237,9 @@ const EDITPANEL_TEMPLATES = {
     <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short" onKeyDown="return false"></div>
+    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
     <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short" onKeyDown="return false"></div>
+    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>RoundedCorner: <input type="number" min="0" data-property="roundCornerX" class="size-short"></div>
     <div>BorderLineJoin:
@@ -313,9 +274,9 @@ const EDITPANEL_TEMPLATES = {
     <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short" onKeyDown="return false"></div>
+    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
     <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short" onKeyDown="return false"></div>
+    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>BorderLineCap(dash):
         <select data-property="lineCap" class="size-medium">
@@ -334,7 +295,6 @@ const EDITPANEL_TEMPLATES = {
 }
 
 /* ¶ Primary initialization sequence */
-
 
 // § Event Listeners
 
