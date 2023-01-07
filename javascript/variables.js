@@ -9,8 +9,8 @@
 const FNGplot = {
     author: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
     license: "Apache-2.0",
-    version: "beta",
-    releaseDate: "???",
+    version: "1.0.0-beta",
+    releaseDate: "2023-MM-DD",
 }
 
 // DOM objects
@@ -29,7 +29,8 @@ const CLASS_INITDATA_MAP = new Map([
     //["key", [Object Class, Category, SVG Element] ],
     ["linepp", [LinePP, "geometry", "line"]],
     ["rect", [Rect, "geometry", "rect"]],
-    ["circle", [Circle, "geometry", "ellipse"]]
+    ["circle", [Circle, "geometry", "ellipse"]],
+    ["circle3p", [Circle3P, "geometry", "ellipse"]]
 ]);
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; // Based on MIT Scratch 2.0/3.0
 const OBJ_SPECIFIC_INPUTLIST = [    //Used by real-time-update eventlistener
@@ -52,7 +53,7 @@ const RECT_ORIGMAP = new Map([       //A small map used by "Rect" object
 
 // Object database
 let OBJECT_LIST = [];   //Unordered object reference array
-let SORTABLE_LIST = []; //SortableJS object reference array
+let SORTABLE_LIST = []; //SortableJS object reference array, in case I add more Sortable objects in the future
 
 // Cartesian coordinate
 let XMAX = 10;
@@ -150,6 +151,36 @@ const EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Math-----------------</div>
     <div>Center: ( <input type="number" step="0.5" data-property="centerX" class="size-short"> , <input type="number" step="0.5" data-property="centerY" class="size-short"> )</div>
     <div>Radius: <input type="number" min="0" data-property="radius" class="size-short"></div>
+    <div class="label-monospace">-----------Style: Basic---------</div>
+    <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
+    <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
+    <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
+    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
+    <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
+    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
+    <div class="label-monospace">-----------Style: Advanced------</div>
+    <div>BorderLineCap(dash):
+        <select data-property="lineCap" class="size-medium">
+            <option value="round" selected>Round</option>
+            <option value="butt">Butt</option>
+            <option value="square">Square</option>
+        </select>
+    </div>
+    <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
+    <div>DashArray: <input type="text" data-property="dashArray" class="size-medium"> </div>
+    <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
+    <div class="label-monospace">-----------System---------------</div>
+    <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
+</div>`,
+
+    circle3p:`
+<div class="objblock-editpanel">
+    <div class="label-monospace">-----------User-----------------</div>
+    <div>Name: <input type="text" data-property="name" class="size-long"></div>
+    <div class="label-monospace">-----------Math-----------------</div>
+    <div>Point 1: ( <input type="number" step="0.5" data-property="x1" class="size-short"> , <input type="number" step="0.5" data-property="y1" class="size-short"> )</div>
+    <div>Point 2: ( <input type="number" step="0.5" data-property="x2" class="size-short"> , <input type="number" step="0.5" data-property="y2" class="size-short"> )</div>
+    <div>Point 3: ( <input type="number" step="0.5" data-property="x3" class="size-short"> , <input type="number" step="0.5" data-property="y3" class="size-short"> )</div>
     <div class="label-monospace">-----------Style: Basic---------</div>
     <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>

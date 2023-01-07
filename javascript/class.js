@@ -1,6 +1,9 @@
-/* [!] Classes: Parent */
+/* SPDX-License-Identifier: Apache-2.0 */
+/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
 "use strict";
+
+/* [!] Classes: Parent */
 
 class StrokeParent {  //parent of objects with stroke only
     constructor(sid){
@@ -89,13 +92,33 @@ class Rect extends StrokeFillParent {
         s.setAttribute("stroke-linejoin",this.lineJoin);
     }
 }
-class Circle extends StrokeFillParent {    //Actually uses an ellipse, in case XHAT != YHAT
+class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case XHAT != YHAT
     constructor(sid) {
         super(sid);
         this.name = "Circle";
         this.centerX = 2;
         this.centerY = 4;
         this.radius = 2.5;
+    }
+    updateSVG() {
+        const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);
+        super.updateSVG(s);
+        s.setAttribute("cx",toPixelPosX(this.centerX));
+        s.setAttribute("cy",toPixelPosY(this.centerY));
+        s.setAttribute("rx",toPixelLenX(this.radius));
+        s.setAttribute("ry",toPixelLenY(this.radius));
+    }
+}
+class Circle3P extends StrokeFillParent {
+    constructor(sid) {
+        super(sid);
+        this.name = "3-point circle";
+        this.x1 = 1;
+        this.y1 = 1;
+        this.x2 = 2;
+        this.y2 = 2;
+        this.x3 = 3;
+        this.y3 = 5;
     }
     updateSVG() {
         const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);

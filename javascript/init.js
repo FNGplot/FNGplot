@@ -101,7 +101,7 @@ window.addEventListener("error", function(){
 
 /* [!] Primary initialization sequence */
 
-console.log("Welcome to FNGplot beta version");
+console.log(`Welcome to FNGplot ${FNGplot.version}`);
 updateEnvirList();
 
 //Initialize toolbar's positions, colors and click handlers
@@ -120,7 +120,6 @@ updateEnvirList();
     switchToolbar(1);                                                              //switch to "Geometry" (default)
 }
 
-    
 //Init sortable container
 SORTABLE_LIST.push(
     new Sortable(document.querySelector("#block-frame"), {

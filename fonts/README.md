@@ -1,3 +1,5 @@
+## Fonts
+
 **DISCLAIMER: I AM NOT A FONT EXPERT NOR A LAWYER. I try very hard to abide by the rules, make sure all the information I provide is correct, and that everything is legal. However, if things turned out to not be the case, please contact me right away and I'll see how I could fix it.**
 
 To provide ample options for users and a consistent GUI across all devices,
