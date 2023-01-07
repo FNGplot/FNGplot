@@ -5,15 +5,6 @@
 
 "use strict";
 
-// Note: Calling constructor from window no longer works on ES6 classes. Checkout the following link for more detail on the topic:
-// https://stackoverflow.com/questions/1366127/how-do-i-make-javascript-object-using-a-variable-string-to-define-the-class-name/68016983#68016983
-const CLASS_INITDATA_MAP = new Map([
-    //["key", [Object Class, Category, SVG Element] ],
-    ["linepp", [LinePP, "geometry", "line"]],
-    ["rect", [Rect, "geometry", "rect"]],
-    ["circle", [Circle, "geometry", "ellipse"]]
-]);
-
 // || Event Listeners
 
 document.querySelector("#left-panel-select").addEventListener("change", () => {
