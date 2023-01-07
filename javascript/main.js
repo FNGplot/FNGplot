@@ -9,117 +9,113 @@ FNGplot follows Douglas Crockford's naming convention for JS: https://www.crockf
 - localVariable
 - ObjectName
 
-*Any variable name with ending "MAP" is an ES6 Map.
+*Any variable name with ending "_MAP" is an ES6 Map.
 
 
 HTML elements should ONLY use dashes as word seperators:
 
 - html-element-id
 - html-class-name
-- data-shortname        //HTML5 dataset
+- data-shortname        // HTML5 dataset
+
+Sections: Sections in this file can be navigated by searching for the following bookmarks:
+
+- Big section: ¶ 
+- Section: §
 
 */
 
 "use strict";
 
-/* || Classes */
-class LinePP {
-    constructor(sid) {
-        //------All attributes except sid have a default value before the user changes them.
-        //System
+/* ¶ Global variable declaration */
+
+/* § Classes--Parent */
+
+class StrokeParent {  //parent of objects with stroke only
+    constructor(sid){
         this.sid = sid;
         this.display = true;
-        //User
-        this.name = "2-point line";
-        //Math
-        this.x1 = -5;
-        this.y1 = -4;
-        this.x2 = 5;
-        this.y2 = 2;
+        this.name = "Default Name";
         //Style
         this.strokeWidth = 10;
         this.lineCap = "round";
         this.pathLength = 100;
         this.dashArray = '';
         this.dashOffset = 0;
-        this.strokeColor = "#8a408b"; //Wisteria purple
+        this.strokeColor = "#8a408b"; // Wisteria purple
         this.strokeOpacity = 1;
-        //Method
-        this.renderToSVG = function() { //currently, all properties are updated together. There is room for optimization in the future.
-            const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); //Find this object's SVG output
-            s.setAttribute("display",this.display ? "" : "none"); // everything other than "none" is true for this property
-            //--user--
-            s.dataset.name = this.name; //equal to s.setAttribute("data-name",this.name)
-            //--math--
-            s.setAttribute("x1",toPixelPosX(this.x1));
-            s.setAttribute("y1",toPixelPosY(this.y1));
-            s.setAttribute("x2",toPixelPosX(this.x2));
-            s.setAttribute("y2",toPixelPosY(this.y2));
-            //--style--
-            s.setAttribute("stroke",this.strokeColor);
-            s.setAttribute("stroke-width",this.strokeWidth);
-            s.setAttribute("stroke-opacity",this.strokeOpacity);
-            s.setAttribute("stroke-linecap",this.lineCap);
-            s.setAttribute("pathLength",this.pathLength);
-            s.setAttribute("stroke-dasharray",this.dashArray);
-            s.setAttribute("stroke-dashoffset",this.dashOffset);
-        };
+    }
+    static renderToSVG(s) {
+        s.setAttribute("data-name", name); 
+        s.setAttribute("display", display ? "" : "none");
+        s.setAttribute("stroke", strokeColor);
+        s.setAttribute("stroke-width", strokeWidth);
+        s.setAttribute("stroke-opacity", strokeOpacity);
+        s.setAttribute("stroke-linecap", lineCap);
+        s.setAttribute("pathLength", pathLength);
+        s.setAttribute("stroke-dasharray", dashArray);
+        s.setAttribute("stroke-dashoffset", dashOffset); 
     }
 }
-class Rect {
+class StrokeFillParent extends StrokeParent { //parent of objects with both fill and stroke(border)
+    constructor(sid){
+        super(sid);
+        this.hasBorder = "true";
+        this.hasFill = true;
+        this.fillColor = "#ddcfff";
+        this.fillOpacity = 1;
+    }
+    static renderToSVG(s) {
+        super.renderToSVG(s);
+        s.setAttribute("stroke", hasBorder ? this.strokeColor : "none");
+        s.setAttribute("fill", hasFill ? this.fillColor : "none");
+        s.setAttribute("fill-opacity", fillOpacity); 
+    }
+}
+
+/* § Classes--General */
+
+class LinePP extends StrokeParent {
     constructor(sid) {
-        //System
-        this.sid = sid;
-        this.display = true;
-        //User
+        super(sid);
+        this.name = "2-point line";
+        this.x1 = -5;
+        this.y1 = -4;
+        this.x2 = 5;
+        this.y2 = 2;
+    }
+    static renderToSVG() { 
+        const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`); // Get element
+        super.renderToSVG(s);
+        s.setAttribute("x1",toPixelPosX(x1));
+        s.setAttribute("y1",toPixelPosY(y1));
+        s.setAttribute("x2",toPixelPosX(x2));
+        s.setAttribute("y2",toPixelPosY(y2));
+    }   
+}
+class Rect extends StrokeFillParent {
+    constructor(sid){
+        super(sid);
         this.name = "Rectangle";
-        //Math
-        this.originHoriz = "left";  //these two properties means that the origin specified is the rectangle's "bottom left" corner
+        //Origin specified is used as the rectangle's "bottom left" corner
+        this.originHoriz = "left";  
         this.originVert = "bottom";
         this.originX = -1;
         this.originY = -2;
         this.width = 7;
         this.height = 5;
-        //Style
-        this.roundCornerX = 0;
-        //--stroke--
-        this.hasBorder = true;
-        this.strokeColor = "#8a408b";
-        this.strokeOpacity = 1;
-        this.strokeWidth = 10;
-        this.lineJoin = "miter";  //miterlimit is not a problem here since all angles are 90 degrees
-        this.lineCap = "butt";          //only relevant on dashline mode
-        this.pathLength = 100;
-        this.dashArray = '';
-        this.dashOffset = 0;
-        //--fill--
-        this.hasFill = true;
-        this.fillColor = "#ddcfff";
-        this.fillOpacity = 1;
-        //Method
-        this.renderToSVG = function() {
-            const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);
-            s.setAttribute("display",this.display ? "" : "none");
-            //--user--
-            s.dataset.name = this.name; 
-            //--math--
-            s.setAttribute("x",toPixelPosX(this.originX - RECT_ORIGMAP.get(this.originHoriz) * this.width));
-            s.setAttribute("y",toPixelPosY(this.originY + RECT_ORIGMAP.get(this.originVert) * this.height));
-            s.setAttribute("width",toPixelLenX(this.width));
-            s.setAttribute("height",toPixelLenY(this.height));
-            //--style--
-            s.setAttribute("rx",this.roundCornerX);
-            s.setAttribute("stroke",this.hasBorder ? this.strokeColor : "none");
-            s.setAttribute("stroke-width",this.strokeWidth);
-            s.setAttribute("stroke-opacity",this.strokeOpacity);
-            s.setAttribute("stroke-linejoin",this.lineJoin);
-            s.setAttribute("stroke-linecap",this.lineCap);
-            s.setAttribute("pathLength",this.pathLength);
-            s.setAttribute("stroke-dasharray",this.dashArray);
-            s.setAttribute("stroke-dashoffset",this.dashOffset);
-            s.setAttribute("fill",this.hasFill ? this.fillColor : "none");
-            s.setAttribute("fill-opacity",this.fillOpacity);
-        };
+        this.roundCorner = 0;
+        this.lineJoin = "miter";
+    }
+    static renderToSVG(){
+        const s = SVG_CANVAS.querySelector(`[data-sid='${this.sid}']`);
+        super.renderToSVG();
+        s.setAttribute("x",toPixelPosX(this.originX - RECT_ORIGMAP.get(this.originHoriz) * this.width));
+        s.setAttribute("y",toPixelPosY(this.originY + RECT_ORIGMAP.get(this.originVert) * this.height));
+        s.setAttribute("width",toPixelLenX(this.width));
+        s.setAttribute("height",toPixelLenY(this.height));
+        s.setAttribute("rx",this.roundCorner);
+        s.setAttribute("stroke-linejoin",this.lineJoin);
     }
 }
 class Circle {                 //Actually uses an ellipse, in case XHAT != YHAT
@@ -173,7 +169,7 @@ class Circle {                 //Actually uses an ellipse, in case XHAT != YHAT
     }
 }
 
-/* || Frequently referenced DOM objects & strings: */
+/*  Frequently referenced DOM objects & strings: */
 
 // DOM objects
 const BLOCK_FRAME = document.querySelector('#block-frame');
@@ -184,7 +180,7 @@ const BASIC_BLOCK_TEMPLATE = document.querySelector('#basic-block-template').con
 // Strings
 const SVGNS = "http://www.w3.org/2000/svg";
 
-/* || System data -- static*/
+/* § System data -- static*/
 
 // Note: Calling constructor from window no longer works on ES6 classes. Checkout the following link for more detail on the topic:
 // https://stackoverflow.com/questions/1366127/how-do-i-make-javascript-object-using-a-variable-string-to-define-the-class-name/68016983#68016983
@@ -211,7 +207,7 @@ const RECT_ORIGMAP = new Map([       //A small map used by "Rect" object
     ["right", 1],
 ]);
 
-/* || System data -- dynamic*/
+/* § System data -- dynamic*/
 
 // Object database
 let OBJECT_LIST = [];   //Unordered object reference array
@@ -337,4 +333,153 @@ const EDITPANEL_TEMPLATES = {
 
 }
 
-//------↑↑↑↑↑↑↑↑Edit panel templates↑↑↑↑↑↑↑↑-------------------
+/* ¶ Primary initialization sequence */
+
+
+// § Event Listeners
+
+document.querySelector("#left-panel-select").addEventListener("change", () => {
+    switchLeftPanel(document.querySelector("#left-panel-select").value);
+});
+
+document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {
+	updateEnvirList();
+});
+
+for(const item of ["input", "change"]){
+    document.querySelector("#rootzoom-slider").addEventListener(item, () => {
+        changeRootZoom(document.querySelector("#rootzoom-slider").value,item);
+    });
+};
+
+BLOCK_FRAME.addEventListener("click",(event) => {  //event delegation
+    const target = event.target;
+    if(target.classList.contains("visibility")){  //change visibility
+        changeVisibility(target.parentElement.dataset.sid);
+    }
+    else if(target.classList.contains("edit")){  //toggle editpanel
+        toggleEditPanel(target.parentElement.dataset.sid);
+    }
+    else if(target.classList.contains("delete")){  //delete block
+        deleteObject(target.parentElement.dataset.sid);
+    }
+});
+
+/*
+Wish Lin Dec 2022
+
+This bulky event listener is my naive attempt to strike a balance between real-time updating and generating errors due to transition values during editing.
+Basic assumption: Inputs and changes inside BLOCK_FRAME must come from the editpanels.
+
+Problem: Some properties in the editpanel can be updated real-time during editing, while others simply cannot. For (extrerme) example:
+dashOffset can take in any value without error, so it can be updated real-time(aka oninput).
+Plotted math functions can only be updated onchange(I "hope" it's finished by then, further error handling is needed of course). Anything during editing is not a valid math expression.
+
+Due to performance considerations, there are also a few exceptions that I handle separately. See comments below for detailed information.
+
+My solution is to register all of the cases, divide them into different categories and act accordingly. See below for example.
+
+List of FNGobjects registered:
+LinePP: Complete
+Rect: Complete
+Circle: Complete
+*/
+for(const item of ["input", "change"]){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
+    BLOCK_FRAME.addEventListener(item, (event) => {  
+        const target = event.target;
+        const svgElem = SVG_CANVAS.querySelector(`[data-sid='${event.target.parentNode.parentNode.parentNode.dataset.sid}']`);
+        const obj = OBJECT_LIST.find(item => item.sid == event.target.parentNode.parentNode.parentNode.dataset.sid); //the object
+        const type = event.target.parentNode.parentNode.dataset.objtype; //"linepp"
+        const prop = target.dataset.property; //x1
+        if(event.type == "input"){ 
+            if(prop == "name"){ //names need to sync with label in the parent block, so they are handled separately
+                event.target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value;
+                //Only update object on "change" event (or onBlur) to imporve performance
+            }
+            else if(prop == "strokeColor"){ //color input could possibly change dozens of times per second, thus bypassing renderToSVG() greatly improves performance
+                svgElem.setAttribute("stroke",target.value);
+                //Only update object on "change" event (or onBlur) to imporve performance
+            }
+            else if(prop == "fillColor"){
+                svgElem.setAttribute("fill",target.value);
+            }
+            else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) ||  OBJ_SPECIFIC_INPUTLIST.includes(`${type} ${prop}`)){  //"linepp x1"
+                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
+                obj.renderToSVG();
+            }
+        }
+        else if(event.type == "change"){
+            if(["name", "lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || OBJ_SPECIFIC_CHANGELIST.includes(`${type} ${prop}`)){
+                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
+                obj.renderToSVG();
+            }
+            else if(["hasBorder", "hasFill"].includes(prop)){ //checkboxes are naughty
+                obj[prop] = target.checked;
+                obj.renderToSVG();
+            }
+        }
+    });
+};
+
+document.querySelector("#toolbar-root").addEventListener("click", (event) => {  //event delegation
+    const target = event.target;
+    const parent = event.target.parentNode;
+    if(target.tagName.toLowerCase() == "img"){                                  //SVG icon clicked
+        createFNGObject(target.dataset.objname, null);                          //create a brand new object of the specified kind
+    }
+    else if(parent.classList.contains("toolbar-grid-toggler")){                 //expand or collapse the toolbar
+        toggleToolbarDropdown(target);
+    }
+});
+
+window.addEventListener("error", function(){
+    console.error("Execution Failed");
+    alert("Execution Failed.");
+});
+
+
+// § Primary initializing sequence
+
+console.log("Welcome to FNGplot beta version");
+updateEnvirList();
+
+//Initialize toolbar's positions, colors and click handlers
+{
+    const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
+    const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
+    for(let [i, btn] of btnList.entries()){
+        btn.style.borderColor = TOOLBAR_CLR[i];                                    //initialize them to their respective colors
+        btn.addEventListener("click", () => {                                      //attach eventlisteners
+            switchToolbar(i);
+        });
+    };
+    for(let arrowBtn of togglers){
+        arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
+    };
+    switchToolbar(1);                                                              //switch to "Geometry" (default)
+}
+
+    
+//Init sortable container
+SORTABLE_LIST.push(
+    new Sortable(document.querySelector("#block-frame"), {
+        group: 'block-frame',
+        animation: 150,
+        fallbackOnBody: true,
+        forceFallback: true,
+        onEnd: function (evt) {
+            if(evt.oldIndex != evt.newIndex){  //If the position actually changed
+                moveObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null);
+                //passes null as reference if there is no next neighbor. insertBefore() will take care of it.
+            }
+        },
+        ghostClass: 'ghost-class',
+        draggable: ".obj-block",
+        handle: ".small-icon",
+        swapThreshold: 0.65,
+        scroll: true,
+        scrollSensitivity: 80,
+        scrollSpeed: 10
+    })
+);
+
