@@ -32,10 +32,10 @@ BLOCK_FRAME.addEventListener("click",(event) => {  //event delegation
     }
 });
 
-for(const item of ["input", "change"]){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
+for(const item of ["input", "change"]){     //Assumption: Input and change events inside BLOCK_FRAME must come from the editpanels
     BLOCK_FRAME.addEventListener(item, (event) => {  
         const sid = event.target.parentNode.parentNode.parentNode.dataset.sid;
-        handleUserEdit(event.target, sid, event.type);
+        handleUserEdit(event.target, sid, event.type); 
     });
 };
 

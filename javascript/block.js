@@ -33,14 +33,14 @@ function createFNGObject(objName, data){
         const data = CLASS_INITDATA_MAP.get(objName);   //["objName", [Class, Category, SVG Element]]
 
         // Step 1 of 3: FNGobject
-        const obj = new data[0](sid);                 
-        OBJECT_LIST.push(obj);                        //push new object into list
+        const newObj = new data[0](sid);                 //call class constructor        
+        OBJECT_LIST.push(newObj);                        //push new object into list
             
         // Step 2 of 3: draggable block
         let newBlock = BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
         newBlock.classList.add(data[1]);                                                  //add object class
         newBlock.querySelector('img').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
-        newBlock.querySelector('.nametag').value = obj.name;           //display default name
+        newBlock.querySelector('.nametag').value = newObj.name;           //display default name
         newBlock.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
         BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
 
@@ -48,7 +48,17 @@ function createFNGObject(objName, data){
         let newSVGElem = document.createElementNS(SVGNS, data[2]);
         newSVGElem.dataset.sid = sid;
         SVG_CANVAS.appendChild(newSVGElem);    //add the new SVG element to canvas
-        obj.updateStyle();                     //render it for the first time
+
+        // Step 4: Initialize and render the FNGobject for the first time
+        let action = "";
+        for(const property in newObj){               //render all properties one by one, uneditable ones like "sid" are ignored automatically
+            action = EDITACTION_MAP.get(property);   //first try, this would return a result if this property is a common one
+            action != undefined ? action(newObj, newSVGElem) : action = EDITACTION_MAP.get(`${objName} ${property}`);   //second try, this would return a result if this property is an object-specific one
+            if(action != undefined){
+                action(newObj, newSVGElem);
+            }
+            // else{ This property doesn't need to be initialized and/or rendered, like "sid" }
+        }
     }
 }
 function moveObject(sid,nextSid) {
@@ -91,10 +101,10 @@ function toggleEditPanel(sid) {
         initEditPanel(block.querySelector(".objblock-editpanel"),sid);
     }
     else{ //It has an editpanel, remove it
-        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing transition
-        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).addEventListener("webkitTransitionEnd", function tmp(){ //wait until transition end to remove the editpanel
+        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing animation
+        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).addEventListener("webkitTransitionEnd", function tmp(){ // wait until transition end to remove the editpanel
             panel.parentNode.removeChild(panel);
-            BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).removeEventListener("webkitTransitionEnd", tmp); //remove itself
+            BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).removeEventListener("webkitTransitionEnd", tmp); // tell the listener to remove itself
         });
     }
 }
@@ -109,53 +119,67 @@ function initEditPanel(panelElem, sid){
             inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
         }
     };
-    panelElem.dataset.objtype = obj.constructor.name.toLowerCase();
     BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + 65}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
     //The magic number "65" is the size of margin-top(55) + margin-bottom(10)
 }
-function handleUserEdit(target, sid, event){
-    const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+function handleUserEdit(target, sid, event){ 
+    const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
     const obj = OBJECT_LIST.find(item => item.sid == sid);
-    const objType = target.parentNode.parentNode.dataset.objtype;
     const prop = target.dataset.property;
-    console.log(objType, prop);
-    if(event == "input"){ 
-        if(prop == "name"){
-            target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value;  //the name display on the block
-            s.setAttribute("data-name", this.name);
+
+    // Note: Internal data update always occurs on "change" event, regardless of property
+
+    if(event == "input"){   // Real-time SVG rendering
+
+        /* Speed required, so I placed them here to eliminate map lookup */
+        if(prop == "name"){ //special case: name (block nametag update required)
+            target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value;
+            svgElem.setAttribute("data-name", obj.name);
         }
-         //color input could possibly change dozens of times per second, thus bypassing updateStyle() can improve performance
-        else if(prop == "strokeColor"){
+        else if(prop == "strokeColor"){  //special case: color (color input changes rapidly)
             svgElem.setAttribute("stroke",target.value);
         }
-        else if(prop == "fillColor"){
+        else if(prop == "fillColor"){    //special case: color (color input changes rapidly)
             svgElem.setAttribute("fill",target.value);
         }
-        else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) ||  OBJ_SPECIFIC_INPUTLIST.includes(`${objType} ${prop}`)){  //"linepp x1"
-            isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-            obj.updateStyle();
+
+        /* Normal Flow*/
+        else{
+            isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
+
+            // Common properties of many FNGobjects
+            if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity", "lineCap", "lineJoin"].includes(prop)){
+                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
+                EDITACTION_MAP.get(prop)(obj, svgElem);
+            }
+            // Object-specific properties
+            else{
+                const objName = target.parentNode.parentNode.dataset.objname;
+                const action = EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
+                if(action != undefined){   // action found
+                    action(obj, svgElem);  // then do it
+                }
+                // else { This input event should be ignored by FNGplot }
+            }
         }
     }
+
     else if(event == "change"){
-        if(["lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || OBJ_SPECIFIC_CHANGELIST.includes(`${objType} ${prop}`)){
+        isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
+
+        // Common properties of many FNGobjects
+        if(["dashArray"].includes(prop)){
             isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-            obj.updateStyle();
+            EDITACTION_MAP.get(prop)(obj, svgElem);
+        }
+        // Object-specific properties
+        else{
+            const objName = target.parentNode.parentNode.dataset.objname;
+            const action = EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
+            if(action != undefined){   // action found
+                action(obj, svgElem);  // then do it
+            }
+            // else { This change event should be ignored by FNGplot }
         }
     }
 }
-
-
-/*
-Wish Lin Dec 2022
-
-This bulky event listener is my naive attempt to strike a balance between real-time updating and generating errors due to transition values during editing.
-Basic assumption: Inputs and changes inside BLOCK_FRAME must come from the editpanels.
-
-Problem: Some properties in the editpanel can be updated real-time during editing, while others simply cannot. For (extrerme) example:
-dashOffset can take in any value without error, so it can be updated real-time(aka oninput).
-Plotted math functions can only be updated onchange(I "hope" it's finished by then, further error handling is needed of course). Anything during editing is not a valid math expression.
-
-Due to performance considerations, there are also a few exceptions that I handle separately. See comments below for detailed information.
-
-My solution is to register all of the cases, divide them into different categories and act accordingly. See below for example.
-*/

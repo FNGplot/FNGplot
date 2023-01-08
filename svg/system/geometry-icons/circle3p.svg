@@ -2,9 +2,9 @@
 	<title>3-point circle</title>
 	<rect x="0" y="0" width="40" height="40" fill="#ffffff" />
 	<circle cx="20" cy="20" r="13.5" fill="none" stroke="#5f95f7" stroke-width="2px"/>
-    <!-- 140, 230 & 310 degrees  -->
-	<circle cx="9.658" cy="11.322" r="2.5" fill="#5f95f7" />
-	<circle cx="11.322" cy="30.342" r="2.5" fill="#5f95f7" />
+    <!-- 150, 225 & 310 degrees  -->
+	<circle cx="8.309" cy="13.25" r="2.5" fill="#5f95f7" />
+	<circle cx="10.454" cy="29.546" r="2.5" fill="#5f95f7" />
 	<circle cx="28.678" cy="30.342" r="2.5" fill="#5f95f7" />
 </svg>
 <!--
