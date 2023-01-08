@@ -21,17 +21,18 @@
     <script defer src="javascript/block.js"></script>                 <!-- Block related actions -->
     <script defer src="javascript/init.js"></script>                  <!-- Page Initialization -->
     
+    <template id="basic-block-template">
+        <div class="obj-block">
+            <img class="small-icon block"></img>
+            <input type="text" class="nametag" disabled>
+            <div class="material-symbol-rounded sortblockicon visibility">visibility</div>
+            <div class="material-symbol-rounded sortblockicon edit">tune</div>
+            <div class="material-symbol-rounded sortblockicon delete">delete</div>
+        </div>
+    </template>
+
     <body>
-        <template id="basic-block-template">
-            <div class="obj-block">
-                <img class="small-icon block"></img>
-                <input type="text" class="nametag" disabled>
-                <div class="material-symbol-rounded sortblockicon visibility">visibility</div>
-                <div class="material-symbol-rounded sortblockicon edit">tune</div>
-                <div class="material-symbol-rounded sortblockicon delete">delete</div>
-            </div>
-        </template>
-        
+
         <div id="root-frame">
 
             <div id="banner">

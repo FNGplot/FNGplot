@@ -8,8 +8,8 @@
 class StrokeParent {  //parent of objects with stroke only
     constructor(sid){
         this.sid = sid;
+                                    //this.name = "";
         this.display = true;
-        this.name = "";
         //Style
         this.strokeWidth = 10;
         this.lineCap = "butt";
@@ -78,7 +78,7 @@ class Circle3P extends StrokeFillParent {
     updateMath(svgElem){
         //Calculate circumcenter from three points
         const [a, b, c, d, e, f] = [this.x1-this.x2, this.y1-this.y2, this.x1-this.x3, this.y1-this.y3, 0.5*((this.x1**2-this.x2**2)-(this.y2**2-this.y1**2)), 0.5*((this.x1**2-this.x3**2)-(this.y3**2-this.y1**2))];
-        if(math.det([[a, b], [c, d]]) < 1e-6){    //colinear
+        if(Math.abs(math.det([[a, b], [c, d]])) < 1e-6){    //colinear
             svgElem.setAttribute("cx", 0);
             svgElem.setAttribute("cy", 0);
             svgElem.setAttribute("rx", 0);

@@ -19,23 +19,24 @@ for(const item of ["input", "change"]){
     });
 };
 
-BLOCK_FRAME.addEventListener("click",(event) => {  //event delegation
-    const target = event.target;
-    if(target.classList.contains("visibility")){  //change visibility
-        changeVisibility(target.parentElement.dataset.sid);
+BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
+    if(event.target.classList.contains("visibility")){  //change visibility
+        changeVisibility(event.target.parentElement.dataset.sid);
     }
-    else if(target.classList.contains("edit")){  //toggle editpanel
-        toggleEditPanel(target.parentElement.dataset.sid);
+    else if(event.target.classList.contains("edit")){   //toggle editpanel
+        toggleEditPanel(event.target.parentElement.dataset.sid);
     }
-    else if(target.classList.contains("delete")){  //delete block
-        deleteObject(target.parentElement.dataset.sid);
+    else if(event.target.classList.contains("delete")){ //delete block
+        deleteObject(event.target.parentElement.dataset.sid);
     }
 });
 
-for(const item of ["input", "change"]){     //Assumption: Input and change events inside BLOCK_FRAME must come from the editpanels
-    BLOCK_FRAME.addEventListener(item, (event) => {  
-        const sid = event.target.parentNode.parentNode.parentNode.dataset.sid;
-        handleUserEdit(event.target, sid, event.type); 
+for(const item of ["input", "change"]){
+    BLOCK_FRAME.addEventListener(item, (event) => { 
+        if(event.target.closest(".objblock-editpanel") != null){    //verify that the input/change came from inside an editpanel
+            const sid = event.target.parentNode.parentNode.parentNode.dataset.sid;
+            handleUserEdit(event.target, sid, event.type);
+        }
     });
 };
 
