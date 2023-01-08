@@ -32,54 +32,10 @@ BLOCK_FRAME.addEventListener("click",(event) => {  //event delegation
     }
 });
 
-/*
-Wish Lin Dec 2022
-
-This bulky event listener is my naive attempt to strike a balance between real-time updating and generating errors due to transition values during editing.
-Basic assumption: Inputs and changes inside BLOCK_FRAME must come from the editpanels.
-
-Problem: Some properties in the editpanel can be updated real-time during editing, while others simply cannot. For (extrerme) example:
-dashOffset can take in any value without error, so it can be updated real-time(aka oninput).
-Plotted math functions can only be updated onchange(I "hope" it's finished by then, further error handling is needed of course). Anything during editing is not a valid math expression.
-
-Due to performance considerations, there are also a few exceptions that I handle separately. See comments below for detailed information.
-
-My solution is to register all of the cases, divide them into different categories and act accordingly. See below for example.
-*/
 for(const item of ["input", "change"]){ //comment example: I changed a LinePP object's "x1" attribute through typing (not using arrows)
     BLOCK_FRAME.addEventListener(item, (event) => {  
-        const target = event.target;
-        const svgElem = SVG_CANVAS.querySelector(`[data-sid='${event.target.parentNode.parentNode.parentNode.dataset.sid}']`);
-        const obj = OBJECT_LIST.find(item => item.sid == event.target.parentNode.parentNode.parentNode.dataset.sid); //the object
-        const type = event.target.parentNode.parentNode.dataset.objtype; //"linepp"
-        const prop = target.dataset.property; //x1
-        if(event.type == "input"){ 
-            if(prop == "name"){ //names need to sync with label in the parent block, so they are handled separately
-                event.target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value;
-                //Only update object on "change" event (or onBlur) to imporve performance
-            }
-            else if(prop == "strokeColor"){ //color input could possibly change dozens of times per second, thus bypassing updateSVG() greatly improves performance
-                svgElem.setAttribute("stroke",target.value);
-                //Only update object on "change" event (or onBlur) to imporve performance
-            }
-            else if(prop == "fillColor"){
-                svgElem.setAttribute("fill",target.value);
-            }
-            else if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity"].includes(prop) ||  OBJ_SPECIFIC_INPUTLIST.includes(`${type} ${prop}`)){  //"linepp x1"
-                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-                obj.updateSVG();
-            }
-        }
-        else if(event.type == "change"){
-            if(["name", "lineCap", "lineJoin", "dashArray", "strokeColor", "fillColor"].includes(prop) || OBJ_SPECIFIC_CHANGELIST.includes(`${type} ${prop}`)){
-                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-                obj.updateSVG();
-            }
-            else if(["hasBorder", "hasFill"].includes(prop)){ //checkboxes are naughty
-                obj[prop] = target.checked;
-                obj.updateSVG();
-            }
-        }
+        const sid = event.target.parentNode.parentNode.parentNode.dataset.sid;
+        handleUserEdit(event.target, sid, event.type);
     });
 };
 

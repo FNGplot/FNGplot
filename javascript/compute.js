@@ -39,3 +39,7 @@ function toPixelLenX(length){ // Translate calculation result to actual pixel le
 function toPixelLenY(length){ // Translate calculation result to actual pixel lengths. Y direction only.
     return length * YHAT;
 }
+
+function dist2D(x1,y1,x2,y2){
+	return Math.sqrt((x2-x1)**2+(y2-y1)**2);
+}

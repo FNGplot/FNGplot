@@ -26,7 +26,7 @@ const SVGNS = "http://www.w3.org/2000/svg";
 
 // https://stackoverflow.com/questions/1366127/how-do-i-make-javascript-object-using-a-variable-string-to-define-the-class-name/68016983#68016983
 const CLASS_INITDATA_MAP = new Map([
-    //["key", [Object Class, Category, SVG Element] ],
+    //["Object Name", [Class, Category, SVG Element]],
     ["linepp", [LinePP, "geometry", "line"]],
     ["rect", [Rect, "geometry", "rect"]],
     ["circle", [Circle, "geometry", "ellipse"]],
@@ -36,7 +36,8 @@ const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2'
 const OBJ_SPECIFIC_INPUTLIST = [    //Used by real-time-update eventlistener
     "linepp x1", "linepp y1", "linepp x2", "linepp y2",
     "rect originX" ,"rect originY", "rect roundCornerX", "rect roundCornerY", "rect width", "rect height",
-    "circle centerX", "circle centerY", "circle radius"
+    "circle centerX", "circle centerY", "circle radius",
+    "circle3p x1", "circle3p y1", "circle3p x2", "circle3p y2", "circle3p x3", "circle3p y3",
 ];
 const OBJ_SPECIFIC_CHANGELIST = [    //Used by real-time-update eventlistener
     "rect originHoriz", "rect originVert"
@@ -82,8 +83,8 @@ const EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>LineCap: 
         <select data-property="lineCap" class="size-medium">
-            <option value="round" selected>Round</option>
-            <option value="butt">Butt</option>
+            <option value="butt" selected>Butt</option>
+            <option value="round">Round</option>
             <option value="square">Square</option>
         </select>
     </div>
@@ -115,7 +116,6 @@ const EDITPANEL_TEMPLATES = {
     <div>Width: <input type="number" min="0" data-property="width" class="size-short"></div>
     <div>Height: <input type="number" min="0" data-property="height" class="size-short"></div>
     <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
     <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
@@ -132,8 +132,8 @@ const EDITPANEL_TEMPLATES = {
     </div>
     <div>BorderLineCap(dash):
         <select data-property="lineCap" class="size-medium">
-            <option value="round" selected>Round</option>
-            <option value="butt">Butt</option>
+            <option value="butt" selected>Butt</option>
+            <option value="round">Round</option>
             <option value="square">Square</option>
         </select>
     </div>
@@ -152,7 +152,6 @@ const EDITPANEL_TEMPLATES = {
     <div>Center: ( <input type="number" step="0.5" data-property="centerX" class="size-short"> , <input type="number" step="0.5" data-property="centerY" class="size-short"> )</div>
     <div>Radius: <input type="number" min="0" data-property="radius" class="size-short"></div>
     <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
     <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
@@ -161,10 +160,10 @@ const EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>BorderLineCap(dash):
         <select data-property="lineCap" class="size-medium">
-            <option value="round" selected>Round</option>
-            <option value="butt">Butt</option>
+        <option value="butt" selected>Butt</option>
+            <option value="round">Round</option>
             <option value="square">Square</option>
-        </select>
+        </select>  
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
     <div>DashArray: <input type="text" data-property="dashArray" class="size-medium"> </div>
@@ -182,7 +181,6 @@ const EDITPANEL_TEMPLATES = {
     <div>Point 2: ( <input type="number" step="0.5" data-property="x2" class="size-short"> , <input type="number" step="0.5" data-property="y2" class="size-short"> )</div>
     <div>Point 3: ( <input type="number" step="0.5" data-property="x3" class="size-short"> , <input type="number" step="0.5" data-property="y3" class="size-short"> )</div>
     <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>Show Border: <input type="checkbox" data-property="hasBorder"> Show Fill: <input type="checkbox" data-property="hasFill"></div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
     <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
@@ -191,8 +189,8 @@ const EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>BorderLineCap(dash):
         <select data-property="lineCap" class="size-medium">
-            <option value="round" selected>Round</option>
-            <option value="butt">Butt</option>
+            <option value="butt" selected>Butt</option>
+            <option value="round">Round</option>
             <option value="square">Square</option>
         </select>
     </div>
