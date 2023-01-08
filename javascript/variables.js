@@ -190,7 +190,7 @@ const EDITPANEL_TEMPLATES = {
     <div>Name: <input type="text" data-property="name" class="size-long"></div>
     <div class="label-monospace">-----------Math-----------------</div>
     <div>Center: ( <input type="number" step="0.5" data-property="cx" class="size-short"> , <input type="number" step="0.5" data-property="cy" class="size-short"> )</div>
-    <div>Radius: <input type="number" min="0" data-property="radius" class="size-short"></div>
+    <div>Radius: <input type="number" min="0" step="0.1" data-property="radius" class="size-short"></div>
     <div class="label-monospace">-----------Style: Basic---------</div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>

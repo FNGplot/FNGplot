@@ -145,11 +145,11 @@ function handleUserEdit(target, sid, event){
 
         /* Normal Flow*/
         else{
-            isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
+            math.isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
 
             // Common properties of many FNGobjects
             if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity", "lineCap", "lineJoin"].includes(prop)){
-                isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
+                math.isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
                 EDITACTION_MAP.get(prop)(obj, svgElem);
             }
             // Object-specific properties
@@ -165,11 +165,11 @@ function handleUserEdit(target, sid, event){
     }
 
     else if(event == "change"){
-        isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
+        math.isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
 
         // Common properties of many FNGobjects
         if(["dashArray"].includes(prop)){
-            isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
+            math.isNumeric(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
             EDITACTION_MAP.get(prop)(obj, svgElem);
         }
         // Object-specific properties

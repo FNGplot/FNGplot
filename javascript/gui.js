@@ -47,7 +47,7 @@ ${window.innerHeight}px / ${document.documentElement.clientHeight}px
 Device:
 --------------------------
 ScreenWidth / ScreenHeight:
-${window.screen.width}px / ${window.screen.height}px (${window.screen.width/gcd(window.screen.width, window.screen.height)}:${window.screen.height/gcd(window.screen.width, window.screen.height)})
+${window.screen.width}px / ${window.screen.height}px
 
 
 `

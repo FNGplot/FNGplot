@@ -76,9 +76,9 @@ class Circle3P extends StrokeFillParent {
         this.y3 = 5;
     }
     updateMath(svgElem){
-        //Calculate center of circumscribed circle from three points
+        //Calculate circumcenter from three points
         const [a, b, c, d, e, f] = [this.x1-this.x2, this.y1-this.y2, this.x1-this.x3, this.y1-this.y3, 0.5*((this.x1**2-this.x2**2)-(this.y2**2-this.y1**2)), 0.5*((this.x1**2-this.x3**2)-(this.y3**2-this.y1**2))];
-        if(a*d-b*c < 1e-6){     //det = 0, colinear
+        if(math.det([[a, b], [c, d]]) < 1e-6){    //colinear
             svgElem.setAttribute("cx", 0);
             svgElem.setAttribute("cy", 0);
             svgElem.setAttribute("rx", 0);
@@ -88,8 +88,8 @@ class Circle3P extends StrokeFillParent {
             const [cx,cy] = [-(d*e-b*f)/(b*c-a*d), -(a*f-c*e)/(b*c-a*d)];
             svgElem.setAttribute("cx", toPixelPosX(cx));
             svgElem.setAttribute("cy", toPixelPosY(cy));
-            svgElem.setAttribute("rx", toPixelLenX(dist2D(cx, cy, this.x1, this.y1)));
-            svgElem.setAttribute("ry", toPixelLenY(dist2D(cx, cy, this.x1, this.y1)));
+            svgElem.setAttribute("rx", toPixelLenX(math.distance([cx,cy], [this.x1, this.y1])));
+            svgElem.setAttribute("ry", toPixelLenY(math.distance([cx,cy], [this.x1, this.y1])));
         }
     }
 }
