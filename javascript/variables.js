@@ -3,7 +3,7 @@
 
 "use strict";
 
-/* [!] Enums */
+/* [!] "Enums" */
 
 const FNGplot = Object.freeze({ // Metadata
     AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
@@ -19,6 +19,8 @@ const RectOrigin = Object.freeze({  //Used by "Rect" object
     BOTTOM: 1,
     RIGHT: 1,
 });
+
+
 
 /* [!] DOM objects */
 

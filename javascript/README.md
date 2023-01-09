@@ -12,7 +12,7 @@ FNGplot mainly follows [Douglas Crockford's code convention for JS](https://www.
 - localVariable
 - ObjectName
 - ClassName
-- ENUM_NAME
+- EnumName
     - ENUM_VALUE
 
 HTML elements use dashes as word seperators:
