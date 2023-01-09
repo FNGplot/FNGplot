@@ -44,9 +44,9 @@ class Rect extends StrokeFillParent {
     constructor(sid){
         super(sid);
         this.name = "Rectangle";
-        //Origin specified is used as the rectangle's "bottom left" corner
-        this.originHoriz = "left";  
-        this.originVert = "bottom";
+        //Origin specified is used as the rectangle's "bottom left" corner. Value at enum "RectOrigin".
+        this.originHoriz = "LEFT";
+        this.originVert = "BOTTOM";
         this.originX = -1;
         this.originY = -2;
         this.width = 7;

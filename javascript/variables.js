@@ -3,26 +3,35 @@
 
 "use strict";
 
-/* [!] Frequently referenced DOM objects & strings: */
+/* [!] Enums */
 
-// Meta
-const FNGplot = Object.freeze({
-    author: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
-    license: "Apache-2.0",
-    version: "1.0.0-beta",
-    releaseDate: "2023-MM-DD",
+const FNGplot = Object.freeze({ // Metadata
+    AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
+    LICENSE: "Apache-2.0",
+    VERSION: "1.0.0-beta",
+    RELEASE_DATE: "2023-MM-DD",
 });
 
-// DOM objects
+const RectOrigin = Object.freeze({  //Used by "Rect" object
+    TOP: 0,
+    LEFT: 0,
+    MIDDLE: 0.5,
+    BOTTOM: 1,
+    RIGHT: 1,
+});
+
+/* [!] DOM objects */
+
 const BLOCK_FRAME = document.querySelector('#block-frame');
 const SVG_FRAME = document.querySelector('#svg-frame');
 const SVG_CANVAS = document.querySelector('#svg-canvas');
 const BASIC_BLOCK_TEMPLATE = document.querySelector('#basic-block-template').content.firstElementChild;
 
-// Strings
+/* [!] Strings */
+
 const SVGNS = "http://www.w3.org/2000/svg";
 
-/* [!] System data -- static*/
+/* [!] System data (static) */
 
 // https://stackoverflow.com/questions/1366127/how-do-i-make-javascript-object-using-a-variable-string-to-define-the-class-name/68016983#68016983
 const CLASS_INITDATA_MAP = new Map([    // Data and reference used to initialize object
@@ -55,15 +64,15 @@ const EDITACTION_MAP = new Map([
     ["linepp x2", (obj, svgElem) => { svgElem.setAttribute("x2", toPixelPosX(obj.x2)) }],
     ["linepp y1", (obj, svgElem) => { svgElem.setAttribute("y1", toPixelPosY(obj.y1)) }],
     ["linepp y2", (obj, svgElem) => { svgElem.setAttribute("y2", toPixelPosY(obj.y2)) }],
-    ["rect originX", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - RECT_ORIGMAP.get(obj.originHoriz) * obj.width)) }],
-    ["rect originY", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + RECT_ORIGMAP.get(obj.originVert) * obj.height)) }],
+    ["rect originX", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - RectOrigin[obj.originHoriz] * obj.width)) }],
+    ["rect originY", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + RectOrigin[obj.originVert] * obj.height)) }],
     ["rect roundCorner", (obj, svgElem) => { svgElem.setAttribute("rx", obj.roundCorner) }],
     ["rect width", (obj, svgElem) => { svgElem.setAttribute("width", toPixelLenX(obj.width)) }],
     ["rect height", (obj, svgElem) => { svgElem.setAttribute("height", toPixelLenY(obj.height)) }],
     ["circle cx", (obj, svgElem) => { svgElem.setAttribute("cx", toPixelPosX(obj.cx)) }],
     ["circle cy", (obj, svgElem) => { svgElem.setAttribute("cy", toPixelPosY(obj.cy)) }],
     ["circle radius", (obj, svgElem) => {
-        // SVG <ellipse>
+        // SVG <ellipse> element
         svgElem.setAttribute("rx", toPixelLenX(obj.radius));
         svgElem.setAttribute("ry", toPixelLenY(obj.radius));
     }],
@@ -79,18 +88,13 @@ const EDITACTION_MAP = new Map([
     ["dashArray", (obj, svgElem) => { svgElem.setAttribute("stroke-dasharray", obj.dashArray) }],
 
     //Change -- Object-specific
-    ["rect originHoriz", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - RECT_ORIGMAP.get(obj.originHoriz) * obj.width)) }],
-    ["rect originVert", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + RECT_ORIGMAP.get(obj.originVert) * obj.height)) }],
+    ["rect originHoriz", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - RectOrigin[obj.originHoriz] * obj.width)) }],
+    ["rect originVert", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + RectOrigin[obj.originVert] * obj.height)) }],
 ]);
-const RECT_ORIGMAP = new Map([       //A small map used by "Rect" object
-    ["top", 0],
-    ["left", 0],
-    ["middle", 0.5],
-    ["bottom", 1],
-    ["right", 1],
-]);
+
 const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; // Based on MIT Scratch 2.0/3.0
-/* [!] System data -- dynamic */
+
+/* [!] System data (dynamic) */
 
 // Object database
 let OBJECT_LIST = [];   //Unordered object reference array
@@ -143,14 +147,14 @@ const EDITPANEL_TEMPLATES = {
     <div>Origin: ( <input type="number" step="0.5" data-property="originX" class="size-short"> , <input type="number" step="0.5" data-property="originY" class="size-short"> )</div>
     <div>OriginMode: 
         <select data-property="originVert" class="size-medium">
-            <option value="top">Top</option>
-            <option value="middle">Middle</option>
-            <option value="bottom" selected>Bottom</option>
+            <option value="TOP">Top</option>
+            <option value="MIDDLE">Middle</option>
+            <option value="BOTTOM" selected>Bottom</option>
         </select>
         <select data-property="originHoriz" class="size-medium">
-            <option value="left" selected>Left</option>
-            <option value="middle">Middle</option>
-            <option value="right">Right</option>
+            <option value="LEFT" selected>Left</option>
+            <option value="MIDDLE">Middle</option>
+            <option value="RIGHT">Right</option>
         </select>
     </div>
     <div>Width: <input type="number" min="0" data-property="width" class="size-short"></div>
