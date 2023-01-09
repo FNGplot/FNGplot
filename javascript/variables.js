@@ -6,12 +6,12 @@
 /* [!] Frequently referenced DOM objects & strings: */
 
 // Meta
-const FNGplot = {
+const FNGplot = Object.freeze({
     author: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
     license: "Apache-2.0",
     version: "1.0.0-beta",
     releaseDate: "2023-MM-DD",
-}
+});
 
 // DOM objects
 const BLOCK_FRAME = document.querySelector('#block-frame');
@@ -129,7 +129,7 @@ const EDITPANEL_TEMPLATES = {
         </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="not set" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
@@ -178,7 +178,7 @@ const EDITPANEL_TEMPLATES = {
         </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="not set" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
@@ -203,10 +203,10 @@ const EDITPANEL_TEMPLATES = {
         <option value="butt" selected>Butt</option>
             <option value="round">Round</option>
             <option value="square">Square</option>
-        </select>  
+        </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="not set" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
@@ -235,7 +235,7 @@ const EDITPANEL_TEMPLATES = {
         </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="not set" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
