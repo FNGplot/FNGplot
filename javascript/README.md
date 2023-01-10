@@ -1,24 +1,37 @@
 ## Javascript
 
-Used Library:
-|Name|License|
-|-|-|
-| [Sortable.js](https://github.com/SortableJS/Sortable) | MIT |
-| [Math.js](https://github.com/josdejong/mathjs) | Apache-2.0 |
+Library:
+|Name|Description|License|
+|-|-|-|
+| [Sortable.js](https://github.com/SortableJS/Sortable) | Draggable `<div>` support | MIT |
+| [Math.js](https://github.com/josdejong/mathjs) | FNGplot's primary math library & function parser | Apache-2.0 |
 
-FNGplot follows [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html) and [Google Javascript Style Guide](https://google.github.io/styleguide/jsguide.html)
+FNGplot (excluding the libraries):
+|Name|Description|License|
+|-|-|-|
+| block.js | Draggable block related functions | Apache-2.0 |
+| class.js | Classes | Apache-2.0 |
+| fngns.js | Namespace of global variables| Apache-2.0 |
+| gui.js | GUI handlers | Apache-2.0 |
+| init.js | Initialization sequence | Apache-2.0 |
+| plot.js | FNGplot-specific math functions | Apache-2.0 |
+| editpanel.json | Editpanel data | Apache-2.0 |
 
-- functionName
-- GLOBAL_VARIABLE
-- localVariable
-- ObjectName
-- ClassName
-- EnumName
-    - ENUM_VALUE
 
-HTML elements use dashes as word seperators:
-- html-element-id
-- html-class-name
-- data-myvar="value"    //HTML5 dataset
+FNGplot's code (excluding the libraries) follow [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html).
+
+[JS variable naming conevntion by Google](https://google.github.io/styleguide/javascriptguide.xml?showone=Naming#Naming):
+
+```js
+functionName
+variableName
+ClassName
+    ObjectName
+    methodName
+EnumName
+    CONSTANT_VALUE
+foo.namespaceNameLikeThis.bar
+filenamelikethis.js
+```
 
 Sections in JS files can be navigated by searching for the following bookmark: **[!]**

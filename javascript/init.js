@@ -58,7 +58,7 @@ window.addEventListener("error", function(){
 
 /* [!] Primary initialization sequence */
 
-console.log(`Welcome to FNGplot ${FNGplot.version}`);
+console.log(`Welcome to FNGplot ${MetaData.VERSION}`);
 updateEnvirList();
 
 //Initialize toolbar's positions, colors and click handlers
