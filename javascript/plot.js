@@ -4,14 +4,14 @@
 "use strict";
 
 function toPixelPosX(xCord){  // Translate calculation result to actual pixel positions. X coordinate only.
-    return ORIGIN_X + XHAT*xCord;
+    return fngNS.Coord.originX + fngNS.Coord.xHat*xCord;
 }
 function toPixelPosY(yCord){  // Translate calculation result to actual pixel positions. Y coordinate only.
-    return ORIGIN_Y - YHAT*yCord;
+    return fngNS.Coord.originY - fngNS.Coord.yHat*yCord;
 }
 function toPixelLenX(length){ // Translate calculation result to actual pixel lengths. X direction only.
-    return length * XHAT;
+    return length * fngNS.Coord.xHat;
 }
 function toPixelLenY(length){ // Translate calculation result to actual pixel lengths. Y direction only.
-    return length * YHAT;
+    return length * fngNS.Coord.yHat;
 }

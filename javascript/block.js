@@ -30,11 +30,11 @@ function makeSID(){ // Generate a 10-character-long "random" alphanumeric system
 function createFNGObject(objName, data){
     if(data == null){                             //create a new FNGobject
         const sid = makeSID();
-        const data = CLASS_INITDATA_MAP.get(objName);   //["objName", [Class, Category, SVG Element]]
+        const data = fngNS.Maps.CLASS_INITDATA_MAP.get(objName);   //["objName", [Class, Category, SVG Element]]
 
         // Step 1 of 3: FNGobject
         const newObj = new data[0](sid);                 //call class constructor        
-        OBJECT_LIST.push(newObj);                        //push new object into list
+        fngNS.SysData.objectList.push(newObj);                        //push new object into list
             
         // Step 2 of 3: draggable block
         let newBlock = fngNS.DOM.BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
@@ -52,8 +52,8 @@ function createFNGObject(objName, data){
         // Step 4: Initialize and render the FNGobject for the first time
         let action = "";
         for(const property in newObj){               //render all properties one by one, uneditable ones like "sid" are ignored automatically
-            action = EDITACTION_MAP.get(property);   //first try, this would return a result if this property is a common one
-            action != undefined ? action(newObj, newSVGElem) : action = EDITACTION_MAP.get(`${objName} ${property}`);   //second try, this would return a result if this property is an object-specific one
+            action = fngNS.Maps.EDITACTION_MAP.get(property);   //first try, this would return a result if this property is a common one
+            action != undefined ? action(newObj, newSVGElem) : action = fngNS.Maps.EDITACTION_MAP.get(`${objName} ${property}`);   //second try, this would return a result if this property is an object-specific one
             if(action != undefined){
                 action(newObj, newSVGElem);
             }
@@ -67,18 +67,18 @@ function moveObject(sid,nextSid) {
     fngNS.DOM.SVG_CANVAS.insertBefore(svgElem,refElem);
 }
 function deleteObject(sid) {
-    const obj = OBJECT_LIST.find(item => item.sid == sid);
+    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
     const n = confirm(`Do you want to PERMANENTLY delete "${obj.name}" ?`);
     if(n){
         const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
         const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
-        OBJECT_LIST.splice(OBJECT_LIST.indexOf(obj), 1);
+        fngNS.SysData.objectList.splice(fngNS.SysData.objectList.indexOf(obj), 1);
         block.parentNode.removeChild(block);
         svgElem.parentNode.removeChild(svgElem);
     }
 }
 function changeVisibility(sid) {
-    const obj = OBJECT_LIST.find(item => item.sid == sid);  //find the object with this sid
+    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);  //find the object with this sid
     const eyeBtn = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.visibility');
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
     if(obj.display == true){
@@ -96,7 +96,7 @@ function toggleEditPanel(sid) {
     const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
     const panel = block.querySelector(".objblock-editpanel")
     if(panel == null){ //It doesn't have an editpanel, give it one
-        const objType = OBJECT_LIST.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
+        const objType = fngNS.SysData.objectList.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
         block.insertAdjacentHTML("beforeend", EDITPANEL_TEMPLATES[objType]); //use objType to find the panel HTML, then inject into block
         initEditPanel(block.querySelector(".objblock-editpanel"),sid);
     }
@@ -109,7 +109,7 @@ function toggleEditPanel(sid) {
     }
 }
 function initEditPanel(panelElem, sid){
-    const obj = OBJECT_LIST.find(item => item.sid == sid);
+    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
     const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
     for(let inputElem of inputList){
         if(inputElem.type == "checkbox"){
@@ -123,7 +123,7 @@ function initEditPanel(panelElem, sid){
 }
 function handleUserEdit(target, sid, event){ 
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
-    const obj = OBJECT_LIST.find(item => item.sid == sid);
+    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
     const prop = target.dataset.property;
 
     // Note: Internal data update always occurs on "change" event, regardless of property
@@ -149,12 +149,12 @@ function handleUserEdit(target, sid, event){
             // Common properties of many FNGobjects
             if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity", "lineCap", "lineJoin"].includes(prop)){
                 math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-                EDITACTION_MAP.get(prop)(obj, svgElem);
+                fngNS.Maps.EDITACTION_MAP.get(prop)(obj, svgElem);
             }
             // Object-specific properties
             else{
                 const objName = target.parentNode.parentNode.dataset.objname;
-                const action = EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
+                const action = fngNS.Maps.EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
                 if(action != undefined){   // action found
                     action(obj, svgElem);  // then do it
                 }
@@ -169,12 +169,12 @@ function handleUserEdit(target, sid, event){
         // Common properties of many FNGobjects
         if(["dashArray"].includes(prop)){
             math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-            EDITACTION_MAP.get(prop)(obj, svgElem);
+            fngNS.Maps.EDITACTION_MAP.get(prop)(obj, svgElem);
         }
         // Object-specific properties
         else{
             const objName = target.parentNode.parentNode.dataset.objname;
-            const action = EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
+            const action = fngNS.Maps.EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
             if(action != undefined){   // action found
                 action(obj, svgElem);  // then do it
             }

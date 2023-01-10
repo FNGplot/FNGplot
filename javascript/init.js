@@ -78,8 +78,8 @@ updateEnvirList();
 }
 
 //Init sortable container
-SORTABLE_LIST.push(
-    new Sortable(document.querySelector("#block-frame"), {
+fngNS.SysData.sortableList.push(
+    new Sortable(fngNS.DOM.BLOCK_FRAME, {
         group: 'block-frame',
         animation: 150,
         fallbackOnBody: true,

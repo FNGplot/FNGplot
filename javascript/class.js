@@ -55,7 +55,7 @@ class Rect extends StrokeFillParent {
         this.lineJoin = "miter";
     }
 }
-class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case user sets XHAT != YHAT
+class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case user sets fngNS.Coord.xHat != fngNS.Coord.yHat
     constructor(sid) {
         super(sid);
         this.name = "Circle";
