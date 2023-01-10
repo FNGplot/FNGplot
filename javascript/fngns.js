@@ -3,22 +3,76 @@
 
 "use strict";
 
-/* [!] "Enums" */
+let fngNS = Object.seal({
+    
+    /* [!] "Enums" */
 
-const MetaData = Object.freeze({ // System info
-    AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
-    LICENSE: "Apache-2.0",
-    VERSION: "1.0.0-beta",
-    RELEASE_DATE: "2023-MM-DD",
+    MetaData: Object.freeze({
+        AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
+        LICENSE: "Apache-2.0",
+        VERSION: "1.0.0-beta",
+        RELEASE_DATE: "2023-MM-DD",
+        RELEASE_NOTE: "null",
+    }),
+
+    RectOrigin: Object.freeze({  //Used by "Rect" object
+        TOP: 0,
+        LEFT: 0,
+        MIDDLE: 0.5,
+        BOTTOM: 1,
+        RIGHT: 1,
+    }),
+
+    MagicNumber: Object.freeze({
+        EDITPANEL_TBMARGIN: 65,     // Top and bottom margin of editpanels. Used to calculate the expansion parent block require
+    }),
+
 });
 
-const RectOrigin = Object.freeze({  //Used by "Rect" object
-    TOP: 0,
-    LEFT: 0,
-    MIDDLE: 0.5,
-    BOTTOM: 1,
-    RIGHT: 1,
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* [!] DOM objects */
 

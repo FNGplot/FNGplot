@@ -119,8 +119,7 @@ function initEditPanel(panelElem, sid){
             inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
         }
     };
-    BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + 65}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
-    //The magic number "65" is the size of margin-top(55) + margin-bottom(10)
+    BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + MagicNumber.EDITPANEL_TBMARGIN}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
 }
 function handleUserEdit(target, sid, event){ 
     const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)

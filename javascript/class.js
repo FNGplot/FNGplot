@@ -76,8 +76,8 @@ class Circle3P extends StrokeFillParent {
         this.y3 = 5;
     }
     updateMath(svgElem){
-        //Calculate circumcenter from three points
-        //Formula: https://blog.csdn.net/liyuanbhu/article/details/52891868
+        // Calculate circumcenter from three points
+        // Formula: https://blog.csdn.net/liyuanbhu/article/details/52891868
         const [a, b, c, d, e, f] = 
             [   
                 this.x1 - this.x2,
@@ -97,7 +97,7 @@ class Circle3P extends StrokeFillParent {
             const [cx,cy] = 
                 [
                     -(d * e - b * f) / (b * c - a * d),
-                    -( a * f - c * e) / (b * c - a * d)
+                    -( a * f - c * e) / (b * c - a * d),
                 ];
             svgElem.setAttribute("cx", toPixelPosX(cx));
             svgElem.setAttribute("cy", toPixelPosY(cy));

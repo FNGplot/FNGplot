@@ -10,12 +10,12 @@ FNGplot (excluding the libraries):
 |Name|Description|License|
 |-|-|-|
 | block.js | Draggable block related functions | Apache-2.0 |
-| class.js | Classes | Apache-2.0 |
+| class.js | Class declaration | Apache-2.0 |
 | fngns.js | Namespace of global variables| Apache-2.0 |
 | gui.js | GUI handlers | Apache-2.0 |
-| init.js | Initialization sequence | Apache-2.0 |
-| plot.js | FNGplot-specific math functions | Apache-2.0 |
-| editpanel.json | Editpanel data | Apache-2.0 |
+| init.js | Page init sequence | Apache-2.0 |
+| plot.js | FNGplot-specific math & plotting functions | Apache-2.0 |
+| editpanel.json | Editpanel plain text database | Apache-2.0 |
 
 
 FNGplot's code (excluding the libraries) follow [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html).
@@ -34,4 +34,4 @@ foo.namespaceNameLikeThis.bar
 filenamelikethis.js
 ```
 
-Sections in JS files can be navigated by searching for the following bookmark: **[!]**
+Sections in JS files can be navigated by searching for the following bookmark: `[!]`
