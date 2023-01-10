@@ -5,7 +5,7 @@
 
 /* [!] "Enums" */
 
-const FNGplot = Object.freeze({ // Metadata
+const MetaData = Object.freeze({ // System info
     AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
     LICENSE: "Apache-2.0",
     VERSION: "1.0.0-beta",
@@ -19,8 +19,6 @@ const RectOrigin = Object.freeze({  //Used by "Rect" object
     BOTTOM: 1,
     RIGHT: 1,
 });
-
-
 
 /* [!] DOM objects */
 
