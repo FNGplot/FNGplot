@@ -19,7 +19,7 @@ for(const item of ["input", "change"]){
     });
 };
 
-BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
+fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
     if(event.target.classList.contains("visibility")){  //change visibility
         changeVisibility(event.target.parentElement.dataset.sid);
     }
@@ -32,7 +32,7 @@ BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
 });
 
 for(const item of ["input", "change"]){
-    BLOCK_FRAME.addEventListener(item, (event) => { 
+    fngNS.DOM.BLOCK_FRAME.addEventListener(item, (event) => { 
         if(event.target.closest(".objblock-editpanel") != null){    //verify that the input/change came from inside an editpanel
             const sid = event.target.parentNode.parentNode.parentNode.dataset.sid;
             handleUserEdit(event.target, sid, event.type);
@@ -58,7 +58,7 @@ window.addEventListener("error", function(){
 
 /* [!] Primary initialization sequence */
 
-console.log(`Welcome to FNGplot ${MetaData.VERSION}`);
+console.log(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
 updateEnvirList();
 
 //Initialize toolbar's positions, colors and click handlers
@@ -66,7 +66,7 @@ updateEnvirList();
     const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
     const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
     for(let [i, btn] of btnList.entries()){
-        btn.style.borderColor = TOOLBAR_CLR[i];                                    //initialize them to their respective colors
+        btn.style.borderColor = fngNS.SysData.TOOLBAR_CLR[i];                                    //initialize them to their respective colors
         btn.addEventListener("click", () => {                                      //attach eventlisteners
             switchToolbar(i);
         });

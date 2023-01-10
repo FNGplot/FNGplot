@@ -37,17 +37,17 @@ function createFNGObject(objName, data){
         OBJECT_LIST.push(newObj);                        //push new object into list
             
         // Step 2 of 3: draggable block
-        let newBlock = BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
+        let newBlock = fngNS.DOM.BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
         newBlock.classList.add(data[1]);                                                  //add object class
         newBlock.querySelector('img').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
         newBlock.querySelector('.nametag').value = newObj.name;           //display default name
         newBlock.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
-        BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
+        fngNS.DOM.BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
 
         // Step 3 of 3: SVG element(s)
-        let newSVGElem = document.createElementNS(SVGNS, data[2]);
+        let newSVGElem = document.createElementNS(fngNS.Str.SVGNS, data[2]);
         newSVGElem.dataset.sid = sid;
-        SVG_CANVAS.appendChild(newSVGElem);    //add the new SVG element to canvas
+        fngNS.DOM.SVG_CANVAS.appendChild(newSVGElem);    //add the new SVG element to canvas
 
         // Step 4: Initialize and render the FNGobject for the first time
         let action = "";
@@ -62,16 +62,16 @@ function createFNGObject(objName, data){
     }
 }
 function moveObject(sid,nextSid) {
-    const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
-    const refElem = SVG_CANVAS.querySelector(`[data-sid='${nextSid}']`);
-    SVG_CANVAS.insertBefore(svgElem,refElem);
+    const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+    const refElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${nextSid}']`);
+    fngNS.DOM.SVG_CANVAS.insertBefore(svgElem,refElem);
 }
 function deleteObject(sid) {
     const obj = OBJECT_LIST.find(item => item.sid == sid);
     const n = confirm(`Do you want to PERMANENTLY delete "${obj.name}" ?`);
     if(n){
-        const block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
-        const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+        const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
+        const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
         OBJECT_LIST.splice(OBJECT_LIST.indexOf(obj), 1);
         block.parentNode.removeChild(block);
         svgElem.parentNode.removeChild(svgElem);
@@ -79,8 +79,8 @@ function deleteObject(sid) {
 }
 function changeVisibility(sid) {
     const obj = OBJECT_LIST.find(item => item.sid == sid);  //find the object with this sid
-    const eyeBtn = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.visibility');
-    const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+    const eyeBtn = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.visibility');
+    const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
     if(obj.display == true){
         obj.display = false;
         eyeBtn.innerHTML = "visibility_off";                //change the icon to visibility off;
@@ -93,7 +93,7 @@ function changeVisibility(sid) {
     }
 }
 function toggleEditPanel(sid) {
-    const block = BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
+    const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
     const panel = block.querySelector(".objblock-editpanel")
     if(panel == null){ //It doesn't have an editpanel, give it one
         const objType = OBJECT_LIST.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
@@ -101,10 +101,10 @@ function toggleEditPanel(sid) {
         initEditPanel(block.querySelector(".objblock-editpanel"),sid);
     }
     else{ //It has an editpanel, remove it
-        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing animation
-        BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).addEventListener("webkitTransitionEnd", function tmp(){ // wait until transition end to remove the editpanel
+        fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing animation
+        fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).addEventListener("webkitTransitionEnd", function tmp(){ // wait until transition end to remove the editpanel
             panel.parentNode.removeChild(panel);
-            BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).removeEventListener("webkitTransitionEnd", tmp); // tell the listener to remove itself
+            fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).removeEventListener("webkitTransitionEnd", tmp); // tell the listener to remove itself
         });
     }
 }
@@ -119,10 +119,10 @@ function initEditPanel(panelElem, sid){
             inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
         }
     };
-    BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + MagicNumber.EDITPANEL_TBMARGIN}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
+    fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + fngNS.MagicNumber.EDITPANEL_TBMARGIN}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
 }
 function handleUserEdit(target, sid, event){ 
-    const svgElem = SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
+    const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
     const obj = OBJECT_LIST.find(item => item.sid == sid);
     const prop = target.dataset.property;
 

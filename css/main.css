@@ -406,7 +406,7 @@ body{
     height: 470px;
     border: 2px dashed black;
     background: #ffffff;
-    overflow: auto;
+    overflow-y: scroll;
     margin: 0px;
     padding: 10px; /*adds a little space between the frame and the blocks inside*/
 }

@@ -5,7 +5,7 @@
 
 "use strict";
 
-// || Left panel
+// [!] Left panel
 
 //Left panel display switch
 
@@ -54,7 +54,7 @@ ${window.screen.width}px / ${window.screen.height}px
 }
 
 
-// || Toolbar
+// [!] Toolbar
 
 //Toolbar display switch
 
@@ -65,7 +65,7 @@ function switchToolbar(optn){
         btn.style.color = "#000000";                                                            //set all buttons' text to black (unselected)
         btn.style.fontWeight = "normal";                                                        //set font weight to normal (unselected)
     };
-    btnList[optn].style.background = TOOLBAR_CLR[optn];                                         //set background to its border color (selected)
+    btnList[optn].style.background = fngNS.SysData.TOOLBAR_CLR[optn];                                         //set background to its border color (selected)
     btnList[optn].style.color = "#ffffff";                                                      //set text color to white (selected)
     btnList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
     
@@ -89,4 +89,4 @@ function toggleToolbarDropdown(item){
     }
 }
 
-// || Others
+// [!] Others

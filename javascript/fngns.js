@@ -3,9 +3,9 @@
 
 "use strict";
 
-let fngNS = Object.seal({
-    
-    /* [!] "Enums" */
+const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
+
+    /* [!] Enums */
 
     MetaData: Object.freeze({
         AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
@@ -15,7 +15,11 @@ let fngNS = Object.seal({
         RELEASE_NOTE: "null",
     }),
 
-    RectOrigin: Object.freeze({  //Used by "Rect" object
+    SysData: Object.freeze({
+        TOOLBAR_CLR: ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42'],  // Based on MIT Scratch 2.0/3.0
+    }),
+
+    RectOrigin: Object.freeze({  // A small key:value map used by "Rect" class
         TOP: 0,
         LEFT: 0,
         MIDDLE: 0.5,
@@ -23,67 +27,23 @@ let fngNS = Object.seal({
         RIGHT: 1,
     }),
 
-    MagicNumber: Object.freeze({
-        EDITPANEL_TBMARGIN: 65,     // Top and bottom margin of editpanels. Used to calculate the expansion parent block require
+    MagicNumber: Object.freeze({    // Eliminate magic numbers
+        EDITPANEL_TBMARGIN: 65, // Top and bottom margin of editpanels. Used to calculate the expansion animation of parent block.
+    }),
+
+    DOM: Object.freeze({    // Frequently used DOM elements
+        BLOCK_FRAME: document.querySelector('#block-frame'),
+        SVG_CANVAS: document.querySelector('#svg-canvas'),
+        BASIC_BLOCK_TEMPLATE: document.querySelector('#basic-block-template').content.firstElementChild,
+    }),
+
+    Str: Object.freeze({    // Frequently used strings
+        SVGNS: "http://www.w3.org/2000/svg",    //Namespace of SVG
     }),
 
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* [!] DOM objects */
-
-const BLOCK_FRAME = document.querySelector('#block-frame');
-const SVG_FRAME = document.querySelector('#svg-frame');
-const SVG_CANVAS = document.querySelector('#svg-canvas');
-const BASIC_BLOCK_TEMPLATE = document.querySelector('#basic-block-template').content.firstElementChild;
-
-/* [!] Strings */
-
-const SVGNS = "http://www.w3.org/2000/svg";
 
 /* [!] System data (static) */
 
@@ -118,8 +78,8 @@ const EDITACTION_MAP = new Map([
     ["linepp x2", (obj, svgElem) => { svgElem.setAttribute("x2", toPixelPosX(obj.x2)) }],
     ["linepp y1", (obj, svgElem) => { svgElem.setAttribute("y1", toPixelPosY(obj.y1)) }],
     ["linepp y2", (obj, svgElem) => { svgElem.setAttribute("y2", toPixelPosY(obj.y2)) }],
-    ["rect originX", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - RectOrigin[obj.originHoriz] * obj.width)) }],
-    ["rect originY", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + RectOrigin[obj.originVert] * obj.height)) }],
+    ["rect originX", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - fngNS.RectOrigin[obj.originHoriz] * obj.width)) }],
+    ["rect originY", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + fngNS.RectOrigin[obj.originVert] * obj.height)) }],
     ["rect roundCorner", (obj, svgElem) => { svgElem.setAttribute("rx", obj.roundCorner) }],
     ["rect width", (obj, svgElem) => { svgElem.setAttribute("width", toPixelLenX(obj.width)) }],
     ["rect height", (obj, svgElem) => { svgElem.setAttribute("height", toPixelLenY(obj.height)) }],
@@ -142,11 +102,9 @@ const EDITACTION_MAP = new Map([
     ["dashArray", (obj, svgElem) => { svgElem.setAttribute("stroke-dasharray", obj.dashArray) }],
 
     //Change -- Object-specific
-    ["rect originHoriz", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - RectOrigin[obj.originHoriz] * obj.width)) }],
-    ["rect originVert", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + RectOrigin[obj.originVert] * obj.height)) }],
+    ["rect originHoriz", (obj, svgElem) => { svgElem.setAttribute("x", toPixelPosX(obj.originX - fngNS.RectOrigin[obj.originHoriz] * obj.width)) }],
+    ["rect originVert", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + fngNS.RectOrigin[obj.originVert] * obj.height)) }],
 ]);
-
-const TOOLBAR_CLR = ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42']; // Based on MIT Scratch 2.0/3.0
 
 /* [!] System data (dynamic) */
 
@@ -187,7 +145,7 @@ const EDITPANEL_TEMPLATES = {
         </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
@@ -236,7 +194,7 @@ const EDITPANEL_TEMPLATES = {
         </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
@@ -264,7 +222,7 @@ const EDITPANEL_TEMPLATES = {
         </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
@@ -293,7 +251,7 @@ const EDITPANEL_TEMPLATES = {
         </select>
     </div>
     <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="empty" class="size-medium"> </div>
+    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
