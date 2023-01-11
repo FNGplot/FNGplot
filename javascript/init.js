@@ -119,7 +119,7 @@ fngNS.SysData.EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Basic---------</div>
     <div>Width: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
     <div>Color: <input type="color" data-property="strokeColor" class="size-short"></div>
-    <div>Opacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
+    <div>Opacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="size-short">%</div>
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>LineCap: 
         <select data-property="lineCap" class="size-medium">
@@ -158,9 +158,9 @@ fngNS.SysData.EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Basic---------</div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
+    <div>BorderOpacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="size-short">%</div>
     <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
+    <div>FillOpacity: <input type="number" min="0" max="100" step="1" data-property="fillOpacity" class="size-short">%</div>
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>RoundedCorner: <input type="number" min="0" data-property="roundCorner" class="size-short"></div>
     <div>BorderLineJoin:
@@ -194,9 +194,9 @@ fngNS.SysData.EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Basic---------</div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
+    <div>BorderOpacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="size-short">%</div>
     <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
+    <div>FillOpacity: <input type="number" min="0" max="100" step="1" data-property="fillOpacity" class="size-short">%</div>
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>BorderLineCap(dash):
         <select data-property="lineCap" class="size-medium">
@@ -223,9 +223,9 @@ fngNS.SysData.EDITPANEL_TEMPLATES = {
     <div class="label-monospace">-----------Style: Basic---------</div>
     <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
     <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
+    <div>BorderOpacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="size-short">%</div>
     <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
+    <div>FillOpacity: <input type="number" min="0" max="100" step="1" data-property="fillOpacity" class="size-short">%</div>
     <div class="label-monospace">-----------Style: Advanced------</div>
     <div>BorderLineCap(dash):
         <select data-property="lineCap" class="size-medium">

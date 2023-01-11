@@ -17,14 +17,14 @@ class StrokeParent {  //parent of objects with stroke only
         this.dashArray = '';
         this.dashOffset = 0;
         this.strokeColor = "#8a408b"; // Wisteria purple
-        this.strokeOpacity = 1;
+        this.strokeOpacity = 100;
     }
 }
 class StrokeFillParent extends StrokeParent { //parent of objects with both fill and stroke(border)
     constructor(sid){
         super(sid);
         this.fillColor = "#ddcfff";
-        this.fillOpacity = 1;
+        this.fillOpacity = 100;
     }
 }
 

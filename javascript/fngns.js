@@ -82,8 +82,8 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
             ["strokeWidth", (obj, svgElem) => { svgElem.setAttribute("stroke-width", obj.strokeWidth) }],
             ["pathLength", (obj, svgElem) => { svgElem.setAttribute("pathLength", obj.pathLength) }],
             ["dashOffset", (obj, svgElem) => { svgElem.setAttribute("stroke-dashoffset", obj.dashOffset) }],
-            ["strokeOpacity", (obj, svgElem) => { svgElem.setAttribute("stroke-opacity", obj.strokeOpacity) }],
-            ["fillOpacity", (obj, svgElem) => { svgElem.setAttribute("fill-opacity", obj.fillOpacity) }],
+            ["strokeOpacity", (obj, svgElem) => { svgElem.setAttribute("stroke-opacity", math.round(obj.strokeOpacity/100, 2)) }],
+            ["fillOpacity", (obj, svgElem) => { svgElem.setAttribute("fill-opacity", math.round(obj.fillOpacity/100, 2)) }],
             ["lineCap", (obj, svgElem) => { svgElem.setAttribute("stroke-linecap", obj.lineCap) }],
             ["lineJoin", (obj, svgElem) => { svgElem.setAttribute("stroke-linejoin", obj.lineJoin) }],
         
