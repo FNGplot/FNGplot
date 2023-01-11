@@ -61,6 +61,16 @@ window.addEventListener("error", function(){
 console.log(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
 updateEnvirList();
 
+//Fetch editpanel data from editpanel.html
+{
+    fetch('editpanel.html')
+    .then((response) => {
+        console.log(response);
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 //Initialize toolbar's positions, colors and click handlers
 {
     const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");

@@ -25,8 +25,8 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         RIGHT: 1,
     }),
 
-    MagicNumber: Object.freeze({    // Eliminate magic numbers
-        EDITPANEL_TBMARGIN: 65, // Top and bottom margin of editpanels. Used to calculate the expansion animation of parent block.
+    MagicNumber: Object.freeze({    // Make magic numbers less magical
+        EDITPANEL_TBMARGIN: 65, // Top(55) and bottom(10) margin of editpanels. Used to calculate the expansion animation of parent block.
     }),
 
     DOM: Object.freeze({    // Frequently used DOM elements
@@ -39,11 +39,11 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         SVGNS: "http://www.w3.org/2000/svg",    //Namespace of SVG
     }),
 
-    /* [!] System data (read/write required, therefore it is only sealed but not frozen) */
+    /* [!] System data (read/write required for some of them, therefore it is only sealed but not frozen) */
 
     SysData: Object.seal({
         TOOLBAR_CLR: ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42'],  // Based on MIT Scratch 2.0/3.0
-        EDITPANEL_TEMPLATES: {},    //load panel HTML from editpanel.json on a need-to-load basis (i.e, data loaded on first panel call, which can be used directly in subsequent calls)
+        EDITPANEL_TEMPLATES: new DocumentFragment(),    //fetch()ed from editpanel.html on page init
         objectList: [],   //Unordered object reference array
         sortableList: [], //SortableJS object reference array, in case I add more Sortable objects in the future
     }),
@@ -121,141 +121,4 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
             ["rect originVert", (obj, svgElem) => { svgElem.setAttribute("y", toPixelPosY(obj.originY + fngNS.RectOrigin[obj.originVert] * obj.height)) }],
         ]),
     }),
-});
-
-
-/* [!] Editpanel template */
-
-const EDITPANEL_TEMPLATES = {
-    linepp:`
-<div class="objblock-editpanel" data-objname="linepp">
-    <div class="label-monospace">-----------User-----------------</div>
-    <div>Name: <input type="text" data-property="name" class="size-long"></div>
-    <div class="label-monospace">-----------Math-----------------</div>
-    <div>Start Point: ( <input type="number" step="0.5" data-property="x1" class="size-short"> , <input type="number" step="0.5" data-property="y1" class="size-short"> )</div>
-    <div>End Point: ( <input type="number" step="0.5" data-property="x2" class="size-short"> , <input type="number" step="0.5" data-property="y2" class="size-short"> )</div>
-    <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>Width: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>Color: <input type="color" data-property="strokeColor" class="size-short"></div>
-    <div>Opacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
-    <div class="label-monospace">-----------Style: Advanced------</div>
-    <div>LineCap: 
-        <select data-property="lineCap" class="size-medium">
-            <option value="butt" selected>Butt</option>
-            <option value="round">Round</option>
-            <option value="square">Square</option>
-        </select>
-    </div>
-    <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
-    <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
-    <div class="label-monospace">-----------System---------------</div>
-    <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
-</div>`,
-
-    rect:`
-<div class="objblock-editpanel" data-objname="rect">
-    <div class="label-monospace">-----------User-----------------</div>
-    <div>Name: <input type="text" data-property="name" class="size-long"></div>
-    <div class="label-monospace">-----------Math-----------------</div>
-    <div>Origin: ( <input type="number" step="0.5" data-property="originX" class="size-short"> , <input type="number" step="0.5" data-property="originY" class="size-short"> )</div>
-    <div>OriginMode: 
-        <select data-property="originVert" class="size-medium">
-            <option value="TOP">Top</option>
-            <option value="MIDDLE">Middle</option>
-            <option value="BOTTOM" selected>Bottom</option>
-        </select>
-        <select data-property="originHoriz" class="size-medium">
-            <option value="LEFT" selected>Left</option>
-            <option value="MIDDLE">Middle</option>
-            <option value="RIGHT">Right</option>
-        </select>
-    </div>
-    <div>Width: <input type="number" min="0" data-property="width" class="size-short"></div>
-    <div>Height: <input type="number" min="0" data-property="height" class="size-short"></div>
-    <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
-    <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
-    <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
-    <div class="label-monospace">-----------Style: Advanced------</div>
-    <div>RoundedCorner: <input type="number" min="0" data-property="roundCorner" class="size-short"></div>
-    <div>BorderLineJoin:
-        <select data-property="lineJoin" class="size-medium">
-            <option value="miter" selected>Miter</option>
-            <option value="bevel">Bevel</option>
-            <option value="round">Round</option>
-        </select>
-    </div>
-    <div>BorderLineCap(dash):
-        <select data-property="lineCap" class="size-medium">
-            <option value="butt" selected>Butt</option>
-            <option value="round">Round</option>
-            <option value="square">Square</option>
-        </select>
-    </div>
-    <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
-    <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
-    <div class="label-monospace">-----------System---------------</div>
-    <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
-</div>`,
-
-    circle:`
-<div class="objblock-editpanel" data-objname="circle">
-    <div class="label-monospace">-----------User-----------------</div>
-    <div>Name: <input type="text" data-property="name" class="size-long"></div>
-    <div class="label-monospace">-----------Math-----------------</div>
-    <div>Center: ( <input type="number" step="0.5" data-property="cx" class="size-short"> , <input type="number" step="0.5" data-property="cy" class="size-short"> )</div>
-    <div>Radius: <input type="number" min="0" step="0.1" data-property="radius" class="size-short"></div>
-    <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
-    <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
-    <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
-    <div class="label-monospace">-----------Style: Advanced------</div>
-    <div>BorderLineCap(dash):
-        <select data-property="lineCap" class="size-medium">
-        <option value="butt" selected>Butt</option>
-            <option value="round">Round</option>
-            <option value="square">Square</option>
-        </select>
-    </div>
-    <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
-    <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
-    <div class="label-monospace">-----------System---------------</div>
-    <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
-</div>`,
-
-    circle3p:`
-<div class="objblock-editpanel" data-objname="circle3p">
-    <div class="label-monospace">-----------User-----------------</div>
-    <div>Name: <input type="text" data-property="name" class="size-long"></div>
-    <div class="label-monospace">-----------Math-----------------</div>
-    <div>Point 1: ( <input type="number" step="0.5" data-property="x1" class="size-short"> , <input type="number" step="0.5" data-property="y1" class="size-short"> )</div>
-    <div>Point 2: ( <input type="number" step="0.5" data-property="x2" class="size-short"> , <input type="number" step="0.5" data-property="y2" class="size-short"> )</div>
-    <div>Point 3: ( <input type="number" step="0.5" data-property="x3" class="size-short"> , <input type="number" step="0.5" data-property="y3" class="size-short"> )</div>
-    <div class="label-monospace">-----------Style: Basic---------</div>
-    <div>BorderColor: <input type="color" data-property="strokeColor" class="size-short"></div>
-    <div>BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="size-short"></div>
-    <div>BorderOpacity: <input type="number" min="0" max="1" step="0.01" data-property="strokeOpacity" class="size-short"></div>
-    <div>FillColor: <input type="color" data-property="fillColor" class="size-short"></div>
-    <div>FillOpacity: <input type="number" min="0" max="1" step="0.01" data-property="fillOpacity" class="size-short"></div>
-    <div class="label-monospace">-----------Style: Advanced------</div>
-    <div>BorderLineCap(dash):
-        <select data-property="lineCap" class="size-medium">
-            <option value="butt" selected>Butt</option>
-            <option value="round">Round</option>
-            <option value="square">Square</option>
-        </select>
-    </div>
-    <div>PathLength: <input type="number" min="0" data-property="pathLength" class="size-short"></div>
-    <div>DashArray: <input type="text" data-property="dashArray" placeholder="NULL" class="size-medium"> </div>
-    <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
-    <div class="label-monospace">-----------System---------------</div>
-    <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
-</div>`,
-}
+})
