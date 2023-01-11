@@ -63,9 +63,10 @@ updateEnvirList();
 
 //Fetch editpanel data from editpanel.html
 {
-    fetch('editpanel.html')
-    .then((response) => {
-        console.log(response);
+    fetch('../javascript/editpanel.html')
+    .then((response) => response.text())
+    .then((text) => {
+        console.log(text);
     }).catch((error) => {
         console.error(error);
     });
