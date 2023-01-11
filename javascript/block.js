@@ -97,7 +97,7 @@ function toggleEditPanel(sid) {
     const panel = block.querySelector(".objblock-editpanel")
     if(panel == null){ //It doesn't have an editpanel, give it one
         const objName = fngNS.SysData.objectList.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
-        block.appendChild(fngNS.SysData.EDITPANEL_TEMPLATES.querySelector(`div[data-objname == ${objName}]`)); //use objName to find the panel HTML node, then append into block
+        block.insertAdjacentHTML("beforeend", fngNS.SysData.EDITPANEL_TEMPLATES[objName]);
         initEditPanel(block.querySelector(".objblock-editpanel"),sid);
     }
     else{ //It has an editpanel, remove it
