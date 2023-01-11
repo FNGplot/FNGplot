@@ -4,7 +4,7 @@
 
 FNGplot is currently under development.
 
-Planned release date: 2023 Summer
+Planned release date: 2023 Summer/Fall
 
 Developer team:
 - Main developer: Wei-Hsu Lin(林韋旭) 
