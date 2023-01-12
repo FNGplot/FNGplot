@@ -71,9 +71,9 @@ class Circle3P extends StrokeFillParent {
         this.x1 = 1;
         this.y1 = 1;
         this.x2 = 2;
-        this.y2 = 2;
-        this.x3 = 3;
-        this.y3 = 5;
+        this.y2 = 3;
+        this.x3 = -2;
+        this.y3 = 6;
     }
     updateMath(svgElem){
         // Calculate circumcenter from three points
