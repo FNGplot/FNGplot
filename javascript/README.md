@@ -15,7 +15,7 @@ FNGplot (excluding the libraries):
 | gui.js | GUI handlers | Apache-2.0 |
 | init.js | Page init sequence | Apache-2.0 |
 | plot.js | FNGplot-specific math & plotting functions | Apache-2.0 |
-| editpanels.json | DocumentFragment of edit panels | Apache-2.0 |
+| editpanels.json | Edit panel HTML template | Apache-2.0 |
 
 
 FNGplot's code (excluding the libraries) follow [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html).
