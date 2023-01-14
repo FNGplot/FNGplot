@@ -30,7 +30,7 @@ function makeSID(){ // Generate a 10-character-long "random" alphanumeric system
 function createFNGObject(objName, data){
     if(data == null){                             //create a new FNGobject
         const sid = makeSID();
-        const data = fngNS.Maps.CLASS_INITDATA_MAP.get(objName);   //["objName", [Class, Category, SVG Element]]
+        const data = fngNS.Maps.CLASS_INITDATA.get(objName);   //["objName", [Class, Category, SVG Element]]
 
         // Step 1 of 3: FNGobject
         const newObj = new data[0](sid);                 //call class constructor        
@@ -40,7 +40,7 @@ function createFNGObject(objName, data){
         let newBlock = fngNS.DOM.BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
         newBlock.classList.add(data[1]);                                                  //add object class
         newBlock.querySelector('img').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
-        newBlock.querySelector('.nametag').value = newObj.name;           //display default name
+        newBlock.querySelector('.labeltag').value = newObj.label;           //display default label
         newBlock.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
         fngNS.DOM.BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
 
@@ -50,14 +50,13 @@ function createFNGObject(objName, data){
         fngNS.DOM.SVG_CANVAS.appendChild(newSVGElem);    //add the new SVG element to canvas
 
         // Step 4: Initialize and render the FNGobject for the first time
-        let action = "";
-        for(const property in newObj){               //render all properties one by one, uneditable ones like "sid" are ignored automatically
-            action = fngNS.Maps.EDITACTION_MAP.get(property);   //first try, this would return a result if this property is a common one
-            action != undefined ? action(newObj, newSVGElem) : action = fngNS.Maps.EDITACTION_MAP.get(`${objName} ${property}`);   //second try, this would return a result if this property is an object-specific one
-            if(action != undefined){
-                action(newObj, newSVGElem);
+        newObj.updateMath(newSVGElem);      // render the math part first
+        for(const property in newObj.SvgStyle){     //render the svg part
+            if (fngNS.Maps.EDITACTION_SI.has(property)) {
+                fngNS.Maps.EDITACTION_SI.get(property)(newObj, newSVGElem);
+            } else if (fngNS.Maps.EDITACTION_SC.has(property)) {
+                fngNS.Maps.EDITACTION_SC.get(property)(newObj, newSVGElem);
             }
-            // else{ This property doesn't need to be initialized and/or rendered, like "sid" }
         }
     }
 }
@@ -81,13 +80,13 @@ function changeVisibility(sid) {
     const obj = fngNS.SysData.objectList.find(item => item.sid == sid);  //find the object with this sid
     const eyeBtn = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.visibility');
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
-    if(obj.display == true){
-        obj.display = false;
+    if(obj.SvgStyle.display == true){
+        obj.SvgStyle.display = false;
         eyeBtn.innerHTML = "visibility_off";                //change the icon to visibility off;
         svgElem.setAttribute("display","none");             //hide the SVG element               
     }
-    else if(obj.display == false){
-        obj.display = true;
+    else if(obj.SvgStyle.display == false){
+        obj.SvgStyle.display = true;
         eyeBtn.innerHTML = "visibility";                    //change the icon to visibility(on);
         svgElem.setAttribute("display","");                 //show the SVG element
     }
@@ -112,12 +111,18 @@ function initEditPanel(panelElem, sid){
     const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
     const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
     for(let inputElem of inputList){
-        if(inputElem.type == "checkbox"){
-            inputElem.checked = obj[inputElem.dataset.property]; //get their respective properties and display them
-        }
-        else{
-            inputElem.value = obj[inputElem.dataset.property]; //get their respective properties and display them
-        }
+
+        /*if(inputElem.type == "checkbox"){   //currently useless
+            //get their respective properties and display them
+            inputElem.checked = obj[inputElem.dataset.property];
+        }*/
+
+        //  Get their respective properties and display them (normal or SvgStyle)
+        if (inputElem.dataset.property in obj){
+            inputElem.value = obj[inputElem.dataset.property];
+        } else if (inputElem.dataset.property in obj.SvgStyle) {
+            inputElem.value = obj.SvgStyle[inputElem.dataset.property];
+        } 
     };
     fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + fngNS.MagicNumber.EDITPANEL_TBMARGIN}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
 }
@@ -125,60 +130,36 @@ function handleUserEdit(target, sid, event){
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
     const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
     const prop = target.dataset.property;
+    if (event == "input") {   // Real-time SVG rendering
 
-    // Note: Internal data update always occurs on "change" event, regardless of property
-
-    if(event == "input"){   // Real-time SVG rendering
-
-        /* Speed required, so I placed them here to eliminate map lookup */
-        if(prop == "name"){ //special case: name (block nametag update required)
-            target.parentNode.parentNode.parentNode.querySelector(".nametag").value = target.value;
-            svgElem.setAttribute("data-name", obj.name);
-        }
-        else if(prop == "strokeColor"){  //special case: color (color input changes rapidly)
-            svgElem.setAttribute("stroke",target.value);
-        }
-        else if(prop == "fillColor"){    //special case: color (color input changes rapidly)
-            svgElem.setAttribute("fill",target.value);
-        }
-
-        /* Normal Flow*/
-        else{
-            math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
-
-            // Common properties of many FNGobjects
-            if(["strokeWidth", "pathLength", "dashOffset", "strokeOpacity", "fillOpacity", "lineCap", "lineJoin"].includes(prop)){
-                math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-                fngNS.Maps.EDITACTION_MAP.get(prop)(obj, svgElem);
-            }
-            // Object-specific properties
-            else{
-                const objName = target.parentNode.parentNode.dataset.objname;
-                const action = fngNS.Maps.EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
-                if(action != undefined){   // action found
-                    action(obj, svgElem);  // then do it
-                }
-                // else { This input event should be ignored by FNGplot }
-            }
-        }
-    }
-
-    else if(event == "change"){
-        math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;  //save value to object
-
-        // Common properties of many FNGobjects
-        if(["dashArray"].includes(prop)){
+        //save value to object
+        if (prop in obj)
             math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-            fngNS.Maps.EDITACTION_MAP.get(prop)(obj, svgElem);
+        else if (prop in obj.SvgStyle)
+            math.hasNumericValue(target.value) ? obj.SvgStyle[prop] = parseFloat(target.value) : obj.SvgStyle[prop] = target.value;
+
+        // svg tyle properties
+        if (fngNS.Maps.EDITACTION_SI.has(prop)) {
+            fngNS.Maps.EDITACTION_SI.get(prop)(obj, svgElem);
+        } else { // Calculate object
+            obj.updateMath(svgElem);
         }
-        // Object-specific properties
-        else{
-            const objName = target.parentNode.parentNode.dataset.objname;
-            const action = fngNS.Maps.EDITACTION_MAP.get(`${objName} ${prop}`); //search for the required action
-            if(action != undefined){   // action found
-                action(obj, svgElem);  // then do it
-            }
-            // else { This change event should be ignored by FNGplot }
+    } else if (event == "change") {
+
+        //save value to object
+        if (prop in obj)
+            math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
+        else if (prop in obj.SvgStyle)
+            math.hasNumericValue(target.value) ? obj.SvgStyle[prop] = parseFloat(target.value) : obj.SvgStyle[prop] = target.value;
+
+
+
+        if(prop == "label"){ //special case: label (block labeltag update required)
+            target.parentNode.parentNode.parentNode.querySelector(".labeltag").value = target.value;
+        } else if (fngNS.Maps.EDITACTION_SC.has(prop)) {   // svg style properties
+            fngNS.Maps.EDITACTION_SC.get(prop)(obj, svgElem);
+        } else { // Calculate object
+            obj.updateMath(svgElem);
         }
     }
 }
