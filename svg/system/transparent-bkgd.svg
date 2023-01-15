@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 620 620" >
 	<metadata>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
-      <rdf:Description rdf:about="">
-        <schema:license rdf:resource="https://opensource.org/licenses/Apache-2.0"/>
-      </rdf:Description>
-    </rdf:RDF>
+	    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
+    		<rdf:Description rdf:about="">
+				<author>Wei-Hsu Lin(林韋旭)</author>
+      		<license>Apache-2.0</license>
+    		</rdf:Description>
+  		</rdf:RDF>
 	</metadata>
   <defs>
     <g id="unit">

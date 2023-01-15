@@ -2,7 +2,8 @@
 	<metadata>
 	    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
     		<rdf:Description rdf:about="">
-      			<schema:license rdf:resource="https://opensource.org/licenses/Apache-2.0"/>
+				<author>Wei-Hsu Lin(林韋旭)</author>
+      			<license>Apache-2.0</license>
     		</rdf:Description>
   		</rdf:RDF>
 	</metadata>
