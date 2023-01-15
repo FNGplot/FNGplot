@@ -82,15 +82,40 @@ class LinePPExt extends StrokeParent {
                 svgElem.setAttribute("y2", toPxPosY(this.y2 - this.endExtend));
             }
         } else {    // normal line with meaningful slope
-            const [dx, dy, distance] = [
+            const [dx, dy] = [
                 this.x2 - this.x1,
                 this.y2 - this.y1,
-                Math.sqrt(dx**2 + dy**2),
             ];
+            const distance = Math.sqrt(dx**2 + dy**2);
             svgElem.setAttribute("x1", toPxPosX(this.x1 - dx * this.startExtend / distance));
             svgElem.setAttribute("x2", toPxPosX(this.x2 + dx * this.endExtend / distance));
             svgElem.setAttribute("y1", toPxPosY(this.y1 - dy * this.startExtend / distance));
             svgElem.setAttribute("y2", toPxPosY(this.y2 + dy * this.endExtend / distance));
+        }
+    }
+}
+class LinePS extends StrokeParent {
+    constructor(sid) {
+        super(sid);
+        this.label = "Point-slope line";
+        this.x = 1;
+        this.y = 2;
+        this.slope = 1.5;
+        this.leftExtend = 2;
+        this.rightExtend = 2;
+    }
+    updateMath(svgElem){
+        if(this.slope === undefined || this.slope == 0){    //user admits that it is a vertical line
+            console.log("vert!");
+            svgElem.setAttribute("x1", toPxPosX(this.x));
+            svgElem.setAttribute("x2", toPxPosX(this.x));
+            svgElem.setAttribute("y1", toPxPosY(this.y - this.leftExtend));
+            svgElem.setAttribute("y2", toPxPosY(this.y + this.rightExtend));
+        } else {    //has a slope
+            svgElem.setAttribute("x1", toPxPosX(this.x - this.leftExtend * Math.cos(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("x2", toPxPosX(this.x + this.rightExtend * Math.cos(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("y1", toPxPosY(this.y - this.leftExtend * Math.sin(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("y2", toPxPosY(this.y + this.rightExtend * Math.sin(Math.atan2(this.slope, 1))));
         }
     }
 }
