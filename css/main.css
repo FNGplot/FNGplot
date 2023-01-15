@@ -1,33 +1,11 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
-
 /*
-    Wei-Hsu Lin(林韋旭) January 2023
-
-    FNGplot(This software) is tested on Chromium 111.0.0.0 (build number 1087900)
-    
-    I do not guarantee that this software will display/work properly on browsers other than Google Chrome and Chromium.
-
-    When there is no other option, I only use the vendor prefix "-webkit" as this software will be packed by Electron.js, which uses Chromium as its core.
-
-    If you want to modify this software and/or use it as a web application directly, please fork this software on GitHub.
-
-    Github Repository: https://github.com/FNGplot/FNGplot
-*/
-
-/*
-Fonts in FNGplot:
-
-FNGplot comes with a small collection of open-sourced fonts attached to it.
-
-Most of the aforementioned fonts are options for the user to choose from, but a few of them are also used in the UI directly for cross-platform appearance consistency:
-
 List of system fonts:
 - Lato regular: Toolbar, general content
 - Lato bold: Buttons, banners, dropdowns, etc.
 - Material Symbols Round (A special "icon font" by Google): Icons & Symbols
 - Source Code Pro regular: Used when I find monospace fonts desirable.
-
 */
 
 @font-face {                    /*Lato -- Regular*/
