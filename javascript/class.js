@@ -105,8 +105,7 @@ class LinePS extends StrokeParent {
         this.rightExtend = 2;
     }
     updateMath(svgElem){
-        if(this.slope === undefined || this.slope == 0){    //user admits that it is a vertical line
-            console.log("vert!");
+        if(this.slope === ""){    //user admits that it is a vertical line (use === becuase 0 == "")
             svgElem.setAttribute("x1", toPxPosX(this.x));
             svgElem.setAttribute("x2", toPxPosX(this.x));
             svgElem.setAttribute("y1", toPxPosY(this.y - this.leftExtend));
