@@ -81,10 +81,12 @@ class LinePPExt extends StrokeParent {
                 svgElem.setAttribute("y1", toPxPosY(this.y1 + this.startExtend));
                 svgElem.setAttribute("y2", toPxPosY(this.y2 - this.endExtend));
             }
-        } else {    //normal line with meaningful slope
-            const dx = this.x2 - this.x1;
-            const dy = this.y2 - this.y1;
-            const distance = Math.sqrt(dx**2 + dy**2);
+        } else {    // normal line with meaningful slope
+            const [dx, dy, distance] = [
+                this.x2 - this.x1,
+                this.y2 - this.y1,
+                Math.sqrt(dx**2 + dy**2),
+            ];
             svgElem.setAttribute("x1", toPxPosX(this.x1 - dx * this.startExtend / distance));
             svgElem.setAttribute("x2", toPxPosX(this.x2 + dx * this.endExtend / distance));
             svgElem.setAttribute("y1", toPxPosY(this.y1 - dy * this.startExtend / distance));
