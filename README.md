@@ -3,7 +3,7 @@
 
 FNGplot is currently under development. 
 
-Scheduled release date: 2023 Fall
+Scheduled release date: 2023 Summer
 
 ## Feature
 
@@ -14,6 +14,6 @@ Scheduled release date: 2023 Fall
 - UX tester: Mu-En Chiu (邱沐恩)
 
 ## Note
-FNGplot is tested on Chromium 111.0.5513.0 (build number 1087900) 
+FNGplot is tested on **Chromium 111.0.5513.0**
 
-Support for other browsers is unnecssary as the final product will be based on [Electron](https://github.com/electron/electron).
+Support for other browsers is unnecssary as the final software will be based on [Electron](https://github.com/electron/electron).
