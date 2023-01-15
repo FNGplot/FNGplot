@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 40 40">
+	<metadata>
+	    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
+    		<rdf:Description rdf:about="">
+      			<schema:license rdf:resource="https://opensource.org/licenses/Apache-2.0"/>
+    		</rdf:Description>
+  		</rdf:RDF>
+	</metadata>
 	<title>circle</title>
 	<rect x="0" y="0" width="40" height="40" fill="#ffffff" />
 	<circle cx="20" cy="20" r="2.5" fill="#5f95f7" />
@@ -7,7 +14,3 @@
 	<line x1="20" y1="20" x2="31.691" y2="13.25" stroke="#5f95f7" stroke-width="2px" />
 	<circle cx="31.691" cy="13.25" r="2.5" fill="#5f95f7" />
 </svg>
-<!--
-    SPDX-License-Identifier: Apache-2.0
-    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
--->

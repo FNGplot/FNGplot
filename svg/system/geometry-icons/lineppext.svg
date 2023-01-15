@@ -1,11 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 40 40">
+	<metadata>
+	    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
+    		<rdf:Description rdf:about="">
+      			<schema:license rdf:resource="https://opensource.org/licenses/Apache-2.0"/>
+    		</rdf:Description>
+  		</rdf:RDF>
+	</metadata>
 	<title>2-point line extended</title>
 	<rect x="0" y="0" width="40" height="40" fill="#ffffff" />
 	<circle cx="14" cy="14" r="2.5" fill="#5f95f7" />
 	<circle cx="26" cy="26" r="2.5" fill="#5f95f7" />
 	<line x1="9" y1="9" x2="31" y2="31" stroke="#5f95f7" stroke-width="2px" stroke-linecap="round" />
 </svg>
-<!--
-    SPDX-License-Identifier: Apache-2.0
-    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
--->

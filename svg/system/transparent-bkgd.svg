@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 620 620" >
+	<metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
+      <rdf:Description rdf:about="">
+        <schema:license rdf:resource="https://opensource.org/licenses/Apache-2.0"/>
+      </rdf:Description>
+    </rdf:RDF>
+	</metadata>
   <defs>
     <g id="unit">
             <rect x="0" y="0" width="20" height="20" fill="#f5f5f5"/>
@@ -53,7 +60,3 @@
     <use xlink:href="#row" transform="translate(-20,580)"/>
     <use xlink:href="#row" transform="translate(0,600)"/>
 </svg>
-<!--
-    SPDX-License-Identifier: Apache-2.0
-    Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
--->
