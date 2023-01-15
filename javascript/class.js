@@ -57,6 +57,41 @@ class LinePP extends StrokeParent {
         svgElem.setAttribute("y2", toPxPosY(this.y2));
     }
 }
+class LinePPExt extends StrokeParent {
+    constructor(sid) {
+        super(sid);
+        this.label = "Extended 2p line";
+        this.x1 = -4;
+        this.y1 = -3;
+        this.x2 = 6;
+        this.y2 = 3;
+        this.startExtend = 0.7;
+        this.endExtend = 1.3;
+    }
+    updateMath(svgElem){
+        if (this.x1 == this.x2) {   // vertical line
+            if (this.y1 <= this.y2) {   // goes up
+                svgElem.setAttribute("x1", toPxPosX(this.x1));
+                svgElem.setAttribute("x2", toPxPosX(this.x2));
+                svgElem.setAttribute("y1", toPxPosY(this.y1 - this.startExtend));
+                svgElem.setAttribute("y2", toPxPosY(this.y2 + this.endExtend));
+            } else if (this.y1 > this.y2) {  // goes down
+                svgElem.setAttribute("x1", toPxPosX(this.x1));
+                svgElem.setAttribute("x2", toPxPosX(this.x2));
+                svgElem.setAttribute("y1", toPxPosY(this.y1 + this.startExtend));
+                svgElem.setAttribute("y2", toPxPosY(this.y2 - this.endExtend));
+            }
+        } else {    //normal line with meaningful slope
+            const dx = this.x2 - this.x1;
+            const dy = this.y2 - this.y1;
+            const distance = Math.sqrt(dx**2 + dy**2);
+            svgElem.setAttribute("x1", toPxPosX(this.x1 - dx * this.startExtend / distance));
+            svgElem.setAttribute("x2", toPxPosX(this.x2 + dx * this.endExtend / distance));
+            svgElem.setAttribute("y1", toPxPosY(this.y1 - dy * this.startExtend / distance));
+            svgElem.setAttribute("y2", toPxPosY(this.y2 + dy * this.endExtend / distance));
+        }
+    }
+}
 class Rect extends StrokeFillParent {
     constructor(sid){
         super(sid);

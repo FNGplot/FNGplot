@@ -67,8 +67,8 @@ function moveObject(sid,nextSid) {
 }
 function deleteObject(sid) {
     const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
-    const n = confirm(`Do you want to PERMANENTLY delete "${obj.name}" ?`);
-    if(n){
+    const response = confirm(`Do you want to PERMANENTLY delete "${obj.name}" ?`);
+    if (response) {
         const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
         const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
         fngNS.SysData.objectList.splice(fngNS.SysData.objectList.indexOf(obj), 1);

@@ -65,6 +65,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         CLASS_INITDATA: new Map([    // Data and reference used to initialize object
             //["Object Name", [Class, Category, SVG Element]],
             ["linepp", [LinePP, "geometry", "line"]],
+            ["lineppext", [LinePPExt, "geometry", "line"]],
             ["rect", [Rect, "geometry", "rect"]],
             ["circle", [Circle, "geometry", "ellipse"]],
             ["circle3p", [Circle3P, "geometry", "ellipse"]],
