@@ -98,13 +98,9 @@ function toggleEditPanel(sid) {
         const objName = fngNS.SysData.objectList.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
         block.insertAdjacentHTML("beforeend", fngNS.SysData.EDITPANEL_TEMPLATES[objName]);
         initEditPanel(block.querySelector(".objblock-editpanel"),sid);
-    }
-    else{ //It has an editpanel, remove it
+    } else { //It has an editpanel, remove it
         fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing animation
-        fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).addEventListener("webkitTransitionEnd", function tmp(){ // wait until transition end to remove the editpanel
-            panel.parentNode.removeChild(panel);
-            fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).removeEventListener("webkitTransitionEnd", tmp); // tell the listener to remove itself
-        });
+        panel.parentNode.removeChild(panel);
     }
 }
 function initEditPanel(panelElem, sid){

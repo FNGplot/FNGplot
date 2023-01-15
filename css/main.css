@@ -263,8 +263,6 @@ div[id^="toolbar-item-"]::-webkit-scrollbar {
     border: 1px solid black;
     margin-top: -1px;
     height: 50px;
-    transition: height 0.15s ease-in-out;
-    /*transition: height 0.2s cubic-bezier(0.68, -0.2, 0.32, 1.2);*/
     overflow: hidden;
 }
 .obj-block .labeltag {
