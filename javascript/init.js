@@ -62,7 +62,7 @@ console.log(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
 updateEnvirList();
 
 // Fetch editpanel data from editpanels.json (Note for future me: Realtive path of fetch() starts from the HTML page, NOT this JS file)
-fetch("javascript/data/editpanels.json")
+fetch("javascript/editpanel-data/editpanels.json")
 .then((response) => {
     return response.json();
 })
