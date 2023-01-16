@@ -62,23 +62,21 @@ console.log(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
 updateEnvirList();
 
 // Fetch editpanel data from editpanels.json (Note for future me: Realtive path of fetch() starts from the HTML page, NOT this JS file)
-{
-    fetch("javascript/json/editpanels.json")
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        fngNS.SysData.EDITPANEL_TEMPLATES = data;
-        Object.defineProperty(fngNS.SysData, "EDITPANEL_TEMPLATES", {   //  Lock it up
-            configurable: false,
-            writable: false,
-        });
-    })
-    .catch( (error) => {
-        alert("Fatal Error: Could not load file \"editpanels.json\"");
-        console.error(error);
+fetch("javascript/data/editpanels.json")
+.then((response) => {
+    return response.json();
+})
+.then((data) => {
+    fngNS.SysData.EDITPANEL_TEMPLATES = data;
+    Object.defineProperty(fngNS.SysData, "EDITPANEL_TEMPLATES", {   //  Lock it up
+        configurable: false,
+        writable: false,
     });
-}
+})
+.catch( (error) => {
+    alert("Fatal Error: Could not load file \"editpanels.json\"");
+    console.error(error);
+});
 
 //Initialize toolbar's positions, colors and click handlers
 {
