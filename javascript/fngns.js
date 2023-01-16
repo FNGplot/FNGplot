@@ -68,6 +68,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
             ["lineps", [LinePS, "geometry", "line"]],
             ["lineppext", [LinePPExt, "geometry", "line"]],
             ["rect", [Rect, "geometry", "rect"]],
+            ["triangle", [Triangle, "geometry", "polygon"]],
             ["circle", [Circle, "geometry", "ellipse"]],
             ["circle3p", [Circle3P, "geometry", "ellipse"]],
         ]),

@@ -140,6 +140,30 @@ class Rect extends StrokeFillParent {
         svgElem.setAttribute("height", toPxLenY(this.height));
     }
 }
+class Triangle extends StrokeFillParent {
+    constructor(sid){
+        super(sid);
+        this.label = "Triangle";
+        this.x1 = -2;
+        this.y1 = -4;
+        this.x2 = 5;
+        this.y2 = -1;
+        this.x3 = 3;
+        this.y3 = 3;
+        this.SvgStyle.lineJoin = "miter";
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+    }
+    updateMath(svgElem){
+        const [x1, y1, x2, y2, x3, y3] = [
+            toPxPosX(this.x1),
+            toPxPosY(this.y1),
+            toPxPosX(this.x2),
+            toPxPosY(this.y2),
+            toPxPosX(this.x3),
+            toPxPosY(this.y3),
+        ];
+        svgElem.setAttribute("points", `${x1},${y1} ${x2},${y2} ${x3},${y3}`);
+}
 class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case user sets fngNS.Coord.xHat != fngNS.Coord.yHat
     constructor(sid) {
         super(sid);
