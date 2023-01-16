@@ -163,6 +163,7 @@ class Triangle extends StrokeFillParent {
             toPxPosY(this.y3),
         ];
         svgElem.setAttribute("points", `${x1},${y1} ${x2},${y2} ${x3},${y3}`);
+    }
 }
 class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case user sets fngNS.Coord.xHat != fngNS.Coord.yHat
     constructor(sid) {
