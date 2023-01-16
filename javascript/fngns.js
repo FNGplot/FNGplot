@@ -80,6 +80,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
             ["fillOpacity", (obj, svgElem) => { svgElem.setAttribute("fill-opacity", math.round(obj.SvgStyle.fillOpacity/100, 2)) }],
             ["lineCap", (obj, svgElem) => { svgElem.setAttribute("stroke-linecap", obj.SvgStyle.lineCap) }],
             ["lineJoin", (obj, svgElem) => { svgElem.setAttribute("stroke-linejoin", obj.SvgStyle.lineJoin) }],
+            ["miterLimit", (obj, svgElem) => { svgElem.setAttribute("stroke-miterlimit", obj.SvgStyle.miterLimit) }],
         ]),
         EDITACTION_SC: new Map([    //SC: Style Change (Only property in the map that's not a style: "label")
             ["label", (obj, svgElem) => { svgElem.setAttribute("data-label", obj.label) }],
