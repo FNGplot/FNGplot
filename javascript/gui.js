@@ -14,7 +14,7 @@ function switchLeftPanel(optn){
     for(let panel of panelList){                                                   //hide everyone first
 	    panel.style.display = "none";
     };
-    document.querySelector(`.left-panel__subpage[data-subpage="${optn}"]`).style.display = "flex";     //then show only the selected panel
+    document.querySelector(`.left-panel__subpage[data-pagename="${optn}"]`).style.display = "flex";     //then show only the selected panel
 }
 
 //Change root zoom level
@@ -29,7 +29,7 @@ function changeRootZoom(mode){
 // Update environment data list 
 
 function updateEnvirList(){
-    document.querySelector("#envir-datalist > pre").innerHTML = `
+    document.querySelector("pre[data-id='envirdata-output']").innerHTML = `
 Viewport:
 --------------------------
 innerWidth / clientWidth: 
