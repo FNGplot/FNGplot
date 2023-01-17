@@ -10,11 +10,11 @@
 //Left panel display switch
 
 function switchLeftPanel(optn){
-    const panelList = document.querySelectorAll(".left-panel__subpage");           //select all panels
+    const panelList = document.querySelectorAll(".side-menu__panel");           //select all panels
     for(let panel of panelList){                                                   //hide everyone first
 	    panel.style.display = "none";
     };
-    document.querySelector(`.left-panel__subpage[data-pagename="${optn}"]`).style.display = "flex";     //then show only the selected panel
+    document.querySelector(`.side-menu__panel[data-panelname="${optn}"]`).style.display = "flex";     //then show only the selected panel
 }
 
 //Change root zoom level
@@ -53,17 +53,17 @@ ${window.screen.width}px / ${window.screen.height}px
 //Toolbar display switch
 
 function switchToolbar(optn){
-    const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");               //select all buttons
-    for(let btn of btnList){
-        btn.style.background = "transparent";                                                   //set all buttons to transparent background (unselected)
-        btn.style.color = "#000000";                                                            //set all buttons' text to black (unselected)
-        btn.style.fontWeight = "normal";                                                        //set font weight to normal (unselected)
+    const tabList = document.querySelectorAll(".toolbar__tab");                                 //select all tabs
+    for(let tab of tabList){
+        tab.style.background = "transparent";                                                   //set all tabs to transparent background (unselected)
+        tab.style.color = "#000000";                                                            //set all tabs' text to black (unselected)
+        tab.style.fontWeight = "normal";                                                        //set font weight to normal (unselected)
     };
-    btnList[optn].style.background = fngNS.SysData.TOOLBAR_CLR[optn];                                         //set background to its border color (selected)
-    btnList[optn].style.color = "#ffffff";                                                      //set text color to white (selected)
-    btnList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
+    tabList[optn].style.background = fngNS.SysData.TOOLBAR_CLR[optn];                                         //set background to its border color (selected)
+    tabList[optn].style.color = "#ffffff";                                                      //set text color to white (selected)
+    tabList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
     
-    const panelList = document.querySelectorAll("div[id^=\"toolbar-item-\"]");                  //select all  divs
+    const panelList = document.querySelectorAll(".toolbar__panel");                             //select all  divs
     for(let panel of panelList){                                                                //hide all divs first
         panel.style.display = "none";
     };

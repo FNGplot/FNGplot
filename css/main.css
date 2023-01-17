@@ -379,7 +379,7 @@ body{
     margin: 0px;
     padding: 10px; /*adds a little space between the frame and the blocks inside*/
 }
-#left-panel {
+#side-menu {
     top: 60px;
     left: 0px;
     width: 270px;
@@ -387,14 +387,14 @@ body{
     background: #f5f0ff;
     border: 2px solid black;
 }
-#left-panel-select {
+#side-menu-select {
     font: bold 22px Lato;
     top: 12px;
     left: 12px;
     width: 245px;
     height: 30px;
 }
-div[id^="left-panel-item-"] {
+div[id^="side-menu-item-"] {
     top: 55px;
     left: 12px;
     width: 245px;
@@ -407,10 +407,10 @@ div[id^="left-panel-item-"] {
     padding: 3px;
     box-sizing: border-box;
 }
-#left-panel-item-file{ /*Exception of the above rule*/
+#side-menu-item-file{ /*Exception of the above rule*/
     display: flex;
 }
-div[id^="left-panel-item-"] > div {
+div[id^="side-menu-item-"] > div {
     position: relative;
 }
 #system-rootzoom, #envir-datalist {

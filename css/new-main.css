@@ -110,7 +110,7 @@ body {
 }
 
 /* || Left panel */
-.left-panel {
+.side-menu {
     position: absolute;
     top: 6rem;
     left: 0rem;
@@ -119,15 +119,16 @@ body {
     background: #f5f0ff;
     border: 0.2rem solid black;
 }
-.left-panel__select {
+.side-menu__select {
     position: absolute;
+    user-select: none;
     font: bold 2.2rem Lato;
     top: 1.2rem;
     left: 1.2rem;
     width: 24.5rem;
     height: 3rem;
 }
-.left-panel__subpage {
+.side-menu__panel {
     position: absolute;
     top: 5.5rem;
     left: 1.2rem;
@@ -141,10 +142,10 @@ body {
     box-sizing: border-box;
     font: 1.6rem Lato;
 }
-.left-panel__subpage[data-pagename="file"] { /* Default visible subpage*/
+.side-menu__panel[data-panelname="file"] { /* Default visible panel*/
     display: flex;
 }
-.left-panel__datacell {
+.side-menu__datacell {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,12 +154,12 @@ body {
     box-sizing: content-box;
     border-bottom: 0.1rem dashed black;
 }
-.left-panel__datacell__label {  /* Cell title */
+.side-menu__datacell__label {  /* Cell title */
     position: relative;
     font-size: 2rem;
     margin: 0.5rem 0rem;
 }
-.left-panel__datacell__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
+.side-menu__datacell__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
     width: 22rem;
     display: flex;
     flex-direction: row;
@@ -166,14 +167,14 @@ body {
     justify-content: space-evenly;
     margin: 0.5rem 0rem;
 }
-.left-panel__datacell__slidercomplex > input[type="range"] {  /* The slider */
+.side-menu__datacell__slidercomplex > input[type="range"] {  /* The slider */
     display: inline-block;
     width: 16rem;
     height: 3.2rem;
     appearance: none;
     -webkit-appearance: none;
 }
-.left-panel__datacell__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
+.side-menu__datacell__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
     height: 0.8rem;
     cursor: pointer;
     box-shadow: 000 black;
@@ -181,7 +182,7 @@ body {
     border-radius: 0.4rem;
     border: 0rem solid black;
 }
-.left-panel__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
+.side-menu__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0.1rem 0.1rem 0.1rem black;
     border: 0rem solid #8a408b;
     height: 2.5rem;
@@ -192,17 +193,17 @@ body {
     -webkit-appearance: none;
     margin-top: -0.85rem;
 }
-.left-panel__datacell__slidercomplex > div {  /* The display label */
+.side-menu__datacell__slidercomplex > div {  /* The display label */
     width: 5rem;
     font-size: 1.8rem;
     display: inline-block;
 }
-.left-panel__datacell__pre {  /* Code & technical data */
+.side-menu__datacell__pre {  /* Code & technical data */
     margin-right: auto;
     padding-left: 1rem; /* Small indentation */
     font: 1.2rem "Source Code Pro";
 }
-.left-panel__datacell__refresh-btn {
+.side-menu__datacell__refresh-btn {
     width: 3rem;
     height: 3rem;
     background-color: #ffc0cb;
@@ -239,4 +240,75 @@ body {
     font: bold 3.4rem Lato;
     top: 0.7rem;
     left: 7rem;
+}
+
+/* || Toolbar */
+.toolbar {  /* Anchor point for absolute position */
+    position: absolute;
+    top: 0rem;
+    left: 29rem;
+    width: 1rem;
+    height: 1rem;
+}
+.toolbar__tab-ctnr {    /* tab container */
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 108rem;
+    height: 3.5rem;
+    background: #f5f0ff;
+    border: 0.2rem solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.toolbar__tab {
+    font: 1.5rem Lato;
+    border-style: solid;
+    border-left-width: 0.7rem;
+    padding: 0.1rem 0.6rem 0.1rem 0.4rem;
+    color:rgba(0, 0, 0, 1); /*word color*/
+    /*background-color: This is defined dynamically immediately after page load*/
+    background-color: transparent;
+    height: 2.1rem;
+    user-select: none;
+}
+/*these sizes are fixed so that the buttons don't change size when the text inside them change font weight*/
+.toolbar__tab--variables {
+    width: 8rem;
+}
+.toolbar__tab--geometry {
+    width: 8.5rem;
+}
+.toolbar__tab--algebra {
+    width: 7rem;
+}
+.toolbar__tab--consec {
+    width: 11.5rem;
+}
+.toolbar__tab--calculus {
+    width: 7.4rem;
+}
+.toolbar__tab--difeq {
+    width: 16.6rem;
+}
+.toolbar__tab--vecf {
+    width: 10.5rem;
+}
+.toolbar__tab--tse {
+    width: 19.7rem;
+}
+.toolbar__tab--other {
+    width: 6.4rem;
+}
+.toolbar__panel {
+    position: absolute;
+    top: 4.8rem;
+    left: 0rem;
+    width: 108rem;
+    height: 6rem;
+    display: none;
+    overflow: hidden;
+    background-color: #f5f0ff;
+    border: 0.2rem solid black;
 }

@@ -5,8 +5,8 @@
 
 /* [!] Event Listeners */
 
-document.querySelector(".left-panel__select").addEventListener("change", () => {
-    switchLeftPanel(document.querySelector(".left-panel__select").value);
+document.querySelector(".side-menu__select").addEventListener("change", () => {
+    switchLeftPanel(document.querySelector(".side-menu__select").value);
 });
 
 document.querySelector("[data-id='envirdata-refreshbtn']").addEventListener("click", () => {
@@ -20,13 +20,13 @@ for(const item of ["input", "change"]){
 };
 
 fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
-    if(event.target.classList.contains("sortblock__btn--visibility")){  //change visibility
+    if(event.target.classList.contains("sortblock__tab--visibility")){  //change visibility
         changeVisibility(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("sortblock__btn--edit")){   //toggle editpanel
+    else if(event.target.classList.contains("sortblock__tab--edit")){   //toggle editpanel
         toggleEditPanel(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("sortblock__btn--delete")){ //delete block
+    else if(event.target.classList.contains("sortblock__tab--delete")){ //delete block
         deleteObject(event.target.parentElement.dataset.sid);
     }
 });
@@ -40,7 +40,7 @@ for(const item of ["input", "change"]){
     });
 };
 
-document.querySelector("#toolbar-root").addEventListener("click", (event) => {  //event delegation
+document.querySelector(".toolbar").addEventListener("click", (event) => {  //event delegation
     const target = event.target;
     const parent = event.target.parentNode;
     if(target.tagName.toLowerCase() == "img"){                                  //SVG icon clicked
@@ -78,18 +78,18 @@ fetch("javascript/editpanel-data/editpanels.json")
     console.error(error);
 });
 
-//Initialize toolbar's positions, colors and click handlers
+//Initialize positions, colors and click handlers of toolbar's tabs and expand/retract togglers
 {
-    const btnList = document.querySelectorAll("button[id^=\"toolbar-select-\"]");
+    const tabList = document.querySelectorAll(".toolbar__tab");
     const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
-    for(let [i, btn] of btnList.entries()){
-        btn.style.borderColor = fngNS.SysData.TOOLBAR_CLR[i];                                    //initialize them to their respective colors
-        btn.addEventListener("click", () => {                                      //attach eventlisteners
+    for(let [i, tab] of tabList.entries()){
+        tab.style.borderColor = fngNS.SysData.TOOLBAR_CLR[i];                      //initialize them to their respective colors
+        tab.addEventListener("click", () => {                                      //attach eventlisteners
             switchToolbar(i);
         });
     };
-    for(let arrowBtn of togglers){
-        arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
+    for(let arrowbtn of togglers){
+        arrowbtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
     };
     switchToolbar(1);                                                              //switch to "Geometry" (default)
 }
