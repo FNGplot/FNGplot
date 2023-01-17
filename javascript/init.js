@@ -108,7 +108,7 @@ fngNS.SysData.sortableList.push(
             }
         },
         ghostClass: 'ghost-class',
-        draggable: ".obj-block",
+        draggable: ".sortblock",
         handle: ".small-icon",
         swapThreshold: 0.65,
         scroll: true,

@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
+/* || Fonts */
 @font-face {                    /*Lato -- Regular*/
     font-family: "Lato";
     font-weight: normal;
@@ -26,6 +27,79 @@
     src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');  
 }
 
+/* || CSS Root */
 :root {
-    font-size: 10px;    /* set base for rem*/
+    font-size: 10px;    /* set rem*/
+}
+
+/* || Body and Root <div> */
+body{
+    background-color: #fffff8;
+}
+.root {
+    top: 1rem;
+    left: 1rem;
+}
+
+/* || Banner at top left corner*/
+.banner {
+    top: 0rem;
+    left: 0rem;
+    width: 27rem;
+    height: 4.5rem;
+    background: #ddcfff;
+    border: 0.2rem solid black;
+}
+.banner__svg {
+    width: 100%;
+}
+
+/* || Sortable blocks */
+.sortblock {
+    position: relative;
+    border-radius: 0.4rem;
+    border: 0.1rem solid black;
+    margin-top: -0.1rem;
+    height: 5rem;
+    overflow: hidden;
+}
+.sortblock__icon {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid black;
+    border-radius: 0.4rem;
+    top: 0.4rem;
+    left: 0.5rem;
+}
+.sortblock__label {
+    position: absolute;
+    top: 0.9rem;
+    left: 6rem;
+    width: 19rem;
+    height: 2.4rem;
+    padding: 0.3rem;
+    font: 2.2rem Lato;
+    border: 0.1rem solid transparent;
+    background-color: transparent;
+    color: #ffffff;
+    user-select: none;
+}
+.sortblock__btn {
+    position: absolute;
+    display: block;
+    top: 0.5rem;
+    cursor: default;
+    font: 4rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+}
+.sortblock__btn--visibility {
+    right: 10rem;
+}
+.sortblock__btn--edit {
+    right: 5.5rem;
+}
+.sortblock__btn--delete {
+    right: 1rem;
 }

@@ -1,0 +1,201 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>FNGplot</title>
+        <link rel="icon" href="svg/logo/logo.ico" sizes="any">              <!-- Fallback for SVG icon -->
+        <link rel="icon" href="svg/logo/logo.svg" type="image/svg+xml">     <!-- SVG icon -->
+        <link rel="stylesheet" type="text/css" href="css/reset.css">        <!-- CSS resetter from meyerweb.com -->
+        <link rel="stylesheet" type="text/css" href="css/main.css">         <!-- Main CSS -->
+    </head>
+    
+    <script defer src="javascript/SortableJS/Sortable.js"></script>
+    <script defer src="javascript/MathJS/math.js"></script>
+    <script defer src="javascript/plot.js"></script> 
+    <script defer src="javascript/class.js"></script>                 
+    <script defer src="javascript/fngns.js"></script>
+    <script defer src="javascript/gui.js"></script>
+    <script defer src="javascript/init.js"></script>
+    <script defer src="javascript/block.js"></script>
+    
+    <template class="template">
+        <div class="sortblock">
+            <img class="sortblock__icon"></img>
+            <input type="text" class="sortblock__label" disabled>
+            <div class="sortblock__btn sortblock__btn--visibility">visibility</div>
+            <div class="sortblock__btn sortblock__btn--edit">tune</div>
+            <div class="sortblock__btn sortblock__btn--delete">delete</div>
+        </div>
+    </template>
+
+    <body>
+        <div class="root">
+            <div class="banner">
+                <img class="banner__svg" src="svg/logo/banner.svg"></img>
+            </div>
+        
+            <div id="left-panel">
+                <select id="left-panel-select">
+                        <option value="file" selected>File</option>
+                        <option value="symbols">Symbols</option>
+                        <option value="functions">Functions</option>
+                        <option value="tools">Tools</option>
+                        <option value="plt-settings">Plotter Settings</option>
+                        <option value="sys-settings">System Settings</option>
+                        <option value="about">About</option>
+                </select>
+                
+                <div id="left-panel-item-file">
+                file
+                </div>
+                
+                <div id="left-panel-item-symbols">
+                symbols
+                </div>
+                
+                <div id="left-panel-item-functions">
+                functions
+                </div>
+                
+                <div id="left-panel-item-tools">
+                    tools
+                </div>
+
+                <div id="left-panel-item-plt-settings">
+                    plotter settings
+                </div>
+                
+                <div id="left-panel-item-sys-settings">
+                    <div id="system-rootzoom">
+                        <div id="rootzoom-label">Zoom: 100%</div>
+                        <input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range">
+                    </div>
+                    <div id="envir-datalist">
+                        <p id="envir-datalist-label">Environment data</p>
+                        <p id="envir-datalist-refresh" class="material-symbol-rounded">refresh</p>
+                        <pre></pre>
+                    </div>
+                    <div>
+                        settings 3
+                    </div>
+                </div>
+                
+                <div id="left-panel-item-about">
+                about
+                </div>
+            </div>
+
+            <div id="calc-open">
+                <div id="calc-open-icon" class="material-symbol-rounded">calculate</div>
+                <div id="calc-open-banner">Calculator</div>
+            </div>
+                
+            <div id="toolbar-root">
+                <div id="toolbar-panel">
+                    <button id="toolbar-select-variables" class="toolbar-button">Variables</button>
+                    <button id="toolbar-select-geometry" class="toolbar-button">Geometry</button>
+                    <button id="toolbar-select-algebra" class="toolbar-button">Algebra</button>
+                    <button id="toolbar-select-consec" class="toolbar-button">Conic Sections</button>
+                    <button id="toolbar-select-calculus" class="toolbar-button">Calculus</button>
+                    <button id="toolbar-select-difeq" class="toolbar-button">Differential Equations</button>
+                    <button id="toolbar-select-vecf" class="toolbar-button">Vector Fields</button>
+                    <button id="toolbar-select-tse" class="toolbar-button">Text, Shapes & Expressions</button>
+                    <button id="toolbar-select-other" class="toolbar-button">Others</button>
+                </div>
+                
+                <div id="toolbar-item-variables">
+                variables and matrices
+                </div>
+                
+                <div id="toolbar-item-geometry">
+                    <div class="toolbar-grid" data-category="geometry">
+                        <div>Basic shapes</div>
+                        <img src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
+                        <img src="svg/system/geometry-icons/rect.svg" data-objname="rect"></img>
+                        <img src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
+                        <img src="svg/system/geometry-icons/triangle.svg" data-objname="triangle"></img>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <!-- Next Row -->
+                        <div>Lines</div>
+                        <img src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
+                        <img src="svg/system/geometry-icons/lineppext.svg" data-objname="lineppext"></img>
+                        <img src="svg/system/geometry-icons/lineps.svg" data-objname="lineps"></img>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <!-- Next Row -->
+                        <div>Circles</div>
+                        <img src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
+                        <img src="svg/system/geometry-icons/circle3p.svg" data-objname="circle3p"></img>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <!-- Next Row -->
+                    </div> 
+                    <div class="toolbar-grid-toggler">
+                        <div class="material-symbol-rounded">expand_circle_down</div>
+                    </div>
+                </div>
+                
+                <div id="toolbar-item-algebra">
+                alg
+                </div>
+                
+                <div id="toolbar-item-consec">
+                consec
+                </div>
+                
+                <div id="toolbar-item-calculus">
+                calc
+                </div>
+                
+                <div id="toolbar-item-difeq">
+                dff
+                </div>
+                
+                <div id="toolbar-item-vecf">
+                vector field
+                </div>
+                
+                <div id="toolbar-item-tse">
+                text
+                </div>
+
+                <div id="toolbar-item-other">
+                other
+                </div>
+            </div>
+            
+            <div id="main-root">
+            
+                
+                <div id="svg-frame">
+                    <img id="tspt-bkgd" src="svg/system/transparent-bkgd.svg"></img>
+                    <svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000" data-sid="root">
+                        
+                    </svg>
+                </div>
+                
+                <div id="block-frame" class="nested-sortable" data-sid="root">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -26,10 +26,6 @@
     src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');  
 }
 
-:root {
-    font-size: 10px;    /* set base for rem*/
-}
-
 .material-symbol-rounded { /* Modified from Google's recommendation */
     font-family: "Material Symbols Rounded";
     font-weight: normal;
