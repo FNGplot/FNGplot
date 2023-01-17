@@ -37,12 +37,14 @@ body{
     background-color: #fffff8;
 }
 .root {
+    position: absolute;
     top: 1rem;
     left: 1rem;
 }
 
 /* || Banner at top left corner*/
 .banner {
+    position: absolute;
     top: 0rem;
     left: 0rem;
     width: 27rem;
@@ -110,7 +112,7 @@ body{
     top: 6rem;
     left: 0rem;
     width: 27rem;
-    height: 5rem;
+    height: 56rem;
     background: #f5f0ff;
     border: 0.2rem solid black;
 }
@@ -133,9 +135,69 @@ body{
     display: none;
     flex-direction: column;
     font-family: Lato;
-    padding: 0.3erm;
+    padding: 0.3rem;
     box-sizing: border-box;
 }
 .left-panel__subpage[data-subpage="file"] { /* Default visible subpage*/
     display: flex;
+}
+.leftpanel__datacell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: auto;
+    border-bottom: 0.1rem dashed black;
+}
+.leftpanel__datacell__label {  /* Cell title */
+    position: relative;
+    font-size: 2rem;
+    margin: 0.5rem 0rem;
+}
+.leftpanel__datacell__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
+    width: 20rem;
+    margin: 0.5rem 0rem;
+}
+.leftpanel__datacell__slidercomplex > input[type="range"] {  /* The slider */
+    width: 16rem;
+    height: 3.2rem;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+}
+.leftpanel__datacell__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.8rem;
+    cursor: pointer;
+    box-shadow: 000 black;
+    background: #ffc0cb;
+    border-radius: 0.4rem;
+    border: 0rem solid black;
+}
+.leftpanel__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 0.1rem 0.1rem 0.1rem black;
+    border:0rem solid #8a408b;
+    height: 2.5rem;
+    width: 1.5rem;
+    border-radius: 0.6rem;
+    background: #ccb3ff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -0.85rem;
+}
+.leftpanel__datacell__slidercomplex > div {  /* The display label */
+    width: 4rem;
+}
+.leftpanel__datacell__pre {  /* Code & technical data */
+    margin-right: auto;
+    padding-left: 1rem; /* Small indentation */
+    font: 1.2rem "Source Code Pro";
+}
+.leftpanel__datacell__special--envir-refresh-btn {  /* Special: environment data refresh button */
+    background-color: #ffc0cb;
+    border-radius: 0.5rem;
+    cursor: default;
+    font: 3rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
 }

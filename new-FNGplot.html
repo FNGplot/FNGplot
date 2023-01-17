@@ -9,7 +9,7 @@
         <link rel="icon" href="svg/logo/logo.ico" sizes="any">              <!-- Fallback for SVG icon -->
         <link rel="icon" href="svg/logo/logo.svg" type="image/svg+xml">     <!-- SVG icon -->
         <link rel="stylesheet" type="text/css" href="css/reset.css">        <!-- CSS resetter from meyerweb.com -->
-        <link rel="stylesheet" type="text/css" href="css/main.css">         <!-- Main CSS -->
+        <link rel="stylesheet" type="text/css" href="css/new-main.css">     <!-- Main CSS -->
     </head>
     
     <script defer src="javascript/SortableJS/Sortable.js"></script>
@@ -69,16 +69,19 @@
                 </div>
                 
                 <div class="left-panel__subpage" data-subpage="sys-settings">
-                    <div id="system-rootzoom">
-                        <div id="rootzoom-label">Zoom: 100%</div>
-                        <input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range">
+                    <div class="left-panel__datacell">
+                        <div class="left-panel__datacell__label">UI Zoom:</div>
+                        <div class="left-panel__datacell__slidercomplex" data-id="ui-zoom-slider">
+                            <input type="range" min="50" max="200" step="5" value="100">
+                            <div>100%</div>
+                        </div>
                     </div>
-                    <div id="envir-datalist">
-                        <p id="envir-datalist-label">Environment data</p>
-                        <p id="envir-datalist-refresh" class="material-symbol-rounded">refresh</p>
-                        <pre></pre>
+                    <div class="left-panel__datacell">
+                        <div id="left-panel__datacell__label">Environment data</div>
+                        <div class="leftpanel__datacell__special--envirdata-refreshbtn" data-id="envirdata-refreshbtn">refresh</div>
+                        <pre data-id="envirdata-output"></pre>
                     </div>
-                    <div>
+                    <div class="left-panel__datacell">
                         settings 3
                     </div>
                 </div>

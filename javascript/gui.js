@@ -10,16 +10,16 @@
 //Left panel display switch
 
 function switchLeftPanel(optn){
-    const panelList = document.querySelectorAll("div[id^=\"left-panel-item-\"]");  //select all panels
+    const panelList = document.querySelectorAll(".left-panel__subpage");           //select all panels
     for(let panel of panelList){                                                   //hide everyone first
 	    panel.style.display = "none";
     };
-    document.querySelector(`#left-panel-item-${optn}`).style.display = "flex";     //then show only the selected panel
+    document.querySelector(`.left-panel__subpage[data-subpage="${optn}"]`).style.display = "flex";     //then show only the selected panel
 }
 
 //Change root zoom level
 
-function changeRootZoom(value,mode){
+function changeRootZoom(mode){
     if(mode == "change"){
         document.getElementById("root-frame").style.transform=`scale(${value/100})`;
     }
@@ -30,12 +30,6 @@ function changeRootZoom(value,mode){
 
 function updateEnvirList(){
     document.querySelector("#envir-datalist > pre").innerHTML = `
-Root Frame:
---------------------------
-Width / Height: 
-${document.querySelector("#root-frame").getBoundingClientRect().width}px / ${document.querySelector("#root-frame").getBoundingClientRect().height}px
-
-
 Viewport:
 --------------------------
 innerWidth / clientWidth: 

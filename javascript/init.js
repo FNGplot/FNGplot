@@ -5,28 +5,28 @@
 
 /* [!] Event Listeners */
 
-document.querySelector("#left-panel-select").addEventListener("change", () => {
-    switchLeftPanel(document.querySelector("#left-panel-select").value);
+document.querySelector(".left-panel__select").addEventListener("change", () => {
+    switchLeftPanel(document.querySelector(".left-panel__select").value);
 });
 
-document.querySelector("#envir-datalist-refresh").addEventListener("click", () => {
+document.querySelector("[data-id='envirdata-refreshbtn']").addEventListener("click", () => {
 	updateEnvirList();
 });
 
 for(const item of ["input", "change"]){
-    document.querySelector("#rootzoom-slider").addEventListener(item, () => {
-        changeRootZoom(document.querySelector("#rootzoom-slider").value,item);
+    document.querySelector("[data-id='ui-zoom-slider']").addEventListener(item, () => {
+        changeRootZoom(item);
     });
 };
 
 fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
-    if(event.target.classList.contains("visibility")){  //change visibility
+    if(event.target.classList.contains("sortblock__btn--visibility")){  //change visibility
         changeVisibility(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("edit")){   //toggle editpanel
+    else if(event.target.classList.contains("sortblock__btn--edit")){   //toggle editpanel
         toggleEditPanel(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("delete")){ //delete block
+    else if(event.target.classList.contains("sortblock__btn--delete")){ //delete block
         deleteObject(event.target.parentElement.dataset.sid);
     }
 });
