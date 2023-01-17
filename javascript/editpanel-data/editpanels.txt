@@ -51,6 +51,7 @@ lineppext
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>
 
+lineps
 <div class="objblock-editpanel" data-objname="lineps">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>

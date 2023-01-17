@@ -68,7 +68,7 @@ fetch("javascript/editpanel-data/editpanels.json")
 })
 .then((data) => {
     fngNS.SysData.EDITPANEL_TEMPLATES = data;
-    Object.defineProperty(fngNS.SysData, "EDITPANEL_TEMPLATES", {   //  Lock it up
+    Object.defineProperty(fngNS.SysData, "EDITPANEL_TEMPLATES", {   // Lock it up
         configurable: false,
         writable: false,
     });

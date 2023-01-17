@@ -101,8 +101,8 @@ class LinePS extends StrokeParent {
         this.x = 1;
         this.y = 2;
         this.slope = 1.5;
-        this.leftExtend = 2;
-        this.rightExtend = 2;
+        this.leftExtend = 4.5;
+        this.rightExtend = 2.7;
     }
     updateMath(svgElem){
         if(this.slope === ""){    //user admits that it is a vertical line (use === becuase 0 == "")
@@ -144,12 +144,12 @@ class Triangle extends StrokeFillParent {
     constructor(sid){
         super(sid);
         this.label = "Triangle";
-        this.x1 = -2;
-        this.y1 = -4;
-        this.x2 = 5;
-        this.y2 = -1;
-        this.x3 = 3;
-        this.y3 = 3;
+        this.x1 = -5;
+        this.y1 = -6;
+        this.x2 = 6;
+        this.y2 = -5;
+        this.x3 = 1;
+        this.y3 = 5;
         this.SvgStyle.lineJoin = "miter";
         this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
     }

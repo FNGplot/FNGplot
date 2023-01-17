@@ -1,2 +1,4 @@
 dev/
+.vscode/
+javascript/editpanel-data/convert.exe
 start-server.bat
