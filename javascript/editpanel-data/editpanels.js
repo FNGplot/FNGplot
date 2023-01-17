@@ -1,4 +1,5 @@
-linepp
+let data = {
+    linepp:`
 <div class="objblock-editpanel" data-objname="linepp">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>
@@ -23,8 +24,8 @@ linepp
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>
-
-lineppext
+`,
+    lineppext:`
 <div class="objblock-editpanel" data-objname="lineppext">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>
@@ -50,8 +51,8 @@ lineppext
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>
-
-lineps
+`,
+    lineps:`
 <div class="objblock-editpanel" data-objname="lineps">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>
@@ -77,8 +78,8 @@ lineps
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>
-
-rect
+`,
+    rect:`
 <div class="objblock-editpanel" data-objname="rect">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>
@@ -126,8 +127,8 @@ rect
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>
-
-triangle
+`,
+    triangle:`
 <div class="objblock-editpanel" data-objname="triangle">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>
@@ -163,8 +164,8 @@ triangle
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>
-
-circle
+`,
+    circle:`
 <div class="objblock-editpanel" data-objname="circle">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>
@@ -191,8 +192,8 @@ circle
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
 </div>
-
-circle3p
+`,
+    circle3p:`
 <div class="objblock-editpanel" data-objname="circle3p">
     <div class="label-monospace">-----------User-----------------</div>
     <div>Name: <input type="text" data-property="label" class="size-long"></div>
@@ -219,4 +220,6 @@ circle3p
     <div>DashOffset: <input type="number" data-property="dashOffset" class="size-short"></div>
     <div class="label-monospace">-----------System---------------</div>
     <div>SystemID: <input type="text" data-property="sid" class="idtag" disabled></div>
-</div>
+</div>`,
+}
+
