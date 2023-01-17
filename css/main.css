@@ -13,17 +13,21 @@
     font-style: normal;
     src: url('../fonts/WOFF2/Lato-Bold.woff2') format('woff2');
 }
-@font-face {                    /*Source Code Pro -- normal*/
+@font-face {                    /*Source Code Pro -- Regular*/
     font-family: "Source Code Pro";
     font-weight: normal;
     font-style: normal;
     src: url('../fonts/WOFF2/SourceCodePro-Regular.woff2') format('woff2');
 }
-@font-face {
+@font-face {                    /*Material Symbols Rounded -- Regular*/
     font-family: "Material Symbols Rounded";
     font-style: normal;
     font-weight: normal;
     src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');  
+}
+
+:root {
+    font-size: 10px;    /* set base for rem*/
 }
 
 .material-symbol-rounded { /* Modified from Google's recommendation */
