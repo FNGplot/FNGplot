@@ -1,13 +1,13 @@
 ## Javascript
 
 Library:
-|Name|Description|License|
+| Name | Description | License |
 |-|-|-|
 | [Sortable.js](https://github.com/SortableJS/Sortable) | Draggable `<div>` support | MIT |
 | [Math.js](https://github.com/josdejong/mathjs) | FNGplot's primary math library & function parser | Apache-2.0 |
 
 FNGplot (excluding the libraries):
-|Name|Description|License|
+| Name | Description | License |
 |-|-|-|
 | block.js | Draggable block related functions | Apache-2.0 |
 | class.js | Class declaration | Apache-2.0 |
@@ -16,7 +16,6 @@ FNGplot (excluding the libraries):
 | init.js | Page init sequence | Apache-2.0 |
 | plot.js | FNGplot-specific math & plotting functions | Apache-2.0 |
 | editpanel-data | <ul><li>**editpanels.txt:** Raw HTML code of editpanels</li><li>**editpanels.json:** Minified version of editpanel.txt that is fetched by FNGplot</li><li>**convert.js:** Converts editpanels.txt to editpanels.json</li>  | Apache-2.0 |
-
 
 FNGplot's code (excluding the libraries) follow [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html).
 

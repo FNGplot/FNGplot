@@ -1,14 +1,6 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-/*
-List of system fonts:
-- Lato regular: Toolbar, general content
-- Lato bold: Buttons, banners, dropdowns, etc.
-- Material Symbols Round (A special "icon font" by Google): Icons & Symbols
-- Source Code Pro regular: Used when I find monospace fonts desirable.
-*/
-
 @font-face {                    /*Lato -- Regular*/
     font-family: "Lato";
     font-weight: normal;

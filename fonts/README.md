@@ -39,3 +39,12 @@ Full list of fonts in alphabetical order:
 |STIX2Math |Regular|
 |STIX2Text |Regular / Bold / Italic / Bold Italic|
 |**Material Symbols Rounded** | **Icon** |
+
+Fonts used in UI in alphabetical order:
+
+| Font | Purpose |
+|-|-|
+|Lato regular|General content|
+|Lato bold |Buttons, banners, title dropdowns, etc.|
+|Material Symbols Round|Icons & Symbols|
+|Source Code Pro regular|General monospace font use|
