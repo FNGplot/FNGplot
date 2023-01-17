@@ -103,3 +103,39 @@ body{
 .sortblock__btn--delete {
     right: 1rem;
 }
+
+/* || Left panel */
+.left-panel {
+    position: absolute;
+    top: 6rem;
+    left: 0rem;
+    width: 27rem;
+    height: 5rem;
+    background: #f5f0ff;
+    border: 0.2rem solid black;
+}
+.left-panel__select {
+    position: absolute;
+    font: bold 2.2rem Lato;
+    top: 1.2rem;
+    left: 1.2rem;
+    width: 24.5rem;
+    height: 3rem;
+}
+.left-panel__subpage {
+    position: absolute;
+    top: 5.5rem;
+    left: 1.2rem;
+    width: 24.5rem;
+    height: 49rem;
+    border: 0.1rem solid black;
+    background: #ffffff;
+    display: none;
+    flex-direction: column;
+    font-family: Lato;
+    padding: 0.3erm;
+    box-sizing: border-box;
+}
+.left-panel__subpage[data-subpage="file"] { /* Default visible subpage*/
+    display: flex;
+}

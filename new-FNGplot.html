@@ -37,8 +37,8 @@
                 <img class="banner__svg" src="svg/logo/banner.svg"></img>
             </div>
         
-            <div id="left-panel">
-                <select id="left-panel-select">
+            <div class="left-panel">
+                <select class="left-panel__select">
                         <option value="file" selected>File</option>
                         <option value="symbols">Symbols</option>
                         <option value="functions">Functions</option>
@@ -47,28 +47,28 @@
                         <option value="sys-settings">System Settings</option>
                         <option value="about">About</option>
                 </select>
-                
-                <div id="left-panel-item-file">
+
+                <div class="left-panel__subpage" data-subpage="file">
                 file
                 </div>
                 
-                <div id="left-panel-item-symbols">
+                <div class="left-panel__subpage" data-subpage="symbols">
                 symbols
                 </div>
                 
-                <div id="left-panel-item-functions">
+                <div class="left-panel__subpage" data-subpage="functions">
                 functions
                 </div>
                 
-                <div id="left-panel-item-tools">
+                <div class="left-panel__subpage" data-subpage="tools">
                     tools
                 </div>
 
-                <div id="left-panel-item-plt-settings">
+                <div class="left-panel__subpage" data-subpage="plt-settings">
                     plotter settings
                 </div>
                 
-                <div id="left-panel-item-sys-settings">
+                <div class="left-panel__subpage" data-subpage="sys-settings">
                     <div id="system-rootzoom">
                         <div id="rootzoom-label">Zoom: 100%</div>
                         <input id="rootzoom-slider" min="50" max="200" step="5" value="100" type="range" class="lp-range">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 
-                <div id="left-panel-item-about">
+                <div class="left-panel__subpage" data-subpage="about">
                 about
                 </div>
             </div>
