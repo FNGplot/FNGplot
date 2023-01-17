@@ -14,8 +14,8 @@ document.querySelector("[data-id='envirdata-refreshbtn']").addEventListener("cli
 });
 
 for(const item of ["input", "change"]){
-    document.querySelector("[data-id='ui-zoom-slider']").addEventListener(item, () => {
-        changeRootZoom(item);
+    document.querySelector("[data-id='ui-zoom-slider']").addEventListener(item, function(){
+        changeRootZoom(item, this.querySelector("input"), this.querySelector("div"));
     });
 };
 

@@ -19,11 +19,11 @@ function switchLeftPanel(optn){
 
 //Change root zoom level
 
-function changeRootZoom(mode){
+function changeRootZoom(mode, slider, divDisplay){
     if(mode == "change"){
-        document.getElementById("root-frame").style.transform=`scale(${value/100})`;
+        document.querySelector(":root").style.fontSize = `${10 * slider.value / 100}px`;
     }
-    document.getElementById("rootzoom-label").innerHTML = `Zoom: ${value}%`;
+    divDisplay.innerHTML = `${slider.value}%`;
 }
 
 // Update environment data list 
@@ -32,17 +32,17 @@ function updateEnvirList(){
     document.querySelector("pre[data-id='envirdata-output']").innerHTML = `
 Viewport:
 --------------------------
-innerWidth / clientWidth: 
-${window.innerWidth}px / ${document.documentElement.clientWidth}px
-innerHeight / clientHeight: 
-${window.innerHeight}px / ${document.documentElement.clientHeight}px
+innerWidth / innerHeight: 
+${window.innerWidth}px / ${window.innerHeight}px
+
+clientWidth / clientHeight: 
+${document.documentElement.clientWidth}px / ${document.documentElement.clientHeight}px
 
 
 Device:
 --------------------------
 ScreenWidth / ScreenHeight:
 ${window.screen.width}px / ${window.screen.height}px
-
 
 `
 }

@@ -29,7 +29,9 @@
 
 /* || CSS Root */
 :root {
-    font-size: 10px;    /* set rem*/
+    /* font-size: 10px (basis of rem) */
+    font-size: 10px;
+    --colora: #ffffff;
 }
 
 /* || Body and Root <div> */
@@ -181,7 +183,7 @@ body {
 }
 .left-panel__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0.1rem 0.1rem 0.1rem black;
-    border:0rem solid #8a408b;
+    border: 0rem solid #8a408b;
     height: 2.5rem;
     width: 1.5rem;
     border-radius: 0.6rem;
