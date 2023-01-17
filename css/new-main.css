@@ -312,3 +312,7 @@ body {
     background-color: #f5f0ff;
     border: 0.2rem solid black;
 }
+.toolbar__panel::-webkit-scrollbar {
+    /*disable scrollbar. They appear for a short time during page load for some reason even though my design is pixel perfect*/
+    display: none;
+}
