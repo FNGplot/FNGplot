@@ -33,27 +33,13 @@
 }
 
 /* || Body and Root <div> */
-body{
+body {
     background-color: #fffff8;
 }
 .root {
     position: absolute;
     top: 1rem;
     left: 1rem;
-}
-
-/* || Banner at top left corner*/
-.banner {
-    position: absolute;
-    top: 0rem;
-    left: 0rem;
-    width: 27rem;
-    height: 4.5rem;
-    background: #ddcfff;
-    border: 0.2rem solid black;
-}
-.banner__svg {
-    width: 100%;
 }
 
 /* || Sortable blocks */
@@ -93,6 +79,7 @@ body{
     top: 0.5rem;
     cursor: default;
     font: 4rem "Material Symbols Rounded";
+    line-height: 1;
     -webkit-font-smoothing: antialiased;
     user-select: none;
 }
@@ -104,6 +91,20 @@ body{
 }
 .sortblock__btn--delete {
     right: 1rem;
+}
+
+/* || Banner at top left corner*/
+.banner {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 27rem;
+    height: 4.5rem;
+    background: #ddcfff;
+    border: 0.2rem solid black;
+}
+.banner__svg {
+    width: 100%;
 }
 
 /* || Left panel */
@@ -134,39 +135,43 @@ body{
     background: #ffffff;
     display: none;
     flex-direction: column;
-    font-family: Lato;
-    padding: 0.3rem;
+    padding: 0rem 0.3rem;
     box-sizing: border-box;
+    font: 1.6rem Lato;
 }
-.left-panel__subpage[data-subpage="file"] { /* Default visible subpage*/
+.left-panel__subpage[data-pagename="file"] { /* Default visible subpage*/
     display: flex;
 }
-.leftpanel__datacell {
+.left-panel__datacell {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     height: auto;
+    box-sizing: content-box;
     border-bottom: 0.1rem dashed black;
 }
-.leftpanel__datacell__label {  /* Cell title */
+.left-panel__datacell__label {  /* Cell title */
     position: relative;
     font-size: 2rem;
     margin: 0.5rem 0rem;
 }
-.leftpanel__datacell__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
-    width: 20rem;
+.left-panel__datacell__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
+    width: 22rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     margin: 0.5rem 0rem;
 }
-.leftpanel__datacell__slidercomplex > input[type="range"] {  /* The slider */
+.left-panel__datacell__slidercomplex > input[type="range"] {  /* The slider */
+    display: inline-block;
     width: 16rem;
     height: 3.2rem;
     appearance: none;
     -webkit-appearance: none;
-    width: 100%;
 }
-.leftpanel__datacell__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
+.left-panel__datacell__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
     height: 0.8rem;
     cursor: pointer;
     box-shadow: 000 black;
@@ -174,7 +179,7 @@ body{
     border-radius: 0.4rem;
     border: 0rem solid black;
 }
-.leftpanel__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
+.left-panel__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0.1rem 0.1rem 0.1rem black;
     border:0rem solid #8a408b;
     height: 2.5rem;
@@ -185,19 +190,51 @@ body{
     -webkit-appearance: none;
     margin-top: -0.85rem;
 }
-.leftpanel__datacell__slidercomplex > div {  /* The display label */
-    width: 4rem;
+.left-panel__datacell__slidercomplex > div {  /* The display label */
+    width: 5rem;
+    font-size: 1.8rem;
+    display: inline-block;
 }
-.leftpanel__datacell__pre {  /* Code & technical data */
+.left-panel__datacell__pre {  /* Code & technical data */
     margin-right: auto;
     padding-left: 1rem; /* Small indentation */
     font: 1.2rem "Source Code Pro";
 }
-.leftpanel__datacell__special--envir-refresh-btn {  /* Special: environment data refresh button */
+.left-panel__datacell__refresh-btn {
+    width: 3rem;
+    height: 3rem;
     background-color: #ffc0cb;
     border-radius: 0.5rem;
     cursor: default;
     font: 3rem "Material Symbols Rounded";
     -webkit-font-smoothing: antialiased;
     user-select: none;
+    line-height: 1;
+}
+
+/* || Calculator Button */
+.calc-btn {
+    position: absolute;
+    top: 63.5rem;
+    left: 0rem;
+    width: 27rem;
+    height: 5.6rem;
+    cursor: default;
+    background: #ddcfff;
+    border: 0.2rem solid black;
+}
+.calc-btn__icon {
+    position: absolute;
+    top: 0.8rem;
+    left: 2.2rem;
+    font: 4rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    line-height: 1;
+}
+.calc-btn__text {
+    position: absolute;
+    font: bold 3.4rem Lato;
+    top: 0.7rem;
+    left: 7rem;
 }
