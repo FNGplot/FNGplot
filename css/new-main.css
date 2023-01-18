@@ -50,7 +50,8 @@ body {
     border-radius: 0.4rem;
     border: 0.1rem solid black;
     margin-top: -0.1rem;
-    height: 5rem;
+    min-height: 5rem;
+    height: auto;
     overflow: hidden;
 }
 .dragblock__icon {

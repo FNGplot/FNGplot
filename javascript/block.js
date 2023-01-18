@@ -99,7 +99,6 @@ function toggleEditPanel(sid) {
         block.insertAdjacentHTML("beforeend", fngNS.SysData.EDITPANEL_TEMPLATES[objName]);
         initEditPanel(block.querySelector(".editpanel"),sid);
     } else { //It has an editpanel, remove it
-        fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "5rem"; //initiate the closing animation
         panel.parentNode.removeChild(panel);
     }
 }
@@ -119,13 +118,7 @@ function initEditPanel(panelElem, sid){
         } else if (inputElem.dataset.property in obj.SvgStyle) {
             inputElem.value = obj.SvgStyle[inputElem.dataset.property];
         } 
-    };
-    // calculate rem
-    console.log("bc rect", panelElem.getBoundingClientRect().height);
-    console.log("offset height", panelElem.offsetHeight);
-    console.log("remsize", fngNS.SysData.remSize)
-    const remHeightNeeded = math.round(panelElem.getBoundingClientRect().height / fngNS.SysData.remSize + fngNS.MagicNumber.EDITPANEL_TBMARGIN, 2); 
-    fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${remHeightNeeded}rem`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
+    }
 }
 function handleUserEdit(target, sid, event){ 
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
