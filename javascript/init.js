@@ -33,8 +33,8 @@ fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delega
 
 for(const item of ["input", "change"]){
     fngNS.DOM.BLOCK_FRAME.addEventListener(item, (event) => { 
-        if(event.target.closest(".dragblock__editpanel") != null){    //verify that the input/change came from inside an editpanel
-            const sid = event.target.parentNode.parentNode.parentNode.dataset.sid;
+        if(event.target.closest(".editpanel") != null){    //verify that the input/change came from inside an editpanel
+            const sid = event.target.closest(".dragblock").dataset.sid;
             handleUserEdit(event.target, sid, event.type);
         }
     });
