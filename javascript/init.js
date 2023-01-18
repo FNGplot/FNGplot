@@ -20,13 +20,13 @@ for(const item of ["input", "change"]){
 };
 
 fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
-    if(event.target.classList.contains("sortblock__tab--visibility")){  //change visibility
+    if(event.target.classList.contains("dragblock__tab--visibility")){  //change visibility
         changeVisibility(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("sortblock__tab--edit")){   //toggle editpanel
+    else if(event.target.classList.contains("dragblock__tab--edit")){   //toggle editpanel
         toggleEditPanel(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("sortblock__tab--delete")){ //delete block
+    else if(event.target.classList.contains("dragblock__tab--delete")){ //delete block
         deleteObject(event.target.parentElement.dataset.sid);
     }
 });
@@ -46,8 +46,8 @@ document.querySelector(".toolbar").addEventListener("click", (event) => {  //eve
     if(target.tagName.toLowerCase() == "img"){                                  //SVG icon clicked
         createFNGObject(target.dataset.objname, null);                          //create a brand new object of the specified kind
     }
-    else if(parent.classList.contains("toolbar-grid-toggler")){                 //expand or collapse the toolbar
-        toggleToolbarDropdown(target);
+    else if(target.classList.contains("toolbar__toggler__arrowbtn")){           // Arrow button clicked
+        toggleToolbarDropdown(target);                                          // Expand or collapse the respective panel
     }
 });
 
@@ -81,15 +81,15 @@ fetch("javascript/editpanel-data/editpanels.json")
 //Initialize positions, colors and click handlers of toolbar's tabs and expand/retract togglers
 {
     const tabList = document.querySelectorAll(".toolbar__tab");
-    const togglers = document.querySelectorAll(".toolbar-grid-toggler > div");
+    const arrowBtnList = document.querySelectorAll(".toolbar__toggler__arrowbtn");
     for(let [i, tab] of tabList.entries()){
         tab.style.borderColor = fngNS.SysData.TOOLBAR_CLR[i];                      //initialize them to their respective colors
         tab.addEventListener("click", () => {                                      //attach eventlisteners
             switchToolbar(i);
         });
     };
-    for(let arrowbtn of togglers){
-        arrowbtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
+    for(let arrowBtn of arrowBtnList){
+        arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
     };
     switchToolbar(1);                                                              //switch to "Geometry" (default)
 }
@@ -108,8 +108,8 @@ fngNS.SysData.sortableList.push(
             }
         },
         ghostClass: 'ghost-class',
-        draggable: ".sortblock",
-        handle: ".small-icon",
+        draggable: ".dragblock",
+        handle: ".dragblock__icon",
         swapThreshold: 0.65,
         scroll: true,
         scrollSensitivity: 80,

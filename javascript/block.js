@@ -38,9 +38,9 @@ function createFNGObject(objName, data){
             
         // Step 2 of 3: draggable block
         let newBlock = fngNS.DOM.BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
-        newBlock.classList.add(data[1]);                                                  //add object class
-        newBlock.querySelector('img').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
-        newBlock.querySelector('.labeltag').value = newObj.label;           //display default label
+        newBlock.classList.add(`dragblock--${data[1]}`);                                            //add object class
+        newBlock.querySelector('.dragblock__icon').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
+        newBlock.querySelector('.dragblock__label').value = newObj.label;           //display default label
         newBlock.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
         fngNS.DOM.BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
 

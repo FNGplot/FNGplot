@@ -72,14 +72,14 @@ function switchToolbar(optn){
 
 // Toggle toolbar dropdown when down arrow is clicked
 
-function toggleToolbarDropdown(item){
-    if(item.style.transform == "rotate(0deg)"){                 //expand
-        item.style.transform = "rotate(180deg)";
-        item.parentNode.parentNode.style.overflow = "visible";
+function toggleToolbarDropdown(arrowBtn){
+    if(arrowBtn.style.transform == "rotate(0deg)"){                 //expand
+        arrowBtn.style.transform = "rotate(180deg)";
+        arrowBtn.parentNode.parentNode.style.overflow = "visible";
     }
-    else if(item.style.transform == "rotate(180deg)"){          //collapse
-        item.style.transform = "rotate(0deg)";
-        item.parentNode.parentNode.style.overflow = "hidden";
+    else if(arrowBtn.style.transform == "rotate(180deg)"){          //collapse
+        arrowBtn.style.transform = "rotate(0deg)";
+        arrowBtn.parentNode.parentNode.style.overflow = "hidden";
     }
 }
 

@@ -45,7 +45,7 @@ body {
 }
 
 /* || Sortable blocks */
-.sortblock {
+.dragblock {
     position: relative;
     border-radius: 0.4rem;
     border: 0.1rem solid black;
@@ -53,7 +53,7 @@ body {
     height: 5rem;
     overflow: hidden;
 }
-.sortblock__icon {
+.dragblock__icon {
     position: absolute;
     width: 4rem;
     height: 4rem;
@@ -62,7 +62,7 @@ body {
     top: 0.4rem;
     left: 0.5rem;
 }
-.sortblock__label {
+.dragblock__label {
     position: absolute;
     top: 0.9rem;
     left: 6rem;
@@ -75,7 +75,7 @@ body {
     color: #ffffff;
     user-select: none;
 }
-.sortblock__btn {
+.dragblock__btn {
     position: absolute;
     display: block;
     top: 0.5rem;
@@ -85,17 +85,22 @@ body {
     -webkit-font-smoothing: antialiased;
     user-select: none;
 }
-.sortblock__btn--visibility {
+.dragblock__btn--visibility {
     right: 10rem;
 }
-.sortblock__btn--edit {
+.dragblock__btn--edit {
     right: 5.5rem;
 }
-.sortblock__btn--delete {
+.dragblock__btn--delete {
     right: 1rem;
 }
 
-/* || Banner at top left corner*/
+/* || Draggable block modifiers */
+.dragblock--geometry {
+    background-color: #5f95f7;  
+}
+
+/* || Banner at top left corner */
 .banner {
     position: absolute;
     top: 0rem;
@@ -315,4 +320,100 @@ body {
 .toolbar__panel::-webkit-scrollbar {
     /*disable scrollbar. They appear for a short time during page load for some reason even though my design is pixel perfect*/
     display: none;
+}
+.toolbar__grid {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 100.8rem; /* 14/15 */
+    height: auto;
+    background-color: #f5f0ff;
+    z-index: 99;
+    outline: 0.2rem solid black;
+    display: grid;
+    grid-template-columns: 2fr repeat(10, 1fr);   /*Description is 2 blocks wide, followed by 10 icons(1 blocks wide)*/
+    grid-auto-rows: 6rem;   /*Same as container height*/
+    row-gap: 0.5rem;
+    align-items: center;
+    justify-items: center;
+}
+.toolbar__icon {
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid black;
+    border-radius: 0.4rem;
+}
+.toolbar__labelcell {
+    position: relative;
+    font: 2.4rem Lato;
+}
+.toolbar__toggler {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    width: 7.2rem;
+    height: 6rem;
+    box-sizing: border-box;
+    background-color: #ddcfff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toolbar__toggler__arrowbtn {
+    cursor: default;
+    transition: transform 0.1s ease-in-out; /* turning animation */
+    font: 4.8rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    line-height: 1;
+}
+
+/* || Main workspace */
+.workspace {
+    position: absolute;
+    top: 12rem;
+    left: 29rem;
+    width: 1rem;
+    height: 1rem;
+}
+.workspace__svg-frame {
+    position: absolute;
+    top: 4rem;
+    left: 3.5rem;
+    width: 50rem;
+    height: 50rem;
+    border: 0.2rem solid black;
+}
+.workspace__svg-frame__tspt-bkgd {  /* transparent background */
+    position: absolute;
+    z-index: 0;
+    top: 0rem;
+    left: 0rem;
+    width: 50rem;
+    height: 50rem;
+}
+.workspace__svg-frame__canvas {
+    position: absolute;
+    z-index: 1;
+    top: 0rem;
+    left: 0rem;
+    width: 50rem;
+    height: 50rem;
+}
+.workspace__block-frame {
+    position: absolute;
+    top: 7.5rem;
+    left: 60rem;
+    width: 43rem;
+    height: 47rem;
+    border: 0.2rem dashed black;
+    background: #ffffff;
+    overflow-y: scroll;
+    margin: 0rem;
+    padding: 1rem;
+}
+
+/* || Others */
+.ghost-class {            /*'ghostClass' parameter of sortable.js*/
+    opacity: 0.4;
 }

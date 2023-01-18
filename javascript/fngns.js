@@ -30,8 +30,8 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     }),
 
     DOM: Object.freeze({    // Frequently used DOM elements
-        BLOCK_FRAME: document.querySelector('#block-frame'),
-        SVG_CANVAS: document.querySelector('#svg-canvas'),
+        BLOCK_FRAME: document.querySelector('.workspace__block-frame'),
+        SVG_CANVAS: document.querySelector('.workspace__svg-frame__canvas'),
         BASIC_BLOCK_TEMPLATE: document.querySelector('.template').content.firstElementChild,
     }),
 

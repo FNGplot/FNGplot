@@ -22,12 +22,12 @@
     <script defer src="javascript/block.js"></script>
     
     <template class="template">
-        <div class="sortblock">
-            <img class="sortblock__icon"></img>
-            <input type="text" class="sortblock__label" disabled>
-            <div class="sortblock__btn sortblock__btn--visibility">visibility</div>
-            <div class="sortblock__btn sortblock__btn--edit">tune</div>
-            <div class="sortblock__btn sortblock__btn--delete">delete</div>
+        <div class="dragblock">
+            <img class="dragblock__icon"></img>
+            <input type="text" class="dragblock__label" disabled>
+            <div class="dragblock__btn dragblock__btn--visibility">visibility</div>
+            <div class="dragblock__btn dragblock__btn--edit">tune</div>
+            <div class="dragblock__btn dragblock__btn--delete">delete</div>
         </div>
     </template>
 
@@ -114,46 +114,45 @@
                 </div>
                 
                 <div class="toolbar__panel toolbar__panel--geometry">
-                    <div class="toolbar-grid" data-category="geometry">
-                        <div>Basic shapes</div>
-                        <img src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
-                        <img src="svg/system/geometry-icons/rect.svg" data-objname="rect"></img>
-                        <img src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
-                        <img src="svg/system/geometry-icons/triangle.svg" data-objname="triangle"></img>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                    <div class="toolbar__grid" data-category="geometry">
+                        <div class="toolbar__labelcell">Basic shapes</div>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/rect.svg" data-objname="rect"></img>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/triangle.svg" data-objname="triangle"></img>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
                         <!-- Next Row -->
-                        <div>Lines</div>
-                        <img src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
-                        <img src="svg/system/geometry-icons/lineppext.svg" data-objname="lineppext"></img>
-                        <img src="svg/system/geometry-icons/lineps.svg" data-objname="lineps"></img>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                        <div class="toolbar__labelcell">Lines</div>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/lineppext.svg" data-objname="lineppext"></img>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/lineps.svg" data-objname="lineps"></img>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
                         <!-- Next Row -->
-                        <div>Circles</div>
-                        <img src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
-                        <img src="svg/system/geometry-icons/circle3p.svg" data-objname="circle3p"></img>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <!-- Next Row -->
+                        <div class="toolbar__labelcell">Circles</div>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
+                        <img class="toolbar__icon" src="svg/system/geometry-icons/circle3p.svg" data-objname="circle3p"></img>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
+                        <div class="toolbar__labelcell"></div>
                     </div> 
-                    <div class="toolbar-grid-toggler">
-                        <div class="material-symbol-rounded">expand_circle_down</div>
+                    <div class="toolbar__toggler">
+                        <div class="toolbar__toggler__arrowbtn">expand_circle_down</div>
                     </div>
                 </div>
                 
@@ -186,17 +185,16 @@
                 </div>
             </div>
             
-            <div id="main-root">
+            <div class="workspace">
             
-                
-                <div id="svg-frame">
-                    <img id="tspt-bkgd" src="svg/system/transparent-bkgd.svg"></img>
-                    <svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000" data-sid="root">
+                <div class="workspace__svg-frame">
+                    <img class="workspace__svg-frame__tspt-bkgd" src="svg/system/transparent-background.svg"></img>
+                    <svg class="workspace__svg-frame__canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000">
                         
                     </svg>
                 </div>
                 
-                <div id="block-frame" class="nested-sortable" data-sid="root">
+                <div class="workspace__block-frame nested-sortable">
                 </div>
             </div>
         </div>
