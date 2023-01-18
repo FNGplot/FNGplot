@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
+/* || Fonts */
 @font-face {                    /*Lato -- Regular*/
     font-family: "Lato";
     font-weight: normal;
@@ -26,458 +27,444 @@
     src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');  
 }
 
-.material-symbol-rounded { /* Modified from Google's recommendation */
-    font-family: "Material Symbols Rounded";
-    font-weight: normal;
-    font-style: normal; 
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    -webkit-font-smoothing: antialiased;
-    -webkit-user-select: none;
+/* || CSS Root */
+:root {
+    /* font-size: 10px (basis of rem) */
+    font-size: 10px;
+    --colora: #ffffff;
+}
+
+/* || Body and root frame */
+body {
+    background-color: #fffff8;
+}
+.root {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+/* || Sortable blocks */
+.dragblock {
+    position: relative;
+    border-radius: 0.4rem;
+    border: 0.1rem solid black;
+    margin-top: -0.1rem;
+    min-height: 5rem;
+    height: auto;
+    overflow: hidden;
+}
+.dragblock__icon {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid black;
+    border-radius: 0.4rem;
+    top: 0.4rem;
+    left: 0.5rem;
+}
+.dragblock__label {
+    position: absolute;
+    top: 0.9rem;
+    left: 6rem;
+    width: 19rem;
+    height: 2.4rem;
+    padding: 0.3rem;
+    font: 2.2rem Lato;
+    border: 0.1rem solid transparent;
+    background-color: transparent;
+    color: #ffffff;
     user-select: none;
 }
-.material-symbol-rounded.btnicon{
-    top: 4px;
-    left: 4px;
-    font-size: 24px;
-}
-.material-symbol-rounded.dragblockicon{
-    display: block;
-    top: 5px;
-    font-size: 40px;
-    cursor: default;
-}
-
-
-
-
-
-.generic-button {
+.dragblock__btn {
     position: absolute;
-    height:36px;
-    font: bold 17px Lato;
-    border: 2px solid black;
-    color:rgba(0, 0, 0, 1);
-    border-radius: 8px;
-    background-color:#ffffff;
-    padding: 1px 6px;
+    display: block;
+    top: 0.5rem;
+    cursor: default;
+    font: 4rem "Material Symbols Rounded";
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
 }
-.generic-button:hover {
-    background-color: #d3d3d3;
-}        
-.generic-button:disabled {
-    background-color: #e7e7e7;
-    color: #6e6e6e;
-}        
+.dragblock__btn--visibility {
+    right: 10rem;
+}
+.dragblock__btn--edit {
+    right: 5.5rem;
+}
+.dragblock__btn--delete {
+    right: 1rem;
+}
 
-/*Minified from on https://www.cssportal.com/style-input-range/ */
-.lp-range {
-    height: 32px;
+/* || Draggable block modifiers */
+.dragblock--geometry {
+    background-color: #5f95f7;  
+}
+
+
+/* || editpanels */
+.editpanel {
+    position: relative;
+    margin: 5.5rem 1rem 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem;
+    border: 0.1rem solid black;
+    border-radius: 0.3rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+/* To reduce the filesize of editpanel.json, the following classes will abbreviate "editpanel" to "ep" */
+.ep__cell{
+    position: relative;
+    margin: 0.2rem 0rem;
+    font: 1.6rem Lato;
+}
+.ep__cell--monolabel {  /* label w/ monospaced font */
+    font: 1.6rem "Source Code Pro";
+}
+.ep__input {
+    font: 1.3rem Lato;
+}
+.ep__input--idtag{   /* disabled */
+    background-color: #e0e0e0;
+    color: black;
+    font: 1.3rem "Source Code Pro";
+    border: 0.1rem solid black;
+    border-radius: 3px;
+    width: 8rem; /*I know this is exactly enough becuase it uses a monospace font*/
+}
+.ep__input--short{
+    width: 6rem;
+}
+.ep__input--medium{
+    width: 9rem;
+}
+.ep__input--long{
+    width: 17rem;
+}
+.ep__input--extralong{
+    width: 25rem;
+}
+.ep__select{
+    position: relative;
+}
+
+/* || Banner at top left corner */
+.banner {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 27rem;
+    height: 4.5rem;
+    background: #ddcfff;
+    border: 0.2rem solid black;
+}
+.banner__svg {
+    width: 100%;
+}
+
+/* || Left panel */
+.side-menu {
+    position: absolute;
+    top: 6rem;
+    left: 0rem;
+    width: 27rem;
+    height: 56rem;
+    background: #f5f0ff;
+    border: 0.2rem solid black;
+}
+.side-menu__select {
+    position: absolute;
+    user-select: none;
+    font: bold 2.2rem Lato;
+    top: 1.2rem;
+    left: 1.2rem;
+    width: 24.5rem;
+    height: 3rem;
+}
+.side-menu__panel {
+    position: absolute;
+    top: 5.5rem;
+    left: 1.2rem;
+    width: 24.5rem;
+    height: 49rem;
+    border: 0.1rem solid black;
+    background: #ffffff;
+    display: none;
+    flex-direction: column;
+    padding: 0rem 0.3rem;
+    box-sizing: border-box;
+    font: 1.6rem Lato;
+}
+.side-menu__panel[data-panelname="file"] { /* Default visible panel*/
+    display: flex;
+}
+.side-menu__datacell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: auto;
+    box-sizing: content-box;
+    border-bottom: 0.1rem dashed black;
+}
+.side-menu__datacell__label {  /* Cell title */
+    position: relative;
+    font-size: 2rem;
+    margin: 0.5rem 0rem;
+}
+.side-menu__datacell__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
+    width: 22rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0.5rem 0rem;
+}
+.side-menu__datacell__slidercomplex > input[type="range"] {  /* The slider */
+    display: inline-block;
+    width: 16rem;
+    height: 3.2rem;
     appearance: none;
-    /*-webkit-appearance: none;*/
-    width: 100%;
+    -webkit-appearance: none;
 }
-.lp-range:focus {
-    outline: none;
-}
-.lp-range::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 8px;
+.side-menu__datacell__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
+    height: 0.8rem;
     cursor: pointer;
-    /*animate: 0.2s;*/
-    box-shadow:000 black;
-    background: #FFC0CB;
-    border-radius: 4px;
-    border:0 solid black;
+    box-shadow: 000 black;
+    background: #ffc0cb;
+    border-radius: 0.4rem;
+    border: 0rem solid black;
 }
-.lp-range::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px black;
-    border:0 solid #8A408B;
-    height: 25px;
-    width: 15px;
-    border-radius: 6px;
-    background: #CCB3FF;
+.side-menu__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 0.1rem 0.1rem 0.1rem black;
+    border: 0rem solid #8a408b;
+    height: 2.5rem;
+    width: 1.5rem;
+    border-radius: 0.6rem;
+    background: #ccb3ff;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -8.5px;
+    margin-top: -0.85rem;
 }
-.lp-range:focus::-webkit-slider-runnable-track {
-    background: #FFC0CB;
+.side-menu__datacell__slidercomplex > div {  /* The display label */
+    width: 5rem;
+    font-size: 1.8rem;
+    display: inline-block;
+}
+.side-menu__datacell__pre {  /* Code & technical data */
+    margin-right: auto;
+    padding-left: 1rem; /* Small indentation */
+    font: 1.2rem "Source Code Pro";
+}
+.side-menu__datacell__refresh-btn {
+    width: 3rem;
+    height: 3rem;
+    background-color: #ffc0cb;
+    border-radius: 0.5rem;
+    cursor: default;
+    font: 3rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    line-height: 1;
 }
 
-.toolbar-button {
-    font-size: 15px;
-    font-family: Lato;
+/* || Calculator Button */
+.calc-btn {
+    position: absolute;
+    top: 63.5rem;
+    left: 0rem;
+    width: 27rem;
+    height: 5.6rem;
+    cursor: default;
+    background: #ddcfff;
+    border: 0.2rem solid black;
+}
+.calc-btn__icon {
+    position: absolute;
+    top: 0.8rem;
+    left: 2.2rem;
+    font: 4rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    line-height: 1;
+}
+.calc-btn__text {
+    position: absolute;
+    font: bold 3.4rem Lato;
+    top: 0.7rem;
+    left: 7rem;
+}
+
+/* || Toolbar */
+.toolbar {  /* Anchor point for absolute position */
+    position: absolute;
+    top: 0rem;
+    left: 29rem;
+    width: 1rem;
+    height: 1rem;
+}
+.toolbar__tab-ctnr {    /* tab container */
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 108rem;
+    height: 3.5rem;
+    background: #f5f0ff;
+    border: 0.2rem solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.toolbar__tab {
+    font: 1.5rem Lato;
     border-style: solid;
-    border-left-width:7px;
-    padding: 1px 6px 1px 4px;
+    border-left-width: 0.7rem;
+    padding: 0.1rem 0.6rem 0.1rem 0.4rem;
     color:rgba(0, 0, 0, 1); /*word color*/
     /*background-color: This is defined dynamically immediately after page load*/
-    font-weight: normal;
     background-color: transparent;
-    height: 21px;
+    height: 2.1rem;
+    user-select: none;
 }
 /*these sizes are fixed so that the buttons don't change size when the text inside them change font weight*/
-#toolbar-select-variables {
-    width: 80px;
+.toolbar__tab--variables {
+    width: 8rem;
 }
-#toolbar-select-geometry {
-    width: 85px;
+.toolbar__tab--geometry {
+    width: 8.5rem;
 }
-#toolbar-select-algebra {
-    width: 70px;
+.toolbar__tab--algebra {
+    width: 7rem;
 }
-#toolbar-select-consec {
-    width: 115px;
+.toolbar__tab--consec {
+    width: 11.5rem;
 }
-#toolbar-select-calculus {
-    width: 74px;
+.toolbar__tab--calculus {
+    width: 7.4rem;
 }
-#toolbar-select-difeq {
-    width: 166px;
+.toolbar__tab--difeq {
+    width: 16.6rem;
 }
-#toolbar-select-vecf {
-    width: 105px;
+.toolbar__tab--vecf {
+    width: 10.5rem;
 }
-#toolbar-select-tse {
-    width: 197px;
+.toolbar__tab--tse {
+    width: 19.7rem;
 }
-#toolbar-select-other {
-    width: 64px;
+.toolbar__tab--other {
+    width: 6.4rem;
 }
-
-
-.small-icon {
+.toolbar__panel {
     position: absolute;
-    width: 40px;
-    height: 40px;
-}
-
-
-/* Style of toolbar*/
-
-div[id^="toolbar-item-"]{
-    top: 48px;
-    left: 0px;
-    width: 1080px;
-    height: 60px;
+    top: 4.8rem;
+    left: 0rem;
+    width: 108rem;
+    height: 6rem;
     display: none;
     overflow: hidden;
     background-color: #f5f0ff;
-    border: 2px solid black;
+    border: 0.2rem solid black;
 }
-div[id^="toolbar-item-"]::-webkit-scrollbar {
+.toolbar__panel::-webkit-scrollbar {
     /*disable scrollbar. They appear for a short time during page load for some reason even though my design is pixel perfect*/
     display: none;
 }
-.toolbar-grid {
-    top: 0px;
-    left: 0px;
-    width: 1008px; /* 14/15 */
+.toolbar__grid {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 100.8rem; /* 14/15 */
     height: auto;
     background-color: #f5f0ff;
     z-index: 99;
-    outline: 2px solid black;
+    outline: 0.2rem solid black;
     display: grid;
     grid-template-columns: 2fr repeat(10, 1fr);   /*Description is 2 blocks wide, followed by 10 icons(1 blocks wide)*/
-    grid-auto-rows: 60px;   /*Same as container height*/
-    row-gap: 5px;
+    grid-auto-rows: 6rem;   /*Same as container height*/
+    row-gap: 0.5rem;
     align-items: center;
     justify-items: center;
 }
-.toolbar-grid > div{
+.toolbar__icon {
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid black;
+    border-radius: 0.4rem;
+}
+.toolbar__labelcell {
     position: relative;
-    font: 24px Lato;
+    font: 2.4rem Lato;
 }
-.toolbar-grid > img{ /*The small svg icons*/
-    width: 40px;
-    height: 40px;
-    border: 1px solid black;
-    border-radius: 4px;
-}
-.toolbar-grid-toggler {
-    top: 0px;
-    right: 0px;
-    width: 72px; /* 1/15 */
-    height: 60px;
+.toolbar__toggler {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    width: 7.2rem;
+    height: 6rem;
     box-sizing: border-box;
     background-color: #ddcfff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.toolbar-grid-toggler > div{
-    font-size: 48px;
+.toolbar__toggler__arrowbtn {
     cursor: default;
-    /*transform: rotate(0deg) -- declared, detected & manipulated by JS for small animation effect*/
-    transition: transform 0.1s ease-in-out;
+    transition: transform 0.1s ease-in-out; /* turning animation */
+    font: 4.8rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    line-height: 1;
 }
 
-/* Styles of sortable blocks*/
-
-.small-icon.block {
-    border: 1px solid black;
-    border-radius: 4px;
-    top: 4px;
-    left: 5px;
-}
-.nested-sortable > :first-child { /*cancel out the "margin-top: -1px" for the first child, as it doesn't need that*/
-    margin-top: 0px;
-}
-.obj-block {     /*basis of object blocks*/
-    position: relative;
-    border-radius: 4px;
-    border: 1px solid black;
-    margin-top: -1px;
-    height: 50px;
-    overflow: hidden;
-}
-.obj-block .labeltag {
+/* || Main workspace */
+.workspace {
     position: absolute;
-    top: 9px;
-    left: 60px;
-    width: 195px; 
-    height: 24px;
-    padding: 3px;
-    font: 22px Lato;
-    border: 1px solid transparent;
-    background-color: transparent;
-    color: #ffffff;
+    top: 12rem;
+    left: 29rem;
+    width: 1rem;
+    height: 1rem;
 }
-.obj-block .visibility {  /*the eye*/
-    right: 100px;
-}
-.obj-block .edit {        /*the panel-thing*/
-    right: 55px;
-}
-.obj-block .delete {      /*the trashcan*/
-    right: 10px;
-}
-
-.ghost-class {            /*'ghostClass' parameter of sortable.js*/
-    opacity: 0.4;
-}
-.obj-block.geometry {  /*geometry block*/
-    background-color: #5f95f7;  
-}
-
-
-/*all object block edit panel related*/
-
-/*some universal classes for easier formatting*/
-.objblock-editpanel .label-monospace{
-    font-family: "Source Code Pro";
-}
-.objblock-editpanel .idtag{
-    background-color: #e0e0e0;
-    color: black;
-    font-family: "Source Code Pro";
-    border: 1px solid black;
-    border-radius: 3px;
-    width: 81px; /*Exactly enough since it houses monospaced font*/
-}
-.size-short{
-    width: 60px;
-}
-.size-medium{
-    width: 90px;
-}
-.size-long{
-    width: 170px;
-}
-.size-extralong{
-    width: 250px;
-}
-
-.objblock-editpanel, .objblock-editpanel div{
-    position: relative;
-    font-family: Lato;
-}
-.objblock-editpanel{
-    margin: 55px 10px 10px;
-    width: auto;
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 3px;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-}
-.objblock-editpanel div{
-    margin: 2px 0px;
-    font-size: 16px;
-}
-.objblock-editpanel select{
-    position: relative;
-}
-
-div, select, canvas, textarea {
+.workspace__svg-frame {
     position: absolute;
+    top: 4rem;
+    left: 3.5rem;
+    width: 50rem;
+    height: 50rem;
+    border: 0.2rem solid black;
 }
-button{
-    border-width: 0px;
+.workspace__svg-frame__tspt-bkgd {  /* transparent background */
+    position: absolute;
+    z-index: 0;
+    top: 0rem;
+    left: 0rem;
+    width: 50rem;
+    height: 50rem;
 }
-body{
-    background-color: #fffff8;
+.workspace__svg-frame__canvas {
+    position: absolute;
+    z-index: 1;
+    top: 0rem;
+    left: 0rem;
+    width: 50rem;
+    height: 50rem;
 }
-#root-frame{
-    top: 10px;
-    left: 10px;
-    width: 1420px;
-    height: 720px;
-    transform-origin: top left;
-    transform: scale(1);
-}
-#main-root { 
-    top: 120px;
-    left: 290px;
-    width: 10px;
-    height: 10px;
-}
-#banner {
-    top: 0px;
-    left: 0px;
-    width: 270px;
-    height: 45px;
-    background: #ddcfff;
-    border: 2px solid black;
-}
-#banner > img {
-    width: 100%;
-}
-#calc-open {
-    top: 635px;
-    left: 0px;
-    width: 270px;
-    height: 56px;
-    cursor: default;
-    background: #ddcfff;
-    border: 2px solid black;
-}
-#calc-open-banner {
-    font: bold 34px Lato;
-    top: 7px;
-    left: 70px;
-}
-#calc-open-icon {
-    top: 8px;
-    left: 22px;
-    font-size: 40px;
-}
-#block-frame{
-    top: 75px;
-    left: 600px;
-    width: 430px;
-    height: 470px;
-    border: 2px dashed black;
+.workspace__block-frame {
+    position: absolute;
+    top: 7.5rem;
+    left: 60rem;
+    width: 43rem;
+    height: 47rem;
+    border: 0.2rem dashed black;
     background: #ffffff;
     overflow-y: scroll;
-    margin: 0px;
-    padding: 10px; /*adds a little space between the frame and the blocks inside*/
+    margin: 0rem;
+    padding: 1rem;
 }
-#side-menu {
-    top: 60px;
-    left: 0px;
-    width: 270px;
-    height: 560px;
-    background: #f5f0ff;
-    border: 2px solid black;
-}
-#side-menu-select {
-    font: bold 22px Lato;
-    top: 12px;
-    left: 12px;
-    width: 245px;
-    height: 30px;
-}
-div[id^="side-menu-item-"] {
-    top: 55px;
-    left: 12px;
-    width: 245px;
-    height: 490px;
-    border: 1px solid black;
-    background: #ffffff;
-    display: none;
-    flex-direction: column;
-    font-family: Lato;
-    padding: 3px;
-    box-sizing: border-box;
-}
-#side-menu-item-file{ /*Exception of the above rule*/
-    display: flex;
-}
-div[id^="side-menu-item-"] > div {
-    position: relative;
-}
-#system-rootzoom, #envir-datalist {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 70px;
-    border-bottom: 1px dashed black;
-    font-family: Lato;
-}
-#envir-datalist {
-    height: auto;
-}
-#envir-datalist > pre { /*ignore flex property and align to left*/
-    margin-right: auto;
-    padding-left: 10px; /*Small indentation effect*/
-    font: 12px "Source Code Pro";
-}
-#envir-datalist-refresh {
-    font-size: 30px;
-    background-color: #ffc0cb;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-#rootzoom-label, #envir-datalist-label {
-    position: relative;
-    font-size: 20px;
-}
-#rootzoom-slider{
-    width: 200px;
-}
-#toolbar-root {
-    top: 0px;
-    left: 290px;
-    width: 10px;
-    height: 10px;
-}
-#toolbar-panel {
-    top: 0px;
-    left: 0px;
-    width: 1080px;
-    height: 35px;
-    background: #f5f0ff;
-    border: 2px solid black;
-    /*box-shadow: 5px 10px 8px #888888;*/
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-#svg-frame {
-    top: 40px;
-    left: 35px;
-    width: 500px;
-    height: 500px;
-    border: 2px solid black;
-}
-#svg-canvas, #tspt-bkgd {
-    top: 0px;
-    left: 0px;
-    width: 500px;
-    height: 500px;
-    position: absolute;
-}
-#svg-canvas {
-    z-index: 1;
-}
-#tspt-bkgd {
-    z-index: 0;
+
+/* || Others */
+.ghost-class {            /*'ghostClass' parameter of sortable.js*/
+    opacity: 0.4;
 }
