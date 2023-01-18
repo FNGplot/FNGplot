@@ -58,11 +58,9 @@ function switchToolbar(optn){
     for (let tab of tabList) {
         tab.style.background = "transparent";                                                   //set all tabs to transparent background (unselected)
         tab.style.color = "#000000";                                                            //set all tabs' text to black (unselected)
-        tab.style.fontWeight = "normal";                                                        //set font weight to normal (unselected)
     };
-    tabList[optn].style.background = fngNS.SysData.TOOLBAR_CLR[optn];                                         //set background to its border color (selected)
+    tabList[optn].style.background = fngNS.SysData.TOOLBAR_CLR[optn];                           //set background to its border color (selected)
     tabList[optn].style.color = "#ffffff";                                                      //set text color to white (selected)
-    tabList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
     
     const panelList = document.querySelectorAll(".toolbar__panel");                             //select all  divs
     for (let panel of panelList) {                                                              //hide all divs first

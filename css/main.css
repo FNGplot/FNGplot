@@ -315,35 +315,8 @@ body {
     /*background-color: This is defined dynamically immediately after page load*/
     background-color: transparent;
     height: 2.1rem;
+    width: auto;
     user-select: none;
-}
-/*these sizes are fixed so that the buttons don't change size when the text inside them change font weight*/
-.toolbar__tab--variables {
-    width: 8rem;
-}
-.toolbar__tab--geometry {
-    width: 8.5rem;
-}
-.toolbar__tab--algebra {
-    width: 7rem;
-}
-.toolbar__tab--consec {
-    width: 11.5rem;
-}
-.toolbar__tab--calculus {
-    width: 7.4rem;
-}
-.toolbar__tab--difeq {
-    width: 16.6rem;
-}
-.toolbar__tab--vecf {
-    width: 10.5rem;
-}
-.toolbar__tab--tse {
-    width: 19.7rem;
-}
-.toolbar__tab--other {
-    width: 6.4rem;
 }
 .toolbar__panel {
     position: absolute;
