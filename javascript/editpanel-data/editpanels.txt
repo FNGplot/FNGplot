@@ -4,13 +4,13 @@ linepp
     <div class="ep__cell ep__cell--monolabel">-----------User-----------------</div>
     <div class="ep__cell">Name: <input type="text" data-property="label" class="ep__input w15"></div>
     <div class="ep__cell ep__cell--monolabel">-----------Math-----------------</div>
-    <div class="ep__cell">Start: (<input type="number" step="0.5" data-property="x1" class="ep__input w3">,<input type="number" step="0.5" data-property="y1" class="ep__input w3">)</div>
-    <div class="ep__cell">End: (<input type="number" step="0.5" data-property="x2" class="ep__input w3">,<input type="number" step="0.5" data-property="y2" class="ep__input w3">)</div>
+    <div class="ep__cell">Start: (<input type="number" step="0.5" data-property="x1" class="ep__input w4">,<input type="number" step="0.5" data-property="y1" class="ep__input w4">)</div>
+    <div class="ep__cell">End: (<input type="number" step="0.5" data-property="x2" class="ep__input w4">,<input type="number" step="0.5" data-property="y2" class="ep__input w4">)</div>
     <div class="ep__cell ep__cell--monolabel">-----------Style: Basic---------</div>
     <div class="ep__cell">
-        Width: <input type="number" min="0" data-property="strokeWidth" class="ep__input w3">&nbsp;&nbsp;
-        Color: <input type="color" data-property="strokeColor" class="ep__input w4">&nbsp;
-        Opacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w3">%&nbsp;
+        Width: <input type="number" min="0" data-property="strokeWidth" class="ep__input w3">&nbsp;|
+        &nbsp;Color: <input type="color" data-property="strokeColor" class="ep__input w4">&nbsp;|
+        &nbsp;Opacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w3">%&nbsp;
     </div>
     <div class="ep__cell ep__cell--monolabel">-----------Style: Advanced------</div>
     <div class="ep__cell">LineCap: 
@@ -20,7 +20,7 @@ linepp
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength&nbsp;|&nbsp;DashArray&nbsp;|&nbsp;DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -35,13 +35,15 @@ lineppext
     <div class="ep__cell ep__cell--monolabel">-----------User-----------------</div>
     <div class="ep__cell">Name: <input type="text" data-property="label" class="ep__input w15"></div>
     <div class="ep__cell ep__cell--monolabel">-----------Math-----------------</div>
-    <div class="ep__cell">Start Point: ( <input type="number" step="0.5" data-property="x1" class="ep__input w5"> , <input type="number" step="0.5" data-property="y1" class="ep__input w5"> )</div>
-    <div class="ep__cell">End Point: ( <input type="number" step="0.5" data-property="x2" class="ep__input w5"> , <input type="number" step="0.5" data-property="y2" class="ep__input w5"> )</div>
-    <div class="ep__cell">Extend: Start =  <input type="number" step="0.5" data-property="startExtend" class="ep__input w5"> End = <input type="number" step="0.5" data-property="endExtend" class="ep__input w5"></div>  
+    <div class="ep__cell">Start Point: ( <input type="number" step="0.5" data-property="x1" class="ep__input w4"> , <input type="number" step="0.5" data-property="y1" class="ep__input w4"> )</div>
+    <div class="ep__cell">End Point: ( <input type="number" step="0.5" data-property="x2" class="ep__input w4"> , <input type="number" step="0.5" data-property="y2" class="ep__input w4"> )</div>
+    <div class="ep__cell">Extend: Start =  <input type="number" step="0.5" data-property="startExtend" class="ep__input w4"> End = <input type="number" step="0.5" data-property="endExtend" class="ep__input w4"></div>  
     <div class="ep__cell ep__cell--monolabel">-----------Style: Basic---------</div>
-    <div class="ep__cell">Width: <input type="number" min="0" data-property="strokeWidth" class="ep__input w5"></div>
-    <div class="ep__cell">Color: <input type="color" data-property="strokeColor" class="ep__input w5"></div>
-    <div class="ep__cell">Opacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w5">%</div>
+    <div class="ep__cell">
+        Width: <input type="number" min="0" data-property="strokeWidth" class="ep__input w3">&nbsp;|
+        &nbsp;Color: <input type="color" data-property="strokeColor" class="ep__input w4">&nbsp;|
+        &nbsp;Opacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w3">%&nbsp;
+    </div>
     <div class="ep__cell ep__cell--monolabel">-----------Style: Advanced------</div>
     <div class="ep__cell">LineCap: 
         <select data-property="lineCap" class="ep__input w6">
@@ -50,10 +52,13 @@ lineppext
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
-    <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
-        &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
-        &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
+    <div class="ep__cell">PathLength&nbsp;|&nbsp;DashArray&nbsp;|&nbsp;DashOffset</div>
+    <div class="ep__cell">
+        <input type="number" min="0" data-property="pathLength" class="ep__input w4">
+        &nbsp;|&nbsp;
+        <input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">
+        &nbsp;|&nbsp;
+        <input type="number" data-property="dashOffset" class="ep__input w4">
     </div>
     <div class="ep__cell ep__cell--monolabel">-----------System---------------</div>
     <div class="ep__cell">SystemID: <input type="text" class="ep__input ep__input--idtag" data-property="sid" disabled></div>
@@ -65,13 +70,15 @@ lineps
     <div class="ep__cell ep__cell--monolabel">-----------User-----------------</div>
     <div class="ep__cell">Name: <input type="text" data-property="label" class="ep__input w15"></div>
     <div class="ep__cell ep__cell--monolabel">-----------Math-----------------</div>
-    <div class="ep__cell">Origin: ( <input type="number" step="0.5" data-property="x" class="ep__input w5"> , <input type="number" step="0.5" data-property="y" class="ep__input w5"> )</div>
-    <div class="ep__cell">Slope: <input type="number" step="0.5" data-property="slope" class="ep__input w5"> (Blank = Vertical)</div>
-    <div class="ep__cell">Extend: Left =  <input type="number" step="0.5" data-property="leftExtend" class="ep__input w5"> Right = <input type="number" step="0.5" data-property="rightExtend" class="ep__input w5"></div>  
+    <div class="ep__cell">Origin: ( <input type="number" step="0.5" data-property="x" class="ep__input w4"> , <input type="number" step="0.5" data-property="y" class="ep__input w4"> )</div>
+    <div class="ep__cell">Slope: <input type="number" step="0.5" data-property="slope" class="ep__input w4"> (Blank = Vertical)</div>
+    <div class="ep__cell">Extend: Left =  <input type="number" step="0.5" data-property="leftExtend" class="ep__input w4"> Right = <input type="number" step="0.5" data-property="rightExtend" class="ep__input w4"></div>  
     <div class="ep__cell ep__cell--monolabel">-----------Style: Basic---------</div>
-    <div class="ep__cell">Width: <input type="number" min="0" data-property="strokeWidth" class="ep__input w5"></div>
-    <div class="ep__cell">Color: <input type="color" data-property="strokeColor" class="ep__input w5"></div>
-    <div class="ep__cell">Opacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w5">%</div>
+    <div class="ep__cell">
+        Width: <input type="number" min="0" data-property="strokeWidth" class="ep__input w3">&nbsp;&nbsp;
+        Color: <input type="color" data-property="strokeColor" class="ep__input w4">&nbsp;
+        Opacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w3">%&nbsp;
+    </div>
     <div class="ep__cell ep__cell--monolabel">-----------Style: Advanced------</div>
     <div class="ep__cell">LineCap: 
         <select data-property="lineCap" class="ep__input w6">
@@ -80,10 +87,12 @@ lineps
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
-    <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
-        &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
-        &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
+    <div class="ep__cell">PathLength&nbsp;|&nbsp;DashArray&nbsp;|&nbsp;DashOffset</div>
+    <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">
+        &nbsp;|&nbsp;
+        <input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">
+        &nbsp;|&nbsp;
+        <input type="number" data-property="dashOffset" class="ep__input w4">
     </div>
     <div class="ep__cell ep__cell--monolabel">-----------System---------------</div>
     <div class="ep__cell">SystemID: <input type="text" class="ep__input ep__input--idtag" data-property="sid" disabled></div>
@@ -95,27 +104,37 @@ rect
     <div class="ep__cell ep__cell--monolabel">-----------User-----------------</div>
     <div class="ep__cell">Name: <input type="text" data-property="label" class="ep__input w15"></div>
     <div class="ep__cell ep__cell--monolabel">-----------Math-----------------</div>
-    <div class="ep__cell">Origin: ( <input type="number" step="0.5" data-property="originX" class="ep__input w5"> , <input type="number" step="0.5" data-property="originY" class="ep__input w5"> )</div>
+    <div class="ep__cell">Origin: ( <input type="number" step="0.5" data-property="originX" class="ep__input w4"> , <input type="number" step="0.5" data-property="originY" class="ep__input w4"> )</div>
     <div class="ep__cell">OriginMode: 
-        <select data-property="originVert" class="ep__input w8">
+        <select data-property="originVert" class="ep__input w7">
             <option value="TOP">Top</option>
             <option value="MIDDLE">Middle</option>
             <option value="BOTTOM" selected>Bottom</option>
         </select>
-        <select data-property="originHoriz" class="ep__input w8">
+        <select data-property="originHoriz" class="ep__input w7">
             <option value="LEFT" selected>Left</option>
             <option value="MIDDLE">Middle</option>
             <option value="RIGHT">Right</option>
         </select>
     </div>
-    <div class="ep__cell">Width: <input type="number" min="0" data-property="width" class="ep__input w5"></div>
-    <div class="ep__cell">Height: <input type="number" min="0" data-property="height" class="ep__input w5"></div>
+    <div class="ep__cell">Width: <input type="number" min="0" data-property="width" class="ep__input w4"> Height: <input type="number" min="0" data-property="height" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--monolabel">-----------Style: Basic---------</div>
-    <div class="ep__cell">BorderColor: <input type="color" data-property="strokeColor" class="ep__input w5"></div>
-    <div class="ep__cell">BorderWidth: <input type="number" min="0" data-property="strokeWidth" class="ep__input w5"></div>
-    <div class="ep__cell">BorderOpacity: <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w5">%</div>
-    <div class="ep__cell">FillColor: <input type="color" data-property="fillColor" class="ep__input w5"></div>
-    <div class="ep__cell">FillOpacity: <input type="number" min="0" max="100" step="1" data-property="fillOpacity" class="ep__input w5">%</div>
+    <div class="ep__cell"></div>
+    <div class="ep__cell">Width&nbsp;|&nbsp;Color&nbsp;|&nbsp;Opacity</div>
+    <div class="ep__cell">
+        <input type="number" min="0" data-property="strokeWidth" class="ep__input w4">
+        &nbsp;|&nbsp;
+        <input type="color" data-property="strokeColor" class="ep__input w5">
+        &nbsp;|&nbsp;
+        <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w3">%
+    </div>
+    <div class="ep__cell">Fill:</div>
+    <div class="ep__cell">Color&nbsp;|&nbsp;Opacity</div>
+    <div class="ep__cell">
+        <input type="color" data-property="fillColor" class="ep__input w5">
+        &nbsp;|&nbsp;
+        <input type="number" min="0" max="100" step="1" data-property="fillOpacity" class="ep__input w3">%
+    </div>
     <div class="ep__cell ep__cell--monolabel">-----------Style: Advanced------</div>
     <div class="ep__cell">RoundedCorner: <input type="number" min="0" data-property="roundCorner" class="ep__input w5"></div>
     <div class="ep__cell">BorderLineJoin:
@@ -132,7 +151,7 @@ rect
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength&nbsp;|&nbsp;DashArray&nbsp;|&nbsp;DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -172,7 +191,7 @@ triangle
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength&nbsp;|&nbsp;DashArray&nbsp;|&nbsp;DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -203,7 +222,7 @@ circle
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength&nbsp;|&nbsp;DashArray&nbsp;|&nbsp;DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -235,7 +254,7 @@ circle3p
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength&nbsp;|&nbsp;DashArray&nbsp;|&nbsp;DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
