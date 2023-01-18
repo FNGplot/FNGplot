@@ -65,7 +65,7 @@ function switchToolbar(optn){
     tabList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
     
     const panelList = document.querySelectorAll(".toolbar__panel");                             //select all  divs
-    for (let panel of panelList) {                                                                //hide all divs first
+    for (let panel of panelList) {                                                              //hide all divs first
         panel.style.display = "none";
     };
     panelList[optn].style.display = "block";                                                    //then show the selected div
@@ -74,12 +74,12 @@ function switchToolbar(optn){
 // Toggle toolbar dropdown when down arrow is clicked
 
 function toggleToolbarDropdown(arrowBtn){
-    if (arrowBtn.style.transform == "rotate(0deg)") {                 //expand
+    if (arrowBtn.style.transform == "rotate(0deg)") {                   //expand
         arrowBtn.style.transform = "rotate(180deg)";
-        arrowBtn.parentNode.parentNode.style.overflow = "visible";
+        arrowBtn.closest(".toolbar__panel").style.overflow = "visible";
     } else if (arrowBtn.style.transform == "rotate(180deg)") {          //collapse
         arrowBtn.style.transform = "rotate(0deg)";
-        arrowBtn.parentNode.parentNode.style.overflow = "hidden";
+        arrowBtn.closest(".toolbar__panel").style.overflow = "hidden";
     }
 }
 

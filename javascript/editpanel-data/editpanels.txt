@@ -20,7 +20,7 @@ linepp
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">DashLine: PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -50,7 +50,7 @@ lineppext
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">DashLine: PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -80,7 +80,7 @@ lineps
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">DashLine: PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -132,7 +132,7 @@ rect
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">DashLine: PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -172,7 +172,7 @@ triangle
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">DashLine: PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -203,7 +203,7 @@ circle
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">DashLine: PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">
@@ -235,7 +235,7 @@ circle3p
             <option value="square">Square</option>
         </select>
     </div>
-    <div class="ep__cell">DashLine: PathLength | DashArray | DashOffset</div>
+    <div class="ep__cell">PathLength | DashArray | DashOffset</div>
     <div class="ep__cell"><input type="number" min="0" data-property="pathLength" class="ep__input w4">&nbsp;|
         &nbsp;<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w6">&nbsp;|
         &nbsp;<input type="number" data-property="dashOffset" class="ep__input w4">

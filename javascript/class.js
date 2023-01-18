@@ -51,10 +51,10 @@ class LinePP extends StrokeParent {
         this.y2 = 2;
     }
     updateMath(svgElem){
-        svgElem.setAttribute("x1", toPxPosX(this.x1));
-        svgElem.setAttribute("x2", toPxPosX(this.x2));
-        svgElem.setAttribute("y1", toPxPosY(this.y1));
-        svgElem.setAttribute("y2", toPxPosY(this.y2));
+        svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x1));
+        svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x2));
+        svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y1));
+        svgElem.setAttribute("y2", fngNS.Coord.toPxPosY(this.y2));
     }
 }
 class LinePPExt extends StrokeParent {
@@ -71,15 +71,15 @@ class LinePPExt extends StrokeParent {
     updateMath(svgElem){
         if (this.x1 == this.x2) {   // vertical line
             if (this.y1 <= this.y2) {   // goes up
-                svgElem.setAttribute("x1", toPxPosX(this.x1));
-                svgElem.setAttribute("x2", toPxPosX(this.x2));
-                svgElem.setAttribute("y1", toPxPosY(this.y1 - this.startExtend));
-                svgElem.setAttribute("y2", toPxPosY(this.y2 + this.endExtend));
+                svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x1));
+                svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x2));
+                svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y1 - this.startExtend));
+                svgElem.setAttribute("y2", fngNS.Coord.toPxPosY(this.y2 + this.endExtend));
             } else if (this.y1 > this.y2) {  // goes down
-                svgElem.setAttribute("x1", toPxPosX(this.x1));
-                svgElem.setAttribute("x2", toPxPosX(this.x2));
-                svgElem.setAttribute("y1", toPxPosY(this.y1 + this.startExtend));
-                svgElem.setAttribute("y2", toPxPosY(this.y2 - this.endExtend));
+                svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x1));
+                svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x2));
+                svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y1 + this.startExtend));
+                svgElem.setAttribute("y2", fngNS.Coord.toPxPosY(this.y2 - this.endExtend));
             }
         } else {    // normal line with meaningful slope
             const [dx, dy] = [
@@ -87,10 +87,10 @@ class LinePPExt extends StrokeParent {
                 this.y2 - this.y1,
             ];
             const distance = Math.sqrt(dx**2 + dy**2);
-            svgElem.setAttribute("x1", toPxPosX(this.x1 - dx * this.startExtend / distance));
-            svgElem.setAttribute("x2", toPxPosX(this.x2 + dx * this.endExtend / distance));
-            svgElem.setAttribute("y1", toPxPosY(this.y1 - dy * this.startExtend / distance));
-            svgElem.setAttribute("y2", toPxPosY(this.y2 + dy * this.endExtend / distance));
+            svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x1 - dx * this.startExtend / distance));
+            svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x2 + dx * this.endExtend / distance));
+            svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y1 - dy * this.startExtend / distance));
+            svgElem.setAttribute("y2", fngNS.Coord.toPxPosY(this.y2 + dy * this.endExtend / distance));
         }
     }
 }
@@ -106,15 +106,15 @@ class LinePS extends StrokeParent {
     }
     updateMath(svgElem){
         if(this.slope === ""){    //user admits that it is a vertical line (use === becuase 0 == "")
-            svgElem.setAttribute("x1", toPxPosX(this.x));
-            svgElem.setAttribute("x2", toPxPosX(this.x));
-            svgElem.setAttribute("y1", toPxPosY(this.y - this.leftExtend));
-            svgElem.setAttribute("y2", toPxPosY(this.y + this.rightExtend));
+            svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x));
+            svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x));
+            svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y - this.leftExtend));
+            svgElem.setAttribute("y2", fngNS.Coord.toPxPosY(this.y + this.rightExtend));
         } else {    //has a slope
-            svgElem.setAttribute("x1", toPxPosX(this.x - this.leftExtend * Math.cos(Math.atan2(this.slope, 1))));
-            svgElem.setAttribute("x2", toPxPosX(this.x + this.rightExtend * Math.cos(Math.atan2(this.slope, 1))));
-            svgElem.setAttribute("y1", toPxPosY(this.y - this.leftExtend * Math.sin(Math.atan2(this.slope, 1))));
-            svgElem.setAttribute("y2", toPxPosY(this.y + this.rightExtend * Math.sin(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x - this.leftExtend * Math.cos(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x + this.rightExtend * Math.cos(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y - this.leftExtend * Math.sin(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("y2", fngNS.Coord.toPxPosY(this.y + this.rightExtend * Math.sin(Math.atan2(this.slope, 1))));
         }
     }
 }
@@ -133,11 +133,11 @@ class Rect extends StrokeFillParent {
         this.SvgStyle.lineJoin = "miter";
     }
     updateMath(svgElem){
-        svgElem.setAttribute("x", toPxPosX(this.originX - fngNS.RectOrigin[this.originHoriz] * this.width));
-        svgElem.setAttribute("y", toPxPosY(this.originY + fngNS.RectOrigin[this.originVert] * this.height));
+        svgElem.setAttribute("x", fngNS.Coord.toPxPosX(this.originX - fngNS.RectOrigin[this.originHoriz] * this.width));
+        svgElem.setAttribute("y", fngNS.Coord.toPxPosY(this.originY + fngNS.RectOrigin[this.originVert] * this.height));
         svgElem.setAttribute("rx", this.roundCorner);
-        svgElem.setAttribute("width", toPxLenX(this.width));
-        svgElem.setAttribute("height", toPxLenY(this.height));
+        svgElem.setAttribute("width", fngNS.Coord.toPxLenX(this.width));
+        svgElem.setAttribute("height", fngNS.Coord.toPxLenY(this.height));
     }
 }
 class Triangle extends StrokeFillParent {
@@ -155,12 +155,12 @@ class Triangle extends StrokeFillParent {
     }
     updateMath(svgElem){
         const [x1, y1, x2, y2, x3, y3] = [
-            toPxPosX(this.x1),
-            toPxPosY(this.y1),
-            toPxPosX(this.x2),
-            toPxPosY(this.y2),
-            toPxPosX(this.x3),
-            toPxPosY(this.y3),
+            fngNS.Coord.toPxPosX(this.x1),
+            fngNS.Coord.toPxPosY(this.y1),
+            fngNS.Coord.toPxPosX(this.x2),
+            fngNS.Coord.toPxPosY(this.y2),
+            fngNS.Coord.toPxPosX(this.x3),
+            fngNS.Coord.toPxPosY(this.y3),
         ];
         svgElem.setAttribute("points", `${x1},${y1} ${x2},${y2} ${x3},${y3}`);
     }
@@ -174,10 +174,10 @@ class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in ca
         this.radius = 2.5;
     }
     updateMath(svgElem){
-            svgElem.setAttribute("cx", toPxPosX(this.cx));
-            svgElem.setAttribute("cy", toPxPosY(this.cy));
-            svgElem.setAttribute("rx", toPxLenX(this.radius));
-            svgElem.setAttribute("ry", toPxLenY(this.radius));
+            svgElem.setAttribute("cx", fngNS.Coord.toPxPosX(this.cx));
+            svgElem.setAttribute("cy", fngNS.Coord.toPxPosY(this.cy));
+            svgElem.setAttribute("rx", fngNS.Coord.toPxLenX(this.radius));
+            svgElem.setAttribute("ry", fngNS.Coord.toPxLenY(this.radius));
     }
 }
 class Circle3P extends StrokeFillParent {
@@ -214,10 +214,10 @@ class Circle3P extends StrokeFillParent {
                     -(d * e - b * f) / (b * c - a * d),
                     -( a * f - c * e) / (b * c - a * d),
                 ];
-            svgElem.setAttribute("cx", toPxPosX(cx));
-            svgElem.setAttribute("cy", toPxPosY(cy));
-            svgElem.setAttribute("rx", toPxLenX(math.distance([cx,cy], [this.x1, this.y1])));
-            svgElem.setAttribute("ry", toPxLenY(math.distance([cx,cy], [this.x1, this.y1])));
+            svgElem.setAttribute("cx", fngNS.Coord.toPxPosX(cx));
+            svgElem.setAttribute("cy", fngNS.Coord.toPxPosY(cy));
+            svgElem.setAttribute("rx", fngNS.Coord.toPxLenX(math.distance([cx,cy], [this.x1, this.y1])));
+            svgElem.setAttribute("ry", fngNS.Coord.toPxLenY(math.distance([cx,cy], [this.x1, this.y1])));
         }
     }
 }

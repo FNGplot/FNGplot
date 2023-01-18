@@ -14,7 +14,6 @@ FNGplot (excluding the libraries):
 | fngns.js | Namespace of global variables| Apache-2.0 |
 | gui.js | GUI handlers | Apache-2.0 |
 | init.js | Page init sequence | Apache-2.0 |
-| plot.js | FNGplot-specific math & plotting functions | Apache-2.0 |
 | editpanel-data | <ul><li>**editpanels.txt:** Raw HTML code of editpanels</li><li>**editpanels.json:** Minified version of editpanel.txt that is fetched by FNGplot</li><li>**convert.js:** Converts editpanels.txt to editpanels.json</li>  | Apache-2.0 |
 
 FNGplot's code (excluding the libraries) follow [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html).

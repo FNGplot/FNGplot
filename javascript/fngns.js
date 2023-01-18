@@ -58,6 +58,18 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         yHat: 50,
         originX: 500, // "real" x and y coordinates of the origin point in the SVG canvas.
         originY: 500, // "real" x and y coordinates of the origin point in the SVG canvas.
+        toPxPosX(xCord){  // Translate calculation result to actual pixel positions. X coordinate only.
+            return this.originX + this.xHat*xCord;
+        },
+        toPxPosY(yCord){  // Translate calculation result to actual pixel positions. Y coordinate only.
+            return this.originY - this.yHat*yCord;
+        },
+        toPxLenX(length){ // Translate calculation result to actual pixel lengths. X direction only.
+            return length * this.xHat;
+        },
+        toPxLenY(length){ // Translate calculation result to actual pixel lengths. Y direction only.
+            return length * this.yHat;
+        },
     }),
 
     /* [!] Maps (Can't be 100% frozen, preferred over traditional Object because 1. Arrow functions can be used and 2. Lookup is faster) */
