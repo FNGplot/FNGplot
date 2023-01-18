@@ -125,7 +125,7 @@ body {
 }
 .ep__input {
     font: 1.3rem Lato;
-    margin: 0rem 0.2rem;
+    margin: 0rem 0.4rem;
 }
 .ep__input--idtag{   /* disabled */
     background-color: #e0e0e0;
@@ -134,18 +134,6 @@ body {
     border: 0.1rem solid black;
     border-radius: 3px;
     width: 8rem; /*I know this is exactly enough becuase it uses a monospace font*/
-}
-.ep__input--short{
-    width: 6rem;
-}
-.ep__input--medium{
-    width: 9rem;
-}
-.ep__input--long{
-    width: 17rem;
-}
-.ep__input--extralong{
-    width: 25rem;
 }
 .ep__select{
     position: relative;
@@ -467,4 +455,44 @@ body {
 /* || Utility classes */
 .ghost-class {            /*'ghostClass' parameter of sortable.js*/
     opacity: 0.4;
+}
+/* width */
+.w1 {
+    width: 1em;
+}
+.w2 {
+    width: 2em;
+}
+.w3 {
+    width: 3em;
+}
+.w4 {
+    width: 4em;
+}
+.w5 {
+    width: 5em;
+}
+.w6 {
+    width: 6em;
+}
+.w7 {
+    width: 7em;
+}
+.w8 {
+    width: 8em;
+}
+.w9 {
+    width: 9em;
+}
+.w10 {
+    width: 10em;
+}
+.w15 {
+    width: 15em;
+}
+.w20 {
+    width: 20em;
+}
+.w25 {
+    width: 25em;
 }

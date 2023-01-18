@@ -44,9 +44,9 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     SysData: Object.seal({
         TOOLBAR_CLR: ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42'],  // Based on MIT Scratch 2.0/3.0
         EDITPANEL_TEMPLATES: {},  //initialized from editpanels.json
-        remSize: 10,      // 1rem = 10px
-        objectList: [],   //Unordered object reference array
-        sortableList: [], //SortableJS object reference array, in case I add more Sortable objects in the future
+        remSize: 10,      // Default: 1rem = 10px
+        objectList: [],   // Unordered object reference array
+        sortableList: [], // SortableJS object reference array, in case I add more Sortable objects in the future
     }),
 
     Coord: Object.seal({ //  Variables that control the coordinate system of FNGplot (Cartesian & Polar)
@@ -56,8 +56,8 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         yMin: -10,
         xHat: 50,
         yHat: 50,
-        originX: 500, //"real" x and y coordinates of the origin point in the SVG canvas.
-        originY: 500, //"real" x and y coordinates of the origin point in the SVG canvas.
+        originX: 500, // "real" x and y coordinates of the origin point in the SVG canvas.
+        originY: 500, // "real" x and y coordinates of the origin point in the SVG canvas.
     }),
 
     /* [!] Maps (Can't be 100% frozen, preferred over traditional Object because 1. Arrow functions can be used and 2. Lookup is faster) */
