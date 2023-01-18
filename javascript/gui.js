@@ -10,8 +10,8 @@
 //Left panel display switch
 
 function switchLeftPanel(optn){
-    const panelList = document.querySelectorAll(".side-menu__panel");           //select all panels
-    for(let panel of panelList){                                                   //hide everyone first
+    const panelList = document.querySelectorAll(".side-menu__panel");                //select all panels
+    for (let panel of panelList) {                                                   //hide everyone first
 	    panel.style.display = "none";
     };
     document.querySelector(`.side-menu__panel[data-panelname="${optn}"]`).style.display = "flex";     //then show only the selected panel
@@ -20,7 +20,7 @@ function switchLeftPanel(optn){
 //Change root zoom level
 
 function changeRootZoom(mode, slider, divDisplay){
-    if(mode == "change"){
+    if (mode == "change") {
         document.querySelector(":root").style.fontSize = `${10 * slider.value / 100}px`;
         fngNS.SysData.remSize = 10 * slider.value / 100;
     }
@@ -55,7 +55,7 @@ ${window.screen.width}px / ${window.screen.height}px
 
 function switchToolbar(optn){
     const tabList = document.querySelectorAll(".toolbar__tab");                                 //select all tabs
-    for(let tab of tabList){
+    for (let tab of tabList) {
         tab.style.background = "transparent";                                                   //set all tabs to transparent background (unselected)
         tab.style.color = "#000000";                                                            //set all tabs' text to black (unselected)
         tab.style.fontWeight = "normal";                                                        //set font weight to normal (unselected)
@@ -65,7 +65,7 @@ function switchToolbar(optn){
     tabList[optn].style.fontWeight = "bold";                                                    //set font weight to bold (selected)
     
     const panelList = document.querySelectorAll(".toolbar__panel");                             //select all  divs
-    for(let panel of panelList){                                                                //hide all divs first
+    for (let panel of panelList) {                                                                //hide all divs first
         panel.style.display = "none";
     };
     panelList[optn].style.display = "block";                                                    //then show the selected div
@@ -74,11 +74,10 @@ function switchToolbar(optn){
 // Toggle toolbar dropdown when down arrow is clicked
 
 function toggleToolbarDropdown(arrowBtn){
-    if(arrowBtn.style.transform == "rotate(0deg)"){                 //expand
+    if (arrowBtn.style.transform == "rotate(0deg)") {                 //expand
         arrowBtn.style.transform = "rotate(180deg)";
         arrowBtn.parentNode.parentNode.style.overflow = "visible";
-    }
-    else if(arrowBtn.style.transform == "rotate(180deg)"){          //collapse
+    } else if (arrowBtn.style.transform == "rotate(180deg)") {          //collapse
         arrowBtn.style.transform = "rotate(0deg)";
         arrowBtn.parentNode.parentNode.style.overflow = "hidden";
     }

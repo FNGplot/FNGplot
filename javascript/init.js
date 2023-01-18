@@ -13,27 +13,25 @@ document.querySelector("[data-id='envirdata-refreshbtn']").addEventListener("cli
 	updateEnvirList();
 });
 
-for(const item of ["input", "change"]){
-    document.querySelector("[data-id='ui-zoom-slider']").addEventListener(item, function(){
+for (const item of ["input", "change"]) {
+    document.querySelector("[data-id='ui-zoom-slider']").addEventListener(item, function() {
         changeRootZoom(item, this.querySelector("input"), this.querySelector("div"));
     });
 };
 
 fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
-    if(event.target.classList.contains("dragblock__btn--visibility")){  //change visibility
+    if (event.target.classList.contains("dragblock__btn--visibility")) {  //change visibility
         changeVisibility(event.target.parentElement.dataset.sid);
-    }
-    else if(event.target.classList.contains("dragblock__btn--edit")){   //toggle editpanel
+    } else if (event.target.classList.contains("dragblock__btn--edit")) {   //toggle editpanel
         toggleEditPanel(event.target.parentElement.dataset.sid);
-    }
-    else if(event.target.classList.contains("dragblock__btn--delete")){ //delete block
+    } else if (event.target.classList.contains("dragblock__btn--delete")) { //delete block
         deleteObject(event.target.parentElement.dataset.sid);
     }
 });
 
-for(const item of ["input", "change"]){
+for (const item of ["input", "change"]) {
     fngNS.DOM.BLOCK_FRAME.addEventListener(item, (event) => { 
-        if(event.target.closest(".editpanel") != null){    //verify that the input/change came from inside an editpanel
+        if (event.target.closest(".editpanel") != null) {    //verify that the input/change came from inside an editpanel
             const sid = event.target.closest(".dragblock").dataset.sid;
             handleUserEdit(event.target, sid, event.type);
         }
@@ -43,11 +41,10 @@ for(const item of ["input", "change"]){
 document.querySelector(".toolbar").addEventListener("click", (event) => {  //event delegation
     const target = event.target;
     const parent = event.target.parentNode;
-    if(target.tagName.toLowerCase() == "img"){                                  //SVG icon clicked
-        createFNGObject(target.dataset.objname, null);                          //create a brand new object of the specified kind
-    }
-    else if(target.classList.contains("toolbar__toggler__arrowbtn")){           // Arrow button clicked
-        toggleToolbarDropdown(target);                                          // Expand or collapse the respective panel
+    if (target.tagName.toLowerCase() == "img") {                                  //SVG icon clicked
+        createFNGObject(target.dataset.objname, null);                            //create a brand new object of the specified kind
+    } else if (target.classList.contains("toolbar__toggler__arrowbtn")) {         // Arrow button clicked
+        toggleToolbarDropdown(target);                                            // Expand or collapse the respective panel
     }
 });
 
@@ -82,13 +79,13 @@ fetch("javascript/editpanel-data/editpanels.json")
 {
     const tabList = document.querySelectorAll(".toolbar__tab");
     const arrowBtnList = document.querySelectorAll(".toolbar__toggler__arrowbtn");
-    for(let [i, tab] of tabList.entries()){
+    for (let [i, tab] of tabList.entries()) {
         tab.style.borderColor = fngNS.SysData.TOOLBAR_CLR[i];                      //initialize them to their respective colors
         tab.addEventListener("click", () => {                                      //attach eventlisteners
             switchToolbar(i);
         });
     };
-    for(let arrowBtn of arrowBtnList){
+    for (let arrowBtn of arrowBtnList) {
         arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
     };
     switchToolbar(1);                                                              //switch to "Geometry" (default)
@@ -102,7 +99,7 @@ fngNS.SysData.sortableList.push(
         fallbackOnBody: true,
         forceFallback: true,
         onEnd: function (evt) {
-            if(evt.oldIndex != evt.newIndex){  //If the position actually changed
+            if (evt.oldIndex != evt.newIndex) {  //If the position actually changed
                 moveObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null);
                 //passes null as reference if there is no next neighbor. insertBefore() will take care of it.
             }

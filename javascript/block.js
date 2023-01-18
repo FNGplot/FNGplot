@@ -127,10 +127,11 @@ function handleUserEdit(target, sid, event){
     if (event == "input") {   // Real-time SVG rendering
 
         //save value to object
-        if (prop in obj)
+        if (prop in obj) {
             math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-        else if (prop in obj.SvgStyle)
+        } else if (prop in obj.SvgStyle) {
             math.hasNumericValue(target.value) ? obj.SvgStyle[prop] = parseFloat(target.value) : obj.SvgStyle[prop] = target.value;
+        }
 
         // svg tyle properties
         if (fngNS.Maps.EDITACTION_SI.has(prop)) {
@@ -141,11 +142,11 @@ function handleUserEdit(target, sid, event){
     } else if (event == "change") {
 
         //save value to object
-        if (prop in obj)
+        if (prop in obj) {
             math.hasNumericValue(target.value) ? obj[prop] = parseFloat(target.value) : obj[prop] = target.value;
-        else if (prop in obj.SvgStyle)
+        } else if (prop in obj.SvgStyle) {
             math.hasNumericValue(target.value) ? obj.SvgStyle[prop] = parseFloat(target.value) : obj.SvgStyle[prop] = target.value;
-
+        }
 
 
         if(prop == "label"){ //special case: label (block labeltag update required)
