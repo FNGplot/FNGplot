@@ -1,13 +1,23 @@
-## FNGplot
+# FNGplot
+
+FNGplot is a *specialized* plotter desgined to help STEM teachers create colorful and precise mathematical diagrams for use in teaching materials and tests.
+
 ![Logo with text](svg/logo/logo_with_text.svg)
 
-FNGplot is currently under development. 
+## About
 
-Scheduled release date: 2023 Summer
+`FNGplot is currently under development.`
 
-## Feature
+`Scheduled v1.0.0 release date: 2023 Summer`
+
+## Features
 
 - To be added
+
+## Current development progress:
+
+### UI: 
+![Snapshot](snapshot.png)
 
 ## Developer team
 - Main developer: Wei-Hsu Lin(林韋旭) 

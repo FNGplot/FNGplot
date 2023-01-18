@@ -149,7 +149,7 @@ function handleUserEdit(target, sid, event){
 
 
         if(prop == "label"){ //special case: label (block labeltag update required)
-            target.parentNode.parentNode.parentNode.querySelector(".labeltag").value = target.value;
+            target.parentNode.parentNode.parentNode.querySelector(".dragblock__label").value = target.value;
         } else if (fngNS.Maps.EDITACTION_SC.has(prop)) {   // svg style properties
             fngNS.Maps.EDITACTION_SC.get(prop)(obj, svgElem);
         } else { // Calculate object

@@ -101,7 +101,6 @@ body {
     background-color: #5f95f7;  
 }
 
-
 /* || editpanels */
 .editpanel {
     position: relative;
@@ -126,6 +125,7 @@ body {
 }
 .ep__input {
     font: 1.3rem Lato;
+    margin: 0rem 0.2rem;
 }
 .ep__input--idtag{   /* disabled */
     background-color: #e0e0e0;
@@ -464,7 +464,7 @@ body {
     padding: 1rem;
 }
 
-/* || Others */
+/* || Utility classes */
 .ghost-class {            /*'ghostClass' parameter of sortable.js*/
     opacity: 0.4;
 }
