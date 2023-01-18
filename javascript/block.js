@@ -99,7 +99,7 @@ function toggleEditPanel(sid) {
         block.insertAdjacentHTML("beforeend", fngNS.SysData.EDITPANEL_TEMPLATES[objName]);
         initEditPanel(block.querySelector(".editpanel"),sid);
     } else { //It has an editpanel, remove it
-        fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing animation
+        fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "5rem"; //initiate the closing animation
         panel.parentNode.removeChild(panel);
     }
 }
@@ -121,7 +121,10 @@ function initEditPanel(panelElem, sid){
         } 
     };
     // calculate rem
-    const remHeightNeeded = ( panelElem.getBoundingClientRect().height / fngNS.SysData.remSize ) + fngNS.MagicNumber.EDITPANEL_TBMARGIN; 
+    console.log("bc rect", panelElem.getBoundingClientRect().height);
+    console.log("offset height", panelElem.offsetHeight);
+    console.log("remsize", fngNS.SysData.remSize)
+    const remHeightNeeded = math.round(panelElem.getBoundingClientRect().height / fngNS.SysData.remSize + fngNS.MagicNumber.EDITPANEL_TBMARGIN, 2); 
     fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${remHeightNeeded}rem`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
 }
 function handleUserEdit(target, sid, event){ 

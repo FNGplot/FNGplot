@@ -107,7 +107,6 @@ body {
     margin: 5.5rem 1rem 1rem;
     width: auto;
     height: auto;
-    font: 1.6rem Lato;
     padding: 0.5rem;
     border: 0.1rem solid black;
     border-radius: 0.3rem;
@@ -119,20 +118,21 @@ body {
 .ep__cell{
     position: relative;
     margin: 0.2rem 0rem;
+    font: 1.6rem Lato;
 }
 .ep__cell--monolabel {  /* label w/ monospaced font */
-    font-family: "Source Code Pro";
+    font: 1.6rem "Source Code Pro";
 }
 .ep__input {
-    font-family: Lato;
+    font: 1.3rem Lato;
 }
 .ep__input--idtag{   /* disabled */
     background-color: #e0e0e0;
     color: black;
-    font-family: "Source Code Pro";
+    font: 1.3rem "Source Code Pro";
     border: 0.1rem solid black;
     border-radius: 3px;
-    width: 8.1rem; /*I know this is exactly enough becuase it uses a monospace font*/
+    width: 8rem; /*I know this is exactly enough becuase it uses a monospace font*/
 }
 .ep__input--short{
     width: 6rem;
