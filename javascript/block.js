@@ -78,7 +78,7 @@ function deleteObject(sid) {
 }
 function changeVisibility(sid) {
     const obj = fngNS.SysData.objectList.find(item => item.sid == sid);  //find the object with this sid
-    const eyeBtn = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.visibility');
+    const eyeBtn = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.dragblock__btn--visibility');
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
     if(obj.SvgStyle.display == true){
         obj.SvgStyle.display = false;
@@ -93,11 +93,11 @@ function changeVisibility(sid) {
 }
 function toggleEditPanel(sid) {
     const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
-    const panel = block.querySelector(".objblock-editpanel")
+    const panel = block.querySelector(".editpanel")
     if(panel == null){ //It doesn't have an editpanel, give it one
         const objName = fngNS.SysData.objectList.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
         block.insertAdjacentHTML("beforeend", fngNS.SysData.EDITPANEL_TEMPLATES[objName]);
-        initEditPanel(block.querySelector(".objblock-editpanel"),sid);
+        initEditPanel(block.querySelector(".editpanel"),sid);
     } else { //It has an editpanel, remove it
         fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = "50px"; //initiate the closing animation
         panel.parentNode.removeChild(panel);
@@ -120,7 +120,9 @@ function initEditPanel(panelElem, sid){
             inputElem.value = obj.SvgStyle[inputElem.dataset.property];
         } 
     };
-    fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${panelElem.offsetHeight + fngNS.MagicNumber.EDITPANEL_TBMARGIN}px`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
+    // calculate rem
+    const remHeightNeeded = ( panelElem.getBoundingClientRect().height / fngNS.SysData.remSize ) + fngNS.MagicNumber.EDITPANEL_TBMARGIN; 
+    fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).style.height = `${remHeightNeeded}rem`; //A workaround for transition. See https://css-tricks.com/using-css-transitions-auto-dimensions/ for why I resort to this hard-coded method.
 }
 function handleUserEdit(target, sid, event){ 
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)

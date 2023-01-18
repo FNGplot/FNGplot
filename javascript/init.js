@@ -20,20 +20,20 @@ for(const item of ["input", "change"]){
 };
 
 fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
-    if(event.target.classList.contains("dragblock__tab--visibility")){  //change visibility
+    if(event.target.classList.contains("dragblock__btn--visibility")){  //change visibility
         changeVisibility(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("dragblock__tab--edit")){   //toggle editpanel
+    else if(event.target.classList.contains("dragblock__btn--edit")){   //toggle editpanel
         toggleEditPanel(event.target.parentElement.dataset.sid);
     }
-    else if(event.target.classList.contains("dragblock__tab--delete")){ //delete block
+    else if(event.target.classList.contains("dragblock__btn--delete")){ //delete block
         deleteObject(event.target.parentElement.dataset.sid);
     }
 });
 
 for(const item of ["input", "change"]){
     fngNS.DOM.BLOCK_FRAME.addEventListener(item, (event) => { 
-        if(event.target.closest(".objblock-editpanel") != null){    //verify that the input/change came from inside an editpanel
+        if(event.target.closest(".dragblock__editpanel") != null){    //verify that the input/change came from inside an editpanel
             const sid = event.target.parentNode.parentNode.parentNode.dataset.sid;
             handleUserEdit(event.target, sid, event.type);
         }
@@ -108,8 +108,8 @@ fngNS.SysData.sortableList.push(
             }
         },
         ghostClass: 'ghost-class',
-        draggable: ".dragblock",
-        handle: ".dragblock__icon",
+        draggable: '.dragblock',
+        handle: '.dragblock__icon',
         swapThreshold: 0.65,
         scroll: true,
         scrollSensitivity: 80,

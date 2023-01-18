@@ -34,7 +34,7 @@
     --colora: #ffffff;
 }
 
-/* || Body and Root <div> */
+/* || Body and root frame */
 body {
     background-color: #fffff8;
 }
@@ -98,6 +98,56 @@ body {
 /* || Draggable block modifiers */
 .dragblock--geometry {
     background-color: #5f95f7;  
+}
+
+
+/* || editpanels */
+.editpanel {
+    position: relative;
+    margin: 5.5rem 1rem 1rem;
+    width: auto;
+    height: auto;
+    font: 1.6rem Lato;
+    padding: 0.5rem;
+    border: 0.1rem solid black;
+    border-radius: 0.3rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+/* To reduce the filesize of editpanel.json, the following classes will abbreviate "editpanel" to "ep" */
+.ep__cell{
+    position: relative;
+    margin: 0.2rem 0rem;
+}
+.ep__cell--monolabel {  /* label w/ monospaced font */
+    font-family: "Source Code Pro";
+}
+.ep__input {
+    font-family: Lato;
+}
+.ep__input--idtag{   /* disabled */
+    background-color: #e0e0e0;
+    color: black;
+    font-family: "Source Code Pro";
+    border: 0.1rem solid black;
+    border-radius: 3px;
+    width: 8.1rem; /*I know this is exactly enough becuase it uses a monospace font*/
+}
+.ep__input--short{
+    width: 6rem;
+}
+.ep__input--medium{
+    width: 9rem;
+}
+.ep__input--long{
+    width: 17rem;
+}
+.ep__input--extralong{
+    width: 25rem;
+}
+.ep__select{
+    position: relative;
 }
 
 /* || Banner at top left corner */

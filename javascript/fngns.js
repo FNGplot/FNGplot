@@ -26,7 +26,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     }),
 
     MagicNumber: Object.freeze({    // Make magic numbers less magical
-        EDITPANEL_TBMARGIN: 65, // Top(55) and bottom(10) margin of editpanels. Used to calculate the expansion animation of parent block.
+        EDITPANEL_TBMARGIN: 6.5, // Top(5.5rem) and bottom(1rem) margin of editpanels. Used to calculate the expansion animation of parent block.
     }),
 
     DOM: Object.freeze({    // Frequently used DOM elements
@@ -44,6 +44,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     SysData: Object.seal({
         TOOLBAR_CLR: ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42'],  // Based on MIT Scratch 2.0/3.0
         EDITPANEL_TEMPLATES: {},  //initialized from editpanels.json
+        remSize: 10,      // 1rem = 10px
         objectList: [],   //Unordered object reference array
         sortableList: [], //SortableJS object reference array, in case I add more Sortable objects in the future
     }),
