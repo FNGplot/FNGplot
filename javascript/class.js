@@ -69,7 +69,7 @@ class LinePPExt extends StrokeParent {
         this.endExtend = 1.3;
     }
     updateMath(svgElem){
-        if (this.x1 == this.x2) {   // vertical line
+        if (this.x1 === this.x2) {   // vertical line
             if (this.y1 <= this.y2) {   // goes up
                 svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x1));
                 svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x2));
@@ -105,7 +105,7 @@ class LinePS extends StrokeParent {
         this.rightExtend = 2.7;
     }
     updateMath(svgElem){
-        if(this.slope === ""){    //user admits that it is a vertical line (use === becuase 0 == "")
+        if(this.slope === ""){    //user admits that it is a vertical line (Note: 0 == "")
             svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x));
             svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x));
             svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y - this.leftExtend));

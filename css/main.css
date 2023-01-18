@@ -456,7 +456,7 @@ body {
 .ghost-class {            /*'ghostClass' parameter of sortable.js*/
     opacity: 0.4;
 }
-/* width */
+/* width classes*/
 .w1 {
     width: 1em;
 }

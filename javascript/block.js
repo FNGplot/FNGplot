@@ -28,7 +28,7 @@ function makeSID(){ // Generate a 10-character-long "random" alphanumeric system
 
 //User operations
 function createFNGObject(objName, data){
-    if(data == null){                             //create a new FNGobject
+    if(data === null){                             //create a new FNGobject
         const sid = makeSID();
         const data = fngNS.Maps.CLASS_INITDATA.get(objName);   //["objName", [Class, Category, SVG Element]]
 
@@ -66,7 +66,7 @@ function moveObject(sid,nextSid) {
     fngNS.DOM.SVG_CANVAS.insertBefore(svgElem,refElem);
 }
 function deleteObject(sid) {
-    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
+    const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
     const response = confirm(`Do you want to PERMANENTLY delete "${obj.name}" ?`);
     if (response) {
         const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
@@ -77,15 +77,15 @@ function deleteObject(sid) {
     }
 }
 function changeVisibility(sid) {
-    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);  //find the object with this sid
+    const obj = fngNS.SysData.objectList.find(item => item.sid === sid);  //find the object with this sid
     const eyeBtn = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`).querySelector('.dragblock__btn--visibility');
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
-    if(obj.SvgStyle.display == true){
+    if(obj.SvgStyle.display === true){
         obj.SvgStyle.display = false;
         eyeBtn.innerHTML = "visibility_off";                //change the icon to visibility off;
         svgElem.setAttribute("display","none");             //hide the SVG element               
     }
-    else if(obj.SvgStyle.display == false){
+    else if(obj.SvgStyle.display === false){
         obj.SvgStyle.display = true;
         eyeBtn.innerHTML = "visibility";                    //change the icon to visibility(on);
         svgElem.setAttribute("display","");                 //show the SVG element
@@ -94,8 +94,8 @@ function changeVisibility(sid) {
 function toggleEditPanel(sid) {
     const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
     const panel = block.querySelector(".editpanel")
-    if(panel == null){ //It doesn't have an editpanel, give it one
-        const objName = fngNS.SysData.objectList.find(item => item.sid == sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
+    if(panel === null){ //It doesn't have an editpanel, give it one
+        const objName = fngNS.SysData.objectList.find(item => item.sid === sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
         block.insertAdjacentHTML("beforeend", fngNS.SysData.EDITPANEL_TEMPLATES[objName]);
         initEditPanel(block.querySelector(".editpanel"),sid);
     } else { //It has an editpanel, remove it
@@ -103,11 +103,11 @@ function toggleEditPanel(sid) {
     }
 }
 function initEditPanel(panelElem, sid){
-    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
+    const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
     const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
     for(let inputElem of inputList){
 
-        /*if(inputElem.type == "checkbox"){   //currently useless
+        /*if(inputElem.type === "checkbox"){   //currently useless
             //get their respective properties and display them
             inputElem.checked = obj[inputElem.dataset.property];
         }*/
@@ -122,9 +122,9 @@ function initEditPanel(panelElem, sid){
 }
 function handleUserEdit(target, sid, event){ 
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
-    const obj = fngNS.SysData.objectList.find(item => item.sid == sid);
+    const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
     const prop = target.dataset.property;
-    if (event == "input") {   // Real-time SVG rendering
+    if (event === "input") {   // Real-time SVG rendering
 
         //save value to object
         if (prop in obj) {
@@ -139,7 +139,7 @@ function handleUserEdit(target, sid, event){
         } else { // Calculate object
             obj.updateMath(svgElem);
         }
-    } else if (event == "change") {
+    } else if (event === "change") {
 
         //save value to object
         if (prop in obj) {
@@ -149,7 +149,7 @@ function handleUserEdit(target, sid, event){
         }
 
 
-        if(prop == "label"){ //special case: label (block labeltag update required)
+        if(prop === "label"){ //special case: label (block labeltag update required)
             target.closest(".dragblock").querySelector(".dragblock__label").value = target.value;
         } else if (fngNS.Maps.EDITACTION_SC.has(prop)) {   // svg style properties
             fngNS.Maps.EDITACTION_SC.get(prop)(obj, svgElem);
