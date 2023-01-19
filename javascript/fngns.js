@@ -36,7 +36,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     }),
 
     Str: Object.freeze({    // Frequently used strings
-        SVGNS: "http://www.w3.org/2000/svg",    //Namespace of SVG
+        SVGNS: "http://www.w3.org/2000/svg",    // Namespace of SVG
     }),
 
     /* [!] System data (read/write required for some of them, therefore it is only sealed but not frozen) */
@@ -102,4 +102,8 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
             ["fillColor", (obj, svgElem) => { svgElem.setAttribute("fill", obj.SvgStyle.fillColor) }],
         ]),
     }),
+
+    Class: {
+        
+    }
 })
