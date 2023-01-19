@@ -32,6 +32,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     DOM: Object.freeze({    // Frequently used DOM elements
         BLOCK_FRAME: document.querySelector('.workspace__block-frame'),
         SVG_CANVAS: document.querySelector('.workspace__svg--canvas'),
+        SVG_DISPLAY: document.querySelector('.workspace__svg--display'),
         BASIC_BLOCK_TEMPLATE: document.querySelector('.template').content.firstElementChild,
     }),
 
@@ -62,17 +63,17 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         originX: 500,
         originY: 500,
         // Methods
-        toPxPosX(xCord){  // Translate calculation result to actual pixel positions. X coordinate only.
-            return this.originX + this.xHat*xCord;
+        toPxPosX(xCord){  // Translate calculation result to actual SVG coordinate. X coordinate only.
+            return math.round(this.originX + this.xHat*xCord, 3);
         },
-        toPxPosY(yCord){  // Translate calculation result to actual pixel positions. Y coordinate only.
-            return this.originY - this.yHat*yCord;
+        toPxPosY(yCord){  // Translate calculation result to actual SVG coordinate. Y coordinate only.
+            return math.round(this.originY - this.yHat*yCord, 3);
         },
-        toPxLenX(length){ // Translate calculation result to actual pixel lengths. X direction only.
-            return length * this.xHat;
+        toPxLenX(length){ // Translate calculation result to actual SVG lengths. X direction only.
+            return math.round(length * this.xHat, 3);
         },
-        toPxLenY(length){ // Translate calculation result to actual pixel lengths. Y direction only.
-            return length * this.yHat;
+        toPxLenY(length){ // Translate calculation result to actual SVG lengths. Y direction only.
+            return math.round(length * this.yHat, 3);
         },
     }),
 
