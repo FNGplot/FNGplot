@@ -31,7 +31,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
 
     DOM: Object.freeze({    // Frequently used DOM elements
         BLOCK_FRAME: document.querySelector('.workspace__block-frame'),
-        SVG_CANVAS: document.querySelector('.workspace__svg-frame__canvas'),
+        SVG_CANVAS: document.querySelector('.workspace__svg--canvas'),
         BASIC_BLOCK_TEMPLATE: document.querySelector('.template').content.firstElementChild,
     }),
 
@@ -50,14 +50,18 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     }),
 
     Coord: Object.seal({ //  Variables that control the coordinate system of FNGplot (Cartesian & Polar)
+        // Math coordinate
         xMax: 10,
         xMin: -10,
         yMax: 10,
         yMin: -10,
+        // SVG coordinate
+        viewBox: [0, 0, 1000, 1000],
         xHat: 50,
         yHat: 50,
-        originX: 500, // "real" x and y coordinates of the origin point in the SVG canvas.
-        originY: 500, // "real" x and y coordinates of the origin point in the SVG canvas.
+        originX: 500,
+        originY: 500,
+        // Methods
         toPxPosX(xCord){  // Translate calculation result to actual pixel positions. X coordinate only.
             return this.originX + this.xHat*xCord;
         },
@@ -104,6 +108,6 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     }),
 
     Class: {
-        
+
     }
 })

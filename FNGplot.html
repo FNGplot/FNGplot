@@ -186,12 +186,16 @@
             
             <div class="workspace">
             
-                <div class="workspace__svg-frame">
-                    <img class="workspace__svg-frame__tspt-bkgd" src="svg/system/transparent-background.svg"></img>
-                    <svg class="workspace__svg-frame__canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000">
-                        
-                    </svg>
-                </div>
+                <img class="workspace__svg workspace__svg--background" src="svg/system/transparent-background.svg"></img>
+                <svg class="workspace__svg workspace__svg--canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000"></svg>
+                <svg class="workspace__svg workspace__svg--display" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000">
+                    <g data-id="minmax-display" style="font-family: Source Code Pro; font-size: 3.2rem;">
+                        <text data-id="xmin" text-anchor="start" dominant-baseline="middle" x="0%" y="50%">-10</text>
+                        <text data-id="xmax" text-anchor="end" dominant-baseline="middle" x="100%" y="50%">10</text>
+                        <text data-id="ymin" text-anchor="middle" dominant-baseline="auto" x="50%" y="100%">-10</text>
+                        <text data-id="ymax" text-anchor="middle" dominant-baseline="hanging" x="50%" y="0%">10</text>
+                    </g>
+                </svg>
                 
                 <div class="workspace__block-frame nested-sortable">
                 </div>

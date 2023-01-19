@@ -65,9 +65,10 @@ body {
 }
 .dragblock__label {
     position: absolute;
-    top: 0.9rem;
+    box-sizing: border-box;
+    top: 1.3rem;
     left: 6rem;
-    width: 19rem;
+    width: 18rem;
     height: 2.4rem;
     padding: 0.3rem;
     font: 2.2rem Lato;
@@ -388,36 +389,30 @@ body {
     width: 1rem;
     height: 1rem;
 }
-.workspace__svg-frame {
+.workspace__svg {
     position: absolute;
     top: 4rem;
-    left: 3.5rem;
+    left: 5rem;
     width: 50rem;
     height: 50rem;
     border: 0.2rem solid black;
+    box-sizing: content-box;
 }
-.workspace__svg-frame__tspt-bkgd {  /* transparent background */
-    position: absolute;
+.workspace__svg--background {  /* transparent background indicator*/
     z-index: 0;
-    top: 0rem;
-    left: 0rem;
-    width: 50rem;
-    height: 50rem;
 }
-.workspace__svg-frame__canvas {
-    position: absolute;
+.workspace__svg--canvas {
     z-index: 1;
-    top: 0rem;
-    left: 0rem;
-    width: 50rem;
-    height: 50rem;
+}
+.workspace__svg--display {
+    z-index: 2;
 }
 .workspace__block-frame {
     position: absolute;
-    top: 7.5rem;
-    left: 60rem;
-    width: 43rem;
-    height: 47rem;
+    top: 8.5rem;
+    left: 63rem;
+    width: 40rem;
+    height: 46rem;
     border: 0.2rem dashed black;
     background: #ffffff;
     overflow-y: scroll;
