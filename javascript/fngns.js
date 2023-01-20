@@ -3,7 +3,7 @@
 
 "use strict";
 
-// Note for future self: fngNS should NOT have more than three layers
+// Note for future me: fngNS should NOT have more than three layers
 
 const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
 
@@ -107,8 +107,4 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
             ["fillColor", (obj, svgElem) => { svgElem.setAttribute("fill", obj.SvgStyle.fillColor) }],
         ]),
     }),
-
-    Class: {
-
-    }
 })
