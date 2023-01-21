@@ -21,8 +21,9 @@ function switchLeftPanel(optn){
 
 function changeRootZoom(mode, slider, divDisplay){
     if (mode == "change") {
-        document.querySelector(":root").style.fontSize = `${math.round(fngNS.SysData.remSize * slider.value / 100, 2)}px`;
-        fngNS.SysData.remSize = 10 * slider.value / 100;
+        document.querySelector(":root").style.fontSize = `${math.round(fngNS.MagicNumber.DEFAULT_REMSIZE * slider.value / 100, 2)}px`;
+        fngNS.Settings.remSize = fngNS.MagicNumber.DEFAULT_REMSIZE * slider.value / 100;
+        updateEnvirList();
     }
     divDisplay.innerHTML = `${slider.value}%`;
 }
@@ -31,14 +32,14 @@ function changeRootZoom(mode, slider, divDisplay){
 
 function updateEnvirList(){
     document.querySelector("pre[data-id='envirdata-output']").innerHTML = `
+Settings:
+--------------------------
+remSize: ${fngNS.Settings.remSize}px
+
 Viewport:
 --------------------------
 innerWidth / innerHeight: 
 ${window.innerWidth}px / ${window.innerHeight}px
-
-clientWidth / clientHeight: 
-${document.documentElement.clientWidth}px / ${document.documentElement.clientHeight}px
-
 
 Device:
 --------------------------

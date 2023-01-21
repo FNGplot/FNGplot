@@ -27,6 +27,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
 
     MagicNumber: Object.freeze({    // Make magic numbers less magical
         EDITPANEL_TBMARGIN: 6.5, // Top(5.5rem) and bottom(1rem) margin of editpanels. Used to calculate the expansion animation of parent block.
+        DEFAULT_REMSIZE: 8,      // Default: 1rem = 8px @ 100% Zoom
     }),
 
     DOM: Object.freeze({    // Frequently used DOM elements
@@ -45,9 +46,13 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     SysData: Object.seal({
         TOOLBAR_CLR: ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42'],  // Based on MIT Scratch 2.0/3.0
         EDITPANEL_TEMPLATES: {},  //initialized from editpanels.json
-        remSize: 8,      // Default: 1rem = 8px
         objectList: [],   // Unordered object reference array
         sortableList: [], // SortableJS object reference array, in case I add more Sortable objects in the future
+    }),
+
+    Settings: Object.seal({
+        Zoom: 100,
+        remSize: 8,
     }),
 
     Coord: Object.seal({ //  Variables that control the coordinate system of FNGplot (Cartesian & Polar)

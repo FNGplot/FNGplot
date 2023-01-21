@@ -38,10 +38,10 @@
 body {
     background-color: #fffff8;
 }
-.root {
+.root-frame {   /* Should be the exact same size as window */
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    width: 120rem;
+    height: 75rem;
 }
 
 /* || Sortable blocks */
