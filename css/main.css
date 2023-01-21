@@ -29,8 +29,8 @@
 
 /* || CSS Root */
 :root {
-    /* font-size: 10px (basis of rem) */
-    font-size: 10px;
+    /* font-size: 8px (basis of rem) */
+    font-size: 8px;
     --colora: #ffffff;
 }
 

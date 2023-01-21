@@ -45,7 +45,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     SysData: Object.seal({
         TOOLBAR_CLR: ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42'],  // Based on MIT Scratch 2.0/3.0
         EDITPANEL_TEMPLATES: {},  //initialized from editpanels.json
-        remSize: 10,      // Default: 1rem = 10px
+        remSize: 8,      // Default: 1rem = 8px
         objectList: [],   // Unordered object reference array
         sortableList: [], // SortableJS object reference array, in case I add more Sortable objects in the future
     }),

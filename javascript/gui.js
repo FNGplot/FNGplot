@@ -21,7 +21,7 @@ function switchLeftPanel(optn){
 
 function changeRootZoom(mode, slider, divDisplay){
     if (mode == "change") {
-        document.querySelector(":root").style.fontSize = `${10 * slider.value / 100}px`;
+        document.querySelector(":root").style.fontSize = `${math.round(fngNS.SysData.remSize * slider.value / 100, 2)}px`;
         fngNS.SysData.remSize = 10 * slider.value / 100;
     }
     divDisplay.innerHTML = `${slider.value}%`;
