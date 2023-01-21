@@ -1,6 +1,6 @@
 {
   "name": "fngplot",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-alpha",
   "description": "A free, intuitive and precise plotter designed for STEM educators",
   "main": "main.js",
   "scripts": {

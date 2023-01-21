@@ -12,7 +12,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     MetaData: Object.freeze({
         AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
         LICENSE: "Apache-2.0",
-        VERSION: "1.0.0-beta",
+        VERSION: "1.0.0-alpha",
         RELEASE_DATE: "2023-MM-DD",
         RELEASE_NOTE: "null",
     }),

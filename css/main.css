@@ -38,10 +38,13 @@
 body {
     background-color: #fffff8;
 }
-.root-frame {   /* Should be the exact same size as window */
+.root-frame {
+    /* Content window size is 120rem x 75rem */
     position: absolute;
-    width: 120rem;
-    height: 75rem;
+    top: 2.5rem;
+    left: 2.5rem;
+    width: 115rem;
+    height: 70rem;
 }
 
 /* || Sortable blocks */
@@ -160,7 +163,7 @@ body {
     top: 6rem;
     left: 0rem;
     width: 27rem;
-    height: 56rem;
+    height: 57rem;
     background: #f5f0ff;
     border: 0.2rem solid black;
 }
@@ -178,7 +181,7 @@ body {
     top: 5.5rem;
     left: 1.2rem;
     width: 24.5rem;
-    height: 49rem;
+    height: 50rem;
     border: 0.1rem solid black;
     background: #ffffff;
     display: none;
@@ -263,10 +266,10 @@ body {
 /* || Calculator Button */
 .calc-btn {
     position: absolute;
-    top: 63.5rem;
+    top: 64.5rem;
     left: 0rem;
     width: 27rem;
-    height: 5.6rem;
+    height: 5.5rem;
     cursor: default;
     background: #ddcfff;
     border: 0.2rem solid black;
