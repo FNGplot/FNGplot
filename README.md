@@ -42,11 +42,6 @@ Most of these features come in handy when one needs to quickly construct a diagr
     - center & radius
     - 3-point circle
 
-## Current development progress:
-
-### UI: 
-![Snapshot](snapshot.png)
-
 ## Developer team
 - Main developer: Wei-Hsu Lin(林韋旭) 
 - UX tester: Mu-En Chiu (邱沐恩)
