@@ -3,10 +3,10 @@ const path = require("path");
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 960,
+        width: 1200,
         height: 600,
         useContentSize: true,
-        // resizable: false,
+        resizable: false,
         autoHideMenuBar: true,
         webPreferences: {
             preload: path.join(__dirname, "preload.js")

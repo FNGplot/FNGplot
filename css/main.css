@@ -45,6 +45,7 @@ body {
     left: 2.5rem;
     width: 115rem;
     height: 70rem;
+    box-sizing: content-box;
 }
 
 /* || Sortable blocks */
@@ -394,8 +395,8 @@ body {
 }
 .workspace__svg {
     position: absolute;
-    top: 4rem;
-    left: 5rem;
+    top: 2.5rem;
+    left: 2rem;
     width: 50rem;
     height: 50rem;
     border: 0.2rem solid black;
@@ -412,8 +413,8 @@ body {
 }
 .workspace__block-frame {
     position: absolute;
-    top: 8.5rem;
-    left: 63rem;
+    top: 12rem;
+    left: 56rem;
     width: 40rem;
     height: 46rem;
     border: 0.2rem dashed black;
@@ -421,6 +422,7 @@ body {
     overflow-y: scroll;
     margin: 0rem;
     padding: 1rem;
+    box-sizing: border-box;
 }
 
 /* || Utility classes */
