@@ -426,11 +426,21 @@ body {
     font-family: "Source Code Pro";
     font-size: 4rem;
 }
+.workspace__block-toolbar {
+    position: absolute;
+    top: 1rem;
+    left: 57rem;
+    width: 49rem;
+    height: 9rem;
+    border: 0.2rem dashed black;
+    margin: 0rem;
+    box-sizing: border-box;
+}
 .workspace__block-frame {
     position: absolute;
     top: 11rem;
-    left: 58rem;
-    width: 42rem;
+    left: 57rem;
+    width: 49rem;
     height: 47rem;
     border: 0.2rem dashed black;
     background: #ffffff;
