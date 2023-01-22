@@ -3,7 +3,7 @@ const path = require("path");
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 1200,
+        width: 1120,
         height: 600,
         useContentSize: true,
         resizable: false,
@@ -16,7 +16,7 @@ const createWindow = () => {
     console.log(win.getContentSize(), win.getBounds());
 }
 
-app.whenReady().then( () => {
+app.whenReady().then(() => {
     createWindow();
 });
 
