@@ -420,6 +420,12 @@ body {
 .workspace__svg--display {
     z-index: 2;
 }
+
+/* Internal SVG DOM of workspace__svg--display */
+.workspace__svg--display > g[data-id="minmax-display"] {
+    font-family: "Source Code Pro";
+    font-size: 4rem;
+}
 .workspace__block-frame {
     position: absolute;
     top: 11rem;

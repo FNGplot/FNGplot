@@ -11,6 +11,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "electron": "^22.0.3",
+    "electron-builder": "^23.6.0",
     "nodemon": "^2.0.20"
   }
 }
