@@ -24,7 +24,7 @@
     font-family: "Material Symbols Rounded";
     font-style: normal;
     font-weight: normal;
-    src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');  
+    src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');
 }
 
 /* || CSS Root */
@@ -70,10 +70,10 @@ body {
 .dragblock__label {
     position: absolute;
     box-sizing: border-box;
-    top: 1.3rem;
+    top: 1.1rem;
     left: 6rem;
     width: 18rem;
-    height: 2.4rem;
+    height: 2.8rem;
     padding: 0.3rem;
     font: 2.2rem Lato;
     border: 0.1rem solid transparent;
@@ -103,7 +103,7 @@ body {
 
 /* || Draggable block modifiers */
 .dragblock--geometry {
-    background-color: #5f95f7;  
+    background-color: #5f95f7; 
 }
 
 /* || editpanels */
@@ -266,7 +266,7 @@ body {
 .side-menu__datablock__pre {  /* Code & technical data */
     margin-right: auto;
     padding-left: 1rem; /* Small indentation */
-    font: 1.2rem "Source Code Pro";
+    font: 1.3rem "Source Code Pro";
 }
 .side-menu__datablock__number {  /* number input */
     font: 1.3rem Lato;
@@ -442,7 +442,6 @@ body {
 .workspace__svg-content--display {
     z-index: 2;
 }
-
 /* Internal SVG DOM of workspace__svg--display */
 .workspace__svg-content--display > g[data-id="minmax-display"] {
     font-family: "Source Code Pro";
@@ -454,9 +453,39 @@ body {
     left: 57rem;
     width: 49rem;
     height: 9rem;
+    background: #f5f0ff;
     border: 0.2rem dashed black;
     margin: 0rem;
     box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 5em 3.6em;
+    grid-template-columns: repeat(9, 5rem);
+    justify-content: start;
+    justify-items: center;
+    align-items: center;
+}
+.workspace__block-toolbar__btn {
+    width: 100%;    /* 5rem */
+    height: 100%;   /* 5rem */
+    background-color: transparent;
+    cursor: default;
+    font: 4rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.workspace__block-toolbar__btn:hover {
+    background-color: #ddcfff;
+}
+.workspace__block-toolbar__display {    /* Take up all 9 columns + force linebreak */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    grid-column-start: 1;
+    grid-column-end: 10;
 }
 .workspace__block-frame {
     position: absolute;
