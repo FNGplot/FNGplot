@@ -402,27 +402,34 @@ body {
     width: 1rem;
     height: 1rem;
 }
-.workspace__svg {
+.workspace__svg-frame {
     position: absolute;
     top: 3.5rem;
     left: 2rem;
+    width: 50.4rem; /* 50 + border */
+    height: 50.4rem;
+}
+.workspace__svg-content {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
     width: 50rem;
     height: 50rem;
     border: 0.2rem solid black;
     box-sizing: content-box;
 }
-.workspace__svg--background {  /* transparent background indicator*/
+.workspace__svg-content--background {  /* transparent background indicator*/
     z-index: 0;
 }
-.workspace__svg--canvas {
+.workspace__svg-content--canvas {
     z-index: 1;
 }
-.workspace__svg--display {
+.workspace__svg-content--display {
     z-index: 2;
 }
 
 /* Internal SVG DOM of workspace__svg--display */
-.workspace__svg--display > g[data-id="minmax-display"] {
+.workspace__svg-content--display > g[data-id="minmax-display"] {
     font-family: "Source Code Pro";
     font-size: 4rem;
 }
