@@ -98,6 +98,7 @@ body {
 .dragblock__btn {
     position: relative;
     display: block;
+    background-color: transparent;
     margin: 0rem 0.3rem;
     cursor: default;
     font: 4rem "Material Symbols Rounded";
