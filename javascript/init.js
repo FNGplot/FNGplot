@@ -23,12 +23,29 @@ document.querySelector("[data-id='plt-coord-settings']").addEventListener("input
     changeCoordSettings(event.target);
 });
 
-fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
-    if (event.target.classList.contains("dragblock__btn--visibility")) {  //change visibility
+document.querySelector(".workspace__block-toolbar").addEventListener("click", (event) => {  //event delegation
+    if (event.target.classList.contains("workspace__block-toolbar__btn")) {
+        switch (event.target.dataset.id) {
+        case "import":
+            // nothing yet
+        case "export":
+            // nothing yet
+        case "copy":
+            // nothing yet
+        case "delete": 
+            {   // scoping
+            
+            }
+        }
+    }
+});
+
+fngNS.DOM.BLOCK_FRAME.addEventListener("click", (event) => {       // event delegation
+    if (event.target.classList.contains("dragblock__btn--visibility")) {  // change visibility
         changeVisibility(event.target.parentElement.dataset.sid);
-    } else if (event.target.classList.contains("dragblock__btn--edit")) {   //toggle editpanel
+    } else if (event.target.classList.contains("dragblock__btn--edit")) {   // toggle editpanel
         toggleEditPanel(event.target.parentElement.dataset.sid);
-    } else if (event.target.classList.contains("dragblock__btn--delete")) { //delete block
+    } else if (event.target.classList.contains("dragblock__btn--delete")) { // delete block
         deleteObject(event.target.parentElement.dataset.sid);
     }
 });

@@ -318,8 +318,8 @@ body {
     position: absolute;
     top: 0rem;
     left: 29rem;
-    width: 1rem;
-    height: 1rem;
+    width: 106rem;
+    height: 11.2rem;
 }
 .toolbar__tab-ctnr {    /* tab container */
     position: absolute;
@@ -414,8 +414,8 @@ body {
     position: absolute;
     top: 12rem;
     left: 29rem;
-    width: 1rem;
-    height: 1rem;
+    width: 106rem;
+    height: 58rem;
 }
 .workspace__svg-frame {
     position: absolute;
