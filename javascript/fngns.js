@@ -26,7 +26,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
     }),
 
     MagicNumber: Object.freeze({    // Make magic numbers less magical
-        EDITPANEL_TBMARGIN: 6.5, // Top(5.5rem) and bottom(1rem) margin of editpanels. Used to calculate the expansion animation of parent block.
+        EDITPANEL_TBMARGIN: 1.5, // Top(0.5rem) and bottom(1rem) margin of editpanels. Used to calculate the expansion animation of parent block.
         DEFAULT_REMSIZE: 8,      // Default: 1rem = 8px @ 100% Zoom
     }),
 

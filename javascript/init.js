@@ -42,11 +42,11 @@ document.querySelector(".workspace__block-toolbar").addEventListener("click", (e
 
 fngNS.DOM.BLOCK_FRAME.addEventListener("click", (event) => {       // event delegation
     if (event.target.classList.contains("dragblock__btn--visibility")) {  // change visibility
-        changeVisibility(event.target.parentElement.dataset.sid);
+        changeVisibility(event.target.closest(".dragblock").dataset.sid);
     } else if (event.target.classList.contains("dragblock__btn--edit")) {   // toggle editpanel
-        toggleEditPanel(event.target.parentElement.dataset.sid);
+        toggleEditPanel(event.target.closest(".dragblock").dataset.sid);
     } else if (event.target.classList.contains("dragblock__btn--delete")) { // delete block
-        deleteObject(event.target.parentElement.dataset.sid);
+        deleteObject(event.target.closest(".dragblock").dataset.sid);
     }
 });
 
