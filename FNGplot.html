@@ -64,23 +64,37 @@
                 </div>
 
                 <div class="side-menu__panel" data-panelname="plt-settings">
-                    plotter settings
+                    <div class="side-menu__datablock">
+                        <div class="side-menu__datablock__label">Coordinate</div>
+                        <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
+                            <span>Xmin:</span>
+                            <input type="number" step="0.5" class="w3" data-id="xmin"></input>
+                            <span>Xmax:</span>
+                            <input type="number" step="0.5" class="w3" data-id="xmax"></input>
+                        </div>
+                        <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
+                            <span>Ymin:</span>
+                            <input type="number" step="0.5" class="w3" data-id="ymin"></input>
+                            <span>Ymax:</span>
+                            <input type="number" step="0.5" class="w3" data-id="ymax"></input>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="side-menu__panel" data-panelname="sys-settings">
-                    <div class="side-menu__datacell">
-                        <div class="side-menu__datacell__label">GUI Zoom:</div>
-                        <div class="side-menu__datacell__slidercomplex" data-id="ui-zoom-slider">
+                    <div class="side-menu__datablock">
+                        <div class="side-menu__datablock__label">GUI Zoom</div>
+                        <div class="side-menu__datablock__slidercomplex" data-id="ui-zoom-slider">
                             <input type="range" min="100" max="200" step="5" value="100">
                             <div>100%</div>
                         </div>
                     </div>
-                    <div class="side-menu__datacell">
-                        <div class="side-menu__datacell__label">Environment data</div>
-                        <div class="side-menu__datacell__refresh-btn" data-id="envirdata-refreshbtn">refresh</div>
-                        <pre class="side-menu__datacell__pre" data-id="envirdata-output"></pre>
+                    <div class="side-menu__datablock">
+                        <div class="side-menu__datablock__label">Environment data</div>
+                        <div class="side-menu__datablock__refresh-btn" data-id="envirdata-refreshbtn">refresh</div>
+                        <pre class="side-menu__datablock__pre" data-id="envirdata-output"></pre>
                     </div>
-                    <div class="side-menu__datacell">
+                    <div class="side-menu__datablock">
                         settings 3
                     </div>
                 </div>

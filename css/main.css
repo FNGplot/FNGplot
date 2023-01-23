@@ -198,7 +198,7 @@ body {
 .side-menu__panel[data-panelname="file"] { /* Default visible panel*/
     display: flex;
 }
-.side-menu__datacell {
+.side-menu__datablock {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,12 +207,24 @@ body {
     box-sizing: content-box;
     border-bottom: 0.1rem dashed black;
 }
-.side-menu__datacell__label {  /* Cell title */
+.side-menu__datablock__label {  /* Block title */
     position: relative;
     font-size: 2rem;
     margin: 0.5rem 0rem;
 }
-.side-menu__datacell__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
+.side-menu__datablock__cell { /* Basic cell */
+    width: 100%;
+    position: relative;
+    font-size: 1.6rem;
+    margin: 0.25rem 0rem;
+}
+.side-menu__datablock__cell--flex { /* Basic cell w/ horizontal flexbox */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.side-menu__datablock__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
     width: 22rem;
     display: flex;
     flex-direction: row;
@@ -220,14 +232,14 @@ body {
     justify-content: space-evenly;
     margin: 0.5rem 0rem;
 }
-.side-menu__datacell__slidercomplex > input[type="range"] {  /* The slider */
+.side-menu__datablock__slidercomplex > input[type="range"] {  /* The slider */
     display: inline-block;
     width: 16rem;
     height: 3.2rem;
     appearance: none;
     -webkit-appearance: none;
 }
-.side-menu__datacell__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
+.side-menu__datablock__slidercomplex > input[type="range"]::-webkit-slider-runnable-track {
     height: 0.8rem;
     cursor: pointer;
     box-shadow: 000 black;
@@ -235,7 +247,7 @@ body {
     border-radius: 0.4rem;
     border: 0rem solid black;
 }
-.side-menu__datacell__slidercomplex > input[type="range"]::-webkit-slider-thumb {
+.side-menu__datablock__slidercomplex > input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0.1rem 0.1rem 0.1rem black;
     border: 0rem solid #8a408b;
     height: 2.5rem;
@@ -246,17 +258,17 @@ body {
     -webkit-appearance: none;
     margin-top: -0.85rem;
 }
-.side-menu__datacell__slidercomplex > div {  /* The display label */
+.side-menu__datablock__slidercomplex > div {  /* The display label */
     width: 5rem;
     font-size: 1.8rem;
     display: inline-block;
 }
-.side-menu__datacell__pre {  /* Code & technical data */
+.side-menu__datablock__pre {  /* Code & technical data */
     margin-right: auto;
     padding-left: 1rem; /* Small indentation */
     font: 1.2rem "Source Code Pro";
 }
-.side-menu__datacell__refresh-btn {
+.side-menu__datablock__refresh-btn {
     width: 3rem;
     height: 3rem;
     background-color: #ffc0cb;
