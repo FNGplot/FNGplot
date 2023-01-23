@@ -93,7 +93,7 @@ function changeVisibility(sid) {
 }
 function toggleEditPanel(sid) {
     const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
-    const panel = block.querySelector(".editpanel")
+    const panel = block.querySelector(".editpanel");
     if(panel === null){ //It doesn't have an editpanel, give it one
         const objName = fngNS.SysData.objectList.find(item => item.sid === sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
         block.insertAdjacentHTML("beforeend", fngNS.SysData.EDITPANEL_TEMPLATES[objName]);

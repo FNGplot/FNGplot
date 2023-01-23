@@ -22,11 +22,17 @@
     
     <template class="template">
         <div class="dragblock">
-            <img class="dragblock__icon"></img>
-            <input type="text" class="dragblock__label" disabled>
-            <div class="dragblock__btn dragblock__btn--visibility">visibility</div>
-            <div class="dragblock__btn dragblock__btn--edit">tune</div>
-            <div class="dragblock__btn dragblock__btn--delete">delete</div>
+            <div class="dragblock__header">
+                <div class="dragblock__header__wrapper dragblock__header__wrapper--left">
+                    <img class="dragblock__icon"></img>
+                    <input type="text" class="dragblock__label" disabled>
+                </div>
+                <div class="dragblock__header__wrapper dragblock__header__wrapper--right">
+                    <div class="dragblock__btn dragblock__btn--visibility">visibility</div>
+                    <div class="dragblock__btn dragblock__btn--edit">tune</div>
+                    <div class="dragblock__btn dragblock__btn--delete">delete</div>
+                </div>
+            </div>
         </div>
     </template>
 
