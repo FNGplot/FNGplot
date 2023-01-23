@@ -249,7 +249,7 @@ body {
     height: 0.8rem;
     cursor: pointer;
     box-shadow: 000 black;
-    background: #ffc0cb;
+    background-color: #ffc0cb;
     border-radius: 0.4rem;
     border: 0rem solid black;
 }
@@ -259,7 +259,7 @@ body {
     height: 2.5rem;
     width: 1.5rem;
     border-radius: 0.6rem;
-    background: #ccb3ff;
+    background-color: #ccb3ff;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -0.85rem;
@@ -463,16 +463,17 @@ body {
     border: 0.2rem dashed black;
     margin: 0rem;
     box-sizing: border-box;
-    display: grid;
-    grid-template-rows: 5em 3.6em;
-    grid-template-columns: repeat(9, 5rem);
-    justify-content: start;
-    justify-items: center;
-    align-items: center;
+}
+.workspace__block-toolbar__btn-ctnr {
+    position: relative;
+    width: 49rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
 }
 .workspace__block-toolbar__btn {
-    width: 100%;    /* 5rem */
-    height: 100%;   /* 5rem */
+    width: 5rem; 
+    height: 5rem;
     background-color: transparent;
     cursor: default;
     font: 4rem "Material Symbols Rounded";
@@ -487,11 +488,15 @@ body {
     background-color: #ddcfff;
 }
 .workspace__block-toolbar__display {    /* Take up all 9 columns + force linebreak */
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 3.6rem;
+    background-color: #e0e0e0;
     box-sizing: border-box;
-    grid-column-start: 1;
-    grid-column-end: 10;
+    padding: 0rem 0.3rem;
+    font: 2.2rem "Source Code Pro";
+    display: flex;
+    align-items: center;
 }
 .workspace__block-frame {
     position: absolute;
