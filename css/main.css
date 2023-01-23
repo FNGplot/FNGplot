@@ -213,12 +213,12 @@ body {
     margin: 0.5rem 0rem;
 }
 .side-menu__datablock__cell { /* Basic cell */
-    width: 100%;
     position: relative;
     font-size: 1.6rem;
-    margin: 0.25rem 0rem;
+    margin: 0.5rem 0rem;
 }
 .side-menu__datablock__cell--flex { /* Basic cell w/ horizontal flexbox */
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -267,6 +267,9 @@ body {
     margin-right: auto;
     padding-left: 1rem; /* Small indentation */
     font: 1.2rem "Source Code Pro";
+}
+.side-menu__datablock__number {  /* number input */
+    font: 1.3rem Lato;
 }
 .side-menu__datablock__refresh-btn {
     width: 3rem;

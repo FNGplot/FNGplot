@@ -5,11 +5,11 @@
 
 "use strict";
 
-// [!] Left panel
+// [!] Side menu
 
-//Left panel display switch
+// Side menu display switch
 
-function switchLeftPanel(optn){
+function switchSideMenu(optn){
     const panelList = document.querySelectorAll(".side-menu__panel");                //select all panels
     for (let panel of panelList) {                                                   //hide everyone first
 	    panel.style.display = "none";
@@ -17,7 +17,7 @@ function switchLeftPanel(optn){
     document.querySelector(`.side-menu__panel[data-panelname="${optn}"]`).style.display = "flex";     //then show only the selected panel
 }
 
-//Change root zoom level
+// Change root zoom level
 
 function changeRootZoom(mode, slider, divDisplay){
     if (mode == "change") {
@@ -28,10 +28,29 @@ function changeRootZoom(mode, slider, divDisplay){
     divDisplay.innerHTML = `${slider.value}%`;
 }
 
+// Change plotter coordinate settings
+
+function changeCoordSettings(inputElem){
+    if (math.hasNumericValue(inputElem.value)) {    // is numerical input
+        const property = inputElem.dataset.id;
+        let svgElem = "";
+        fngNS.Coord[property] = parseFloat(inputElem.value);
+        fngNS.Coord.updateSvgCoord();
+        for (const FNGobject of fngNS.SysData.objectList) {
+            svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${FNGobject.sid}']`);
+            FNGobject.updateMath(svgElem);
+        }
+        const textList = document.querySelector("[data-id='minmax-display']").querySelectorAll("text");
+        for (const textLabel of textList) {
+            textLabel.textContent = fngNS.Coord[textLabel.dataset.id];
+        }
+    }
+}
+
 // Update environment data list 
 
 function updateEnvirList(){
-    document.querySelector("pre[data-id='envirdata-output']").innerHTML = `
+    document.querySelector("pre[data-id='sys-envirdata-output']").innerHTML = `
 Settings:
 --------------------------
 remSize: ${fngNS.Settings.remSize}px

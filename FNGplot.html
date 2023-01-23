@@ -64,19 +64,19 @@
                 </div>
 
                 <div class="side-menu__panel" data-panelname="plt-settings">
-                    <div class="side-menu__datablock">
+                    <div class="side-menu__datablock" data-id="plt-coord-settings">
                         <div class="side-menu__datablock__label">Coordinate</div>
                         <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
                             <span>Xmin:</span>
-                            <input type="number" step="0.5" class="w3" data-id="xmin"></input>
+                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="xMin"></input>
                             <span>Xmax:</span>
-                            <input type="number" step="0.5" class="w3" data-id="xmax"></input>
+                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="xMax"></input>
                         </div>
                         <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
                             <span>Ymin:</span>
-                            <input type="number" step="0.5" class="w3" data-id="ymin"></input>
+                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="yMin"></input>
                             <span>Ymax:</span>
-                            <input type="number" step="0.5" class="w3" data-id="ymax"></input>
+                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="yMax"></input>
                         </div>
                     </div>
                 </div>
@@ -84,15 +84,15 @@
                 <div class="side-menu__panel" data-panelname="sys-settings">
                     <div class="side-menu__datablock">
                         <div class="side-menu__datablock__label">GUI Zoom</div>
-                        <div class="side-menu__datablock__slidercomplex" data-id="ui-zoom-slider">
+                        <div class="side-menu__datablock__slidercomplex" data-id="sys-ui-zoom-slider">
                             <input type="range" min="100" max="200" step="5" value="100">
                             <div>100%</div>
                         </div>
                     </div>
                     <div class="side-menu__datablock">
                         <div class="side-menu__datablock__label">Environment data</div>
-                        <div class="side-menu__datablock__refresh-btn" data-id="envirdata-refreshbtn">refresh</div>
-                        <pre class="side-menu__datablock__pre" data-id="envirdata-output"></pre>
+                        <div class="side-menu__datablock__refresh-btn" data-id="sys-envirdata-refreshbtn">refresh</div>
+                        <pre class="side-menu__datablock__pre" data-id="sys-envirdata-output"></pre>
                     </div>
                     <div class="side-menu__datablock">
                         settings 3
@@ -204,10 +204,10 @@
                     <svg class="workspace__svg-content workspace__svg-content--canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000"></svg>
                     <svg class="workspace__svg-content workspace__svg-content--display" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000">
                         <g data-id="minmax-display">
-                            <text data-id="xmin" text-anchor="start" dominant-baseline="middle" x="0%" y="50%">-10</text>
-                            <text data-id="xmax" text-anchor="end" dominant-baseline="middle" x="100%" y="50%">10</text>
-                            <text data-id="ymin" text-anchor="middle" dominant-baseline="auto" x="50%" y="100%">-10</text>
-                            <text data-id="ymax" text-anchor="middle" dominant-baseline="hanging" x="50%" y="0%">10</text>
+                            <text data-id="xMin" text-anchor="start" dominant-baseline="middle" x="0%" y="50%">-10</text>
+                            <text data-id="xMax" text-anchor="end" dominant-baseline="middle" x="100%" y="50%">10</text>
+                            <text data-id="yMin" text-anchor="middle" dominant-baseline="auto" x="50%" y="100%">-10</text>
+                            <text data-id="yMax" text-anchor="middle" dominant-baseline="hanging" x="50%" y="0%">10</text>
                         </g>
                     </svg>
                 </div>

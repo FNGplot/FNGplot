@@ -68,6 +68,13 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         originX: 500,
         originY: 500,
         // Methods
+        updateSvgCoord(){   // Updates SVG coordinate after user changes x/y min/max.
+            this.xHat = math.round(1000 / (this.xMax - this.xMin), 4);
+            this.yHat = math.round(1000 / (this.yMax - this.yMin), 4);
+            this.originX = math.round(1000 * -this.xMin / (this.xMax - this.xMin), 4);
+            this.originY = math.round(1000 * -this.yMin / (this.yMax - this.yMin), 4);
+            // console.log(this.xHat, this.yHat, this.originX, this.originY);
+        },
         toPxPosX(xCord){  // Translate calculation result to actual SVG coordinate. X coordinate only.
             return math.round(this.originX + this.xHat*xCord, 3);
         },

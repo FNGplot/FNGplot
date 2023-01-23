@@ -6,18 +6,22 @@
 /* [!] Event Listeners */
 
 document.querySelector(".side-menu__select").addEventListener("change", () => {
-    switchLeftPanel(document.querySelector(".side-menu__select").value);
+    switchSideMenu(document.querySelector(".side-menu__select").value);
 });
 
-document.querySelector("[data-id='envirdata-refreshbtn']").addEventListener("click", () => {
+document.querySelector("[data-id='sys-envirdata-refreshbtn']").addEventListener("click", () => {
 	updateEnvirList();
 });
 
 for (const item of ["input", "change"]) {
-    document.querySelector("[data-id='ui-zoom-slider']").addEventListener(item, function() {
+    document.querySelector("[data-id='sys-ui-zoom-slider']").addEventListener(item, function() {
         changeRootZoom(item, this.querySelector("input"), this.querySelector("div"));
     });
 };
+
+document.querySelector("[data-id='plt-coord-settings']").addEventListener("input", (event) => {
+    changeCoordSettings(event.target);
+});
 
 fngNS.DOM.BLOCK_FRAME.addEventListener("click",(event) => {       //event delegation
     if (event.target.classList.contains("dragblock__btn--visibility")) {  //change visibility
@@ -56,6 +60,14 @@ window.addEventListener("error", function(){
 
 console.log(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
 updateEnvirList();
+
+// Init side_menu -> plt-settings -> coordinate settings
+{
+    const inputList = document.querySelector("div[data-id='plt-coord-settings']").querySelectorAll("input");    // length = 4
+    for (let input of inputList) {
+        input.value = fngNS.Coord[input.dataset.id];    // map them to variables and assign to them
+    }
+}
 
 // Fetch editpanel data from editpanels.json (Note for future me: Realtive path of fetch() starts from the HTML page, NOT this JS file)
 fetch("javascript/editpanel-data/editpanels.json")
