@@ -47,7 +47,7 @@ body {
     height: 70rem;
     box-sizing: content-box;
 }
-.root-mask {    /* Used whenever background shielding is required */
+.root-popup-mask {    /* Used whenever background shielding is required */
     position: absolute;
     top: 0rem;
     left: 0rem;
