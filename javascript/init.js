@@ -23,9 +23,9 @@ document.querySelector("[data-id='plt-coord-settings']").addEventListener("input
     changeCoordSettings(event.target);
 });
 
-document.querySelector(".workspace__block-toolbar").addEventListener("click", (event) => {  //event delegation
+document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("click", (event) => {  //event delegation
     if (event.target.classList.contains("workspace__block-toolbar__btn")) {
-        switch (event.target.dataset.id) {
+        switch (event.target.dataset.cmd) {
         case "import":
             // nothing yet
         case "export":
@@ -33,8 +33,8 @@ document.querySelector(".workspace__block-toolbar").addEventListener("click", (e
         case "copy":
             // nothing yet
         case "delete": 
-            {   // scoping
-            
+            {
+                
             }
         }
     }

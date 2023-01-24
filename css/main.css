@@ -58,6 +58,11 @@ body {
     height: auto;
     width: 100%;
     overflow: hidden;
+    box-sizing: content-box;
+    padding: 0rem 0.4rem;
+}
+.dragblock--geometry {
+    background-color: #5f95f7; 
 }
 .dragblock__header {
     position: relative;
@@ -67,6 +72,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    column-gap: 0.4rem;
 }
 .dragblock__icon {
     position: relative;
@@ -74,7 +80,6 @@ body {
     height: 4rem;
     border: 0.1rem solid black;
     border-radius: 0.4rem;
-    margin: 0rem 0.5rem;
 }
 .dragblock__label {
     position: relative;
@@ -86,7 +91,6 @@ body {
     background-color: transparent;
     color: #ffffff;
     user-select: none;
-    margin: 0rem 0.5rem;
     width: 5rem; /* a random small value just for the flex-grow property to work */
     flex-grow: 1;
 }
@@ -99,12 +103,13 @@ body {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     user-select: none;
-    margin: 0rem 0.3rem;
 }
-
-/* || Draggable block modifiers */
-.dragblock--geometry {
-    background-color: #5f95f7; 
+.dragblock__checkbox {     /* Only appear on certain edit commands */
+    position: relative;
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    accent-color: #ffffff;  /* Makes a black check and white background */
 }
 
 /* || editpanels */
