@@ -65,16 +65,27 @@ function moveObject(sid,nextSid) {
     const refElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${nextSid}']`);
     fngNS.DOM.SVG_CANVAS.insertBefore(svgElem,refElem);
 }
-function deleteObject(sid) {
-    const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
-    const response = confirm(`Do you want to PERMANENTLY delete "${obj.label}" ?`);
-    if (response) {
-        const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
-        const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
-        fngNS.SysData.objectList.splice(fngNS.SysData.objectList.indexOf(obj), 1);
-        block.parentNode.removeChild(block);
-        svgElem.parentNode.removeChild(svgElem);
+function deleteFNGObjects() {
+    const blockList = fngNS.DOM.BLOCK_FRAME.querySelectorAll(".dragblock");
+    // Give every block a checkbox
+    const checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
+    checkBox.classList.add("dragblock__checkbox");
+    for (const block of blockList) {
+        block.querySelector(".dragblock__header").insertBefore(checkBox.cloneNode(true), block.querySelector(".dragblock__header").firstElementChild);
     }
+    // Tell the user to select the blocks to delete
+    
+    // 
+    // const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
+    // const response = confirm(`Do you want to PERMANENTLY delete "${obj.label}" ?`);
+    // if (response) {
+    //     const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
+    //     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+    //     fngNS.SysData.objectList.splice(fngNS.SysData.objectList.indexOf(obj), 1);
+    //     block.parentNode.removeChild(block);
+    //     svgElem.parentNode.removeChild(svgElem);
+    // }
 }
 function changeVisibility(sid) {
     const obj = fngNS.SysData.objectList.find(item => item.sid === sid);  //find the object with this sid

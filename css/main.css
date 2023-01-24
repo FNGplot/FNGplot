@@ -34,7 +34,7 @@
     --colora: #ffffff;
 }
 
-/* || Body and root frame */
+/* || Body, root frame and root mask */
 body {
     background-color: #fffff8;
 }
@@ -46,6 +46,18 @@ body {
     width: 135rem;
     height: 70rem;
     box-sizing: content-box;
+}
+.root-mask {    /* Used whenever background shielding is required */
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 135rem;
+    height: 70rem;
+    box-sizing: content-box;
+    z-index: 99;
+    background-color: #ffffff;
+    opacity: 0.6;
+    display: none;
 }
 
 /* || Sortable blocks */
@@ -59,7 +71,7 @@ body {
     width: 100%;
     overflow: hidden;
     box-sizing: content-box;
-    padding: 0rem 0.4rem;
+    padding: 0rem 0.4rem;   /* Act as "column-gap" at the side */
 }
 .dragblock--geometry {
     background-color: #5f95f7; 
@@ -103,13 +115,6 @@ body {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     user-select: none;
-}
-.dragblock__checkbox {     /* Only appear on certain edit commands */
-    position: relative;
-    display: block;
-    width: 2.5rem;
-    height: 2.5rem;
-    accent-color: #ffffff;  /* Makes a black check and white background */
 }
 
 /* || editpanels */
@@ -375,7 +380,7 @@ body {
     width: 93.75%;
     height: auto;
     background-color: #f5f0ff;
-    z-index: 99;
+    z-index: 90;
     outline: 0.2rem solid black;
     display: grid;
     grid-template-columns: 2fr repeat(10, 1fr);   /*Description is 2 blocks wide, followed by 10 icons(1 blocks wide)*/

@@ -33,10 +33,20 @@ document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("
         case "copy":
             // nothing yet
         case "delete": 
-            {
-                
-            }
+            deleteFNGObjects();
         }
+    }
+});
+
+document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("mouseover", (event) => {
+    if (event.target.classList.contains("workspace__block-toolbar__btn")) {
+        document.querySelector(".workspace__block-toolbar__display").innerHTML = `>>${event.target.dataset.cmd}`;
+    }
+});
+
+document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("mouseout", (event) => {
+    if (event.target.classList.contains("workspace__block-toolbar__btn")) {
+        document.querySelector(".workspace__block-toolbar__display").innerHTML = ">>";
     }
 });
 
