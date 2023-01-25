@@ -40,7 +40,7 @@ function createFNGObject(objName, data){
         let newBlock = fngNS.DOM.BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
         newBlock.classList.add(`dragblock--${data[1]}`);                                            //add object class
         newBlock.querySelector('.dragblock__icon').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
-        newBlock.querySelector('.dragblock__label').value = newObj.label;           //display default label
+        newBlock.querySelector('.dragblock__label').innerHTML = newObj.label;           //display default label
         newBlock.dataset.sid = sid;                                    //assign this id-less block a sid, in sync with the hidden object
         fngNS.DOM.BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
 
@@ -204,7 +204,7 @@ function handleUserEdit(target, sid, event){
 
 
         if(prop === "label"){ //special case: label (block labeltag update required)
-            target.closest(".dragblock").querySelector(".dragblock__label").value = target.value;
+            target.closest(".dragblock").querySelector(".dragblock__label").innerHTML = target.value;
         } else if (fngNS.Maps.EDITACTION_SC.has(prop)) {   // svg style properties
             fngNS.Maps.EDITACTION_SC.get(prop)(obj, svgElem);
         } else { // Calculate object

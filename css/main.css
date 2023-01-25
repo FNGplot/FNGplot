@@ -123,14 +123,16 @@ body {
     position: relative;
     box-sizing: border-box;
     height: 2.8rem;
-    padding: 0.3rem;
+    padding-left: 0.5rem;
     font: 2.2rem Lato;
-    border: 0.1rem solid transparent;
     background-color: transparent;
     color: #ffffff;
     user-select: none;
     width: 5rem; /* a random small value just for the flex-grow property to work */
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 .dragblock__btn {
     position: relative;
