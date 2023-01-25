@@ -2,240 +2,241 @@
 <!-- Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>FNGplot</title>
-        <link rel="stylesheet" type="text/css" href="css/reset.css">        <!-- CSS resetter from meyerweb.com -->
-        <link rel="stylesheet" type="text/css" href="css/main.css">         <!-- Main CSS -->
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FNGplot</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">    <!-- CSS resetter from meyerweb.com -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">     <!-- Main CSS -->
+  </head>
+  
+  <script defer src="javascript/SortableJS/Sortable.js"></script>
+  <script defer src="javascript/MathJS/math.js"></script>
+  <script defer src="javascript/class.js"></script>         
+  <script defer src="javascript/fngns.js"></script>
+  <script defer src="javascript/gui.js"></script>
+  <script defer src="javascript/init.js"></script>
+  <script defer src="javascript/block.js"></script>
+  
+  <template class="template">
+    <div class="dragblock">
+      <div class="dragblock__header">
+        <img class="dragblock__icon"></img>
+        <input type="text" class="dragblock__label" disabled>
+        <button class="dragblock__btn dragblock__btn--visibility">visibility</button>
+        <button class="dragblock__btn dragblock__btn--edit">tune</button>
+      </div>
+    </div>
+  </template>
+
+  <body>
+    <div class="mask-base">
+      <div class="mask mask__all"></div>
+      <!-- Mask: Mask specified region-->
+
+      <!-- Inv: Mask region OTHER THAN specified-->
+      <div class="mask mask__inv--blockframe-blocktlbr">
+        <div data-childmask="1"></div>
+        <div data-childmask="2"></div>
+      </div>
+    </div>
+    <div class="root-frame">
+
+      <div class="banner">
+        <img class="banner__svg" src="svg/logo/banner.svg"></img>
+      </div>
     
-    <script defer src="javascript/SortableJS/Sortable.js"></script>
-    <script defer src="javascript/MathJS/math.js"></script>
-    <script defer src="javascript/class.js"></script>                 
-    <script defer src="javascript/fngns.js"></script>
-    <script defer src="javascript/gui.js"></script>
-    <script defer src="javascript/init.js"></script>
-    <script defer src="javascript/block.js"></script>
-    
-    <template class="template">
-        <div class="dragblock">
-            <div class="dragblock__header">
-                <img class="dragblock__icon"></img>
-                <input type="text" class="dragblock__label" disabled>
-                <button class="dragblock__btn dragblock__btn--visibility">visibility</button>
-                <button class="dragblock__btn dragblock__btn--edit">tune</button>
-            </div>
+      <div class="side-menu">
+        <select class="side-menu__select">
+            <option value="file" selected>File</option>
+            <option value="symbols">Symbols</option>
+            <option value="functions">Functions</option>
+            <option value="tools">Tools</option>
+            <option value="plt-settings">Plotter Settings</option>
+            <option value="sys-settings">System Settings</option>
+            <option value="about">About</option>
+        </select>
+
+        <div class="side-menu__panel" data-panelname="file">
+        file
         </div>
-    </template>
-
-    <body>
-        <div class="mask-base">
-            <div class="mask mask__all"></div>
-            <!-- Mask: Mask specified region-->
-
-            <!-- Inv: Mask region OTHER THAN specified-->
-            <div class="mask mask__inv--blockframe-blocktlbr">
-                <div data-childmask="1"></div>
-                <div data-childmask="2"></div>
-            </div>
-        </div>
-        <div class="root-frame">
-
-            <div class="banner">
-                <img class="banner__svg" src="svg/logo/banner.svg"></img>
-            </div>
         
-            <div class="side-menu">
-                <select class="side-menu__select">
-                        <option value="file" selected>File</option>
-                        <option value="symbols">Symbols</option>
-                        <option value="functions">Functions</option>
-                        <option value="tools">Tools</option>
-                        <option value="plt-settings">Plotter Settings</option>
-                        <option value="sys-settings">System Settings</option>
-                        <option value="about">About</option>
-                </select>
+        <div class="side-menu__panel" data-panelname="symbols">
+        symbols
+        </div>
+        
+        <div class="side-menu__panel" data-panelname="functions">
+        functions
+        </div>
+        
+        <div class="side-menu__panel" data-panelname="tools">
+          tools
+        </div>
 
-                <div class="side-menu__panel" data-panelname="file">
-                file
-                </div>
-                
-                <div class="side-menu__panel" data-panelname="symbols">
-                symbols
-                </div>
-                
-                <div class="side-menu__panel" data-panelname="functions">
-                functions
-                </div>
-                
-                <div class="side-menu__panel" data-panelname="tools">
-                    tools
-                </div>
-
-                <div class="side-menu__panel" data-panelname="plt-settings">
-                    <div class="side-menu__datablock" data-id="plt-coord-settings">
-                        <div class="side-menu__datablock__label">Coordinate</div>
-                        <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
-                            <span>Xmin:</span>
-                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="xMin"></input>
-                            <span>Xmax:</span>
-                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="xMax"></input>
-                        </div>
-                        <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
-                            <span>Ymin:</span>
-                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="yMin"></input>
-                            <span>Ymax:</span>
-                            <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="yMax"></input>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="side-menu__panel" data-panelname="sys-settings">
-                    <div class="side-menu__datablock">
-                        <div class="side-menu__datablock__label">GUI Zoom</div>
-                        <div class="side-menu__datablock__slidercomplex" data-id="sys-ui-zoom-slider">
-                            <input type="range" min="100" max="200" step="5" value="100">
-                            <div>100%</div>
-                        </div>
-                    </div>
-                    <div class="side-menu__datablock">
-                        <div class="side-menu__datablock__label">Environment data</div>
-                        <div class="side-menu__datablock__refresh-btn" data-id="sys-envirdata-refreshbtn">refresh</div>
-                        <pre class="side-menu__datablock__pre" data-id="sys-envirdata-output"></pre>
-                    </div>
-                    <div class="side-menu__datablock">
-                        settings 3
-                    </div>
-                </div>
-                
-                <div class="side-menu__panel" data-panelname="about">
-                about
-                </div>
+        <div class="side-menu__panel" data-panelname="plt-settings">
+          <div class="side-menu__datablock" data-id="plt-coord-settings">
+            <div class="side-menu__datablock__label">Coordinate</div>
+            <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
+              <span>Xmin:</span>
+              <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="xMin"></input>
+              <span>Xmax:</span>
+              <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="xMax"></input>
             </div>
-
-            <div class="calc-btn">
-                <div class="calc-btn__icon">calculate</div>
-                <div class="calc-btn__text">Calculator</div>
-            </div>
-                
-            <div class="toolbar">
-                <div class="toolbar__tab-ctnr">
-                    <button class="toolbar__tab toolbar__tab--variables">Variables</button>
-                    <button class="toolbar__tab toolbar__tab--geometry">Geometry</button>
-                    <button class="toolbar__tab toolbar__tab--algebra">Algebra</button>
-                    <button class="toolbar__tab toolbar__tab--consec">Conic Sections</button>
-                    <button class="toolbar__tab toolbar__tab--calculus">Calculus</button>
-                    <button class="toolbar__tab toolbar__tab--difeq">Differential Equations</button>
-                    <button class="toolbar__tab toolbar__tab--vecf">Vector Fields</button>
-                    <button class="toolbar__tab toolbar__tab--tse">Text, Shapes & Expressions</button>
-                    <button class="toolbar__tab toolbar__tab--other">Others</button>
-                </div>
-                
-                <div class="toolbar__panel">
-                variables and matrices
-                </div>
-                
-                <div class="toolbar__panel">
-                    <div class="toolbar__grid" data-category="geometry">
-                        <div class="toolbar__labelcell">Basic shapes</div>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/rect.svg" data-objname="rect"></img>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/triangle.svg" data-objname="triangle"></img>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <!-- Next Row -->
-                        <div class="toolbar__labelcell">Lines</div>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/lineppext.svg" data-objname="lineppext"></img>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/lineps.svg" data-objname="lineps"></img>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <!-- Next Row -->
-                        <div class="toolbar__labelcell">Circles</div>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
-                        <img class="toolbar__icon" src="svg/system/geometry-icons/circle3p.svg" data-objname="circle3p"></img>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                        <div class="toolbar__labelcell"></div>
-                    </div> 
-                    <div class="toolbar__toggler">
-                        <div class="toolbar__toggler__arrowbtn">expand_circle_down</div>
-                    </div>
-                </div>
-                
-                <div class="toolbar__panel">
-                alg
-                </div>
-                
-                <div class="toolbar__panel">
-                consec
-                </div>
-                
-                <div class="toolbar__panel">
-                calc
-                </div>
-                
-                <div class="toolbar__panel">
-                dff
-                </div>
-                
-                <div class="toolbar__panel">
-                vector field
-                </div>
-                
-                <div class="toolbar__panel">
-                text
-                </div>
-
-                <div class="toolbar__panel">
-                other
-                </div>
+            <div class="side-menu__datablock__cell side-menu__datablock__cell--flex">
+              <span>Ymin:</span>
+              <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="yMin"></input>
+              <span>Ymax:</span>
+              <input type="number" step="0.5" class="side-menu__datablock__number w4" data-id="yMax"></input>
             </div>
             
-            <div class="workspace">
-                <div class="workspace__svg-frame">
-                    <img class="workspace__svg-content workspace__svg-content--background" src="svg/system/transparent-background.svg"></img>
-                    <svg class="workspace__svg-content workspace__svg-content--canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000"></svg>
-                    <svg class="workspace__svg-content workspace__svg-content--display" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000">
-                        <g data-id="minmax-display">
-                            <text data-id="xMin" text-anchor="start" dominant-baseline="middle" x="0%" y="50%">-10</text>
-                            <text data-id="xMax" text-anchor="end" dominant-baseline="middle" x="100%" y="50%">10</text>
-                            <text data-id="yMin" text-anchor="middle" dominant-baseline="auto" x="50%" y="100%">-10</text>
-                            <text data-id="yMax" text-anchor="middle" dominant-baseline="hanging" x="50%" y="0%">10</text>
-                        </g>
-                    </svg>
-                </div>
-                
-                <div class="workspace__block-toolbar">
-                    <div class="workspace__block-toolbar__btn-ctnr">
-                        <button class="workspace__block-toolbar__option-btn" data-cmd="import">upload</button>
-                        <button class="workspace__block-toolbar__option-btn" data-cmd="export">download</button>
-                        <button class="workspace__block-toolbar__option-btn" data-cmd="copy">content_copy</button>
-                        <button class="workspace__block-toolbar__option-btn" data-cmd="delete">delete</button>
-                        <button class="workspace__block-toolbar__finish-btn">Finish</button>
-                    </div>
-                    <div class="workspace__block-toolbar__display">>></div>
-                </div>
-
-                <div class="workspace__block-frame nested-sortable">
-                </div>
-            </div>
+          </div>
         </div>
-    </body>
+        
+        <div class="side-menu__panel" data-panelname="sys-settings">
+          <div class="side-menu__datablock">
+            <div class="side-menu__datablock__label">GUI Zoom</div>
+            <div class="side-menu__datablock__slidercomplex" data-id="sys-ui-zoom-slider">
+              <input type="range" min="100" max="200" step="5" value="100">
+              <div>100%</div>
+            </div>
+          </div>
+          <div class="side-menu__datablock">
+            <div class="side-menu__datablock__label">Environment data</div>
+            <div class="side-menu__datablock__refresh-btn" data-id="sys-envirdata-refreshbtn">refresh</div>
+            <pre class="side-menu__datablock__pre" data-id="sys-envirdata-output"></pre>
+          </div>
+          <div class="side-menu__datablock">
+            settings 3
+          </div>
+        </div>
+        
+        <div class="side-menu__panel" data-panelname="about">
+        about
+        </div>
+      </div>
+
+      <div class="calc-btn">
+        <div class="calc-btn__icon">calculate</div>
+        <div class="calc-btn__text">Calculator</div>
+      </div>
+        
+      <div class="toolbar">
+        <div class="toolbar__tab-ctnr">
+          <button class="toolbar__tab toolbar__tab--variables">Variables</button>
+          <button class="toolbar__tab toolbar__tab--geometry">Geometry</button>
+          <button class="toolbar__tab toolbar__tab--algebra">Algebra</button>
+          <button class="toolbar__tab toolbar__tab--consec">Conic Sections</button>
+          <button class="toolbar__tab toolbar__tab--calculus">Calculus</button>
+          <button class="toolbar__tab toolbar__tab--difeq">Differential Equations</button>
+          <button class="toolbar__tab toolbar__tab--vecf">Vector Fields</button>
+          <button class="toolbar__tab toolbar__tab--tse">Text, Shapes & Expressions</button>
+          <button class="toolbar__tab toolbar__tab--other">Others</button>
+        </div>
+        
+        <div class="toolbar__panel">
+        variables and matrices
+        </div>
+        
+        <div class="toolbar__panel">
+          <div class="toolbar__grid" data-category="geometry">
+            <div class="toolbar__labelcell">Basic shapes</div>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/rect.svg" data-objname="rect"></img>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/triangle.svg" data-objname="triangle"></img>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <!-- Next Row -->
+            <div class="toolbar__labelcell">Lines</div>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/linepp.svg" data-objname="linepp"></img>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/lineppext.svg" data-objname="lineppext"></img>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/lineps.svg" data-objname="lineps"></img>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <!-- Next Row -->
+            <div class="toolbar__labelcell">Circles</div>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/circle.svg" data-objname="circle"></img>
+            <img class="toolbar__icon" src="svg/system/geometry-icons/circle3p.svg" data-objname="circle3p"></img>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+            <div class="toolbar__labelcell"></div>
+          </div> 
+          <div class="toolbar__toggler">
+            <div class="toolbar__toggler__arrowbtn">expand_circle_down</div>
+          </div>
+        </div>
+        
+        <div class="toolbar__panel">
+        alg
+        </div>
+        
+        <div class="toolbar__panel">
+        consec
+        </div>
+        
+        <div class="toolbar__panel">
+        calc
+        </div>
+        
+        <div class="toolbar__panel">
+        dff
+        </div>
+        
+        <div class="toolbar__panel">
+        vector field
+        </div>
+        
+        <div class="toolbar__panel">
+        text
+        </div>
+
+        <div class="toolbar__panel">
+        other
+        </div>
+      </div>
+      
+      <div class="workspace">
+        <div class="workspace__svg-frame">
+          <img class="workspace__svg-content workspace__svg-content--background" src="svg/system/transparent-background.svg"></img>
+          <svg class="workspace__svg-content workspace__svg-content--canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000"></svg>
+          <svg class="workspace__svg-content workspace__svg-content--display" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 1000">
+            <g data-id="minmax-display">
+              <text data-id="xMin" text-anchor="start" dominant-baseline="middle" x="0%" y="50%">-10</text>
+              <text data-id="xMax" text-anchor="end" dominant-baseline="middle" x="100%" y="50%">10</text>
+              <text data-id="yMin" text-anchor="middle" dominant-baseline="auto" x="50%" y="100%">-10</text>
+              <text data-id="yMax" text-anchor="middle" dominant-baseline="hanging" x="50%" y="0%">10</text>
+            </g>
+          </svg>
+        </div>
+        
+        <div class="workspace__block-toolbar">
+          <div class="workspace__block-toolbar__btn-ctnr">
+            <button class="workspace__block-toolbar__option-btn" data-cmd="import">upload</button>
+            <button class="workspace__block-toolbar__option-btn" data-cmd="export">download</button>
+            <button class="workspace__block-toolbar__option-btn" data-cmd="copy">content_copy</button>
+            <button class="workspace__block-toolbar__option-btn" data-cmd="delete">delete</button>
+            <button class="workspace__block-toolbar__finish-btn">Finish</button>
+          </div>
+          <div class="workspace__block-toolbar__display">>></div>
+        </div>
+
+        <div class="workspace__block-frame nested-sortable">
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -62,7 +62,7 @@ body {
 .mask > div {   /* all childmasks */
     position: absolute;
     z-index: 99;
-    background-color: #ffffff;
+    background-color: #e0e0e0;
     opacity: 0.6;
 }
 /* Individual masks */
