@@ -17,7 +17,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         RELEASE_NOTE: "null",
     }),
 
-    RectOrigin: Object.freeze({  // A small key:value map used by "Rect" class
+    LexicalOrigin: Object.freeze({  // A small key:value map used by FNGobjects that offer origin positioning
         TOP: 0,
         LEFT: 0,
         MIDDLE: 0.5,

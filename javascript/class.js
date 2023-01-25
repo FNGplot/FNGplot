@@ -122,7 +122,7 @@ class Rect extends StrokeFillParent {
     constructor(sid){
         super(sid);
         this.label = "Rectangle";
-        //Origin specified is used as the rectangle's "bottom left" corner. Value at enum "RectOrigin".
+        //Origin specified is used as the rectangle's "bottom left" corner. Value at enum "LexicalOrigin".
         this.originHoriz = "LEFT";
         this.originVert = "BOTTOM";
         this.originX = -1;
@@ -133,8 +133,8 @@ class Rect extends StrokeFillParent {
         this.SvgStyle.lineJoin = "miter";
     }
     updateMath(svgElem){
-        svgElem.setAttribute("x", fngNS.Coord.toPxPosX(this.originX - fngNS.RectOrigin[this.originHoriz] * this.width));
-        svgElem.setAttribute("y", fngNS.Coord.toPxPosY(this.originY + fngNS.RectOrigin[this.originVert] * this.height));
+        svgElem.setAttribute("x", fngNS.Coord.toPxPosX(this.originX - fngNS.LexicalOrigin[this.originHoriz] * this.width));
+        svgElem.setAttribute("y", fngNS.Coord.toPxPosY(this.originY + fngNS.LexicalOrigin[this.originVert] * this.height));
         svgElem.setAttribute("rx", this.roundCorner);
         svgElem.setAttribute("width", fngNS.Coord.toPxLenX(this.width));
         svgElem.setAttribute("height", fngNS.Coord.toPxLenY(this.height));

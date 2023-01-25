@@ -24,8 +24,8 @@ FNGplot's code (excluding the libraries) follow [Douglas Crockford's code conven
 functionName
 variableName
 ClassName
-    ObjectName
-    methodName
+ObjectName
+methodName
 EnumName
     CONSTANT_VALUE
 foo.namespaceNameLikeThis.bar
