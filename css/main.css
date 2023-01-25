@@ -97,7 +97,7 @@ body {
     width: 100%;
     overflow: hidden;
     box-sizing: content-box;
-    padding: 0rem 0.4rem;   /* Act as "column-gap" at the side */
+    padding: 0rem 0.4rem;   /* Act as "column-gap" that is always 0.4rem wide at the side */
 }
 .dragblock--geometry {
     background-color: #5f95f7; 
@@ -119,7 +119,7 @@ body {
     border: 0.1rem solid black;
     border-radius: 0.4rem;
 }
-.dragblock__label {
+.dragblock__label {     /* A span */
     position: relative;
     box-sizing: border-box;
     height: 2.8rem;

@@ -16,7 +16,7 @@ FNGplot (excluding the libraries):
 | init.js | Page init sequence | Apache-2.0 |
 | editpanel-data | <ul><li>**editpanels.txt:** Raw HTML code of editpanels</li><li>**editpanels.json:** Minified version of editpanel.txt that is fetched by FNGplot</li><li>**convert.js:** Converts editpanels.txt to editpanels.json</li>  | Apache-2.0 |
 
-FNGplot's code (excluding the libraries) follow [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html).
+FNGplot's code (excluding the libraries) follow [Douglas Crockford's code convention for JS](https://www.crockford.com/code.html) and [JS variable naming conevntion by Google](https://google.github.io/styleguide/javascriptguide.xml?showone=Naming#Naming).
 
 [JS variable naming conevntion by Google](https://google.github.io/styleguide/javascriptguide.xml?showone=Naming#Naming):
 
