@@ -6,8 +6,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>FNGplot</title>
-        <link rel="icon" href="svg/logo/logo.ico" sizes="any">              <!-- Fallback for SVG icon -->
-        <link rel="icon" href="svg/logo/logo.svg" type="image/svg+xml">     <!-- SVG icon -->
         <link rel="stylesheet" type="text/css" href="css/reset.css">        <!-- CSS resetter from meyerweb.com -->
         <link rel="stylesheet" type="text/css" href="css/main.css">         <!-- Main CSS -->
     </head>
@@ -27,15 +25,22 @@
                 <input type="text" class="dragblock__label" disabled>
                 <button class="dragblock__btn dragblock__btn--visibility">visibility</button>
                 <button class="dragblock__btn dragblock__btn--edit">tune</button>
-                <button class="dragblock__btn dragblock__btn--delete">delete</button>
             </div>
         </div>
     </template>
 
     <body>
-        <div class="root-frame">
+        <div class="mask-base">
+            <div class="mask mask__all"></div>
+            <!-- Mask: Mask specified region-->
 
-            <div class="root-popup-mask"></div>
+            <!-- Inv: Mask region OTHER THAN specified-->
+            <div class="mask mask__inv--blockframe-blocktlbr">
+                <div data-childmask="1"></div>
+                <div data-childmask="2"></div>
+            </div>
+        </div>
+        <div class="root-frame">
 
             <div class="banner">
                 <img class="banner__svg" src="svg/logo/banner.svg"></img>
@@ -219,10 +224,11 @@
                 
                 <div class="workspace__block-toolbar">
                     <div class="workspace__block-toolbar__btn-ctnr">
-                        <button class="workspace__block-toolbar__btn" data-cmd="import">upload</button>
-                        <button class="workspace__block-toolbar__btn" data-cmd="export">download</button>
-                        <button class="workspace__block-toolbar__btn" data-cmd="copy">content_copy</button>
-                        <button class="workspace__block-toolbar__btn" data-cmd="delete">delete</button>
+                        <button class="workspace__block-toolbar__option-btn" data-cmd="import">upload</button>
+                        <button class="workspace__block-toolbar__option-btn" data-cmd="export">download</button>
+                        <button class="workspace__block-toolbar__option-btn" data-cmd="copy">content_copy</button>
+                        <button class="workspace__block-toolbar__option-btn" data-cmd="delete">delete</button>
+                        <button class="workspace__block-toolbar__finish-btn">Finish</button>
                     </div>
                     <div class="workspace__block-toolbar__display">>></div>
                 </div>

@@ -101,4 +101,13 @@ function toggleToolbarDropdown(arrowBtn){
     }
 }
 
+// [!] Masks
+
+function maskOn(name){
+    document.querySelector(".mask-base").querySelector(`.${name}`).style.display = "block";
+}
+function maskOff(name){
+    document.querySelector(".mask-base").querySelector(`.${name}`).style.display = "none";
+}
+
 // [!] Others

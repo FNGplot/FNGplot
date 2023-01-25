@@ -24,29 +24,17 @@ document.querySelector("[data-id='plt-coord-settings']").addEventListener("input
 });
 
 document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("click", (event) => {  //event delegation
-    if (event.target.classList.contains("workspace__block-toolbar__btn")) {
+    if (event.target.classList.contains("workspace__block-toolbar__option-btn")) {
         switch (event.target.dataset.cmd) {
-        case "import":
-            // nothing yet
-        case "export":
-            // nothing yet
-        case "copy":
-            // nothing yet
-        case "delete": 
-            deleteFNGObjects();
+            case "import":
+                // nothing yet
+            case "export":
+                // nothing yet
+            case "copy":
+                // nothing yet
+            case "delete": 
+                deleteFNGObjects(1);
         }
-    }
-});
-
-document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("mouseover", (event) => {
-    if (event.target.classList.contains("workspace__block-toolbar__btn")) {
-        document.querySelector(".workspace__block-toolbar__display").innerHTML = `>>${event.target.dataset.cmd}`;
-    }
-});
-
-document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("mouseout", (event) => {
-    if (event.target.classList.contains("workspace__block-toolbar__btn")) {
-        document.querySelector(".workspace__block-toolbar__display").innerHTML = ">>";
     }
 });
 
@@ -55,8 +43,6 @@ fngNS.DOM.BLOCK_FRAME.addEventListener("click", (event) => {       // event dele
         changeVisibility(event.target.closest(".dragblock").dataset.sid);
     } else if (event.target.classList.contains("dragblock__btn--edit")) {   // toggle editpanel
         toggleEditPanel(event.target.closest(".dragblock").dataset.sid);
-    } else if (event.target.classList.contains("dragblock__btn--delete")) { // delete block
-        deleteObject(event.target.closest(".dragblock").dataset.sid);
     }
 });
 
@@ -85,7 +71,10 @@ window.addEventListener("error", function(){
 
 /* [!] Primary initialization sequence */
 
-console.log(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
+console.info(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
+console.info("Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot");
+
+// Init side_menu -> sys-settings -> environment data
 updateEnvirList();
 
 // Init side_menu -> plt-settings -> coordinate settings
@@ -138,7 +127,7 @@ fngNS.SysData.sortableList.push(
         forceFallback: true,
         onEnd: function (evt) {
             if (evt.oldIndex != evt.newIndex) {  //If the position actually changed
-                moveObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null);
+                moveFNGObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null);
                 //passes null as reference if there is no next neighbor. insertBefore() will take care of it.
             }
         },

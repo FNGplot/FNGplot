@@ -9,7 +9,7 @@ const fs = require('fs');
 
 fs.readFile('editpanels.txt', (err, rawData) => {
     if (err)
-        console.log(err);
+        console.error(err);
     else {
         // process data
         let data = rawData.toString();
@@ -30,7 +30,7 @@ fs.readFile('editpanels.txt', (err, rawData) => {
         jsonData += "}";
         fs.writeFile('editpanels.json', jsonData, (err) => {
             if (err)
-                console.log(err);
+                console.error(err);
             else
                 console.log(`Conversion complete. ${panelList.length / 2} panels minified.`);
         });

@@ -17,11 +17,11 @@ Terminology in my code:
 
 "use strict";
 
-function makeSID(){ // Generate a 10-character-long "random" alphanumeric system id.
+function makeSID(){ // Generate a 10-character-long "random" alphanumeric system id
     const charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let sid = '';
-    for(let i = 0; i<10; i++) {
-        sid += charList.charAt(Math.floor(Math.random()*62));
+    for (let i = 0; i<10; i++) {
+        sid += charList.charAt(Math.floor(Math.random() * 62));
     }
     return sid;
 }
@@ -41,7 +41,7 @@ function createFNGObject(objName, data){
         newBlock.classList.add(`dragblock--${data[1]}`);                                            //add object class
         newBlock.querySelector('.dragblock__icon').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
         newBlock.querySelector('.dragblock__label').value = newObj.label;           //display default label
-        newBlock.dataset.sid = sid;                                    //assign this id-less block a data-id, in sync with the hidden object
+        newBlock.dataset.sid = sid;                                    //assign this id-less block a sid, in sync with the hidden object
         fngNS.DOM.BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
 
         // Step 3 of 3: SVG element(s)
@@ -60,32 +60,75 @@ function createFNGObject(objName, data){
         }
     }
 }
-function moveObject(sid,nextSid) {
+function moveFNGObject(sid,nextSid) {
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
     const refElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${nextSid}']`);
     fngNS.DOM.SVG_CANVAS.insertBefore(svgElem,refElem);
 }
 function deleteFNGObjects() {
+    maskOn("mask__inv--blockframe-blocktlbr");
     const blockList = fngNS.DOM.BLOCK_FRAME.querySelectorAll(".dragblock");
-    // Give every block a checkbox
+    const deleteSet = new Set();    // I believe Set() is the simplest option here
+
+    // Declare temporary eventlistener
+    const tmpListener = function(event){
+        if (event.target.className === "dragblock__checkbox") {
+            if (event.target.checked) {
+                deleteSet.add(event.target.closest(".dragblock").dataset.sid);
+            } else {
+                deleteSet.delete(event.target.closest(".dragblock").dataset.sid);
+            }
+            document.querySelector(".workspace__block-toolbar__display").innerHTML = `>>Delete:&nbsp;<span class='bold'>${deleteSet.size}</span>&nbsp;blocks selected`;
+        }
+    }
+
+    // Disable the toolbar temporarily before action is complete
+    const tlbrList = document.querySelectorAll(".workspace__block-toolbar__option-btn");
+    for (const btn of tlbrList) {
+        btn.disabled = true;
+    }
+
+    // Give every dragblock a checkbox
     const checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
     checkBox.classList.add("dragblock__checkbox");
+    fngNS.DOM.BLOCK_FRAME.addEventListener("change", tmpListener);
     for (const block of blockList) {
-        block.querySelector(".dragblock__header").insertBefore(checkBox.cloneNode(true), block.querySelector(".dragblock__header").firstElementChild);
+        block.querySelector(".dragblock__header").insertBefore(checkBox.cloneNode(false), block.querySelector(".dragblock__header").firstElementChild);
     }
-    // Tell the user to select the blocks to delete
-    
-    // 
-    // const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
-    // const response = confirm(`Do you want to PERMANENTLY delete "${obj.label}" ?`);
-    // if (response) {
-    //     const block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
-    //     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
-    //     fngNS.SysData.objectList.splice(fngNS.SysData.objectList.indexOf(obj), 1);
-    //     block.parentNode.removeChild(block);
-    //     svgElem.parentNode.removeChild(svgElem);
-    // }
+
+    // prepare for user selection...
+    document.querySelector(".workspace__block-toolbar__finish-btn").style.display = "flex";             // show finish button
+    document.querySelector(".workspace__block-toolbar__finish-btn").addEventListener("click", endFunc, {once: true});  // single fire event listener on finish button
+    document.querySelector(".workspace__block-toolbar__display").innerHTML = ">>Delete:&nbsp;<span class='bold'>0</span>&nbsp;blocks selected";
+
+    // The actual FNGobject deletion
+    function endFunc(){
+        if (deleteSet.size != 0) {
+            if (confirm(`Do you want to PERMANENTLY delete ${deleteSet.size} object(s) ?`)) {
+                let obj, block, svgElem;
+                for (const sid of deleteSet) {
+                    obj = fngNS.SysData.objectList.find(item => item.sid === sid);
+                    block = fngNS.DOM.BLOCK_FRAME.querySelector(`div[data-sid='${sid}']`);
+                    svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);
+                    fngNS.SysData.objectList.splice(fngNS.SysData.objectList.indexOf(obj), 1);
+                    block.parentNode.removeChild(block);
+                    svgElem.parentNode.removeChild(svgElem);
+                }
+            }
+        }
+        // cleanup & signing off
+        document.querySelector(".workspace__block-toolbar__display").innerHTML = ">>";
+        fngNS.DOM.BLOCK_FRAME.removeEventListener("change", tmpListener);
+        document.querySelector(".workspace__block-toolbar__finish-btn").style.display = "none";
+        for (const remainingCheckBox of fngNS.DOM.BLOCK_FRAME.querySelectorAll(".dragblock__checkbox")) {
+            remainingCheckBox.parentNode.removeChild(remainingCheckBox);
+        }
+        for (const btn of tlbrList) {
+            btn.disabled = false;
+        }
+        maskOff("mask__inv--blockframe-blocktlbr");
+    }
 }
 function changeVisibility(sid) {
     const obj = fngNS.SysData.objectList.find(item => item.sid === sid);  //find the object with this sid
