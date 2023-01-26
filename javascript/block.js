@@ -17,7 +17,7 @@ Terminology in my code:
 
 "use strict";
 
-function makeSID(){ // Generate a 10-character-long "random" alphanumeric system id
+function makeSID() { // Generate a 10-character-long "random" alphanumeric system id
     const charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let sid = '';
     for (let i = 0; i<10; i++) {
@@ -27,7 +27,7 @@ function makeSID(){ // Generate a 10-character-long "random" alphanumeric system
 }
 
 //User operations
-function createFNGObject(objName, data){
+function createFNGObject(objName, data) {
     if(data === null){                             //create a new FNGobject
         const sid = makeSID();
         const data = fngNS.Maps.CLASS_INITDATA.get(objName);   //["objName", [Class, Category, SVG Element]]
@@ -156,7 +156,7 @@ function toggleEditPanel(sid) {
         panel.parentNode.removeChild(panel);
     }
 }
-function initEditPanel(panelElem, sid){
+function initEditPanel(panelElem, sid) {
     const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
     const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized
     for(let inputElem of inputList){
@@ -174,7 +174,7 @@ function initEditPanel(panelElem, sid){
         } 
     }
 }
-function handleUserEdit(target, sid, event){ 
+function handleUserEdit(target, sid, event) { 
     const svgElem = fngNS.DOM.SVG_CANVAS.querySelector(`[data-sid='${sid}']`);    //room for optimization on this one (how to reduce query count for call-intensive operation like color change)
     const obj = fngNS.SysData.objectList.find(item => item.sid === sid);
     const prop = target.dataset.property;
