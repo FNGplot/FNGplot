@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-const fngNS = (function() {
+let fngNS = (function() {
     return {
         /* [!] Enums */
 
@@ -44,7 +44,6 @@ const fngNS = (function() {
             EDITPANEL_TEMPLATES: {},  //initialized from editpanels.json
             objectList: [],   // Unordered object reference array
             sortableList: [], // SortableJS object reference array, in case I add more Sortable objects in the future
-            testing: function(){return this.Parent.LiteralOrigin.MIDDLE}
         }),
 
         Settings: Object.seal({

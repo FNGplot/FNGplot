@@ -7,7 +7,7 @@
 
 /* Class.SvgStyle: Anything that is a SVG presentation attribute, i.e, there is NEVER calculation on my part whatsoever */
 class StrokeParent {  //parent of objects with stroke only
-    constructor(sid){
+    constructor(sid) {
         this.sid = sid;
         this.SvgStyle = {
             display: true,
@@ -22,7 +22,7 @@ class StrokeParent {  //parent of objects with stroke only
     }
 }
 class StrokeFillParent { //parent of objects with both fill and stroke(border)
-    constructor(sid){
+    constructor(sid) {
         this.sid = sid;
         this.SvgStyle = {
             display: true,
@@ -50,7 +50,7 @@ class LinePP extends StrokeParent {
         this.x2 = 5;
         this.y2 = 2;
     }
-    updateMath(svgElem){
+    updateMath(svgElem) {
         svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x1));
         svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x2));
         svgElem.setAttribute("y1", fngNS.Coord.toPxPosY(this.y1));
@@ -68,7 +68,7 @@ class LinePPExt extends StrokeParent {
         this.startExtend = 0.7;
         this.endExtend = 1.3;
     }
-    updateMath(svgElem){
+    updateMath(svgElem) {
         if (this.x1 === this.x2) {   // vertical line
             if (this.y1 <= this.y2) {   // goes up
                 svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x1));
@@ -104,7 +104,7 @@ class LinePS extends StrokeParent {
         this.leftExtend = 4.5;
         this.rightExtend = 2.7;
     }
-    updateMath(svgElem){
+    updateMath(svgElem) {
         if(this.slope === ""){    //user admits that it is a vertical line (Note: 0 == "")
             svgElem.setAttribute("x1", fngNS.Coord.toPxPosX(this.x));
             svgElem.setAttribute("x2", fngNS.Coord.toPxPosX(this.x));
@@ -119,7 +119,7 @@ class LinePS extends StrokeParent {
     }
 }
 class Rect extends StrokeFillParent {
-    constructor(sid){
+    constructor(sid) {
         super(sid);
         this.label = "Rectangle";
         //Origin specified is used as the rectangle's "bottom left" corner. Value at enum "LiteralOrigin".
@@ -132,7 +132,7 @@ class Rect extends StrokeFillParent {
         this.roundCorner = 0;
         this.SvgStyle.lineJoin = "miter";
     }
-    updateMath(svgElem){
+    updateMath(svgElem) {
         svgElem.setAttribute("x", fngNS.Coord.toPxPosX(this.originX - fngNS.LiteralOrigin[this.originHoriz] * this.width));
         svgElem.setAttribute("y", fngNS.Coord.toPxPosY(this.originY + fngNS.LiteralOrigin[this.originVert] * this.height));
         svgElem.setAttribute("rx", this.roundCorner);
@@ -141,7 +141,7 @@ class Rect extends StrokeFillParent {
     }
 }
 class Triangle extends StrokeFillParent {
-    constructor(sid){
+    constructor(sid) {
         super(sid);
         this.label = "Triangle";
         this.x1 = -5;
@@ -153,7 +153,7 @@ class Triangle extends StrokeFillParent {
         this.SvgStyle.lineJoin = "miter";
         this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
     }
-    updateMath(svgElem){
+    updateMath(svgElem) {
         const [x1, y1, x2, y2, x3, y3] = [
             fngNS.Coord.toPxPosX(this.x1),
             fngNS.Coord.toPxPosY(this.y1),
@@ -173,7 +173,7 @@ class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in ca
         this.cy = 4;
         this.radius = 2.5;
     }
-    updateMath(svgElem){
+    updateMath(svgElem) {
             svgElem.setAttribute("cx", fngNS.Coord.toPxPosX(this.cx));
             svgElem.setAttribute("cy", fngNS.Coord.toPxPosY(this.cy));
             svgElem.setAttribute("rx", fngNS.Coord.toPxLenX(this.radius));
@@ -191,7 +191,7 @@ class Circle3P extends StrokeFillParent {
         this.x3 = -2;
         this.y3 = 6;
     }
-    updateMath(svgElem){
+    updateMath(svgElem) {
         // Calculate circumcenter from three points
         // Formula: https://blog.csdn.net/liyuanbhu/article/details/52891868
         const [a, b, c, d, e, f] = 
