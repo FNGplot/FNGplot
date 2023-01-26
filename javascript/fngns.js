@@ -48,6 +48,7 @@ const fngNS = Object.freeze({   // Object.freeze() is "shallow freeze"
         EDITPANEL_TEMPLATES: {},  //initialized from editpanels.json
         objectList: [],   // Unordered object reference array
         sortableList: [], // SortableJS object reference array, in case I add more Sortable objects in the future
+        testing: function(){return this.Parent.LexicalOrigin.MIDDLE}
     }),
 
     Settings: Object.seal({
