@@ -270,7 +270,7 @@ body {
     align-items: center;
     justify-content: space-evenly;
 }
-.side-menu__datablock__slidercomplex {   /* Sliders in left panel always appear in a slider + div label pair, hence styled together */
+.side-menu__datablock__slidercomplex {   /* Sliders in left panel always appear in a slider + output label pair, hence styled together */
     width: 22rem;
     display: flex;
     flex-direction: row;
@@ -304,7 +304,7 @@ body {
     -webkit-appearance: none;
     margin-top: -0.85rem;
 }
-.side-menu__datablock__slidercomplex > div {  /* The display label */
+.side-menu__datablock__slidercomplex > output {  /* The display label */
     width: 5rem;
     font-size: 1.8rem;
     display: inline-block;

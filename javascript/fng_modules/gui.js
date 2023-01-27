@@ -21,13 +21,10 @@ export let gui = (function() {
 
         // Change root zoom level
 
-        changeRootZoom: function(mode, slider, divDisplay) {
-            if (mode == "change") {
-                document.querySelector(":root").style.fontSize = `${math.round(glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100, 2)}px`;
-                glob.Settings.remSize = glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100;
-                this.updateEnvirList();
-            }
-            divDisplay.innerHTML = `${slider.value}%`;
+        changeRootZoom: function(slider) {
+            document.querySelector(":root").style.fontSize = `${math.round(glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100, 2)}px`;
+            glob.Settings.remSize = glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100;
+            this.updateEnvirList();
         },
 
         // Change plotter coordinate settings
