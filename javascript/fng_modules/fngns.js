@@ -1,19 +1,10 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-import {create, all} from "mathjs";
-
 export let fngNameSpace = (function() {
-    
-    "use strict";
 
     return {
-
-        /* [!] Dependencies */
-
-        // all modules must use this same instance so global variable and function declaration via math.import() could work
-        math: create(all,  {}),
-
+        
         /* [!] Enums */
         MetaData: Object.freeze({
             AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
@@ -23,7 +14,6 @@ export let fngNameSpace = (function() {
             RELEASE_NOTE: "null",
         }),
         MagicNumber: Object.freeze({    // Make magic numbers less magical
-            EDITPANEL_TBMARGIN: 1.5, // Top(0.5rem) and bottom(1rem) margin of editpanels. Used to calculate the expansion animation of parent block.
             DEFAULT_REMSIZE: 8,      // Default: 1rem = 8px @ 100% Zoom
         }),
         DOM: Object.freeze({    // Frequently used DOM elements
@@ -100,5 +90,13 @@ export let fngNameSpace = (function() {
                 ["fillColor", (obj, svgElem) => { svgElem.setAttribute("fill", obj.SvgStyle.fillColor) }],
             ]),
         }),
+
+        /* [!] Masks */
+        maskOn: function(name) {
+            document.querySelector(".mask-base").querySelector(`.${name}`).style.display = "block";
+        },
+        maskOff: function(name) {
+            document.querySelector(".mask-base").querySelector(`.${name}`).style.display = "none";
+        },
     };
 })();

@@ -1,250 +1,109 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-import {fngNameSpace as glob } from ".\glob.js";     // global variable module
+import {fngNameSpace as glob } from "./fngns.js";       // global variable module
+import * as fngObjects  from "./fngobjects.js";    // get all the fngobject classes
 
-export let fngObjects = (function() {
-
-    "use strict";
+export let gui = (function() {
 
     return {
-        /* [!] FNGobject-exclusive data */
-        InitMap: new Map([    // Data and reference used to initialize object
-            //["Object Name", [Class, Category, SVG Element]],
-            ["linepp", [LinePP, "geometry", "line"]],
-            ["lineps", [LinePS, "geometry", "line"]],
-            ["lineppext", [LinePPExt, "geometry", "line"]],
-            ["rect", [Rect, "geometry", "rect"]],
-            ["triangle", [Triangle, "geometry", "polygon"]],
-            ["circle", [Circle, "geometry", "ellipse"]],
-            ["circle3p", [Circle3P, "geometry", "ellipse"]],
-        ]),
-        LiteralOrigin: Object.freeze({  // A small key:value map used by FNGobjects that offer origin positioning
-            TOP: 0,
-            LEFT: 0,
-            MIDDLE: 0.5,
-            BOTTOM: 1,
-            RIGHT: 1,
-        }),
+        // [!] Side menu
 
-        /* [!] Classes: Parent */
-        /* Class.SvgStyle: Anything that is a SVG presentation attribute, i.e, there is NEVER calculation on my part whatsoever */
-        StrokeParent: class StrokeParent {  //parent of objects with stroke only
-            constructor(sid) {
-                this.sid = sid;
-                this.SvgStyle = {
-                    display: true,
-                    strokeWidth: 10,
-                    lineCap: "butt",
-                    pathLength: 150,
-                    dashArray: '',
-                    dashOffset: 0,
-                    strokeColor: "#8a408b", // Wisteria purple
-                    strokeOpacity: 100,
-                }
-            }
+        // Side menu display switch
+
+        switchSideMenu: function(optn) {
+            const panelList = document.querySelectorAll(".side-menu__panel");                //select all panels
+            for (let panel of panelList) {                                                   //hide everyone first
+                panel.style.display = "none";
+            };
+            document.querySelector(`.side-menu__panel[data-panelname="${optn}"]`).style.display = "flex";     //then show only the selected panel
         },
-        StrokeFillParent: class StrokeFillParent { //parent of objects with both fill and stroke(border)
-            constructor(sid) {
-                this.sid = sid;
-                this.SvgStyle = {
-                    display: true,
-                    strokeWidth: 10,
-                    lineCap: "butt",
-                    pathLength: 150,
-                    dashArray: '',
-                    dashOffset: 0,
-                    strokeColor: "#8a408b", // Wisteria purple
-                    strokeOpacity: 100,
-                    fillColor: "#ddcfff",
-                    fillOpacity: 100,
+
+        // Change root zoom level
+
+        changeRootZoom: function(mode, slider, divDisplay) {
+            if (mode == "change") {
+                document.querySelector(":root").style.fontSize = `${math.round(glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100, 2)}px`;
+                glob.Settings.remSize = glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100;
+                this.updateEnvirList();
+            }
+            divDisplay.innerHTML = `${slider.value}%`;
+        },
+
+        // Change plotter coordinate settings
+
+        changeCoordSettings: function(inputElem) {
+            if (math.hasNumericValue(inputElem.value)) {    // is numerical input
+                const property = inputElem.dataset.id;
+                let svgElem = "";
+                glob.Coord[property] = parseFloat(inputElem.value);
+                glob.Coord.updateSvgCoord();
+                for (const FNGobject of glob.SysData.objectList) {
+                    svgElem = glob.DOM.SVG_CANVAS.querySelector(`[data-sid='${FNGobject.sid}']`);
+                    FNGobject.updateMath(svgElem);
+                }
+                const textList = document.querySelector("[data-id='minmax-display']").querySelectorAll("text");
+                for (const textLabel of textList) {
+                    textLabel.textContent = glob.Coord[textLabel.dataset.id];
                 }
             }
         },
 
-        /* [!] Classes: Geometry */
-        LinePP: class LinePP extends StrokeParent {
-            constructor(sid) {
-                super(sid);
-                this.label = "2-point line";
-                this.x1 = -5;
-                this.y1 = -4;
-                this.x2 = 5;
-                this.y2 = 2;
-            }
-            updateMath(svgElem) {
-                svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x1));
-                svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x2));
-                svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y1));
-                svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y2));
-            }
+        // Update environment data list 
+
+        updateEnvirList: function() {
+            document.querySelector("pre[data-id='sys-envirdata-output']").innerHTML = `
+Settings:
+--------------------------
+remSize: ${glob.Settings.remSize}px
+
+Viewport:
+--------------------------
+innerWidth / innerHeight: 
+${window.innerWidth}px / ${window.innerHeight}px
+
+Device:
+--------------------------
+ScreenWidth / ScreenHeight:
+${window.screen.width}px / ${window.screen.height}px
+
+`
         },
-        LinePPExt: class LinePPExt extends StrokeParent {
-            constructor(sid) {
-                super(sid);
-                this.label = "Extended 2p line";
-                this.x1 = -4;
-                this.y1 = -3;
-                this.x2 = 6;
-                this.y2 = 3;
-                this.startExtend = 0.7;
-                this.endExtend = 1.3;
-            }
-            updateMath(svgElem) {
-                if (this.x1 === this.x2) {   // vertical line
-                    if (this.y1 <= this.y2) {   // goes up
-                        svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x1));
-                        svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x2));
-                        svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y1 - this.startExtend));
-                        svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y2 + this.endExtend));
-                    } else if (this.y1 > this.y2) {  // goes down
-                        svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x1));
-                        svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x2));
-                        svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y1 + this.startExtend));
-                        svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y2 - this.endExtend));
-                    }
-                } else {    // normal line with meaningful slope
-                    const [dx, dy] = [
-                        this.x2 - this.x1,
-                        this.y2 - this.y1,
-                    ];
-                    const distance = Math.sqrt(dx**2 + dy**2);
-                    svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x1 - dx * this.startExtend / distance));
-                    svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x2 + dx * this.endExtend / distance));
-                    svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y1 - dy * this.startExtend / distance));
-                    svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y2 + dy * this.endExtend / distance));
-                }
-            }
+
+        // [!] Toolbar
+
+        // Toolbar display switch
+
+        switchToolbar: function(optn) {
+            const tabList = document.querySelectorAll(".toolbar__tab");                                 //select all tabs
+            for (let tab of tabList) {
+                tab.style.background = "transparent";                                                   //set all tabs to transparent background (unselected)
+                tab.style.color = "#000000";                                                            //set all tabs' text to black (unselected)
+            };
+            tabList[optn].style.background = glob.SysData.TOOLBAR_CLR[optn];                           //set background to its border color (selected)
+            tabList[optn].style.color = "#ffffff";                                                      //set text color to white (selected)
+            
+            const panelList = document.querySelectorAll(".toolbar__panel");                             //select all  divs
+            for (let panel of panelList) {                                                              //hide all divs first
+                panel.style.display = "none";
+            };
+            panelList[optn].style.display = "block";                                                    //then show the selected div
         },
-        LinePS: class LinePS extends StrokeParent {
-            constructor(sid) {
-                super(sid);
-                this.label = "Point-slope line";
-                this.x = 1;
-                this.y = 2;
-                this.slope = 1.5;
-                this.leftExtend = 4.5;
-                this.rightExtend = 2.7;
-            }
-            updateMath(svgElem) {
-                if(this.slope === ""){    //user admits that it is a vertical line (Note: 0 == "")
-                    svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x));
-                    svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x));
-                    svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y - this.leftExtend));
-                    svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y + this.rightExtend));
-                } else {    //has a slope
-                    svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x - this.leftExtend * Math.cos(Math.atan2(this.slope, 1))));
-                    svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x + this.rightExtend * Math.cos(Math.atan2(this.slope, 1))));
-                    svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y - this.leftExtend * Math.sin(Math.atan2(this.slope, 1))));
-                    svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y + this.rightExtend * Math.sin(Math.atan2(this.slope, 1))));
-                }
-            }
-        },
-        Rect: class Rect extends StrokeFillParent {
-            constructor(sid) {
-                super(sid);
-                this.label = "Rectangle";
-                //Origin specified is used as the rectangle's "bottom left" corner. Value at enum "LiteralOrigin".
-                this.originHoriz = "LEFT";
-                this.originVert = "BOTTOM";
-                this.originX = -1;
-                this.originY = -2;
-                this.width = 7;
-                this.height = 5;
-                this.roundCorner = 0;
-                this.SvgStyle.lineJoin = "miter";
-            }
-            updateMath(svgElem) {
-                svgElem.setAttribute("x", glob.Coord.toPxPosX(this.originX - LiteralOrigin[this.originHoriz] * this.width));
-                svgElem.setAttribute("y", glob.Coord.toPxPosY(this.originY + LiteralOrigin[this.originVert] * this.height));
-                svgElem.setAttribute("rx", this.roundCorner);
-                svgElem.setAttribute("width", glob.Coord.toPxLenX(this.width));
-                svgElem.setAttribute("height", glob.Coord.toPxLenY(this.height));
-            }
-        },
-        Triangle: class Triangle extends StrokeFillParent {
-            constructor(sid) {
-                super(sid);
-                this.label = "Triangle";
-                this.x1 = -5;
-                this.y1 = -6;
-                this.x2 = 6;
-                this.y2 = -5;
-                this.x3 = 1;
-                this.y3 = 5;
-                this.SvgStyle.lineJoin = "miter";
-                this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
-            }
-            updateMath(svgElem) {
-                const [x1, y1, x2, y2, x3, y3] = [
-                    glob.Coord.toPxPosX(this.x1),
-                    glob.Coord.toPxPosY(this.y1),
-                    glob.Coord.toPxPosX(this.x2),
-                    glob.Coord.toPxPosY(this.y2),
-                    glob.Coord.toPxPosX(this.x3),
-                    glob.Coord.toPxPosY(this.y3),
-                ];
-                svgElem.setAttribute("points", `${x1},${y1} ${x2},${y2} ${x3},${y3}`);
-            }
-        },
-        Circle: class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case user sets glob.Coord.xHat != glob.Coord.yHat
-            constructor(sid) {
-                super(sid);
-                this.label = "Circle";
-                this.cx = 2;
-                this.cy = 4;
-                this.radius = 2.5;
-            }
-            updateMath(svgElem) {
-                    svgElem.setAttribute("cx", glob.Coord.toPxPosX(this.cx));
-                    svgElem.setAttribute("cy", glob.Coord.toPxPosY(this.cy));
-                    svgElem.setAttribute("rx", glob.Coord.toPxLenX(this.radius));
-                    svgElem.setAttribute("ry", glob.Coord.toPxLenY(this.radius));
-            }
-        },
-        Circle3P: class Circle3P extends StrokeFillParent {
-            constructor(sid) {
-                super(sid);
-                this.label = "3-point circle";
-                this.x1 = 1;
-                this.y1 = 1;
-                this.x2 = 2;
-                this.y2 = 3;
-                this.x3 = -2;
-                this.y3 = 6;
-            }
-            updateMath(svgElem) {
-                // Calculate circumcenter from three points
-                // Formula: https://blog.csdn.net/liyuanbhu/article/details/52891868
-                const [a, b, c, d, e, f] = 
-                    [   
-                        this.x1 - this.x2,
-                        this.y1 - this.y2,
-                        this.x1 - this.x3,
-                        this.y1 - this.y3,
-                        0.5 * ((this.x1**2 - this.x2**2) - (this.y2**2 - this.y1**2)),
-                        0.5 * ((this.x1**2 - this.x3**2) - (this.y3**2 - this.y1**2)),
-                    ];
-                if (Math.abs(math.det([[a, b], [c, d]])) < 1e-6) {    //colinear
-                    svgElem.setAttribute("cx", 0);
-                    svgElem.setAttribute("cy", 0);
-                    svgElem.setAttribute("rx", 0);
-                    svgElem.setAttribute("ry", 0);
-                } else {
-                    const [cx,cy] = 
-                        [
-                            -(d * e - b * f) / (b * c - a * d),
-                            -( a * f - c * e) / (b * c - a * d),
-                        ];
-                    svgElem.setAttribute("cx", glob.Coord.toPxPosX(cx));
-                    svgElem.setAttribute("cy", glob.Coord.toPxPosY(cy));
-                    svgElem.setAttribute("rx", glob.Coord.toPxLenX(math.distance([cx,cy], [this.x1, this.y1])));
-                    svgElem.setAttribute("ry", glob.Coord.toPxLenY(math.distance([cx,cy], [this.x1, this.y1])));
-                }
+
+        // Toggle toolbar dropdown when down arrow is clicked
+
+        toggleToolbarDropdown: function(arrowBtn) {
+            if (arrowBtn.style.transform == "rotate(0deg)") {                   //expand
+                arrowBtn.style.transform = "rotate(180deg)";
+                arrowBtn.closest(".toolbar__panel").style.overflow = "visible";
+            } else if (arrowBtn.style.transform == "rotate(180deg)") {          //collapse
+                arrowBtn.style.transform = "rotate(0deg)";
+                arrowBtn.closest(".toolbar__panel").style.overflow = "hidden";
             }
         },
 
-        /* [!] Methods */
+        // [!] FNGobject related
+
         makeSID: function() { // Generate a 10-character-long "random" alphanumeric system id
             const charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             let sid = '';
@@ -254,8 +113,18 @@ export let fngObjects = (function() {
             return sid;
         },
         createFNGObject: function(objName, data) {
+            const InitMap = new Map([    // Data and reference used to initialize object
+                //["Object Name", [Class, Category, SVG Element]],
+                ["linepp", [fngObjects.LinePP, "geometry", "line"]],
+                ["lineps", [fngObjects.LinePS, "geometry", "line"]],
+                ["lineppext", [fngObjects.LinePPExt, "geometry", "line"]],
+                ["rect", [fngObjects.Rect, "geometry", "rect"]],
+                ["triangle", [fngObjects.Triangle, "geometry", "polygon"]],
+                ["circle", [fngObjects.Circle, "geometry", "ellipse"]],
+                ["circle3p", [fngObjects.Circle3P, "geometry", "ellipse"]],
+            ]);
             if (data === null) {                             //create a new FNGobject
-                const sid = makeSID();
+                const sid = this.makeSID();
                 const data = InitMap.get(objName);   // ["objName", [Class, Category, SVG Element]]
         
                 // Step 1 of 3: FNGobject
@@ -292,7 +161,7 @@ export let fngObjects = (function() {
             glob.DOM.SVG_CANVAS.insertBefore(svgElem,refElem);
         },
         deleteFNGObjects: function() {
-            maskOn("mask__inv--blockframe-blocktlbr");
+            glob.maskOn("mask__inv--blockframe-blocktlbr");
             const blockList = glob.DOM.BLOCK_FRAME.querySelectorAll(".dragblock");
             const deleteSet = new Set();    // I believe Set() is the simplest option here
         
@@ -353,7 +222,7 @@ export let fngObjects = (function() {
                 for (const btn of tlbrList) {
                     btn.disabled = false;
                 }
-                maskOff("mask__inv--blockframe-blocktlbr");
+                glob.maskOff("mask__inv--blockframe-blocktlbr");
             }
         },
         changeVisibility: function(sid) {
@@ -377,7 +246,7 @@ export let fngObjects = (function() {
             if(panel === null){ //It doesn't have an editpanel, give it one
                 const objName = glob.SysData.objectList.find(item => item.sid === sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
                 block.insertAdjacentHTML("beforeend", glob.SysData.EDITPANEL_TEMPLATES[objName]);
-                initEditPanel(block.querySelector(".editpanel"),sid);
+                this.initEditPanel(block.querySelector(".editpanel"),sid);
             } else { //It has an editpanel, remove it
                 panel.parentNode.removeChild(panel);
             }
@@ -437,5 +306,6 @@ export let fngObjects = (function() {
                 }
             }
         }
+
     }
 })();

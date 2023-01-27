@@ -31,9 +31,5 @@
     "linux": {
       "icon": "svg/logo/logo.png"
     }
-  },
-  "dependencies": {
-    "mathjs": "^11.5.0",
-    "sortablejs": "^1.15.0"
   }
 }

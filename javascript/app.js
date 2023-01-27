@@ -1,10 +1,8 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-import Sortable from "sortablejs";
-import { fngNameSpace as glob } from ".\modules\fngns.js";
-import { fngObjects as fngObj } from ".\modules\fngobjects.js";
-import { guiFunctions as gui} from ".\modules\gui.js";
+import { fngNameSpace as glob } from "./fng_modules/fngns.js";
+import {gui} from "./fng_modules/gui.js";
 
 "use strict";
 
@@ -38,7 +36,7 @@ document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("
             case "copy":
                 // nothing yet
             case "delete": 
-                fngObj.deleteFNGObjects(1);
+                gui.deleteFNGObjects(1);
         }
     }
 });
@@ -63,7 +61,7 @@ for (const item of ["input", "change"]) {
 document.querySelector(".toolbar").addEventListener("click", (event) => {  //event delegation
     const target = event.target;
     if (target.tagName.toLowerCase() === "img") {                                  //SVG icon clicked
-        fngObj.createFNGObject(target.dataset.objname, null);                            //create a brand new object of the specified kind
+        gui.createFNGObject(target.dataset.objname, null);                            //create a brand new object of the specified kind
     } else if (target.classList.contains("toolbar__toggler__arrowbtn")) {         // Arrow button clicked
         gui.toggleToolbarDropdown(target);                                            // Expand or collapse the respective panel
     }
@@ -91,7 +89,7 @@ gui.updateEnvirList();
 }
 
 // Fetch editpanel data from editpanels.json (Note for future me: Realtive path of fetch() starts from the HTML page, NOT this JS file)
-fetch("javascript/editpanel-data/editpanels.json")
+fetch("javascript/fng_modules/editpanel-data/editpanels.json")
 .then((response) => {
     return response.json();
 })
@@ -120,7 +118,7 @@ fetch("javascript/editpanel-data/editpanels.json")
     for (let arrowBtn of arrowBtnList) {
         arrowBtn.style.transform = "rotate(0deg)";                                 //set them inline so they can be manipulated later
     };
-    switchToolbar(1);                                                              //switch to "Geometry" (default)
+    gui.switchToolbar(1);                                                              //switch to "Geometry" (default)
 }
 
 //Init sortable container
