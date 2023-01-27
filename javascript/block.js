@@ -1,20 +1,6 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-/*The block system is the UI of FNGplot. It allows users to manipulate math objects intuitively.
-
-Terminology in my code:
-- FNGobject: FNGobject refers to the smallest functioning unit of the block system. It consists of three parts:
-    Object: The core. A JS object describing the math object.
-        When created as a blank object, they get a set of default values as properties
-    Sortable block: The input. This is the colorful & draggable blocks that the users manipulate.
-    SVG element (SvgElem): The output. The FNGobject's rendering result.
-
-- SID: Each FNGobject gets its own SID (system ID) upon creation/load.
-
-- LinePP: A line between two points. This is the first object I complete, and most of my comments are on its related code.
-  All the other ones are very similar to it.*/
-
 "use strict";
 
 function makeSID() { // Generate a 10-character-long "random" alphanumeric system id

@@ -1,10 +1,20 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
-let fngNS = (function() {
-    return {
-        /* [!] Enums */
+import {create, all} from "mathjs";
 
+let fngNameSpace = (function() {
+    
+    "use strict";
+
+    return {
+
+        /* [!] Dependencies */
+
+        // all modules must use this same instance so global variable and function declaration via math.import() could work
+        math: create(all,  {}),
+
+        /* [!] Enums */
         MetaData: Object.freeze({
             AUTHOR: "Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot",
             LICENSE: "Apache-2.0",
@@ -12,45 +22,31 @@ let fngNS = (function() {
             RELEASE_DATE: "2023-MM-DD",
             RELEASE_NOTE: "null",
         }),
-
-        LiteralOrigin: Object.freeze({  // A small key:value map used by FNGobjects that offer origin positioning
-            TOP: 0,
-            LEFT: 0,
-            MIDDLE: 0.5,
-            BOTTOM: 1,
-            RIGHT: 1,
-        }),
-
         MagicNumber: Object.freeze({    // Make magic numbers less magical
             EDITPANEL_TBMARGIN: 1.5, // Top(0.5rem) and bottom(1rem) margin of editpanels. Used to calculate the expansion animation of parent block.
             DEFAULT_REMSIZE: 8,      // Default: 1rem = 8px @ 100% Zoom
         }),
-
         DOM: Object.freeze({    // Frequently used DOM elements
             BLOCK_FRAME: document.querySelector('.workspace__block-frame'),
             SVG_CANVAS: document.querySelector('.workspace__svg-content--canvas'),
             SVG_DISPLAY: document.querySelector('.workspace__svg-content--display'),
             BASIC_BLOCK_TEMPLATE: document.querySelector('.template').content.firstElementChild,
         }),
-
         Str: Object.freeze({    // Frequently used strings
             SVGNS: "http://www.w3.org/2000/svg",    // Namespace of SVG
         }),
 
         /* [!] System data (read/write required for some of them, therefore it is only sealed but not frozen) */
-
         SysData: Object.seal({
             TOOLBAR_CLR: ['#f0923b','#5f95f7','#9268f6','#c763d0','#67bc59','#6dbde2','#4868ce','#ed7082','#f3af42'],  // Based on MIT Scratch 2.0/3.0
             EDITPANEL_TEMPLATES: {},  //initialized from editpanels.json
             objectList: [],   // Unordered object reference array
             sortableList: [], // SortableJS object reference array, in case I add more Sortable objects in the future
         }),
-
         Settings: Object.seal({
             Zoom: 100,
             remSize: 8,
         }),
-
         Coord: Object.seal({ //  Variables that control the coordinate system of FNGplot (Cartesian & Polar)
             // Math coordinate
             xMax: 10,
@@ -86,18 +82,7 @@ let fngNS = (function() {
         }),
 
         /* [!] Maps (Can't be 100% frozen, preferred over traditional Object because 1. Arrow functions can be used and 2. Lookup is faster) */
-
         Maps: Object.freeze({
-            CLASS_INITDATA: new Map([    // Data and reference used to initialize object
-                //["Object Name", [Class, Category, SVG Element]],
-                ["linepp", [LinePP, "geometry", "line"]],
-                ["lineps", [LinePS, "geometry", "line"]],
-                ["lineppext", [LinePPExt, "geometry", "line"]],
-                ["rect", [Rect, "geometry", "rect"]],
-                ["triangle", [Triangle, "geometry", "polygon"]],
-                ["circle", [Circle, "geometry", "ellipse"]],
-                ["circle3p", [Circle3P, "geometry", "ellipse"]],
-            ]),
             EDITACTION_SI: new Map([    //SI: Style Input
                 ["strokeWidth", (obj, svgElem) => { svgElem.setAttribute("stroke-width", obj.SvgStyle.strokeWidth) }],
                 ["pathLength", (obj, svgElem) => { svgElem.setAttribute("pathLength", obj.SvgStyle.pathLength) }],

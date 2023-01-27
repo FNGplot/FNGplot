@@ -31,5 +31,8 @@
     "linux": {
       "icon": "svg/logo/logo.png"
     }
+  },
+  "dependencies": {
+    "mathjs": "^11.5.0"
   }
 }
