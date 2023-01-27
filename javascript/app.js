@@ -2,7 +2,7 @@
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
 import { fngNameSpace as glob } from "./fng_modules/fngns.js";
-import {gui} from "./fng_modules/gui.js";
+import { gui } from "./fng_modules/gui.js";
 
 "use strict";
 
