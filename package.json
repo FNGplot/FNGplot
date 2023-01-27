@@ -33,6 +33,7 @@
     }
   },
   "dependencies": {
-    "mathjs": "^11.5.0"
+    "mathjs": "^11.5.0",
+    "sortablejs": "^1.15.0"
   }
 }

@@ -3,7 +3,7 @@
 
 import {fngNameSpace as glob } from ".\glob.js";     // global variable module
 
-let guiFunctions = (function() {
+export let guiFunctions = (function() {
 
     "use strict";
 

@@ -1,26 +1,31 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
 
+import Sortable from "sortablejs";
+import { fngNameSpace as glob } from ".\modules\fngns.js";
+import { fngObjects as fngObj } from ".\modules\fngobjects.js";
+import { guiFunctions as gui} from ".\modules\gui.js";
+
 "use strict";
 
 /* [!] Event Listeners */
 
 document.querySelector(".side-menu__select").addEventListener("change", () => {
-    switchSideMenu(document.querySelector(".side-menu__select").value);
+    gui.switchSideMenu(document.querySelector(".side-menu__select").value);
 });
 
 document.querySelector("[data-id='sys-envirdata-refreshbtn']").addEventListener("click", () => {
-	updateEnvirList();
+	gui.updateEnvirList();
 });
 
 for (const item of ["input", "change"]) {
     document.querySelector("[data-id='sys-ui-zoom-slider']").addEventListener(item, function() {
-        changeRootZoom(item, this.querySelector("input"), this.querySelector("div"));
+        gui.changeRootZoom(item, this.querySelector("input"), this.querySelector("div"));
     });
 };
 
 document.querySelector("[data-id='plt-coord-settings']").addEventListener("input", (event) => {
-    changeCoordSettings(event.target);
+    gui.changeCoordSettings(event.target);
 });
 
 document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("click", (event) => {  //event delegation
@@ -33,24 +38,24 @@ document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("
             case "copy":
                 // nothing yet
             case "delete": 
-                deleteFNGObjects(1);
+                fngObj.deleteFNGObjects(1);
         }
     }
 });
 
-fngNS.DOM.BLOCK_FRAME.addEventListener("click", (event) => {       // event delegation
+glob.DOM.BLOCK_FRAME.addEventListener("click", (event) => {       // event delegation
     if (event.target.classList.contains("dragblock__btn--visibility")) {  // change visibility
-        changeVisibility(event.target.closest(".dragblock").dataset.sid);
+        gui.changeVisibility(event.target.closest(".dragblock").dataset.sid);
     } else if (event.target.classList.contains("dragblock__btn--edit")) {   // toggle editpanel
-        toggleEditPanel(event.target.closest(".dragblock").dataset.sid);
+        gui.toggleEditPanel(event.target.closest(".dragblock").dataset.sid);
     }
 });
 
 for (const item of ["input", "change"]) {
-    fngNS.DOM.BLOCK_FRAME.addEventListener(item, (event) => { 
+    glob.DOM.BLOCK_FRAME.addEventListener(item, (event) => { 
         if (event.target.closest(".editpanel") != null) {    //verify that the input/change came from inside an editpanel
             const sid = event.target.closest(".dragblock").dataset.sid;
-            handleUserEdit(event.target, sid, event.type);
+            gui.handleUserEdit(event.target, sid, event.type);
         }
     });
 };
@@ -58,9 +63,9 @@ for (const item of ["input", "change"]) {
 document.querySelector(".toolbar").addEventListener("click", (event) => {  //event delegation
     const target = event.target;
     if (target.tagName.toLowerCase() === "img") {                                  //SVG icon clicked
-        createFNGObject(target.dataset.objname, null);                            //create a brand new object of the specified kind
+        fngObj.createFNGObject(target.dataset.objname, null);                            //create a brand new object of the specified kind
     } else if (target.classList.contains("toolbar__toggler__arrowbtn")) {         // Arrow button clicked
-        toggleToolbarDropdown(target);                                            // Expand or collapse the respective panel
+        gui.toggleToolbarDropdown(target);                                            // Expand or collapse the respective panel
     }
 });
 
@@ -71,17 +76,17 @@ window.addEventListener("error", function(){
 
 /* [!] Primary initialization sequence */
 
-console.info(`Welcome to FNGplot ${fngNS.MetaData.VERSION}`);
+console.info(`Welcome to FNGplot ${glob.MetaData.VERSION}`);
 console.info("Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot");
 
 // Init side_menu -> sys-settings -> environment data
-updateEnvirList();
+gui.updateEnvirList();
 
 // Init side_menu -> plt-settings -> coordinate settings
 {
     const inputList = document.querySelector("div[data-id='plt-coord-settings']").querySelectorAll("input");    // length = 4
     for (let input of inputList) {
-        input.value = fngNS.Coord[input.dataset.id];    // map them to variables and assign to them
+        input.value = glob.Coord[input.dataset.id];    // map them to variables and assign to them
     }
 }
 
@@ -91,8 +96,8 @@ fetch("javascript/editpanel-data/editpanels.json")
     return response.json();
 })
 .then((data) => {
-    fngNS.SysData.EDITPANEL_TEMPLATES = data;
-    Object.defineProperty(fngNS.SysData, "EDITPANEL_TEMPLATES", {   // Lock it up
+    glob.SysData.EDITPANEL_TEMPLATES = data;
+    Object.defineProperty(glob.SysData, "EDITPANEL_TEMPLATES", {   // Lock it up
         configurable: false,
         writable: false,
     });
@@ -107,9 +112,9 @@ fetch("javascript/editpanel-data/editpanels.json")
     const tabList = document.querySelectorAll(".toolbar__tab");
     const arrowBtnList = document.querySelectorAll(".toolbar__toggler__arrowbtn");
     for (let [i, tab] of tabList.entries()) {
-        tab.style.borderColor = fngNS.SysData.TOOLBAR_CLR[i];                      //initialize them to their respective colors
+        tab.style.borderColor = glob.SysData.TOOLBAR_CLR[i];                      //initialize them to their respective colors
         tab.addEventListener("click", () => {                                      //attach eventlisteners
-            switchToolbar(i);
+            gui.switchToolbar(i);
         });
     };
     for (let arrowBtn of arrowBtnList) {
@@ -119,8 +124,8 @@ fetch("javascript/editpanel-data/editpanels.json")
 }
 
 //Init sortable container
-fngNS.SysData.sortableList.push(
-    new Sortable(fngNS.DOM.BLOCK_FRAME, {
+glob.SysData.sortableList.push(
+    new Sortable(glob.DOM.BLOCK_FRAME, {
         group: 'block-frame',
         animation: 150,
         fallbackOnBody: true,

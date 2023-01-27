@@ -3,7 +3,7 @@
 
 import {create, all} from "mathjs";
 
-let fngNameSpace = (function() {
+export let fngNameSpace = (function() {
     
     "use strict";
 
