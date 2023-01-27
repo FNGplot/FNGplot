@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: Apache-2.0 */
-/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
+/* Copyright (c) Wei-Hsu Lin & All Contributors to FNGplot */
 
 import { fngNameSpace as glob } from "./fng_modules/fngns.js";
 import { gui } from "./fng_modules/gui.js";
@@ -75,7 +75,7 @@ window.addEventListener("error", function(){
 /* [!] Primary initialization sequence */
 
 console.info(`Welcome to FNGplot ${glob.MetaData.VERSION}`);
-console.info("Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot");
+console.info("Copyright (c) Wei-Hsu Lin & All Contributors to FNGplot");
 
 // Init side_menu -> sys-settings -> environment data
 gui.updateEnvirList();

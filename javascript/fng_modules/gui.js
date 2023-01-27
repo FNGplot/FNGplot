@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: Apache-2.0 */
-/* Copyright (c) Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot */
+/* Copyright (c) Wei-Hsu Lin & All Contributors to FNGplot */
 
 import {fngNameSpace as glob } from "./fngns.js";       // global variable module
 import * as fngObjects  from "./fngobjects.js";    // get all the fngobject classes

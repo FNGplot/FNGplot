@@ -43,5 +43,5 @@ Most of these features come in handy when one needs to quickly construct a diagr
     - 3-point circle
 
 ## Developer team
-- Main developer: Wei-Hsu Lin(林韋旭) 
-- UX tester: Mu-En Chiu (邱沐恩)
+- Main developer: Wei-Hsu Lin 
+- UX tester: Mu-En Chiu

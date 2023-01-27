@@ -2,7 +2,7 @@
 	<metadata>
 	    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     		<rdf:Description rdf:about="">
-				<author>Wei-Hsu Lin(林韋旭)</author>
+				<author>Wei-Hsu Lin</author>
       		<license>Apache-2.0</license>
     		</rdf:Description>
   		</rdf:RDF>

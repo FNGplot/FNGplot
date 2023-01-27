@@ -187,7 +187,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright 2023 Wei-Hsu Lin(林韋旭) & All Contributors to FNGplot
+   Copyright 2023 Wei-Hsu Lin & All Contributors to FNGplot
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
