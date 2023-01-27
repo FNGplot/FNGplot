@@ -4,8 +4,10 @@
 import {fngNameSpace as glob } from "./fngns.js";     // global variable module
 
 export {
+    // Parent
     StrokeParent,
     StrokeFillParent,
+    // Geometry
     LinePP,
     LinePPExt,
     LinePS,
@@ -13,6 +15,7 @@ export {
     Triangle,
     Circle,
     Circle3P,
+    // Algebra
 };
 
 /* [!] FNGobject-exclusive (private) data */
