@@ -200,7 +200,7 @@ ${window.screen.width}px / ${window.screen.height}px
             // The actual FNGobject deletion
             function endFunc(){
                 if (deleteSet.size != 0) {
-                    if (confirm(`Do you want to PERMANENTLY delete ${deleteSet.size} object(s) ?`)) {
+                    if (confirm(`Are you sure you want to PERMANENTLY delete these ${deleteSet.size} items ?`)) {
                         let obj, block, svgElem;
                         for (const sid of deleteSet) {
                             obj = glob.SysData.objectList.find(item => item.sid === sid);
