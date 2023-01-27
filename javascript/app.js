@@ -16,6 +16,9 @@ document.querySelector("[data-id='sys-envirdata-refreshbtn']").addEventListener(
 	gui.updateEnvirList();
 });
 
+document.querySelector("[data-id='sys-ui-zoom-slider']").addEventListener("input", function() {
+    this.querySelector("output").value=`${this.querySelector("input").value}%`;
+});
 document.querySelector("[data-id='sys-ui-zoom-slider']").addEventListener("change", function() {
     gui.changeRootZoom(this.querySelector("input"));
 });
