@@ -15,10 +15,14 @@ export {
     Triangle,
     Circle,
     Circle3P,
+    PolygonRI,
+    PolygonRC,
+    PolygonRS,
+    PolygonRV,
     // Algebra
 };
 
-/* [!] FNGobject-exclusive (private) data */
+/* [!] private data & methods */
 const LiteralOrigin = Object.freeze({  // A small key:value map used by FNGobjects that offer origin positioning
     TOP: 0,
     LEFT: 0,
@@ -26,6 +30,13 @@ const LiteralOrigin = Object.freeze({  // A small key:value map used by FNGobjec
     BOTTOM: 1,
     RIGHT: 1,
 });
+function toPoints(arr){     // Convert coordinate data to SVG "points" format
+    let output = "";
+    for (const pair of arr) {
+        output = output + glob.Coord.toPxPosX(pair[0]) + "," + glob.Coord.toPxPosY(pair[1]) + " ";
+    }
+    return output.slice(0, -1);     // trim off the excess white space
+};
 
 /* [!] Classes: Parent */
 /* Class.SvgStyle: Anything that is a SVG presentation attribute, i.e, there is NEVER calculation on my part whatsoever */
@@ -110,7 +121,7 @@ class LinePPExt extends StrokeParent {
                 this.x2 - this.x1,
                 this.y2 - this.y1,
             ];
-            const distance = Math.sqrt(dx**2 + dy**2);
+            const distance = math.sqrt(dx**2 + dy**2);
             svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x1 - dx * this.startExtend / distance));
             svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x2 + dx * this.endExtend / distance));
             svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y1 - dy * this.startExtend / distance));
@@ -136,10 +147,10 @@ class LinePS extends StrokeParent {
             svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y - this.leftExtend));
             svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y + this.rightExtend));
         } else {    //has a slope
-            svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x - this.leftExtend * Math.cos(Math.atan2(this.slope, 1))));
-            svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x + this.rightExtend * Math.cos(Math.atan2(this.slope, 1))));
-            svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y - this.leftExtend * Math.sin(Math.atan2(this.slope, 1))));
-            svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y + this.rightExtend * Math.sin(Math.atan2(this.slope, 1))));
+            svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x - this.leftExtend * math.cos(math.atan2(this.slope, 1))));
+            svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x + this.rightExtend * math.cos(math.atan2(this.slope, 1))));
+            svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y - this.leftExtend * math.sin(math.atan2(this.slope, 1))));
+            svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y + this.rightExtend * math.sin(math.atan2(this.slope, 1))));
         }
     }
 };
@@ -232,7 +243,7 @@ class Circle3P extends StrokeFillParent {
                 0.5 * ((this.x1**2 - this.x2**2) - (this.y2**2 - this.y1**2)),
                 0.5 * ((this.x1**2 - this.x3**2) - (this.y3**2 - this.y1**2)),
             ];
-        if (Math.abs(math.det([[a, b], [c, d]])) < 1e-6) {    //colinear
+        if (math.abs(math.det([[a, b], [c, d]])) < 1e-6) {    //colinear
             svgElem.setAttribute("cx", 0);
             svgElem.setAttribute("cy", 0);
             svgElem.setAttribute("rx", 0);
@@ -249,4 +260,41 @@ class Circle3P extends StrokeFillParent {
             svgElem.setAttribute("ry", glob.Coord.toPxLenY(math.distance([cx,cy], [this.x1, this.y1])));
         }
     }
+};
+
+class PolygonRI extends StrokeFillParent {
+    constructor(sid) {
+        super(sid);
+        this.label = "Regular polygon (inscribed)";
+        this.cx = 0;
+        this.cy = 0;
+        this.radius = 6;
+        this.sides = 5;
+        this.angle = 0;
+        this.SvgStyle.lineJoin = "miter";
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+    }
+    updateMath(svgElem) {
+        const rotStep = math.round(2 * math.PI / this.sides, 3);
+        const startPoint = math.rotate([0, this.radius], math.unit(`${this.angle}deg`));
+        let buffer = [0, 0];
+        let pointList = [];
+        for (let i = 0; i < this.sides; i++) {
+            buffer = math.rotate(startPoint, rotStep * i);
+            pointList.push([buffer[0] + this.cx, buffer[1] + this.cy]);
+        }
+        svgElem.setAttribute("points", toPoints(pointList));
+    }
+};
+
+class PolygonRC extends StrokeFillParent {
+
+};
+
+class PolygonRS extends StrokeFillParent {
+
+};
+
+class PolygonRV extends StrokeFillParent {
+
 };

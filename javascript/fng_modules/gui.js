@@ -103,9 +103,9 @@ ${window.screen.width}px / ${window.screen.height}px
 
         makeSID: function() { // Generate a 10-character-long "random" alphanumeric system id
             const charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            let sid = '';
-            for (let i = 0; i<10; i++) {
-                sid += charList.charAt(Math.floor(Math.random() * 62));
+            let sid = "";
+            for (let i = 0; i < 10; i++) {
+                sid += charList.charAt(math.floor(math.random() * 62));
             }
             return sid;
         },
@@ -119,6 +119,10 @@ ${window.screen.width}px / ${window.screen.height}px
                 ["triangle", [fngObjects.Triangle, "geometry", "polygon"]],
                 ["circle", [fngObjects.Circle, "geometry", "ellipse"]],
                 ["circle3p", [fngObjects.Circle3P, "geometry", "ellipse"]],
+                ["polygonri", [fngObjects.PolygonRI, "geometry", "polygon"]],
+                ["polygonrc", [fngObjects.PolygonRC, "geometry", "polygon"]],
+                ["polygonrs", [fngObjects.PolygonRS, "geometry", "polygon"]],
+                ["polygonrv", [fngObjects.PolygonRV, "geometry", "polygon"]],
             ]);
             if (data === null) {                             //create a new FNGobject
                 const sid = this.makeSID();
