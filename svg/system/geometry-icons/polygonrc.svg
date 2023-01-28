@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="-20 -20 40 40">
+	<metadata>
+	    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    		<rdf:Description rdf:about="">
+				<author>Wei-Hsu Lin</author>
+      			<license>Apache-2.0</license>
+    		</rdf:Description>
+  		</rdf:RDF>
+	</metadata>
+	<title>Regular Polygon (Circumscribed)</title>
+	<defs>
+		<g id="pentagon">
+		    <polygon points="0,-14 13.3154,-4.3262 8.2292,11.3262 -8.2292,11.3262 -13.3154,-4.3262" fill="none" stroke="#5f95f7" stroke-width="2px" stroke-linejoin="round"/>
+			<circle cx="0" cy="-14" r="2.5" fill="#5f95f7"/>
+			<circle cx="13.3154" cy="-4.3262" r="2.5" fill="#5f95f7"/>
+			<circle cx="8.2292" cy="11.3262" r="2.5" fill="#5f95f7"/>
+			<circle cx="-8.2292" cy="11.3262" r="2.5" fill="#5f95f7"/>
+			<circle cx="-13.3154" cy="-4.3262" r="2.5" fill="#5f95f7"/>
+		</g>
+	</defs>
+    <rect x="-20" y="-20" width="40" height="40" fill="#ffffff"/>
+	<use xlink:href="#pentagon"/>
+	<circle cx="0" cy="0" r="7.5" fill="none" stroke="#5f95f7" stroke-width="2px"/>
+</svg>

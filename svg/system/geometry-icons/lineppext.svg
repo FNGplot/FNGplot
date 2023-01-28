@@ -8,8 +8,8 @@
   		</rdf:RDF>
 	</metadata>
 	<title>2-point line extended</title>
-	<rect x="0" y="0" width="40" height="40" fill="#ffffff" />
-	<circle cx="14" cy="14" r="2.5" fill="#5f95f7" />
-	<circle cx="26" cy="26" r="2.5" fill="#5f95f7" />
-	<line x1="9" y1="9" x2="31" y2="31" stroke="#5f95f7" stroke-width="2px" stroke-linecap="round" />
+	<rect x="0" y="0" width="40" height="40" fill="#ffffff"/>
+	<circle cx="14" cy="14" r="2.5" fill="#5f95f7"/>
+	<circle cx="26" cy="26" r="2.5" fill="#5f95f7"/>
+	<line x1="9" y1="9" x2="31" y2="31" stroke="#5f95f7" stroke-width="2px" stroke-linecap="round"/>
 </svg>
