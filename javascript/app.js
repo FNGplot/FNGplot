@@ -32,12 +32,16 @@ document.querySelector(".workspace__block-toolbar__btn-ctnr").addEventListener("
         switch (event.target.dataset.cmd) {
             case "import":
                 // nothing yet
+                break;
             case "export":
                 // nothing yet
+                break;
             case "copy":
                 // nothing yet
+                break;
             case "delete": 
                 gui.deleteFNGObjects(1);
+                break;
         }
     }
 });
