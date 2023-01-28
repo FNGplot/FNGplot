@@ -10,7 +10,7 @@
 	<title>Regular Polygon (Inscribed)</title>
 	<defs>
 		<g id="pentagon">
-		    <polygon points="0,-14 13.3154,-4.3262 8.2292,11.3262 -8.2292,11.3262 -13.3154,-4.3262" fill="none" stroke="#5f95f7" stroke-width="2.66px" stroke-linejoin="round"/>
+		    <polygon points="0,-14 13.3154,-4.3262 8.2292,11.3262 -8.2292,11.3262 -13.3154,-4.3262" fill="none" stroke="#5f95f7" stroke-width="2.5px" stroke-linejoin="round"/>
 			<circle cx="0" cy="-14" r="2.5" fill="#5f95f7"/>
 			<circle cx="13.3154" cy="-4.3262" r="2.5" fill="#5f95f7"/>
 			<circle cx="8.2292" cy="11.3262" r="2.5" fill="#5f95f7"/>
@@ -19,6 +19,6 @@
 		</g>
 	</defs>
     <rect x="-20" y="-20" width="40" height="40" fill="#ffffff"/>
-	<use xlink:href="#pentagon" transform="scale(0.75)"/>
-	<circle cx="0" cy="0" r="14" fill="none" stroke="#5f95f7" stroke-width="2px"/>
+	<use xlink:href="#pentagon" transform="scale(0.8)"/>
+	<circle cx="0" cy="0" r="15" fill="none" stroke="#5f95f7" stroke-width="2px"/>
 </svg>
