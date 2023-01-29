@@ -27,6 +27,11 @@
     src: url('../fonts/WOFF2/MaterialSymbolsRounded.woff2') format('woff2');
 }
 
+/* || Global */
+input[type="number"]::-webkit-inner-spin-button {  /* make spinners permanently visible */
+    opacity: 1;
+}
+
 /* || CSS Root */
 :root {
     /* font-size: 8px (basis of rem) */
@@ -153,6 +158,7 @@ body {
 }
 
 /* || editpanel */
+/* To reduce the filesize of editpanel.json, the child classes will abbreviate "editpanel" to "ep" */
 .editpanel {
     position: relative;
     margin: 0.5rem 1rem 1rem;
@@ -165,23 +171,43 @@ body {
     display: flex;
     flex-direction: column;
 }
-/* To reduce the filesize of editpanel.json, the following classes will abbreviate "editpanel" to "ep" */
-.ep__cell{
+.ep__title {
+    position: relative;
+    margin: 0.4rem 0rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.ep__title:hover {
+    background-color: #e0e0e0;
+}
+.ep__title__arrowbtn {
+    cursor: default;
+    font: 2rem "Material Symbols Rounded";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    line-height: 1;
+}
+.ep__title__text {
+    font: bold 1.6rem Lato;
+    user-select: none;
+}
+.ep__section {
+    position: relative;
+    height: auto;
+    display: none;
+    flex-direction: column;
+    padding-left: 2rem; 
+}
+.ep__cell {
     position: relative;
     margin: 0.2rem 0rem;
     font: 1.6rem Lato;
+    display: flex;
 }
 .ep__input {
     font: 1.3rem Lato;
     margin: 0rem 0.4rem;
-}
-.ep__input--idtag{   /* disabled */
-    background-color: #e0e0e0;
-    color: black;
-    font: 1.3rem "Source Code Pro";
-    border: 0.1rem solid black;
-    border-radius: 3px;
-    width: 8rem; /*I know this is always enough becuase it uses a monospace font*/
 }
 .ep__select{
     position: relative;
@@ -563,10 +589,9 @@ body {
 }
 
 /* || Utility classes */
-.ghost-class {            /*'ghostClass' parameter of sortable.js*/
+.ghost-class {            /* 'ghostClass' parameter of sortable.js */
     opacity: 0.4;
 }
-
 /* Basic font styling */
 .bold {
     font-weight: bold;
@@ -577,7 +602,6 @@ body {
 .mono {
     font-family: "Source Code Pro";
 }
-
 /* width classes*/
 .w1 {
     width: 1em;

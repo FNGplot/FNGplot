@@ -252,6 +252,17 @@ ${window.screen.width}px / ${window.screen.height}px
                 panel.parentNode.removeChild(panel);
             }
         },
+        toggleEditPanelSection: function(titleElem) {
+            const section = titleElem.nextElementSibling;
+            const arrowBtn = titleElem.querySelector(".ep__title__arrowbtn");    // google material icon
+            if (arrowBtn.innerHTML === "keyboard_arrow_right") {    // show section
+                section.style.display = "flex";
+                arrowBtn.innerHTML = "keyboard_arrow_down";
+            } else if (arrowBtn.innerHTML === "keyboard_arrow_down") { // hide section
+                section.style.display = "none";
+                arrowBtn.innerHTML = "keyboard_arrow_right";
+            }
+        },
         initEditPanel: function(panelElem, sid) {
             const obj = glob.SysData.objectList.find(item => item.sid === sid);
             const inputList = panelElem.querySelectorAll("[data-property]"); //return a list of textboxes(and some other stuff) waiting to be initialized

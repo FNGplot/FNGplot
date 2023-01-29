@@ -51,6 +51,8 @@ glob.DOM.BLOCK_FRAME.addEventListener("click", (event) => {       // event deleg
         gui.changeVisibility(event.target.closest(".dragblock").dataset.sid);
     } else if (event.target.classList.contains("dragblock__btn--edit")) {   // toggle editpanel
         gui.toggleEditPanel(event.target.closest(".dragblock").dataset.sid);
+    } else if (event.target.closest(".ep__title") != null) {    // toggle editpanel section (fires when anywhere inside ep__title is clicked)
+        gui.toggleEditPanelSection(event.target.closest(".ep__title"));
     }
 });
 
