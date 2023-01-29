@@ -152,7 +152,7 @@ body {
     accent-color: #ffffff;  /* Makes a black check and white background */
 }
 
-/* || editpanels */
+/* || editpanel */
 .editpanel {
     position: relative;
     margin: 0.5rem 1rem 1rem;
@@ -171,9 +171,6 @@ body {
     margin: 0.2rem 0rem;
     font: 1.6rem Lato;
 }
-.ep__cell--monolabel {  /* label w/ monospaced font */
-    font: 1.6rem "Source Code Pro";
-}
 .ep__input {
     font: 1.3rem Lato;
     margin: 0rem 0.4rem;
@@ -184,7 +181,7 @@ body {
     font: 1.3rem "Source Code Pro";
     border: 0.1rem solid black;
     border-radius: 3px;
-    width: 8rem; /*I know this is exactly enough becuase it uses a monospace font*/
+    width: 8rem; /*I know this is always enough becuase it uses a monospace font*/
 }
 .ep__select{
     position: relative;
@@ -569,10 +566,18 @@ body {
 .ghost-class {            /*'ghostClass' parameter of sortable.js*/
     opacity: 0.4;
 }
+
 /* Basic font styling */
 .bold {
     font-weight: bold;
 }
+.italic {
+    font-style: italic;
+}
+.mono {
+    font-family: "Source Code Pro";
+}
+
 /* width classes*/
 .w1 {
     width: 1em;

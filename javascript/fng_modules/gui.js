@@ -283,7 +283,7 @@ ${window.screen.width}px / ${window.screen.height}px
                     math.hasNumericValue(target.value) ? obj.SvgStyle[prop] = parseFloat(target.value) : obj.SvgStyle[prop] = target.value;
                 }
         
-                // svg tyle properties
+                // is a SVG style property
                 if (glob.Maps.EDITACTION_SI.has(prop)) {
                     glob.Maps.EDITACTION_SI.get(prop)(obj, svgElem);
                 } else { // Calculate object
@@ -300,7 +300,7 @@ ${window.screen.width}px / ${window.screen.height}px
         
                 if(prop === "label"){ //special case: label (block labeltag update required)
                     target.closest(".dragblock").querySelector(".dragblock__label").innerHTML = target.value;
-                } else if (glob.Maps.EDITACTION_SC.has(prop)) {   // svg style properties
+                } else if (glob.Maps.EDITACTION_SC.has(prop)) {   // is a SVG style property
                     glob.Maps.EDITACTION_SC.get(prop)(obj, svgElem);
                 } else { // Calculate object
                     obj.updateMath(svgElem);

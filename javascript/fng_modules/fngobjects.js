@@ -277,11 +277,11 @@ class PolygonRI extends StrokeFillParent {
     updateMath(svgElem) {
         const rotStep = math.round(2 * math.PI / this.sides, 3);
         const startPoint = math.rotate([0, this.radius], math.unit(`${this.angle}deg`));
-        let buffer = [0, 0];
+        let buf = [0, 0];
         let pointList = [];
-        for (let i = 0; i < this.sides; i++) {
-            buffer = math.rotate(startPoint, rotStep * i);
-            pointList.push([buffer[0] + this.cx, buffer[1] + this.cy]);
+        for (let i = 0; i < this.sides; i++) {  // construct list of points on circumference
+            buf = math.rotate(startPoint, rotStep * i);
+            pointList.push([buf[0] + this.cx, buf[1] + this.cy]);
         }
         svgElem.setAttribute("points", toPoints(pointList));
     }

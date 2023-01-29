@@ -13,7 +13,7 @@ fs.readFile('editpanels.txt', (err, rawData) => {
     else {
         // process data
         let data = rawData.toString();
-        data = data.replaceAll("    ",'');   //remove 4-space tab
+        data = data.replaceAll("  ",'');   //remove 2-space tab
         data = data.replaceAll("\"",'\'');   //change double quotes to single quotes
         let panelList = data.split(/\r\n\r\n|\r\r|\n\n/); //split data using two EOLs
 
