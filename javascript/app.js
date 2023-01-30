@@ -67,7 +67,7 @@ for (const item of ["input", "change"]) {
 
 document.querySelector(".toolbar").addEventListener("click", (event) => {  //event delegation
     const target = event.target;
-    if (target.tagName.toLowerCase() === "img") {                                  //SVG icon clicked
+    if (target.classList.contains("toolbar__icon")) {                                  //SVG icon clicked
         gui.createFNGObject(target.dataset.objname, null);                            //create a brand new object of the specified kind
     } else if (target.classList.contains("toolbar__toggler__arrowbtn")) {         // Arrow button clicked
         gui.toggleToolbarDropdown(target);                                            // Expand or collapse the respective panel

@@ -198,18 +198,46 @@ body {
     flex-direction: column;
     padding-left: 2rem; 
 }
-.ep__cell {
+.ep__cell {     
     position: relative;
-    margin: 0.2rem 0rem;
+    margin: 0.3rem 0rem;
     font: 1.6rem Lato;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.ep__cell--default {   /* default flex style of cells (one parameter per cell) */
+    justify-content: space-between;
+}
+.ep__cell--multiparam { /* special flex style for cells with multiple parameters */
+    justify-content: center;
+}
+.ep__cell__group {    /* used to group multiple elements together in flexbox */
+    display: inline-block;
 }
 .ep__input {
+    position: relative;
     font: 1.3rem Lato;
     margin: 0rem 0.4rem;
 }
-.ep__select{
+.ep__input[type="color"] {
+    padding: 0;
+    outline: 0.1rem solid black;
+    border: none;
+    box-sizing: border-box;
+    height: 2.5rem;
+    width: 3.5rem;
+}
+.ep__input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+.ep__input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+.ep__select {
     position: relative;
+    font: 1.3rem Lato;
+    margin: 0rem 0.4rem;
 }
 
 /* || Banner at top left corner */
@@ -282,11 +310,11 @@ body {
 }
 .side-menu__datablock__cell { /* Basic cell */
     position: relative;
+    width: 100%;
     font-size: 1.6rem;
     margin: 0.5rem 0rem;
 }
 .side-menu__datablock__cell--flex { /* Basic cell w/ horizontal flexbox */
-    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -535,7 +563,8 @@ body {
     align-items: center;
 }
 .workspace__block-toolbar__option-btn {
-    width: 5rem; 
+    width: 5rem;
+    height: 5rem;
     background-color: transparent;
     cursor: default;
     font: 4rem "Material Symbols Rounded";
