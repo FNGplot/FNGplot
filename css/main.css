@@ -205,12 +205,10 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-.ep__cell--default {   /* default flex style of cells (one parameter per cell) */
     justify-content: space-between;
 }
-.ep__cell--multiparam { /* special flex style for cells with multiple parameters */
-    justify-content: center;
+.ep__cell--indent {
+    padding-left: 2rem;
 }
 .ep__cell__group {    /* used to group multiple elements together in flexbox */
     display: inline-block;
@@ -225,8 +223,8 @@ body {
     outline: 0.1rem solid black;
     border: none;
     box-sizing: border-box;
-    height: 2.5rem;
-    width: 3.5rem;
+    height: 2rem;
+    width: 4rem;
 }
 .ep__input[type="color"]::-webkit-color-swatch-wrapper {
 	padding: 0;
@@ -660,13 +658,4 @@ body {
 }
 .w10 {
     width: 10em;
-}
-.w15 {
-    width: 15em;
-}
-.w20 {
-    width: 20em;
-}
-.w25 {
-    width: 25em;
 }
