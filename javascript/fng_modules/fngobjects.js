@@ -141,12 +141,12 @@ class LinePS extends StrokeParent {
         this.rightExtend = 2.7;
     }
     updateMath(svgElem) {
-        if(this.slope === ""){    //user admits that it is a vertical line (Note: 0 == "")
+        if(this.slope === ""){    // user admits that it is a vertical line (Note: 0 == "")
             svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x));
             svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x));
             svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y - this.leftExtend));
             svgElem.setAttribute("y2", glob.Coord.toPxPosY(this.y + this.rightExtend));
-        } else {    //has a slope
+        } else {    // has a slope
             svgElem.setAttribute("x1", glob.Coord.toPxPosX(this.x - this.leftExtend * math.cos(math.atan2(this.slope, 1))));
             svgElem.setAttribute("x2", glob.Coord.toPxPosX(this.x + this.rightExtend * math.cos(math.atan2(this.slope, 1))));
             svgElem.setAttribute("y1", glob.Coord.toPxPosY(this.y - this.leftExtend * math.sin(math.atan2(this.slope, 1))));
