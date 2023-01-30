@@ -95,7 +95,7 @@ class LinePP extends StrokeParent {
 class LinePPExt extends StrokeParent {
     constructor(sid) {
         super(sid);
-        this.label = "Extended 2p line";
+        this.label = "Extended 2-point line";
         this.x1 = -4;
         this.y1 = -3;
         this.x2 = 6;
