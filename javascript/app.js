@@ -74,8 +74,8 @@ document.querySelector(".toolbar").addEventListener("click", (event) => {  //eve
     }
 });
 
-window.addEventListener("error", function(){
-    console.error("Execution Failed");
+window.addEventListener("error", function() {
+    console.error("Execution Failed"); 
     alert("Execution Failed.");
 });
 

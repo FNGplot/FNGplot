@@ -99,7 +99,6 @@ body {
     margin-top: -0.1rem;
     min-height: 5rem;
     height: auto;
-    width: 100%;
     overflow: hidden;
     box-sizing: content-box;
     padding: 0rem 0.4rem;   /* Act as "column-gap" that is always 0.4rem wide at the side */
