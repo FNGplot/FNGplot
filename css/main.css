@@ -172,7 +172,7 @@ body {
 }
 .ep__title {
     position: relative;
-    margin: 0.4rem 0rem;
+    margin: 0.4rem 0.4rem 0.4rem 0rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -220,6 +220,7 @@ body {
     font: 1.3rem Lato;
     margin: 0rem 0.4rem;
 }
+/* custom color input */
 .ep__input[type="color"] {
     padding: 0;
     outline: 0.1rem solid black;
@@ -234,11 +235,12 @@ body {
 .ep__input[type="color"]::-webkit-color-swatch {
 	border: none;
 }
+/* custom range input */
 .ep__input[type=range] {
     height: 3rem;
     appearance: none;
     -webkit-appearance: none;
-    width: 9rem;
+    width: 8rem;
 }
 .ep__input[type=range]::-webkit-slider-runnable-track {
     height: 0.25rem;
@@ -254,7 +256,7 @@ body {
     /* 0.75 is half of thumb height, 0.125 is half of track height. calc() is used just for easier maintenance */
     margin-top: calc(-0.75rem + 0.125rem);
 }
-.ep__select {
+.ep__select {   /* = ep__input */
     position: relative;
     font: 1.3rem Lato;
     margin: 0rem 0.4rem;
