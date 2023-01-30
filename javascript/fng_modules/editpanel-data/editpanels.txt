@@ -334,7 +334,7 @@ circle
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline(border)</div> 
     <div class="ep__cell ep__cell--indent">PathLength<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">DashArray<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">DashOffset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>
