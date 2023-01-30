@@ -6,6 +6,39 @@ import * as fngObjects  from "./fngobjects.js";    // get all the fngobject clas
 
 export let gui = (function() {
 
+    const InitMap = new Map([    // Data and reference used to initialize object
+        //["Object Name", [Class, Category, SVG Element]],
+        ["linepp", [fngObjects.LinePP, "geometry", "line"]],
+        ["lineps", [fngObjects.LinePS, "geometry", "line"]],
+        ["lineppext", [fngObjects.LinePPExt, "geometry", "line"]],
+        ["rect", [fngObjects.Rect, "geometry", "rect"]],
+        ["triangle", [fngObjects.Triangle, "geometry", "polygon"]],
+        ["circle", [fngObjects.Circle, "geometry", "ellipse"]],
+        ["circle3p", [fngObjects.Circle3P, "geometry", "ellipse"]],
+        ["polygonri", [fngObjects.PolygonRI, "geometry", "polygon"]],
+        ["polygonrc", [fngObjects.PolygonRC, "geometry", "polygon"]],
+        ["polygonrs", [fngObjects.PolygonRS, "geometry", "polygon"]],
+        ["polygonrv", [fngObjects.PolygonRV, "geometry", "polygon"]],
+    ]);
+
+    const EDITACTION_SI = new Map([    //SI: Style Input
+        ["strokeWidth", (obj, svgElem) => { svgElem.setAttribute("stroke-width", obj.SvgStyle.strokeWidth) }],
+        ["pathLength", (obj, svgElem) => { svgElem.setAttribute("pathLength", obj.SvgStyle.pathLength) }],
+        ["dashOffset", (obj, svgElem) => { svgElem.setAttribute("stroke-dashoffset", obj.SvgStyle.dashOffset) }],
+        ["strokeOpacity", (obj, svgElem) => { svgElem.setAttribute("stroke-opacity", math.round(obj.SvgStyle.strokeOpacity/100, 2)) }],
+        ["fillOpacity", (obj, svgElem) => { svgElem.setAttribute("fill-opacity", math.round(obj.SvgStyle.fillOpacity/100, 2)) }],
+        ["lineCap", (obj, svgElem) => { svgElem.setAttribute("stroke-linecap", obj.SvgStyle.lineCap) }],
+        ["lineJoin", (obj, svgElem) => { svgElem.setAttribute("stroke-linejoin", obj.SvgStyle.lineJoin) }],
+        ["miterLimit", (obj, svgElem) => { svgElem.setAttribute("stroke-miterlimit", obj.SvgStyle.miterLimit) }],
+    ]);
+
+    const EDITACTION_SC = new Map([    //SC: Style Change (Only property in the map that's not a style: "label")
+            ["label", (obj, svgElem) => { svgElem.setAttribute("data-label", obj.label) }],
+            ["dashArray", (obj, svgElem) => { svgElem.setAttribute("stroke-dasharray", obj.SvgStyle.dashArray) }],
+            ["strokeColor", (obj, svgElem) => { svgElem.setAttribute("stroke",obj.SvgStyle.strokeColor) }],
+            ["fillColor", (obj, svgElem) => { svgElem.setAttribute("fill", obj.SvgStyle.fillColor) }],
+    ]);
+
     return {
         // [!] Side menu
 
@@ -110,20 +143,6 @@ ${window.screen.width}px / ${window.screen.height}px
             return sid;
         },
         createFNGObject: function(objName, data) {
-            const InitMap = new Map([    // Data and reference used to initialize object
-                //["Object Name", [Class, Category, SVG Element]],
-                ["linepp", [fngObjects.LinePP, "geometry", "line"]],
-                ["lineps", [fngObjects.LinePS, "geometry", "line"]],
-                ["lineppext", [fngObjects.LinePPExt, "geometry", "line"]],
-                ["rect", [fngObjects.Rect, "geometry", "rect"]],
-                ["triangle", [fngObjects.Triangle, "geometry", "polygon"]],
-                ["circle", [fngObjects.Circle, "geometry", "ellipse"]],
-                ["circle3p", [fngObjects.Circle3P, "geometry", "ellipse"]],
-                ["polygonri", [fngObjects.PolygonRI, "geometry", "polygon"]],
-                ["polygonrc", [fngObjects.PolygonRC, "geometry", "polygon"]],
-                ["polygonrs", [fngObjects.PolygonRS, "geometry", "polygon"]],
-                ["polygonrv", [fngObjects.PolygonRV, "geometry", "polygon"]],
-            ]);
             if (data === null) {                             //create a new FNGobject
                 const sid = this.makeSID();
                 const data = InitMap.get(objName);   // ["objName", [Class, Category, SVG Element]]
@@ -148,10 +167,10 @@ ${window.screen.width}px / ${window.screen.height}px
                 // Step 4: Initialize and render the FNGobject for the first time
                 newObj.updateMath(newSVGElem);      // render the math part first
                 for (const property in newObj.SvgStyle) {     //render the svg part
-                    if (glob.Maps.EDITACTION_SI.has(property)) {
-                        glob.Maps.EDITACTION_SI.get(property)(newObj, newSVGElem);
-                    } else if (glob.Maps.EDITACTION_SC.has(property)) {
-                        glob.Maps.EDITACTION_SC.get(property)(newObj, newSVGElem);
+                    if (EDITACTION_SI.has(property)) {
+                        EDITACTION_SI.get(property)(newObj, newSVGElem);
+                    } else if (EDITACTION_SC.has(property)) {
+                        EDITACTION_SC.get(property)(newObj, newSVGElem);
                     }
                 }
             }
@@ -295,8 +314,8 @@ ${window.screen.width}px / ${window.screen.height}px
                 }
         
                 // is a SVG style property
-                if (glob.Maps.EDITACTION_SI.has(prop)) {
-                    glob.Maps.EDITACTION_SI.get(prop)(obj, svgElem);
+                if (EDITACTION_SI.has(prop)) {
+                    EDITACTION_SI.get(prop)(obj, svgElem);
                 } else { // Calculate object
                     obj.updateMath(svgElem);
                 }
@@ -311,8 +330,8 @@ ${window.screen.width}px / ${window.screen.height}px
         
                 if(prop === "label"){ //special case: label (block labeltag update required)
                     target.closest(".dragblock").querySelector(".dragblock__label").innerHTML = target.value;
-                } else if (glob.Maps.EDITACTION_SC.has(prop)) {   // is a SVG style property
-                    glob.Maps.EDITACTION_SC.get(prop)(obj, svgElem);
+                } else if (EDITACTION_SC.has(prop)) {   // is a SVG style property
+                    EDITACTION_SC.get(prop)(obj, svgElem);
                 } else { // Calculate object
                     obj.updateMath(svgElem);
                 }

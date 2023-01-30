@@ -105,10 +105,17 @@ rect
     <div class="ep__cell">Border:</div>
     <div class="ep__cell ep__cell--indent">Color<input type="color" data-property="strokeColor" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Width<input type="number" min="0" data-property="strokeWidth" class="ep__input w4"></div>
-    <div class="ep__cell ep__cell--indent">Opacity<input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w4">%</div>
+    <div class="ep__cell ep__cell--indent">
+      Opacity
+      <span class="ep__cell__group">
+        <input type="range" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input">
+        <input type="number" min="0" max="100" step="1" data-property="strokeOpacity" class="ep__input w4">
+        100%
+      </span>
+    </div>
     <div class="ep__cell">Fill:</div>
     <div class="ep__cell ep__cell--indent">Color<input type="color" data-property="fillColor" class="ep__input w4"></div>
-    <div class="ep__cell ep__cell--indent">Opacity<input type="number" min="0" max="100" step="1" data-property="fillOpacity" class="ep__input w4">%</div>
+    <div class="ep__cell ep__cell--indent">Opacity<input type="range" min="0" max="100" step="1" data-property="fillOpacity" class="ep__input w4">%</div>
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">

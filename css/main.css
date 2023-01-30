@@ -211,7 +211,9 @@ body {
     padding-left: 2rem;
 }
 .ep__cell__group {    /* used to group multiple elements together in flexbox */
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .ep__input {
     position: relative;
@@ -231,6 +233,26 @@ body {
 }
 .ep__input[type="color"]::-webkit-color-swatch {
 	border: none;
+}
+.ep__input[type=range] {
+    height: 3rem;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 9rem;
+}
+.ep__input[type=range]::-webkit-slider-runnable-track {
+    height: 0.25rem;
+    cursor: pointer;
+    background-color: black;
+  }
+.ep__input[type=range]::-webkit-slider-thumb {
+    height: 1.5rem;
+    width: 0.5rem;
+    background-color: black;
+    cursor: pointer;
+    -webkit-appearance: none;
+    /* 0.75 is half of thumb height, 0.125 is half of track height. calc() is used just for easier maintenance */
+    margin-top: calc(-0.75rem + 0.125rem);
 }
 .ep__select {
     position: relative;

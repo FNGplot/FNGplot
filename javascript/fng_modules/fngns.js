@@ -71,26 +71,6 @@ export let fngNameSpace = (function() {
             },
         }),
 
-        /* [!] Maps (Can't be 100% frozen, preferred over traditional Object because 1. Arrow functions can be used and 2. Lookup is faster) */
-        Maps: Object.freeze({
-            EDITACTION_SI: new Map([    //SI: Style Input
-                ["strokeWidth", (obj, svgElem) => { svgElem.setAttribute("stroke-width", obj.SvgStyle.strokeWidth) }],
-                ["pathLength", (obj, svgElem) => { svgElem.setAttribute("pathLength", obj.SvgStyle.pathLength) }],
-                ["dashOffset", (obj, svgElem) => { svgElem.setAttribute("stroke-dashoffset", obj.SvgStyle.dashOffset) }],
-                ["strokeOpacity", (obj, svgElem) => { svgElem.setAttribute("stroke-opacity", math.round(obj.SvgStyle.strokeOpacity/100, 2)) }],
-                ["fillOpacity", (obj, svgElem) => { svgElem.setAttribute("fill-opacity", math.round(obj.SvgStyle.fillOpacity/100, 2)) }],
-                ["lineCap", (obj, svgElem) => { svgElem.setAttribute("stroke-linecap", obj.SvgStyle.lineCap) }],
-                ["lineJoin", (obj, svgElem) => { svgElem.setAttribute("stroke-linejoin", obj.SvgStyle.lineJoin) }],
-                ["miterLimit", (obj, svgElem) => { svgElem.setAttribute("stroke-miterlimit", obj.SvgStyle.miterLimit) }],
-            ]),
-            EDITACTION_SC: new Map([    //SC: Style Change (Only property in the map that's not a style: "label")
-                ["label", (obj, svgElem) => { svgElem.setAttribute("data-label", obj.label) }],
-                ["dashArray", (obj, svgElem) => { svgElem.setAttribute("stroke-dasharray", obj.SvgStyle.dashArray) }],
-                ["strokeColor", (obj, svgElem) => { svgElem.setAttribute("stroke",obj.SvgStyle.strokeColor) }],
-                ["fillColor", (obj, svgElem) => { svgElem.setAttribute("fill", obj.SvgStyle.fillColor) }],
-            ]),
-        }),
-
         /* [!] Masks */
         maskOn: function(name) {
             document.querySelector(".mask-base").querySelector(`.${name}`).style.display = "block";
