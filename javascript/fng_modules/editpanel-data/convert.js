@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 
-fs.readFile('editpanels.txt', (err, rawData) => {
+fs.readFile('editpanels.html', (err, rawData) => {
     if (err)
         console.error(err);
     else {
