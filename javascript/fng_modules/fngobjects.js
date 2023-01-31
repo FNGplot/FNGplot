@@ -204,7 +204,7 @@ class Triangle extends StrokeFillParent {
     }
 };
 
-class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case user sets glob.Coord.xHat != glob.Coord.yHat
+class Circle extends StrokeFillParent {  // Actually uses an SVG <ellipse> in case user makes xHat != yHat
     constructor(sid) {
         super(sid);
         this.label = "Circle";

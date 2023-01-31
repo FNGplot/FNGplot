@@ -20,7 +20,7 @@ export let fngNameSpace = (function() {
             BLOCK_FRAME: document.querySelector('.workspace__block-frame'),
             SVG_CANVAS: document.querySelector('.workspace__svg-content--canvas'),
             SVG_DISPLAY: document.querySelector('.workspace__svg-content--display'),
-            BASIC_BLOCK_TEMPLATE: document.querySelector('.template').content.firstElementChild,
+            DRAGBLOCK_TEMPLATE: document.querySelector('.template').content.firstElementChild,
         }),
         Str: Object.freeze({    // Frequently used strings
             SVGNS: "http://www.w3.org/2000/svg",    // Namespace of SVG

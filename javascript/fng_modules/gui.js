@@ -152,7 +152,7 @@ ${window.screen.width}px / ${window.screen.height}px
                 glob.SysData.objectList.push(newObj);                        //push new object into list
                     
                 // Step 2 of 3: draggable block
-                let newBlock = glob.DOM.BASIC_BLOCK_TEMPLATE.cloneNode(true);                              //copy template     
+                let newBlock = glob.DOM.DRAGBLOCK_TEMPLATE.cloneNode(true);                              //copy template     
                 newBlock.classList.add(`dragblock--${data[1]}`);                                            //add object class
                 newBlock.querySelector('.dragblock__icon').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
                 newBlock.querySelector('.dragblock__label').innerHTML = newObj.label;           //display default label
