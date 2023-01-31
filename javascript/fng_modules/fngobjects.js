@@ -347,13 +347,15 @@ class PolygonRV extends StrokeFillParent {
         this.cy = 0;
         this.vx = 6;
         this.vy = 3;
+        this.sides = 5;
         this.SvgStyle.lineJoin = "miter";
         this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
     }
     updateMath(svgElem) {
+        const rotAngle = math.atan2(this.vy - this.cy, this.vx - this.cx);
+        const inscribeRadius = math.distance([this.cx, this.cy], [this.vx, this.vy]);
         const rotStep = math.round(2 * math.PI / this.sides, 3);
-        const inscribeRadius = (this.sideLength / 2) * math.csc(math.PI / this.sides) /* calculate the radius of the circle it is *inscribed* to */
-        const startPoint = math.rotate([0, inscribeRadius], math.unit(`${this.rotAngle}deg`));
+        const startPoint = [inscribeRadius * math.cos(rotAngle), inscribeRadius * math.sin(rotAngle)];
         let buf = [0, 0];
         let pointList = [];
         for (let i = 0; i < this.sides; i++) {  // construct list of points on circumference
