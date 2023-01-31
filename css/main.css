@@ -137,6 +137,7 @@ body {
     display: flex;
     align-items: center;
     overflow: hidden;
+    white-space: nowrap;
 }
 .dragblock__btn {
     position: relative;

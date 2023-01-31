@@ -288,7 +288,29 @@ class PolygonRI extends StrokeFillParent {
 };
 
 class PolygonRC extends StrokeFillParent {
-
+    constructor(sid) {
+        super(sid);
+        this.label = "Regular polygon (circumscribed)";
+        this.cx = 0;
+        this.cy = 0;
+        this.radius = 6;
+        this.sides = 5;
+        this.angle = 0;
+        this.SvgStyle.lineJoin = "miter";
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+    }
+    updateMath(svgElem) {
+        const rotStep = math.round(2 * math.PI / this.sides, 3);
+        const inscribeRadius = this.radius * math.sec(math.PI / this.sides) /* calculate the radius of the circle it is *inscribed* to */
+        const startPoint = math.rotate([0, inscribeRadius], math.unit(`${this.angle}deg`));
+        let buf = [0, 0];
+        let pointList = [];
+        for (let i = 0; i < this.sides; i++) {  // construct list of points on circumference
+            buf = math.rotate(startPoint, rotStep * i);
+            pointList.push([buf[0] + this.cx, buf[1] + this.cy]);
+        }
+        svgElem.setAttribute("points", toPoints(pointList));
+    }
 };
 
 class PolygonRS extends StrokeFillParent {

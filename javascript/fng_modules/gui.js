@@ -2,7 +2,7 @@
 /* Copyright (c) Wei-Hsu Lin & All Contributors to FNGplot */
 
 import {fngNameSpace as glob } from "./fngns.js";       // global variable module
-import * as fngObjects  from "./fngobjects.js";    // get all the fngobject classes
+import * as fngObjects  from "./fngobjects.js";         // get all the fngobject classes
 
 export let gui = (function() {
 

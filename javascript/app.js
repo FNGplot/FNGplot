@@ -137,7 +137,7 @@ glob.SysData.sortableList.push(
         forceFallback: true,
         onEnd: function (evt) {
             if (evt.oldIndex != evt.newIndex) {  //If the position actually changed
-                moveFNGObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null);
+                gui.moveFNGObject(evt.item.dataset.sid, evt.item.nextSibling != null ? evt.item.nextSibling.dataset.sid : null);
                 //passes null as reference if there is no next neighbor. insertBefore() will take care of it.
             }
         },
