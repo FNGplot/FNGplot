@@ -219,7 +219,7 @@ rect
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline (border)</div>
     <div class="ep__cell ep__cell--indent">Path Length<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Dash Array<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">Dash Offset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>
@@ -283,7 +283,7 @@ triangle
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline (border)</div>
     <div class="ep__cell ep__cell--indent">Path Length<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Dash Array<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">Dash Offset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>
@@ -334,7 +334,7 @@ circle
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline (border)</div>
     <div class="ep__cell ep__cell--indent">Path Length<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Dash Array<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">Dash Offset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>
@@ -389,7 +389,7 @@ circle3p
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline (border)</div>
     <div class="ep__cell ep__cell--indent">Path Length<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Dash Array<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">Dash Offset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>
@@ -415,7 +415,13 @@ polygonri
     </div>
     <div class="ep__cell">Radius<input type="number" min="0" data-property="radius" class="ep__input w4"></div>
     <div class="ep__cell">Sides<input type="number" min="0" data-property="sides" class="ep__input w4"></div>
-    <div class="ep__cell">Rotation Angle<input type="number" min="0" data-property="angle" class="ep__input w4"></div>
+    <div class="ep__cell">
+      Rotation Angle(deg)
+      <span class="ep__cell__group">
+        <input type="range" min="0" max="360" step="1" data-property="angle" class="ep__input" oninput="this.nextElementSibling.value = this.value;">
+        <input type="number" min="0" max="360" step="1" data-property="angle" class="ep__input w4" onKeyDown="return false" oninput="this.previousElementSibling.value = this.value;">
+      </span>
+    </div>
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Basic Style</span></div>
   <div class="ep__section">
@@ -450,7 +456,7 @@ polygonri
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline (border)</div>
     <div class="ep__cell ep__cell--indent">Path Length<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Dash Array<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">Dash Offset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>
@@ -476,7 +482,13 @@ polygonrc
     </div>
     <div class="ep__cell">Radius<input type="number" min="0" data-property="radius" class="ep__input w4"></div>
     <div class="ep__cell">Sides<input type="number" min="0" data-property="sides" class="ep__input w4"></div>
-    <div class="ep__cell">Rotation Angle<input type="number" min="0" data-property="angle" class="ep__input w4"></div>
+    <div class="ep__cell">
+      Rotation Angle(deg)
+      <span class="ep__cell__group">
+        <input type="range" min="0" max="360" step="1" data-property="angle" class="ep__input" oninput="this.nextElementSibling.value = this.value;">
+        <input type="number" min="0" max="360" step="1" data-property="angle" class="ep__input w4" onKeyDown="return false" oninput="this.previousElementSibling.value = this.value;">
+      </span>
+    </div>
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Basic Style</span></div>
   <div class="ep__section">
@@ -511,7 +523,7 @@ polygonrc
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline (border)</div>
     <div class="ep__cell ep__cell--indent">Path Length<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Dash Array<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">Dash Offset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>
@@ -537,7 +549,13 @@ polygonrs
     </div>
     <div class="ep__cell">Side Length<input type="number" min="0" data-property="sideLength" class="ep__input w4"></div>
     <div class="ep__cell">Sides<input type="number" min="0" data-property="sides" class="ep__input w4"></div>
-    <div class="ep__cell">Rotation Angle<input type="number" min="0" data-property="angle" class="ep__input w4"></div>
+    <div class="ep__cell">
+      Rotation Angle(deg)
+      <span class="ep__cell__group">
+        <input type="range" min="0" max="360" step="1" data-property="angle" class="ep__input" oninput="this.nextElementSibling.value = this.value;">
+        <input type="number" min="0" max="360" step="1" data-property="angle" class="ep__input w4" onKeyDown="return false" oninput="this.previousElementSibling.value = this.value;">
+      </span>
+    </div>
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Basic Style</span></div>
   <div class="ep__section">
@@ -572,7 +590,7 @@ polygonrs
   </div>
   <div class="ep__title"><div class="ep__title__arrowbtn">keyboard_arrow_right</div><span class="ep__title__text">Advanced Style</span></div>
   <div class="ep__section">
-    <div class="ep__cell">Dashline(border)</div>
+    <div class="ep__cell">Dashline (border)</div>
     <div class="ep__cell ep__cell--indent">Path Length<input type="number" min="0" step="1" data-property="pathLength" class="ep__input w4"></div>
     <div class="ep__cell ep__cell--indent">Dash Array<input type="text" data-property="dashArray" placeholder="NULL" class="ep__input w8"></div>
     <div class="ep__cell ep__cell--indent">Dash Offset<input type="number" step="1" data-property="dashOffset" class="ep__input w4"></div>

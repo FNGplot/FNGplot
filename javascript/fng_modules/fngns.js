@@ -58,16 +58,16 @@ export let fngNameSpace = (function() {
                 // console.log(this.xHat, this.yHat, this.originX, this.originY);
             },
             toPxPosX(xCord){  // Translate calculation result to actual SVG coordinate. X coordinate only.
-                return math.round(this.originX + this.xHat*xCord, 3);
+                return math.round(this.originX + this.xHat * xCord, 4);
             },
             toPxPosY(yCord){  // Translate calculation result to actual SVG coordinate. Y coordinate only.
-                return math.round(this.originY - this.yHat*yCord, 3);
+                return math.round(this.originY - this.yHat * yCord, 4);
             },
             toPxLenX(length){ // Translate calculation result to actual SVG lengths. X direction only.
-                return math.round(length * this.xHat, 3);
+                return math.round(length * this.xHat, 4);
             },
             toPxLenY(length){ // Translate calculation result to actual SVG lengths. Y direction only.
-                return math.round(length * this.yHat, 3);
+                return math.round(length * this.yHat, 4);
             },
         }),
 
