@@ -639,8 +639,8 @@ body {
     box-sizing: border-box;
 }
 
-/* || Utility classes */
-.ghost-class {            /* 'ghostClass' parameter of sortable.js */
+/* || Utility classes, mostly used in inserted HTML snippets */
+.ghost-class {  /* "ghostClass" parameter of sortable.js */
     opacity: 0.4;
 }
 /* Basic font styling */
@@ -654,33 +654,33 @@ body {
     font-family: "Source Code Pro";
 }
 /* width classes*/
-.w1 {
+.w1em {
     width: 1em;
 }
-.w2 {
+.w2em {
     width: 2em;
 }
-.w3 {
+.w3em {
     width: 3em;
 }
-.w4 {
+.w4em {
     width: 4em;
 }
-.w5 {
+.w5em {
     width: 5em;
 }
-.w6 {
+.w6em {
     width: 6em;
 }
-.w7 {
+.w7em {
     width: 7em;
 }
-.w8 {
+.w8em {
     width: 8em;
 }
-.w9 {
+.w9em {
     width: 9em;
 }
-.w10 {
+.w10em {
     width: 10em;
 }
