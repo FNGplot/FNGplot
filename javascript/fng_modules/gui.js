@@ -21,7 +21,7 @@ export let gui = (function() {
         ["polygonrv", [fngObjects.PolygonRV, "geometry", "polygon"]],
     ]);
 
-    const EDITACTION_NCRI = new Map([    //NCRI: (No Calculation Required) Input
+    const EditActionNCRI = new Map([    //NCRI: (No Calculation Required) Input
         ["strokeWidth", (obj, svgElem) => { svgElem.setAttribute("stroke-width", obj.SvgStyle.strokeWidth) }],
         ["pathLength", (obj, svgElem) => { svgElem.setAttribute("pathLength", obj.SvgStyle.pathLength) }],
         ["dashOffset", (obj, svgElem) => { svgElem.setAttribute("stroke-dashoffset", obj.SvgStyle.dashOffset) }],
@@ -32,7 +32,7 @@ export let gui = (function() {
         ["miterLimit", (obj, svgElem) => { svgElem.setAttribute("stroke-miterlimit", obj.SvgStyle.miterLimit) }],
     ]);
 
-    const EDITACTION_NCRC = new Map([    //NCRC: (No Calculation Required) Change
+    const EditActionNCRC = new Map([    //NCRC: (No Calculation Required) Change
         ["label", (obj, svgElem) => { svgElem.setAttribute("data-label", obj.label) }],
         ["dashArray", (obj, svgElem) => { svgElem.setAttribute("stroke-dasharray", obj.SvgStyle.dashArray) }],
         ["strokeColor", (obj, svgElem) => { svgElem.setAttribute("stroke",obj.SvgStyle.strokeColor) }],
@@ -167,10 +167,10 @@ ${window.screen.width}px / ${window.screen.height}px
                 // Step 4: Initialize and render the FNGobject for the first time
                 newObj.updateMath(newSVGElem);      // render the math part first
                 for (const property in newObj.SvgStyle) {     //render the svg part
-                    if (EDITACTION_NCRI.has(property)) {
-                        EDITACTION_NCRI.get(property)(newObj, newSVGElem);
-                    } else if (EDITACTION_NCRC.has(property)) {
-                        EDITACTION_NCRC.get(property)(newObj, newSVGElem);
+                    if (EditActionNCRI.has(property)) {
+                        EditActionNCRI.get(property)(newObj, newSVGElem);
+                    } else if (EditActionNCRC.has(property)) {
+                        EditActionNCRC.get(property)(newObj, newSVGElem);
                     }
                 }
             }
@@ -313,8 +313,8 @@ ${window.screen.width}px / ${window.screen.height}px
                     math.hasNumericValue(target.value) ? obj.SvgStyle[prop] = parseFloat(target.value) : obj.SvgStyle[prop] = target.value;
                 }
         
-                if (EDITACTION_NCRI.has(prop)) {    // This property doesn't require calculation
-                    EDITACTION_NCRI.get(prop)(obj, svgElem);
+                if (EditActionNCRI.has(prop)) {    // This property doesn't require calculation
+                    EditActionNCRI.get(prop)(obj, svgElem);
                 } else { // Otherwise, recalculate the whole math part
                     obj.updateMath(svgElem);
                 }
@@ -329,8 +329,8 @@ ${window.screen.width}px / ${window.screen.height}px
         
                 if(prop === "label"){ //special case: label (block labeltag update required)
                     target.closest(".dragblock").querySelector(".dragblock__label").innerHTML = target.value;
-                } else if (EDITACTION_NCRC.has(prop)) {  // This property doesn't require calculation
-                    EDITACTION_NCRC.get(prop)(obj, svgElem);
+                } else if (EditActionNCRC.has(prop)) {  // This property doesn't require calculation
+                    EditActionNCRC.get(prop)(obj, svgElem);
                 } else { // Otherwise, recalculate the whole math part
                     obj.updateMath(svgElem);
                 }
