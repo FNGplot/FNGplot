@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin & All Contributors to FNGplot */
 
+import { toLinuxArchString } from "builder-util";
 import {fngNameSpace as glob } from "./fngns.js";     // global variable module
 
 export {
@@ -19,6 +20,9 @@ export {
     PolygonRC,
     PolygonRS,
     PolygonRV,
+    Arc,
+    Sector,
+    Segment,
     // Algebra
 };
 
@@ -276,7 +280,7 @@ class PolygonRI extends StrokeFillParent {
     }
     updateMath(svgElem) {
         const rotStep = math.round(2 * math.PI / this.sides, 3);
-        const startPoint = math.rotate([0, this.radius], math.unit(`${this.rotAngle}deg`));
+        const startPoint = math.rotate([0, this.radius], math.unit(this.rotAngle, "deg"));
         let buf = [0, 0];
         let pointList = [];
         for (let i = 0; i < this.sides; i++) {  // construct list of points on circumference
@@ -302,7 +306,7 @@ class PolygonRC extends StrokeFillParent {
     updateMath(svgElem) {
         const rotStep = math.round(2 * math.PI / this.sides, 3);
         const inscribeRadius = this.radius * math.sec(math.PI / this.sides) /* calculate the radius of the circle it is *inscribed* to */
-        const startPoint = math.rotate([0, inscribeRadius], math.unit(`${this.rotAngle}deg`));
+        const startPoint = math.rotate([0, inscribeRadius], math.unit(this.rotAngle, "deg"));
         let buf = [0, 0];
         let pointList = [];
         for (let i = 0; i < this.sides; i++) {  // construct list of points on circumference
@@ -328,7 +332,7 @@ class PolygonRS extends StrokeFillParent {
     updateMath(svgElem) {
         const rotStep = math.round(2 * math.PI / this.sides, 3);
         const inscribeRadius = (this.sideLength / 2) * math.csc(math.PI / this.sides) /* calculate the radius of the circle it is *inscribed* to */
-        const startPoint = math.rotate([0, inscribeRadius], math.unit(`${this.rotAngle}deg`));
+        const startPoint = math.rotate([0, inscribeRadius], math.unit(this.rotAngle, "deg"));
         let buf = [0, 0];
         let pointList = [];
         for (let i = 0; i < this.sides; i++) {  // construct list of points on circumference
@@ -365,3 +369,63 @@ class PolygonRV extends StrokeFillParent {
         svgElem.setAttribute("points", toPoints(pointList));
     }
 };
+
+class Arc extends StrokeParent {
+    constructor(sid) {
+        super(sid);
+        this.label = "Circular arc";
+        this.cx = 1;
+        this.cy = 1;
+        this.radius = 4;
+        this.startAngle = -30;
+        this.endAngle = 160;
+        this.direction = "ccw"; /* cw or ccw */
+        this.SvgStyle.fillColor = "none";
+    }
+    updateMath(svgElem) {
+        // A rx ry x-axis-rotation large-arc-flag sweep-flag x ythis.endAngle
+        const [start, end] = sanitizeInput(this.startAngle, this.endAngle);
+        const sweepFlag = this.direction === "ccw" ? "0" : "1";
+        let largeArcFlag;
+        if (end - start >= 180) {
+            if (sweepFlag === "0") {
+                largeArcFlag = "1";
+            } else {
+                largeArcFlag = "0";
+            }
+        } else {
+            if (sweepFlag === "0") {
+                largeArcFlag = "0";
+            } else {
+                largeArcFlag = "1";
+            }
+        }
+        const [sx, sy, dx, dy] = [
+            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(start, "deg"))),
+            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(start, "deg"))),
+            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(end, "deg"))),
+            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(end, "deg"))),
+        ];
+        let d = `M ${sx} ${sy} `;  
+        d += `A ${glob.Coord.toPxLenX(this.radius)} ${glob.Coord.toPxLenY(this.radius)} 0 ${largeArcFlag} ${sweepFlag} ${dx} ${dy}`;
+        svgElem.setAttribute("d", d);
+        
+        function sanitizeInput(start, end) {
+            let [s, e] = [start, end];
+            while (s > 360) { s -= 360 };
+            while (s < 0) { s += 360 };
+            while (e > 360) { e -= 360 };
+            while (e < 0) { e += 360 };
+            if (s > e) { e += 360 };
+            return [s, e];
+        }
+    }
+}
+
+class Sector extends StrokeFillParent {
+    
+}
+
+class Segment extends StrokeFillParent {
+    
+}

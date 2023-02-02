@@ -19,6 +19,7 @@ export let gui = (function() {
         ["polygonrc", [fngObjects.PolygonRC, "geometry", "polygon"]],
         ["polygonrs", [fngObjects.PolygonRS, "geometry", "polygon"]],
         ["polygonrv", [fngObjects.PolygonRV, "geometry", "polygon"]],
+        ["arc", [fngObjects.Arc, "geometry", "path"]],
     ]);
 
     const EditActionNCRI = new Map([    //NCRI: (No Calculation Required) Input
