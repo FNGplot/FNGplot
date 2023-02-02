@@ -192,7 +192,7 @@ class Triangle extends StrokeFillParent {
         this.x3 = 1;
         this.y3 = 5;
         this.SvgStyle.lineJoin = "miter";
-        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is SVG default value)
     }
     updateMath(svgElem) {
         const [x1, y1, x2, y2, x3, y3] = [
@@ -275,7 +275,7 @@ class PolygonRI extends StrokeFillParent {
         this.sides = 5;
         this.rotAngle = 0;
         this.SvgStyle.lineJoin = "miter";
-        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is SVG default value)
     }
     updateMath(svgElem) {
         const rotStep = math.round(2 * math.PI / this.sides, 3);
@@ -300,7 +300,7 @@ class PolygonRC extends StrokeFillParent {
         this.sides = 5;
         this.rotAngle = 0;
         this.SvgStyle.lineJoin = "miter";
-        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is SVG default value)
     }
     updateMath(svgElem) {
         const rotStep = math.round(2 * math.PI / this.sides, 3);
@@ -326,7 +326,7 @@ class PolygonRS extends StrokeFillParent {
         this.sides = 5;
         this.rotAngle = 0;
         this.SvgStyle.lineJoin = "miter";
-        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is SVG default value)
     }
     updateMath(svgElem) {
         const rotStep = math.round(2 * math.PI / this.sides, 3);
@@ -352,7 +352,7 @@ class PolygonRV extends StrokeFillParent {
         this.vy = 3;
         this.sides = 5;
         this.SvgStyle.lineJoin = "miter";
-        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is default value)
+        this.SvgStyle.miterLimit = "4";  // for acute triangles (4 is SVG default value)
     }
     updateMath(svgElem) {
         const rotAngle = math.atan2(this.vy - this.cy, this.vx - this.cx);
@@ -376,13 +376,13 @@ class Arc extends StrokeParent {
         this.cx = 1;
         this.cy = 1;
         this.radius = 4;
-        this.startAngle = -30;
-        this.endAngle = 160;
+        this.startAngle = -10;
+        this.endAngle = 110;
         this.direction = "ccw"; /* cw or ccw */
         this.SvgStyle.fillColor = "none";
     }
     updateMath(svgElem) {
-        // A rx ry x-axis-rotation large-arc-flag sweep-flag x ythis.endAngle
+        // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
         const [start, end] = sanitizeInput(this.startAngle, this.endAngle);
         const sweepFlag = this.direction === "ccw" ? "0" : "1";
         let largeArcFlag;
@@ -422,9 +422,109 @@ class Arc extends StrokeParent {
 }
 
 class Sector extends StrokeFillParent {
-    
+    constructor(sid) {
+        super(sid);
+        this.label = "Circular sector";
+        this.cx = 1;
+        this.cy = 1;
+        this.radius = 4;
+        this.startAngle = 110;
+        this.endAngle = 230;
+        this.direction = "ccw"; /* cw or ccw */
+        this.SvgStyle.lineJoin = "miter";
+        this.SvgStyle.miterLimit = "4";  // for angle startPoint/center/endPoint  (4 is SVG default value)
+    }
+    updateMath(svgElem) {
+        // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+        const [start, end] = sanitizeInput(this.startAngle, this.endAngle);
+        const sweepFlag = this.direction === "ccw" ? "0" : "1";
+        let largeArcFlag;
+        if (end - start >= 180) {
+            if (sweepFlag === "0") {
+                largeArcFlag = "1";
+            } else {
+                largeArcFlag = "0";
+            }
+        } else {
+            if (sweepFlag === "0") {
+                largeArcFlag = "0";
+            } else {
+                largeArcFlag = "1";
+            }
+        }
+        const [sx, sy, dx, dy] = [
+            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(start, "deg"))),
+            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(start, "deg"))),
+            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(end, "deg"))),
+            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(end, "deg"))),
+        ];
+        let d = `M ${sx} ${sy} `;  
+        d += `A ${glob.Coord.toPxLenX(this.radius)} ${glob.Coord.toPxLenY(this.radius)} 0 ${largeArcFlag} ${sweepFlag} ${dx} ${dy}`;
+        d += `L ${glob.Coord.toPxPosX(this.cx)} ${glob.Coord.toPxPosY(this.cy)} Z`;
+        svgElem.setAttribute("d", d);
+        
+        function sanitizeInput(start, end) {
+            let [s, e] = [start, end];
+            while (s > 360) { s -= 360 };
+            while (s < 0) { s += 360 };
+            while (e > 360) { e -= 360 };
+            while (e < 0) { e += 360 };
+            if (s > e) { e += 360 };
+            return [s, e];
+        }
+    }
 }
 
 class Segment extends StrokeFillParent {
-    
+    constructor(sid) {
+        super(sid);
+        this.label = "Circular segment";
+        this.cx = 1;
+        this.cy = 1;
+        this.radius = 4;
+        this.startAngle = 230;
+        this.endAngle = 350;
+        this.direction = "ccw"; /* cw or ccw */
+        this.SvgStyle.lineJoin = "miter";
+        this.SvgStyle.miterLimit = "4";  // for two side "corners" (4 is SVG default value)
+    }
+    updateMath(svgElem) {
+        // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+        const [start, end] = sanitizeInput(this.startAngle, this.endAngle);
+        const sweepFlag = this.direction === "ccw" ? "0" : "1";
+        let largeArcFlag;
+        if (end - start >= 180) {
+            if (sweepFlag === "0") {
+                largeArcFlag = "1";
+            } else {
+                largeArcFlag = "0";
+            }
+        } else {
+            if (sweepFlag === "0") {
+                largeArcFlag = "0";
+            } else {
+                largeArcFlag = "1";
+            }
+        }
+        const [sx, sy, dx, dy] = [
+            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(start, "deg"))),
+            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(start, "deg"))),
+            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(end, "deg"))),
+            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(end, "deg"))),
+        ];
+        let d = `M ${sx} ${sy} `;  
+        d += `A ${glob.Coord.toPxLenX(this.radius)} ${glob.Coord.toPxLenY(this.radius)} 0 ${largeArcFlag} ${sweepFlag} ${dx} ${dy}`;
+        d += " Z";
+        svgElem.setAttribute("d", d);
+        
+        function sanitizeInput(start, end) {
+            let [s, e] = [start, end];
+            while (s > 360) { s -= 360 };
+            while (s < 0) { s += 360 };
+            while (e > 360) { e -= 360 };
+            while (e < 0) { e += 360 };
+            if (s > e) { e += 360 };
+            return [s, e];
+        }
+    }
 }
