@@ -31,12 +31,12 @@ FNGplot is a *specialized* plotter for creating diagrams used in STEM teaching m
 
 FNGplot also include many fetaures that are not present in other math softwares, for they are way too specific and would be meaningless in most cases.
 
-Most of these features come in handy when one needs to quickly construct a diagram from a given STEM problem statement.
+Most of these features come in handy when one needs to quickly construct a diagram from a given problem statement.
 
 - Multiple methods to declare basic shapes
   - line:
     - point-point form
-    - point-point form w/ extension (used to create beautiful tangents to other shapes)
+    - point-point form w/ extension (used to create tangents to other shapes)
     - point-slope form
   - circle:
     - center & radius
