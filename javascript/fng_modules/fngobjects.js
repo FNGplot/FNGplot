@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin & All Contributors to FNGplot */
 
-import { toLinuxArchString } from "builder-util";
 import {fngNameSpace as glob } from "./fngns.js";     // global variable module
 
 export {
