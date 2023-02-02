@@ -33,13 +33,57 @@ const LiteralOrigin = Object.freeze({  // A small key:value map used by FNGobjec
     BOTTOM: 1,
     RIGHT: 1,
 });
-function toPoints(arr){     // Convert coordinate data to SVG "points" format
+function toPoints(arr) {     // Convert coordinate data to SVG "points" format
     let output = "";
     for (const pair of arr) {
         output = output + glob.Coord.toPxPosX(pair[0]) + "," + glob.Coord.toPxPosY(pair[1]) + " ";
     }
     return output.slice(0, -1);     // trim off the excess white space
 };
+function updateMathArcSegmentSector(obj, svgElem, mode) {       // Common function for Arc, Segment & Sector since they are nearly identical
+    // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+    const [start, end] = sanitizeInput(obj.startAngle, obj.endAngle);
+    const sweepFlag = obj.direction === "ccw" ? "0" : "1";
+    let largeArcFlag;
+    if (end - start >= 180) {
+        if (sweepFlag === "0") {
+            largeArcFlag = "1";
+        } else {
+            largeArcFlag = "0";
+        }
+    } else {
+        if (sweepFlag === "0") {
+            largeArcFlag = "0";
+        } else {
+            largeArcFlag = "1";
+        }
+    }
+    const [sx, sy, dx, dy] = [
+        glob.Coord.toPxPosX(obj.cx + obj.radius * math.cos(math.unit(start, "deg"))),
+        glob.Coord.toPxPosY(obj.cy + obj.radius * math.sin(math.unit(start, "deg"))),
+        glob.Coord.toPxPosX(obj.cx + obj.radius * math.cos(math.unit(end, "deg"))),
+        glob.Coord.toPxPosY(obj.cy + obj.radius * math.sin(math.unit(end, "deg"))),
+    ];
+    let d = `M ${sx} ${sy} `;  
+    d += `A ${glob.Coord.toPxLenX(obj.radius)} ${glob.Coord.toPxLenY(obj.radius)} 0 ${largeArcFlag} ${sweepFlag} ${dx} ${dy}`;
+    if (mode === "sector") {
+        d += `L ${glob.Coord.toPxPosX(obj.cx)} ${glob.Coord.toPxPosY(obj.cy)} Z`;
+    } else if (mode === "segment") {
+        d += " Z";
+    }
+
+    svgElem.setAttribute("d", d);
+
+    function sanitizeInput(start, end) {
+        let [s, e] = [start, end];
+        while (s > 360) { s -= 360 };
+        while (s < 0) { s += 360 };
+        while (e > 360) { e -= 360 };
+        while (e < 0) { e += 360 };
+        if (s > e) { e += 360 };
+        return [s, e];
+    }
+}
 
 /* [!] Classes: Parent */
 /* Class.SvgStyle: Anything that is a SVG presentation attribute, i.e, there is NEVER calculation on my part whatsoever */
@@ -382,42 +426,7 @@ class Arc extends StrokeParent {
         this.SvgStyle.fillColor = "none";
     }
     updateMath(svgElem) {
-        // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
-        const [start, end] = sanitizeInput(this.startAngle, this.endAngle);
-        const sweepFlag = this.direction === "ccw" ? "0" : "1";
-        let largeArcFlag;
-        if (end - start >= 180) {
-            if (sweepFlag === "0") {
-                largeArcFlag = "1";
-            } else {
-                largeArcFlag = "0";
-            }
-        } else {
-            if (sweepFlag === "0") {
-                largeArcFlag = "0";
-            } else {
-                largeArcFlag = "1";
-            }
-        }
-        const [sx, sy, dx, dy] = [
-            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(start, "deg"))),
-            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(start, "deg"))),
-            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(end, "deg"))),
-            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(end, "deg"))),
-        ];
-        let d = `M ${sx} ${sy} `;  
-        d += `A ${glob.Coord.toPxLenX(this.radius)} ${glob.Coord.toPxLenY(this.radius)} 0 ${largeArcFlag} ${sweepFlag} ${dx} ${dy}`;
-        svgElem.setAttribute("d", d);
-        
-        function sanitizeInput(start, end) {
-            let [s, e] = [start, end];
-            while (s > 360) { s -= 360 };
-            while (s < 0) { s += 360 };
-            while (e > 360) { e -= 360 };
-            while (e < 0) { e += 360 };
-            if (s > e) { e += 360 };
-            return [s, e];
-        }
+        updateMathArcSegmentSector(this, svgElem, "arc");   // 95% identical
     }
 }
 
@@ -435,43 +444,7 @@ class Sector extends StrokeFillParent {
         this.SvgStyle.miterLimit = "4";  // for angle startPoint/center/endPoint  (4 is SVG default value)
     }
     updateMath(svgElem) {
-        // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
-        const [start, end] = sanitizeInput(this.startAngle, this.endAngle);
-        const sweepFlag = this.direction === "ccw" ? "0" : "1";
-        let largeArcFlag;
-        if (end - start >= 180) {
-            if (sweepFlag === "0") {
-                largeArcFlag = "1";
-            } else {
-                largeArcFlag = "0";
-            }
-        } else {
-            if (sweepFlag === "0") {
-                largeArcFlag = "0";
-            } else {
-                largeArcFlag = "1";
-            }
-        }
-        const [sx, sy, dx, dy] = [
-            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(start, "deg"))),
-            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(start, "deg"))),
-            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(end, "deg"))),
-            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(end, "deg"))),
-        ];
-        let d = `M ${sx} ${sy} `;  
-        d += `A ${glob.Coord.toPxLenX(this.radius)} ${glob.Coord.toPxLenY(this.radius)} 0 ${largeArcFlag} ${sweepFlag} ${dx} ${dy}`;
-        d += `L ${glob.Coord.toPxPosX(this.cx)} ${glob.Coord.toPxPosY(this.cy)} Z`;
-        svgElem.setAttribute("d", d);
-        
-        function sanitizeInput(start, end) {
-            let [s, e] = [start, end];
-            while (s > 360) { s -= 360 };
-            while (s < 0) { s += 360 };
-            while (e > 360) { e -= 360 };
-            while (e < 0) { e += 360 };
-            if (s > e) { e += 360 };
-            return [s, e];
-        }
+        updateMathArcSegmentSector(this, svgElem, "sector");   // 95% identical
     }
 }
 
@@ -489,42 +462,6 @@ class Segment extends StrokeFillParent {
         this.SvgStyle.miterLimit = "4";  // for two side "corners" (4 is SVG default value)
     }
     updateMath(svgElem) {
-        // A rx ry x-axis-rotation large-arc-flag sweep-flag x y
-        const [start, end] = sanitizeInput(this.startAngle, this.endAngle);
-        const sweepFlag = this.direction === "ccw" ? "0" : "1";
-        let largeArcFlag;
-        if (end - start >= 180) {
-            if (sweepFlag === "0") {
-                largeArcFlag = "1";
-            } else {
-                largeArcFlag = "0";
-            }
-        } else {
-            if (sweepFlag === "0") {
-                largeArcFlag = "0";
-            } else {
-                largeArcFlag = "1";
-            }
-        }
-        const [sx, sy, dx, dy] = [
-            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(start, "deg"))),
-            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(start, "deg"))),
-            glob.Coord.toPxPosX(this.cx + this.radius * math.cos(math.unit(end, "deg"))),
-            glob.Coord.toPxPosY(this.cy + this.radius * math.sin(math.unit(end, "deg"))),
-        ];
-        let d = `M ${sx} ${sy} `;  
-        d += `A ${glob.Coord.toPxLenX(this.radius)} ${glob.Coord.toPxLenY(this.radius)} 0 ${largeArcFlag} ${sweepFlag} ${dx} ${dy}`;
-        d += " Z";
-        svgElem.setAttribute("d", d);
-        
-        function sanitizeInput(start, end) {
-            let [s, e] = [start, end];
-            while (s > 360) { s -= 360 };
-            while (s < 0) { s += 360 };
-            while (e > 360) { e -= 360 };
-            while (e < 0) { e += 360 };
-            if (s > e) { e += 360 };
-            return [s, e];
-        }
+        updateMathArcSegmentSector(this, svgElem, "segment");   // 95% identical
     }
 }
