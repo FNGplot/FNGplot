@@ -10,11 +10,11 @@ Wish Lin - December 2022
       <polygon points="0,-150 88.1678,-121.3525 142.6585,-46.3525 54.4909,-75" stroke="#000" stroke-width="2.5" stroke-linejoin="round" fill="#8a408b"/>
     </g>
   </defs>
-  <use xlink:href="#unit"/>
-  <use xlink:href="#unit" transform="rotate(72)"/>
-  <use xlink:href="#unit" transform="rotate(144)"/>
-  <use xlink:href="#unit" transform="rotate(216)"/>
-  <use xlink:href="#unit" transform="rotate(288)"/>
+  <use href="#unit"/>
+  <use href="#unit" transform="rotate(72)"/>
+  <use href="#unit" transform="rotate(144)"/>
+  <use href="#unit" transform="rotate(216)"/>
+  <use href="#unit" transform="rotate(288)"/>
 </svg>
 <!--
     SPDX-License-Identifier: Apache-2.0

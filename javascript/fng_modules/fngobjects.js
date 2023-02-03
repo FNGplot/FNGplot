@@ -441,7 +441,7 @@ class Sector extends StrokeFillParent {
         this.endAngle = 230;
         this.direction = "ccw"; /* cw or ccw */
         this.SvgStyle.lineJoin = "miter";
-        this.SvgStyle.miterLimit = "4";  // for angle startPoint/center/endPoint  (4 is SVG default value)
+        this.SvgStyle.miterLimit = "4";  // for angle formed by two radius (4 is SVG default value)
     }
     updateMath(svgElem) {
         updateMathArcSegmentSector(this, svgElem, "sector");   // 95% identical
@@ -459,7 +459,7 @@ class Segment extends StrokeFillParent {
         this.endAngle = 350;
         this.direction = "ccw"; /* cw or ccw */
         this.SvgStyle.lineJoin = "miter";
-        this.SvgStyle.miterLimit = "4";  // for two side "corners" (4 is SVG default value)
+        this.SvgStyle.miterLimit = "4";  // for two side of chord (4 is SVG default value)
     }
     updateMath(svgElem) {
         updateMathArcSegmentSector(this, svgElem, "segment");   // 95% identical

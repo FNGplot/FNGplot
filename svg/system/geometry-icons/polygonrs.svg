@@ -19,7 +19,7 @@
 		</g>
 	</defs>
     <rect x="-20" y="-20" width="40" height="40" fill="#ffffff"/>
-	<use xlink:href="#pentagon" transform="translate(0, -1)"/>
+	<use href="#pentagon" transform="translate(0, -1)"/>
 	<line x1="-10" y1="14" x2="-10" y2="17" stroke="#5f95f7" stroke-width="2px" stroke-linecap="round"/>
 	<line x1="10" y1="14" x2="10" y2="17" stroke="#5f95f7" stroke-width="2px" stroke-linecap="round"/>
 	<line x1="-10" y1="15.5" x2="10" y2="15.5" stroke="#5f95f7" stroke-width="2px"/>
