@@ -4,9 +4,6 @@
 import {fngNameSpace as glob } from "./fngns.js";     // global variable module
 
 export {
-    // Parent
-    StrokeParent,
-    StrokeFillParent,
     // Geometry
     LinePP,
     LinePPExt,
@@ -25,7 +22,7 @@ export {
     // Algebra
 };
 
-/* [!] private data & methods */
+/* [!] private stuff */
 const LiteralOrigin = Object.freeze({  // A small key:value map used by FNGobjects that offer origin positioning
     TOP: 0,
     LEFT: 0,
@@ -33,6 +30,7 @@ const LiteralOrigin = Object.freeze({  // A small key:value map used by FNGobjec
     BOTTOM: 1,
     RIGHT: 1,
 });
+function toPxPosX
 function toPoints(arr) {     // Convert coordinate data to SVG "points" format
     let output = "";
     for (const pair of arr) {
@@ -83,13 +81,11 @@ function updateMathArcSegmentSector(obj, svgElem, mode) {       // Common functi
         if (s > e) { e += 360 };
         return [s, e];
     }
-}
-
-/* [!] Classes: Parent */
-/* Class.SvgStyle: Anything that is a SVG presentation attribute, i.e, there is NEVER calculation on my part whatsoever */
+};
 class StrokeParent {  //parent of objects with stroke only
     constructor(sid) {
         this.sid = sid;
+        // Class.SvgStyle: Anything that is a SVG presentation attribute, i.e, there is NEVER calculation on my part whatsoever
         this.SvgStyle = {
             display: true,
             strokeWidth: 10,
@@ -102,7 +98,6 @@ class StrokeParent {  //parent of objects with stroke only
         }
     }
 };
-
 class StrokeFillParent { //parent of objects with both fill and stroke(border)
     constructor(sid) {
         this.sid = sid;
