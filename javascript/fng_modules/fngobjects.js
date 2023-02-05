@@ -30,7 +30,6 @@ const LiteralOrigin = Object.freeze({  // A small key:value map used by FNGobjec
     BOTTOM: 1,
     RIGHT: 1,
 });
-function toPxPosX
 function toPoints(arr) {     // Convert coordinate data to SVG "points" format
     let output = "";
     for (const pair of arr) {

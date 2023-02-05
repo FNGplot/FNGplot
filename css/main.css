@@ -262,6 +262,11 @@ body {
     font: 1.3rem Lato;
     margin: 0rem 0.4rem;
 }
+.ep__textarea {
+    position: relative;
+    font: 1.3rem Lato;
+    margin: 0rem 0.4rem;
+}
 
 /* || Banner at top left corner */
 .banner {
