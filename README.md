@@ -4,7 +4,7 @@ FNGplot is a *specialized* plotter for creating diagrams used in STEM teaching m
 
 `FNGplot is currently under development.`
 
-`Scheduled v1.0.0 release date: 2023 Summer`
+`Scheduled v1.0.0 release date: 2023 Fall`
 
 ![Logo with text](svg/logo/logo_with_text.svg)
 
