@@ -4,7 +4,7 @@ Library:
 | Name | Description | License |
 |-|-|-|
 | [Sortable.js](https://github.com/SortableJS/Sortable) | Draggable `<div>` support | MIT |
-| [Math.js](https://github.com/josdejong/mathjs) | FNGplot's math library & function parser | Apache-2.0 |
+| [Math.js](https://github.com/josdejong/mathjs) | Math library & function evaluation | Apache-2.0 |
 
 FNGplot scripts (excluding the libraries):
 | Name | Description | License |
