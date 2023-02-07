@@ -35,6 +35,9 @@ app.on("window-all-closed", () => { // Special case for MacOS
     }
 });
 
+
+/* [!] Low-level functions (IPC) */
+
 async function handleEditPanelLoad(){
     return "testing, testing!";
 }
