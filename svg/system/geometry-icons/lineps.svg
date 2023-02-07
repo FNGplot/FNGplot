@@ -12,4 +12,4 @@
 	<circle cx="16" cy="24" r="2.5" fill="#5f95f7"/>
 	<line x1="9" y1="31" x2="31" y2="9" stroke="#5f95f7" stroke-width="2px" stroke-linecap="round"/>
     <polyline points="16,24 26,24 26,14"  stroke="#5f95f7" stroke-width="2px" stroke-linejoin="round" fill="none"/>
-	</svg>
+</svg>
