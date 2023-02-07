@@ -3,6 +3,6 @@ const { contextBridge, ipcRenderer } = require('electron')
 contextBridge.exposeInMainWorld(
     "fileIPC",
     {
-        loadEditPanels: () => ipcRenderer.send('load-editpanels')
+        loadEditPanels: () => ipcRenderer.invoke('load-editpanels')
     }
 )

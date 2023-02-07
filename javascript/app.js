@@ -96,21 +96,24 @@ gui.updateEnvirList();
 }
 
 // Fetch editpanel data from editpanels.json (Note for future me: Realtive path of fetch() starts from the HTML page, NOT this JS file)
-fetch("javascript/fng_modules/editpanel-data/editpanels.json")
-.then((response) => {
-    return response.json();
-})
-.then((data) => {
-    glob.SysData.EDITPANEL_TEMPLATES = data;
-    Object.defineProperty(glob.SysData, "EDITPANEL_TEMPLATES", {   // Lock it up
-        configurable: false,
-        writable: false,
-    });
-})
-.catch( (error) => {
-    alert("Fatal Error: Could not load file \"editpanels.json\"");
-    console.error(error);
-});
+// fetch("javascript/fng_modules/editpanel-data/editpanels.json")
+// .then((response) => {
+//     return response.json();
+// })
+// .then((data) => {
+//     glob.SysData.EDITPANEL_TEMPLATES = data;
+//     Object.defineProperty(glob.SysData, "EDITPANEL_TEMPLATES", {   // Lock it up
+//         configurable: false,
+//         writable: false,
+//     });
+// })
+// .catch( (error) => {
+//     alert("Fatal Error: Could not load file \"editpanels.json\"");
+//     console.error(error);
+// });
+
+const tester = window.fileIPC.loadEditPanels();
+console.log(tester);
 
 //Initialize positions, colors and click handlers of toolbar's tabs and expand/retract togglers
 {

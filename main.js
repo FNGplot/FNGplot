@@ -1,4 +1,4 @@
-const {BrowserWindow, app} = require("electron");
+const {BrowserWindow, app, ipcMain} = require("electron");
 const path = require("path");
 
 const createWindow = () => {
@@ -19,6 +19,7 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
+    ipcMain.handle("load-editpanels", handleEditPanelLoad);
     createWindow();
 });
 
@@ -33,3 +34,7 @@ app.on("window-all-closed", () => { // Special case for MacOS
         app.quit();
     }
 });
+
+async function handleEditPanelLoad(){
+    return "testing, testing!";
+}
