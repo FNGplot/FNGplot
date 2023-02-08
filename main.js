@@ -50,4 +50,10 @@ async function handleEditPanelLoad() {
 }
 
 /* [!] Low-level functions (1-way IPC) */
+
 ipcMain.on("quit-app", () => app.quit());
+ipcMain.on("change-windowsize", (event, sizeObj) => {
+    const webContents = event.sender;
+    const win = BrowserWindow.fromWebContents(webContents);
+    win.setContentSize(sizeObj.width, sizeObj.height);  // Window will resize automatically to match content size (window's "useContentSize" was set to true)
+});

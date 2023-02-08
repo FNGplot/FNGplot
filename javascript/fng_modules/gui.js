@@ -61,6 +61,10 @@ export let gui = (function() {
             document.querySelector(":root").style.fontSize = `${math.round(glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100, 2)}px`;
             glob.Settings.remSize = glob.MagicNumber.DEFAULT_REMSIZE * slider.value / 100;
             this.updateEnvirList();
+            window.electronIPC.changeWindowSize({
+                width: math.round(1120 * slider.value / 100),
+                height: math.round(600 * slider.value / 100),
+            });
         },
 
         // Change plotter coordinate settings
