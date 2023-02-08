@@ -1,8 +1,12 @@
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer } = require("electron")
 
 contextBridge.exposeInMainWorld(
-    "fileIPC",
+    "electronIPC",
     {
-        loadEditPanels: () => { return ipcRenderer.invoke('load-editpanels') }
+        // files
+        loadEditPanels: () => ipcRenderer.invoke("load-editpanels"),
+        //system
+        changeWindowSize: (sizeObj) => ipcRenderer.send("change-widnow-size", sizeObj),
+        quitApp: () => ipcRenderer.send("quit-app")
     }
 )

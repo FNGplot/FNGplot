@@ -95,13 +95,15 @@ gui.updateEnvirList();
     }
 }
 
-// Fetch editpanel data from editpanels.json (Note for future me: Realtive path of fetch() starts from the HTML page, NOT this JS file)
-window.fileIPC.loadEditPanels()
+// Load editpanel data from editpanels.json using IPC
+window.electronIPC.loadEditPanels()
 .then((panelData) => {
-    glob.SysData.EDITPANELS = JSON.parse(panelData);
-})
-.catch(() => {
-    alert("FATAL ERROR: Cannot load \"editpanel.json\"");
+    if (panelData.success)
+        glob.SysData.EDITPANELS = JSON.parse(panelData.content);
+    else {
+        alert("FATAL ERROR: Cannot load \"editpanel.json\"");
+        window.electronIPC.quitApp();
+    }
 })
 
 //Initialize positions, colors and click handlers of toolbar's tabs and expand/retract togglers

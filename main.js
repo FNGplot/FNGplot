@@ -37,14 +37,17 @@ app.on("window-all-closed", () => { // Special case for MacOS
 });
 
 
-/* [!] Low-level functions (IPC) */
+/* [!] Low-level functions (2-way IPC) */
 
 async function handleEditPanelLoad() {
     try {
         const rawData = await fsp.readFile('res/system/editpanel/editpanels.json');
         const data = rawData.toString();
-        return data;
+        return {success: true, content: data}
     } catch (error) {
-        return error;
+        return {success: false, content: null}
     }
 }
+
+/* [!] Low-level functions (1-way IPC) */
+ipcMain.on("quit-app", () => app.quit());
