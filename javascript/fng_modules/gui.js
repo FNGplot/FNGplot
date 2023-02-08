@@ -161,7 +161,7 @@ ${window.screen.width}px / ${window.screen.height}px
                 // Step 2 of 3: draggable block
                 let newBlock = glob.DOM.DRAGBLOCK_TEMPLATE.cloneNode(true);                              //copy template     
                 newBlock.classList.add(`dragblock--${data[1]}`);                                            //add object class
-                newBlock.querySelector('.dragblock__icon').src = `svg/system/${data[1]}-icons/${objName}.svg`; //init the small icon
+                newBlock.querySelector('.dragblock__icon').src = `res/system/svg/${data[1]}-icons/${objName}.svg`; //init the small icon
                 newBlock.querySelector('.dragblock__label').innerHTML = newObj.label;           //display default label
                 newBlock.dataset.sid = sid;                                    //assign this id-less block a sid, in sync with the hidden object
                 glob.DOM.BLOCK_FRAME.appendChild(newBlock); //add the block to block frame
