@@ -1,5 +1,6 @@
 const {BrowserWindow, app, ipcMain} = require("electron");
 const path = require("path");
+const fsp = require("fs").promises; // promisified "fs"
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -38,6 +39,12 @@ app.on("window-all-closed", () => { // Special case for MacOS
 
 /* [!] Low-level functions (IPC) */
 
-async function handleEditPanelLoad(){
-    return "testing, testing!";
+async function handleEditPanelLoad() {
+    try {
+        const rawData = await fsp.readFile('res/system/editpanel/editpanels.json');
+        const data = rawData.toString();
+        return data;
+    } catch (error) {
+        return error;
+    }
 }

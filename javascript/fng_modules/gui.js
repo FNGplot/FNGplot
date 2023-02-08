@@ -268,7 +268,7 @@ ${window.screen.width}px / ${window.screen.height}px
             const panel = block.querySelector(".editpanel");
             if(panel === null){ //It doesn't have an editpanel, give it one
                 const objName = glob.SysData.objectList.find(item => item.sid === sid).constructor.name.toLowerCase(); //obj.constructor.name is the type name of object(ex: LinePP)
-                block.insertAdjacentHTML("beforeend", glob.SysData.EDITPANEL_TEMPLATES[objName]);
+                block.insertAdjacentHTML("beforeend", glob.SysData.EDITPANELS[objName]);
                 this.initEditPanel(block.querySelector(".editpanel"),sid);
             } else { //It has an editpanel, remove it
                 panel.parentNode.removeChild(panel);
