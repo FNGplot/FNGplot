@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) Wei-Hsu Lin & All Contributors to FNGplot */
 
-/* convert.js: This file requires Node.js to run. It converts editpanels.txt to editpanels.json */
+/* convert.js: This file requires Node.js to run. It converts/compresses editpanels.html to editpanels.json */
 
 "use strict";
 
