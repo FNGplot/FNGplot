@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 40 40">
+	<metadata>
+	    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    		<rdf:Description rdf:about="">
+				<author>Wei-Hsu Lin</author>
+      			<license>Apache-2.0</license>
+    		</rdf:Description>
+  		</rdf:RDF>
+	</metadata>
+	<title>quadratic bezier curve</title>
+    <rect x="0" y="0" width="40" height="40" fill="#ffffff"/>
+    <polyline points="7,32 13,10 33,32" fill="none" stroke="#5f95f7" stroke-width="2px" stroke-linejoin="round" stroke-dasharray="3" stroke-dashoffset="-0.5"/>
+	<path d="M 7 32 Q 13 10 33 32" fill="none" stroke="#5f95f7" stroke-width="2px" />
+	<circle cx="7" cy="32" r="2.5" fill="#5f95f7"/>
+	<circle cx="13" cy="10" r="2.5" fill="#5f95f7"/>
+	<circle cx="33" cy="32" r="2.5" fill="#5f95f7"/>
+</svg>
