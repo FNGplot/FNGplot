@@ -49,33 +49,33 @@ export let fngNameSpace = (function() {
             yHat: 50,
             originX: 500,
             originY: 500,
-            // Methods
-            updateSvgCoord(){   // Updates SVG coordinate after user changes x/y min/max.
-                this.xHat = math.round(1000 / (this.xMax - this.xMin), 4);
-                this.yHat = math.round(1000 / (this.yMax - this.yMin), 4);
-                this.originX = math.round(1000 * -this.xMin / (this.xMax - this.xMin), 4);
-                this.originY = math.round(1000 * -this.yMin / (this.yMax - this.yMin), 4);
-                // console.log(this.xHat, this.yHat, this.originX, this.originY);
-            },
-            toPxPosX(xCord){  // Translate calculation result to actual SVG coordinate. X coordinate only.
-                return math.round(this.originX + this.xHat * xCord, 4);
-            },
-            toPxPosY(yCord){  // Translate calculation result to actual SVG coordinate. Y coordinate only.
-                return math.round(this.originY - this.yHat * yCord, 4);
-            },
-            toPxLenX(length){ // Translate calculation result to actual SVG lengths. X direction only.
-                return math.round(length * this.xHat, 4);
-            },
-            toPxLenY(length){ // Translate calculation result to actual SVG lengths. Y direction only.
-                return math.round(length * this.yHat, 4);
-            },
         }),
 
-        /* [!] Masks */
-        maskOn: function(name) {
+        /* [!] Methods */
+        toPxPosX(xCord) {  // Translate calculation result to actual SVG coordinate. X coordinate only.
+            console.log("yojo");
+            return math.round(this.Coord.originX + this.Coord.xHat * xCord, 4);
+        },
+        toPxPosY(yCord) {  // Translate calculation result to actual SVG coordinate. Y coordinate only.
+            return math.round(this.Coord.originY - this.Coord.yHat * yCord, 4);
+        },
+        toPxLenX(length) { // Translate calculation result to actual SVG lengths. X direction only.
+            return math.round(length * this.Coord.xHat, 4);
+        },
+        toPxLenY(length) { // Translate calculation result to actual SVG lengths. Y direction only.
+            return math.round(length * this.Coord.yHat, 4);
+        },
+        updateSvgCoord() {   // Updates SVG coordinate after user changes x/y min/max.
+            this.Coord.xHat = math.round(1000 / (this.Coord.xMax - this.Coord.xMin), 4);
+            this.Coord.yHat = math.round(1000 / (this.Coord.yMax - this.Coord.yMin), 4);
+            this.Coord.originX = math.round(1000 * -this.Coord.xMin / (this.Coord.xMax - this.Coord.xMin), 4);
+            this.Coord.originY = math.round(1000 * -this.Coord.yMin / (this.Coord.yMax - this.Coord.yMin), 4);
+            // console.log(this.Coord.xHat, this.Coord.yHat, this.Coord.originX, this.Coord.originY);
+        },
+        maskOn(name) { // Turn on specified UI mask
             document.querySelector(".mask-base").querySelector(`.${name}`).style.display = "block";
         },
-        maskOff: function(name) {
+        maskOff(name) { // Turn off specified UI mask
             document.querySelector(".mask-base").querySelector(`.${name}`).style.display = "none";
         },
     };
